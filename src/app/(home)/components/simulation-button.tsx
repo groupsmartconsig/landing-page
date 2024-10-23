@@ -10,7 +10,9 @@ export function SimulationButton({ title }: SimulationButtonProps) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button className="w-full bg-green-500 font-bold">{title}</Button>
+        <Button className="w-full bg-primary-red font-bold">
+          {title}
+        </Button>
       </DrawerTrigger>
       <DrawerContent>
         <FormContent />
