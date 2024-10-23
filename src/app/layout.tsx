@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={`${montserrat.className} antialiased`}>
         <main>{children}</main>
         <FacebookPixel pixelId="1597315194197904" />
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   )
