@@ -1,3 +1,4 @@
+import portabilityBanner from '@/app/assets/images/banner.png'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
@@ -7,12 +8,33 @@ import {
   DrawerTitle,
 } from '@/components/ui/drawer'
 import { Separator } from '@/components/ui/separator'
+import { useStepper } from '@/hooks/use-stepper'
+import { AuthService } from '@/services/auth-service'
+import { env } from '@/utils/env'
 import { RocketIcon } from 'lucide-react'
-
-import portabilityBanner from '@/app/assets/images/banner.png'
 import Image from 'next/image'
 
 export function FormInit() {
+  const { nextStep } = useStepper();
+
+  const handleNextStep = async () => {
+    const data = {
+      username: env.NEXT_PUBLIC_USERNAME,
+      password: env.NEXT_PUBLIC_PASSWORD,
+    };
+
+    try {
+      await AuthService.signIn(data.username, data.password);
+
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("401 Server Error: Token not found.");
+
+      nextStep();
+    } catch (error) {
+      console.error("Erro ao autenticar:", error);
+    }
+  };
+
   return (
     <>
       <div className="flex justify-center items-center space-x-4 pt-8 pb-4">
@@ -47,7 +69,7 @@ export function FormInit() {
       <Separator />
       <DrawerFooter className="w-full p-8">
         <div className="flex justify-end items-center space-x-6">
-          <DrawerClose>
+          <DrawerClose asChild>
             <Button type="button" variant="ghost">
               Voltar
             </Button>
@@ -55,6 +77,7 @@ export function FormInit() {
           <Button
             type="button"
             className="font-medium px-6 hover:bg-black hover:text-primary"
+            onClick={handleNextStep}
           >
             Vamos começar ?
           </Button>

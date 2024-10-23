@@ -3,7 +3,7 @@ import { LockKeyholeIcon } from 'lucide-react'
 
 import AnimatedShinyText from '@/components/magic-ui/animated-shiny-text'
 
-export async function AnimatedShinySpan() {
+export function AnimatedShinySpan() {
   return (
     <div className="z-10 flex items-center sm:hidden">
       <div
