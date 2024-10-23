@@ -45,7 +45,7 @@ export function FormInit() {
         </div>
       </div>
       <Separator />
-      <DrawerFooter className="w-full py-6 px-8">
+      <DrawerFooter className="w-full p-8">
         <div className="flex justify-end items-center space-x-6">
           <DrawerClose>
             <Button type="button" variant="ghost">
