@@ -44,14 +44,14 @@ export default function HeaderContainer() {
             />
           </div>
 
-          <CardHeader className="relative z-10 max-w-[370px] mx-auto bg-white text-black p-5 rounded-xl">
+          <CardHeader className="relative z-10 max-w-[370px] mx-auto bg-white text-black p-6 rounded-xl">
             <CardTitle className="text-2xl text-primary leading-tight">
               Portabilidade de Consignado <br />
               <strong className="text-[22px] text-black font-semibold">
                 Aumente o salário e libere valor
               </strong>
             </CardTitle>
-            <CardDescription className="text-base tracking-tight pb-4">
+            <CardDescription className="text-base text-black tracking-tight pb-4">
               Transfira seu empréstimo de outros bancos e aproveite vantagens: reduza a parcela, pague menos juros,
               aumente seu benefício e libere um novo valor.
             </CardDescription>
