@@ -8,7 +8,7 @@ export function AnimatedShinySpan() {
     <div className="z-10 flex items-center sm:hidden">
       <div
         className={cn(
-          'group rounded-full border text-base text-white transition-all ease-in hover:cursor-pointer border-zinc-700 bg-gradient-to-r from-neutral-900 to-zinc-800 hover:bg-neutral-800 hover:border-neutral-400',
+          'group rounded-full text-base text-white transition-all ease-in hover:cursor-pointer bg-gradient-to-r from-neutral-900 to-zinc-800 hover:bg-neutral-800 hover:border-neutral-400',
         )}
       >
         <AnimatedShinyText className="inline-flex items-center justify-center gap-2 px-4 py-1 transition ease-out text-sm text-nwhite hover:text-neutral-400 hover:duration-300">
