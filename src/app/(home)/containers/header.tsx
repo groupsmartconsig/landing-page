@@ -14,7 +14,7 @@ import elderlySmile from '@/app/assets/images/elderly-smile.png'
 import logo from '@/app/assets/images/logo-white.png'
 import Image from 'next/image'
 
-export default function ContainerHeader() {
+export default function HeaderContainer() {
   return (
     <Card className="w-full max-w-md mx-auto overflow-hidden rounded-none border-none">
       <CardContent className="p-0">
