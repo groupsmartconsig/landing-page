@@ -9,10 +9,9 @@ import {
   CardTitle
 } from "@/components/ui/card";
 import {
-  DialogDescription,
-  DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialog";
+  DrawerDescription,
+  DrawerTitle
+} from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
 import { ZapIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -34,22 +33,23 @@ export function FormFinished() {
 
   return (
     <div className="w-full relative flex flex-col items-center justify-center overflow-hidden">
-      <div className="flex items-center space-x-6 w-full pt-2 pb-4 px-8">
-        <span className="p-3 border rounded-lg">
+      <div className="flex justify-center items-center space-x-4 pt-8 pb-4">
+        <span className="p-3 border rounded-2xl">
           <ZapIcon className="text-green-500" />
         </span>
-        <DialogHeader>
-          <DialogTitle className="text-green-500">
-            Você possui propostas disponíveis
-          </DialogTitle>
-          <DialogDescription>
-            Iremos te encaminhar para nossa central de atendimento.
-          </DialogDescription>
-        </DialogHeader>
+        <div>
+          <DrawerTitle className="text-lg text-green-500">
+            Portabilidades disponíveis
+          </DrawerTitle>
+          <DrawerDescription className="text-sm">
+            Encaminhando você para a nossa <br />
+            central de atendimento.
+          </DrawerDescription>
+        </div>
       </div>
       <Separator />
 
-      <Card className="w-96 mx-auto my-12">
+      <Card className="w-80 mx-auto my-12">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">
             Aguarde, você será redirecionado(a)
