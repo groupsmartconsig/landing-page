@@ -3,6 +3,7 @@ import FooterContainer from './(home)/containers/footer'
 import HeaderContainer from './(home)/containers/header'
 import HeroVideoContainer from './(home)/containers/hero-video'
 import InfiniteSliderContainer from './(home)/containers/infinite-slider'
+import InformativeContainer from './(home)/containers/informative'
 import PortabilityContainer from './(home)/containers/portability'
 import ReviewsContainer from './(home)/containers/reviews'
 import SimulationContainer from './(home)/containers/simulation'
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <div className="min-h-screen font-sans">
       <HeaderContainer />
+      <InformativeContainer />
       <PortabilityContainer />
       <SimulationContainer />
       <InfiniteSliderContainer />

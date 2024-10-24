@@ -18,7 +18,7 @@ export default function HeaderContainer() {
   return (
     <Card className="w-full max-w-md mx-auto overflow-hidden rounded-none border-none">
       <CardContent className="p-0">
-        <div className="bg-gradient-to-b from-[#8a090d] via-[#e42c33] to-[#e42c33] text-white pb-6">
+        <div className="bg-gradient-to-b from-[#8a090d] via-[#e42c33] to-[#e42c33] text-white pb-12">
           <header className="flex justify-between items-center pt-2 pb-6 px-6">
             <Image
               src={logo}
