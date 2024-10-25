@@ -29,10 +29,10 @@ export function InformativeContainer() {
           </div>
 
           <CardHeader className="relative z-10 max-w-[370px] mx-auto bg-white text-black p-6 rounded-xl">
-            <CardTitle className="text-2xl text-center font-bold leading-tight">
+            <CardTitle className="text-3xl text-center font-bold leading-tight">
               Como funciona a portabilidade?
             </CardTitle>
-            <CardDescription className="text-base text-black tracking-tight pb-4">
+            <CardDescription className="text-base text-black tracking-tight pt-2 pb-4">
               A portabilidade é simples e rápida: nós cuidamos de toda a parte burocrática para você. Basta solicitar a transferência, que nós vamos apresentar a melhor condição para você, e pronto! Em poucos dias, seu empréstimo estará em um novo banco com parcelas menores e, possivelmente, valor liberado para uso. Faça uma simulação gratuita agora mesmo.
             </CardDescription>
             <SimulationButton title="Quero simular agora" />

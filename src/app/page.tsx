@@ -47,15 +47,11 @@ export default function LandingPage() {
       <div className="max-w-6xl w-full mx-auto pt-16 px-3 md:px-0 md:pt-20">
         <HeroVideoContainer />
       </div>
-      <div className="w-full py-8 px-2 bg-gradient-to-br from-black to-zinc-950">
-        <section className="pt-12 pb-16 bg-gradient-to-br from-black to-zinc-950 sm:bg-transparent">
-          <ReviewsContainer />
-        </section>
-        <div className="sm:bg-transparent sm:max-w-6xl sm:mx-auto sm:px-0">
-          <FaqContainer />
-          <FooterContainer />
-        </div>
-      </div>
+      <section className="pt-12 pb-16 bg-black sm:bg-transparent">
+        <ReviewsContainer />
+      </section>
+      <FaqContainer />
+      <FooterContainer />
     </div>
   )
 }

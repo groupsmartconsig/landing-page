@@ -1,6 +1,3 @@
-import { BorderBeam } from "@/components/magic-ui/border-beam";
-import { DotPattern } from "@/components/magic-ui/dot-pattern";
-import { cn } from "@/lib/utils";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -14,8 +11,8 @@ import Link from "next/link";
 
 export function FooterContainer() {
   return (
-    <div className="bg-black h-96 w-full relative flex flex-col items-center justify-center border-2 border-zinc-700 overflow-hidden rounded-xl mt-12 md:shadow-xl">
-      <div className="z-10 w-full flex justify-between items-center px-16">
+    <div className="bg-black size-full flex flex-col items-center justify-center py-12 overflow-hidden">
+      <div className="w-full flex justify-between items-center px-12">
         <div className="hidden sm:flex flex-col space-y-6">
           <Image
             src={logo}
@@ -82,12 +79,6 @@ export function FooterContainer() {
           </div>
         </div>
       </div>
-      <DotPattern
-        className={cn(
-          "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]",
-        )}
-      />
-      <BorderBeam size={250} duration={12} delay={9} />
     </div>
   )
 }

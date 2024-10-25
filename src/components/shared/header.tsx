@@ -47,7 +47,7 @@ export function HeaderContainer() {
           <CardHeader className="relative z-10 max-w-[370px] mx-auto bg-gray-200 text-black p-6 rounded-xl">
             <CardTitle className="text-2xl text-primary leading-tight">
               Portabilidade de Consignado <br />
-              <strong className="text-[22px] text-black font-semibold">
+              <strong className="text-2xl text-black font-bold">
                 Aumente o salário e libere valor
               </strong>
             </CardTitle>

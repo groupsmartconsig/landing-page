@@ -13,16 +13,16 @@ export function FormContent() {
       <Stepper
         steps={[
           {
-            label: 'Resultado da simulação',
-            content: <FormSimulation />
-          },
-          {
             label: 'Instruções para cadastro',
             content: <FormInit />,
           },
           {
             label: 'Formulário de dados pessoais',
             content: <FormPerson />,
+          },
+          {
+            label: 'Resultado da simulação',
+            content: <FormSimulation />
           },
           {
             label: 'Instruções para realizar a portabilidade',

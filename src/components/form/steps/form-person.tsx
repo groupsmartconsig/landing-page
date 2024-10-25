@@ -79,9 +79,9 @@ export function FormPerson() {
       const replacePhoneValue = formData.phoneNumber.replace(/[\s-()]/g, "");
       const replaceDocumentValue = formData.cpf.replace(/\D/g, "");
 
-      await DataService.createCustomer(
-        formData.name, replacePhoneValue, replaceDocumentValue
-      )
+      // await DataService.createCustomer(
+      //   formData.name, replacePhoneValue, replaceDocumentValue
+      // )
 
       nextStep();
     } catch (error) {
