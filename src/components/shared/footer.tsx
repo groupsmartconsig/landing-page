@@ -12,7 +12,7 @@ import logo from "@/app/assets/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function FooterContainer() {
+export function FooterContainer() {
   return (
     <div className="bg-black h-96 w-full relative flex flex-col items-center justify-center border-2 border-zinc-700 overflow-hidden rounded-xl mt-12 md:shadow-xl">
       <div className="z-10 w-full flex justify-between items-center px-16">

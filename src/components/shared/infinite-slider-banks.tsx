@@ -1,4 +1,4 @@
-import { InfiniteSlider } from '../components/infinite-slider'
+import { InfiniteSlider } from '@/components/shared/infinite-slider'
 
 const banks = [
   { name: 'banrisul', alt: 'Banco Banrisul' },
@@ -14,7 +14,7 @@ const banks = [
   { name: 'santander', alt: 'Banco Santander' },
 ]
 
-export default function InfiniteSliderContainer() {
+export function InfiniteSliderBanksContainer() {
   return (
     <div className="bg-gray-200 py-6 sm:bg-white sm:py-12">
       <div className="w-full flex flex-col items-center space-y-6 py-6">

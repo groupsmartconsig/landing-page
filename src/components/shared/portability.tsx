@@ -1,5 +1,6 @@
 'use client'
 
+import { SimulationButton } from "@/components/shared/simulation-button";
 import {
   Card,
   CardContent,
@@ -7,12 +8,11 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
-import { SimulationButton } from "../components/simulation-button";
 
 import elderlyHeadset from "@/app/assets/images/elderly-headset.png";
 import Image from "next/image";
 
-export default function PortabilityContainer() {
+export function PortabilityContainer() {
   return (
     <Card className="w-full max-w-md mx-auto overflow-hidden rounded-none border-none">
       <CardContent className="p-0">
@@ -35,7 +35,7 @@ export default function PortabilityContainer() {
             <CardDescription className="text-base text-white tracking-tight pb-4">
               Se você é aposentado ou pensionista do INSS, você pode solicitar a portabilidade com a Smart Consig. Basta ter um contrato de empréstimo ativo com outro banco e nós vamos cuidar do resto!
             </CardDescription>
-            <SimulationButton title="Quero fazer minha portabilidade" />
+            <SimulationButton title="Fazer a minha portabilidade" />
           </CardHeader>
         </div>
       </CardContent>

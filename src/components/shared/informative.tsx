@@ -1,5 +1,6 @@
 'use client'
 
+import { SimulationButton } from "@/components/shared/simulation-button";
 import {
   Card,
   CardContent,
@@ -7,12 +8,11 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
-import { SimulationButton } from "../components/simulation-button";
 
 import elderlyThoughtful from "@/app/assets/images/elderly-thoughtful.png";
 import Image from "next/image";
 
-export default function InformativeContainer() {
+export function InformativeContainer() {
   return (
     <Card className="w-full max-w-md mx-auto overflow-hidden rounded-none border-none">
       <CardContent className="p-0">

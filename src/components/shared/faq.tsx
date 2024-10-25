@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 import AnimatedGridPattern from "@/components/magic-ui/animated-grid-pattern";
 
-export default function FaqContainer() {
+export function FaqContainer() {
   return (
     <div
       className="bg-black h-[600px] w-full relative flex flex-col items-center justify-center rounded-xl overflow-hidden sm:border sm:border-zinc-700 md:h-[540px] md:shadow-xl"

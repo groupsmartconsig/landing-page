@@ -194,7 +194,7 @@ export function FormPerson() {
       <div className="w-full flex justify-end space-x-6 border-t p-8">
         <Button
           type="button"
-          className="font-medium px-6 rounded-full hover:bg-black hover:text-primary"
+          className="font-medium px-6 hover:bg-black hover:text-primary"
           onClick={handleSubmitForm}
         >
           {!isSubmitting && <span>Simular propostas</span>}

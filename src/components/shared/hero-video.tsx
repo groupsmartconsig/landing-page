@@ -2,9 +2,9 @@
 
 import HeroVideoDialog from "@/components/magic-ui/hero-video-dialog";
 
-import { SimulationButton } from "../components/simulation-button";
+import { SimulationButton } from "@/components/shared/simulation-button";
 
-export default function HeroVideoContainer() {
+export function HeroVideoContainer() {
   return (
     <div className="relative pb-16">
       <div className="w-full flex flex-col items-center space-y-6 pb-12">

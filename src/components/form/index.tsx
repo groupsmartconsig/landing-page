@@ -3,6 +3,7 @@ import { Stepper } from './stepper'
 import { FormFinished } from './steps/form-finished'
 import { FormInit } from './steps/form-init'
 import { FormPerson } from './steps/form-person'
+import { FormSimulation } from './steps/form-simulation'
 
 export function FormContent() {
   const [currentStep, setCurrentStep] = useState(0)
@@ -11,6 +12,10 @@ export function FormContent() {
     <form>
       <Stepper
         steps={[
+          {
+            label: 'Resultado da simulação',
+            content: <FormSimulation />
+          },
           {
             label: 'Instruções para cadastro',
             content: <FormInit />,

@@ -1,8 +1,8 @@
-import { Toaster } from '@/components/ui/sonner'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
+import { Toaster } from 'sonner'
 
-import FacebookPixel from './facebook-pixel'
+import FacebookPixel from '../components/shared/facebook-pixel'
 import './globals.css'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
