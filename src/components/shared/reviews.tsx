@@ -99,7 +99,7 @@ const ReviewCard = ({
 export function ReviewsContainer() {
   return (
     <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden text-white md:shadow-xl">
-      <h5 className="text-3xl text-center font-bold text-primary leading-tight pb-12 sm:text-4xl">
+      <h5 className="text-2xl text-center font-bold text-primary leading-tight pb-12 sm:text-4xl">
         Avaliações dos <br />
         nossos clientes
       </h5>

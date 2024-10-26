@@ -83,10 +83,10 @@ const config: Config = {
 						'background-position': 'calc(100% + var(--shiny-width)) 0'
 					}
 				},
-				slowSwipe: {
-					'0%': { transform: 'translateX(0)' },
-					'100%': { transform: 'translateX(-50%)' },
-				},
+				bannermove: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
 				'border-beam': {
 					'100%': {
 						'offset-distance': '100%'
@@ -115,7 +115,6 @@ const config: Config = {
 				'shiny-text': 'shiny-text 8s infinite',
 				'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
 				marquee: 'marquee var(--duration) infinite linear',
-				slowSwipe: 'slowSwipe var(--speed) linear infinite',
 				'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
 			}
 		}

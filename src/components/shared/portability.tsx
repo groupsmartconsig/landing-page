@@ -29,12 +29,14 @@ export function PortabilityContainer() {
           </div>
 
           <CardHeader className="relative z-10 max-w-[370px] mx-auto bg-black p-6 rounded-xl">
-            <CardTitle className="text-3xl text-primary-red text-center font-bold leading-tight">
-              Quem pode fazer a Portabilidade?
-            </CardTitle>
-            <CardDescription className="text-base text-white tracking-tight pt-2 pb-4">
-              Se você é aposentado ou pensionista do INSS, você pode solicitar a portabilidade com a Smart Consig. Basta ter um contrato de empréstimo ativo com outro banco e nós vamos cuidar do resto!
-            </CardDescription>
+            <div className="flex flex-col justify-center space-y-2">
+              <CardTitle className="text-2xl text-primary-red font-bold leading-tight">
+                Quem pode fazer a Portabilidade?
+              </CardTitle>
+              <CardDescription className="text-base text-white tracking-tight pb-4">
+                Se você é aposentado ou pensionista do INSS, você pode solicitar a portabilidade com a Smart Consig. Basta ter um contrato de empréstimo ativo com outro banco e nós vamos cuidar do resto!
+              </CardDescription>
+            </div>
             <SimulationButton title="Fazer a minha portabilidade" />
           </CardHeader>
         </div>

@@ -1,33 +1,50 @@
-import { InfiniteSlider } from '@/components/shared/infinite-slider'
+import Image from 'next/image'
 
-const banks = [
-  { name: 'banrisul', alt: 'Banco Banrisul' },
-  { name: 'bmg', alt: 'Banco BMG' },
-  { name: 'bradesco', alt: 'Banco Bradesco' },
-  { name: 'c6', alt: 'Banco C6' },
-  { name: 'caixa', alt: 'Banco Caixa' },
-  { name: 'crefisa', alt: 'Banco Crefisa' },
-  { name: 'daycoval', alt: 'Banco Daycoval' },
-  { name: 'itau', alt: 'Banco Itaú' },
-  { name: 'pan', alt: 'Banco Pan' },
-  { name: 'safra', alt: 'Banco Safra' },
-  { name: 'santander', alt: 'Banco Santander' },
+const images = [
+  { src: '/banrisul.png', alt: 'Banco Banrisul' },
+  { src: '/bmg.png', alt: 'Banco BMG' },
+  { src: '/bradesco.png', alt: 'Banco Bradesco' },
+  { src: '/c6.png', alt: 'Banco C6' },
+  { src: '/caixa.png', alt: 'Banco Caixa' },
+  { src: '/crefisa.png', alt: 'Banco Crefisa' },
+  { src: '/daycoval.png', alt: 'Banco Daycoval' },
+  { src: '/itau.png', alt: 'Banco Itaú' },
+  { src: '/pan.png', alt: 'Banco Pan' },
+  { src: '/safra.png', alt: 'Banco Safra' },
+  { src: '/santander.png', alt: 'Banco Santander' },
 ]
 
 export function InfiniteSliderBanksContainer() {
   return (
     <div className="bg-gray-200 py-6 sm:bg-white sm:py-12">
-      <div className="w-full flex flex-col items-center space-y-6 py-6">
-        <h2 className="max-w-80 mx-auto text-3xl text-center font-bold sm:w-full sm:text-4xl sm:text-center sm:font-bold">
-          Única instituição autorizada por todos os Bancos.
+      <div className="max-w-[322px] mx-auto w-full flex flex-col justify-center-center space-y-2 py-6">
+        <h2 className="text-2xl font-bold sm:w-full sm:text-4xl sm:text-center sm:font-bold">
+          Única instituição <br />
+          autorizada por todos <br />
+          os Bancos.
         </h2>
-        <p className="w-full text-center text-base font-medium px-6 sm:max-w-5xl">
+        <p className="w-full text-base font-medium sm:max-w-5xl">
           Somos a única instituição autorizada por todos os bancos para garantir segurança e
           confiança nas suas operações financeiras. Com a nossa expertise, você tem a tranquilidade
           de contar com as melhores condições de mercado.
         </p>
       </div>
-      <InfiniteSlider banks={banks} />
+      <div className="flex w-[200%] animate-[bannermove_20s_linear_infinite]">
+        <div className='w-full flex items-center space-x-6'>
+          {images.map((image, imageIndex) => (
+            <div key={imageIndex} className="flex-shrink-0">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={1080}
+                height={1080}
+                className="h-[120px] w-full object-contain"
+                priority
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
