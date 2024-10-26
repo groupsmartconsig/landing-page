@@ -1,4 +1,4 @@
-import { EllipsisLoader } from '@/components/shared/ellipsis-loader'
+import portabilityBanner from '@/app/assets/images/banner.png'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
@@ -12,19 +12,12 @@ import { useStepper } from '@/hooks/use-stepper'
 import { AuthService } from '@/services/auth-service'
 import { env } from '@/utils/env'
 import { RocketIcon } from 'lucide-react'
-import { useForm } from 'react-hook-form'
-
-import portabilityBanner from '@/app/assets/images/banner.png'
 import Image from 'next/image'
 
 export function FormInit() {
-  const {
-    handleSubmit,
-    formState: { isSubmitting }
-  } = useForm();
   const { nextStep } = useStepper();
 
-  const handleNextStep = handleSubmit(async () => {
+  const handleNextStep = async () => {
     const data = {
       username: env.NEXT_PUBLIC_USERNAME,
       password: env.NEXT_PUBLIC_PASSWORD,
@@ -40,10 +33,10 @@ export function FormInit() {
     } catch (error) {
       console.error("Erro ao autenticar:", error);
     }
-  });
+  };
 
   return (
-    <form onSubmit={handleNextStep}>
+    <>
       <div className="flex justify-center items-center space-x-4 pt-8 pb-4">
         <span className="p-3 border rounded-2xl">
           <RocketIcon className="text-primary-red" />
@@ -82,14 +75,14 @@ export function FormInit() {
             </Button>
           </DrawerClose>
           <Button
-            type="submit"
+            type="button"
             className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
+            onClick={() => handleNextStep()}
           >
-            {!isSubmitting && <span>Vamos começar ?</span>}
-            {isSubmitting && <EllipsisLoader />}
+            Vamos começar ?
           </Button>
         </div>
       </DrawerFooter>
-    </form>
-  )
+    </>
+  );
 }
