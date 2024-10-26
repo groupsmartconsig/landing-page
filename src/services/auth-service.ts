@@ -1,13 +1,14 @@
 import axios from 'axios'
 
+const tenant = process.env.NEXT_PUBLIC_TENANT
+
 const httpClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_AUTH_API,
   headers: {
     'Content-Type': 'application/json;',
+    Tenant: `${tenant}`
   },
 })
-
-const tenant = process.env.NEXT_PUBLIC_TENANT
 
 export class AuthService {
   static async signIn(
@@ -15,7 +16,7 @@ export class AuthService {
     password: string,
   ) {
     try {
-      const { data } = await httpClient.post(`/${tenant}/auth/login`, {
+      const { data } = await httpClient.post("/user/login", {
         username,
         password,
       })
