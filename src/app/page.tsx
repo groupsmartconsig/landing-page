@@ -38,7 +38,7 @@ const FooterContainer = dynamic(() => import(
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen font-sans">
+    <div className="min-h-screen overflow-hidden">
       <HeaderContainer />
       <InformativeContainer />
       <PortabilityContainer />

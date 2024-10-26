@@ -29,7 +29,7 @@ export function InfiniteSliderBanksContainer() {
           de contar com as melhores condições de mercado.
         </p>
       </div>
-      <div className="flex w-[200%] animate-[bannermove_20s_linear_infinite]">
+      <div className="flex w-[200%] animate-[bannermove_10s_linear_infinite]">
         <div className='w-full flex items-center space-x-6'>
           {images.map((image, imageIndex) => (
             <div key={imageIndex} className="flex-shrink-0">
