@@ -1,3 +1,4 @@
+import { ProposalsProvider } from '@/context/proposals-context'
 import { useState } from 'react'
 import { Stepper } from './stepper'
 import { FormFinished } from './steps/form-finished'
@@ -10,28 +11,30 @@ export function FormContent() {
 
   return (
     <form>
-      <Stepper
-        steps={[
-          {
-            label: 'Instruções para cadastro',
-            content: <FormInit />,
-          },
-          {
-            label: 'Formulário de dados pessoais',
-            content: <FormPerson />,
-          },
-          {
-            label: 'Resultado da simulação',
-            content: <FormSimulation />
-          },
-          {
-            label: 'Instruções para realizar a portabilidade',
-            content: <FormFinished />,
-          },
-        ]}
-        currentStep={currentStep}
-        onStepChange={setCurrentStep}
-      />
+      <ProposalsProvider>
+        <Stepper
+          steps={[
+            {
+              label: 'Instruções para cadastro',
+              content: <FormInit />,
+            },
+            {
+              label: 'Formulário de dados pessoais',
+              content: <FormPerson />,
+            },
+            {
+              label: 'Resultado da simulação',
+              content: <FormSimulation />
+            },
+            {
+              label: 'Instruções para realizar a portabilidade',
+              content: <FormFinished />,
+            },
+          ]}
+          currentStep={currentStep}
+          onStepChange={setCurrentStep}
+        />
+      </ProposalsProvider>
     </form>
   )
 }

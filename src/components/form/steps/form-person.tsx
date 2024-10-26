@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { DrawerDescription, DrawerTitle } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useProposals } from "@/hooks/use-proposals";
 import { useStepper } from "@/hooks/use-stepper";
 import { cn } from "@/lib/utils";
 import { DataService } from "@/services/data-service";
@@ -22,6 +23,7 @@ type FormData = z.infer<typeof formSchema>;
 
 export function FormPerson() {
   const { nextStep } = useStepper();
+  const { setProposals } = useProposals();
   const {
     control,
     register,
@@ -74,7 +76,8 @@ export function FormPerson() {
         cpf: data.cpf,
       };
 
-      await DataService.getContractsByCustomerDocument(formData.cpf);
+      const response = await DataService.getContractsByCustomerDocument(formData.cpf);
+      setProposals(response);
 
       const replacePhoneValue = formData.phoneNumber.replace(/[\s-()]/g, "");
       const replaceDocumentValue = formData.cpf.replace(/\D/g, "");
