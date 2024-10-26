@@ -1,3 +1,4 @@
+import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import { DrawerDescription, DrawerTitle } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
@@ -7,7 +8,7 @@ import { useStepper } from "@/hooks/use-stepper";
 import { cn } from "@/lib/utils";
 import { DataService } from "@/services/data-service";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2Icon, TriangleIcon } from "lucide-react";
+import { TriangleIcon } from "lucide-react";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -194,16 +195,11 @@ export function FormPerson() {
       <div className="w-full flex justify-end space-x-6 border-t p-8">
         <Button
           type="button"
-          className="font-medium px-6 hover:bg-black hover:text-primary"
+          className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
           onClick={handleSubmitForm}
         >
           {!isSubmitting && <span>Simular propostas</span>}
-          {isSubmitting && (
-            <div className="flex items-center gap-2">
-              Buscando propostas
-              <Loader2Icon className="size-4 animate-spin" />
-            </div>
-          )}
+          {isSubmitting && <EllipsisLoader />}
         </Button>
       </div>
     </>

@@ -1,3 +1,4 @@
+import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -10,10 +11,12 @@ import { useProposals } from "@/hooks/use-proposals";
 import { useStepper } from "@/hooks/use-stepper";
 import { DataService } from "@/services/data-service";
 import { CircleDollarSignIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { PortabilityContent } from "./proposals/portability";
 import { RefinancingContent } from "./proposals/refinancing";
 
 export function FormSimulation() {
+  const { formState } = useForm();
   const { proposals } = useProposals();
   const { nextStep } = useStepper();
 
@@ -83,10 +86,11 @@ export function FormSimulation() {
       <div className="w-full flex flex-col items-center space-y-6 border-t p-8">
         <Button
           type="button"
-          className="w-full px-6 hover:bg-black hover:text-primary"
+          className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
           onClick={handleCreateCustomer}
         >
-          Quero fazer a portabilidade
+          {!formState.isSubmitting && <span>Quero fazer a portabilidade</span>}
+          {formState.isSubmitting && <EllipsisLoader />}
         </Button>
       </div>
     </form>
