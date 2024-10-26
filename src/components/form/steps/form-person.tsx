@@ -69,7 +69,7 @@ export function FormPerson() {
     setValue('phoneNumber', maskPhone(phoneNumber));
   }, [phoneNumber, setValue]);
 
-  const handleSubmitForm = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
       const formData = {
         name: data.name,
@@ -95,7 +95,7 @@ export function FormPerson() {
   });
 
   return (
-    <>
+    <form onSubmit={onSubmit}>
       <div className="flex justify-center items-center space-x-4 pt-8 pb-4">
         <span className="p-3 border rounded-2xl">
           <TriangleIcon className="text-primary-red" />
@@ -194,14 +194,13 @@ export function FormPerson() {
 
       <div className="w-full flex justify-end space-x-6 border-t p-8">
         <Button
-          type="button"
+          type="submit"
           className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
-          onClick={handleSubmitForm}
         >
           {!isSubmitting && <span>Simular propostas</span>}
           {isSubmitting && <EllipsisLoader />}
         </Button>
       </div>
-    </>
+    </form>
   )
 }
