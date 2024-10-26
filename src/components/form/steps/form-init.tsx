@@ -1,5 +1,4 @@
 import portabilityBanner from '@/app/assets/images/banner.png'
-import { EllipsisLoader } from '@/components/shared/ellipsis-loader'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
@@ -14,10 +13,8 @@ import { AuthService } from '@/services/auth-service'
 import { env } from '@/utils/env'
 import { RocketIcon } from 'lucide-react'
 import Image from 'next/image'
-import { useForm } from 'react-hook-form'
 
 export function FormInit() {
-  const { formState } = useForm();
   const { nextStep } = useStepper();
 
   const handleNextStep = async () => {
@@ -82,8 +79,7 @@ export function FormInit() {
             className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
             onClick={handleNextStep}
           >
-            {!formState.isSubmitting && <span>Vamos começar ?</span>}
-            {formState.isSubmitting && <EllipsisLoader />}
+            Vamos começar ?
           </Button>
         </div>
       </DrawerFooter>
