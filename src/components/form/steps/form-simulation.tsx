@@ -7,15 +7,38 @@ import {
 } from "@/components/ui/carousel";
 import { DrawerDescription, DrawerTitle } from "@/components/ui/drawer";
 import { useProposals } from "@/hooks/use-proposals";
+import { useStepper } from "@/hooks/use-stepper";
+import { DataService } from "@/services/data-service";
 import { CircleDollarSignIcon } from "lucide-react";
 import { PortabilityContent } from "./proposals/portability";
 import { RefinancingContent } from "./proposals/refinancing";
 
 export function FormSimulation() {
   const { proposals } = useProposals();
+  const { nextStep } = useStepper();
+
+  const name = localStorage.getItem("nome");
+  const phone = localStorage.getItem("contato");
+  const document = localStorage.getItem("cpf");
+
+  const handleCreateCustomer = async () => {
+    try {
+      const fullName = name ? name : "";
+      const replaceDocumentValue = document ? document.replace(/\D/g, "") : "";
+      const replacePhoneValue = phone ? phone.replace(/[\s-()]/g, "") : "";
+
+      await DataService.createCustomer(
+        fullName, replacePhoneValue, replaceDocumentValue
+      );
+
+      nextStep();
+    } catch (error) {
+      console.error("Erro ao autenticar:", error);
+    }
+  }
 
   return (
-    <>
+    <form>
       <div className="flex justify-center items-center space-x-4 pt-8 pb-4">
         <span className="p-3 border rounded-2xl">
           <CircleDollarSignIcon className="text-green-500" />
@@ -61,10 +84,11 @@ export function FormSimulation() {
         <Button
           type="button"
           className="w-full px-6 hover:bg-black hover:text-primary"
+          onClick={handleCreateCustomer}
         >
           Quero fazer a portabilidade
         </Button>
       </div>
-    </>
+    </form>
   )
 }

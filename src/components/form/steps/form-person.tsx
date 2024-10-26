@@ -79,12 +79,9 @@ export function FormPerson() {
       const response = await DataService.getContractsByCustomerDocument(formData.cpf);
       setProposals(response);
 
-      const replacePhoneValue = formData.phoneNumber.replace(/[\s-()]/g, "");
-      const replaceDocumentValue = formData.cpf.replace(/\D/g, "");
-
-      // await DataService.createCustomer(
-      //   formData.name, replacePhoneValue, replaceDocumentValue
-      // )
+      localStorage.setItem("nome", formData.name);
+      localStorage.setItem("contato", formData.phoneNumber);
+      localStorage.setItem("cpf", formData.cpf);
 
       nextStep();
     } catch (error) {
