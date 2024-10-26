@@ -30,6 +30,14 @@ export function FooterContainer() {
         </div>
         <div className="flex items-center space-x-20">
           <div className="grid grid-cols-1 gap-6">
+            <Image
+              src={logo}
+              width={140}
+              height={20}
+              className="block w-1/3 mb-3 sm:hidden"
+              alt="logo"
+              priority
+            />
             <div className="flex flex-col space-y-3">
               <span className="text-lg font-bold text-primary-red">
                 Contato

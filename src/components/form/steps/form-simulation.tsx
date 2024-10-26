@@ -6,7 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious
 } from "@/components/ui/carousel";
-import { DrawerDescription, DrawerTitle } from "@/components/ui/drawer";
+import { DrawerDescription, DrawerFooter, DrawerTitle } from "@/components/ui/drawer";
 import { useProposals } from "@/hooks/use-proposals";
 import { useStepper } from "@/hooks/use-stepper";
 import { DataService } from "@/services/data-service";
@@ -41,7 +41,7 @@ export function FormSimulation() {
   }
 
   return (
-    <form>
+    <>
       <div className="flex justify-center items-center space-x-4 pt-8 pb-4">
         <span className="p-3 border rounded-2xl">
           <CircleDollarSignIcon className="text-green-500" />
@@ -56,7 +56,7 @@ export function FormSimulation() {
         </div>
       </div>
 
-      <Carousel className="w-full max-w-72 mx-auto py-8">
+      <Carousel className="w-full max-w-72 mx-auto pt-8">
         <CarouselContent>
           {proposals.map((proposal, index) => {
             const {
@@ -83,7 +83,7 @@ export function FormSimulation() {
         <CarouselNext />
       </Carousel>
 
-      <div className="w-full flex flex-col items-center space-y-6 border-t p-8">
+      <DrawerFooter className="w-full max-w-72 mx-auto px-0">
         <Button
           type="button"
           className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
@@ -92,7 +92,7 @@ export function FormSimulation() {
           {!formState.isSubmitting && <span>Quero fazer a portabilidade</span>}
           {formState.isSubmitting && <EllipsisLoader />}
         </Button>
-      </div>
-    </form>
+      </DrawerFooter>
+    </>
   )
 }

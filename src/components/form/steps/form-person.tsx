@@ -95,7 +95,7 @@ export function FormPerson() {
   });
 
   return (
-    <form onSubmit={onSubmit}>
+    <>
       <div className="flex justify-center items-center space-x-4 pt-8 pb-4">
         <span className="p-3 border rounded-2xl">
           <TriangleIcon className="text-primary-red" />
@@ -145,6 +145,7 @@ export function FormPerson() {
                   autoComplete="off"
                   autoCorrect="off"
                   autoCapitalize="off"
+                  inputMode="numeric"
                   maxLength={14}
                   className={cn(
                     errors?.cpf
@@ -173,6 +174,7 @@ export function FormPerson() {
                   autoComplete="off"
                   autoCorrect="off"
                   autoCapitalize="off"
+                  inputMode="numeric"
                   maxLength={15}
                   className={cn(
                     errors?.phoneNumber
@@ -194,13 +196,14 @@ export function FormPerson() {
 
       <div className="w-full flex justify-end space-x-6 border-t p-8">
         <Button
-          type="submit"
+          type="button"
           className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
+          onClick={onSubmit}
         >
           {!isSubmitting && <span>Simular propostas</span>}
           {isSubmitting && <EllipsisLoader />}
         </Button>
       </div>
-    </form>
+    </>
   )
 }

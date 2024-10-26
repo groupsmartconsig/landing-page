@@ -1,9 +1,9 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CarouselItem } from "@/components/ui/carousel";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { ContractsPortabilityDetails, Proposal } from "@/types/proposals";
-import { EyeIcon } from "lucide-react";
+import { PersonData } from "./person-data";
 
 interface PortabilityContentProps {
   proposal: Proposal;
@@ -18,7 +18,7 @@ export function PortabilityContent({
 }: PortabilityContentProps) {
   return (
     <CarouselItem key={proposal.id}>
-      <div className="p-1">
+      <ScrollArea className="p-1 h-64">
         <Card>
           <CardContent className="aspect-square flex flex-col items-center justify-between space-y-3 p-6">
             <Badge className="bg-green-500 text-white">
@@ -63,17 +63,8 @@ export function PortabilityContent({
             </div>
           </CardContent>
         </Card>
-      </div>
-      <div className="w-full pt-4">
-        <Button
-          type="button"
-          variant="outline"
-          className="w-full flex items-center gap-2"
-        >
-          <EyeIcon className="size-4" />
-          Ver todos os detalhes
-        </Button>
-      </div>
+      </ScrollArea>
+      <PersonData personData={proposal.clienteDadosPessoais} />
     </CarouselItem>
   )
 }
