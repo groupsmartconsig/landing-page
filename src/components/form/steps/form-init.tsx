@@ -1,4 +1,3 @@
-import portabilityBanner from '@/app/assets/images/banner.png'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
@@ -12,6 +11,8 @@ import { useStepper } from '@/hooks/use-stepper'
 import { AuthService } from '@/services/auth-service'
 import { env } from '@/utils/env'
 import { RocketIcon } from 'lucide-react'
+
+import portabilityBanner from '@/app/assets/images/banner.png'
 import Image from 'next/image'
 
 export function FormInit() {
@@ -77,7 +78,7 @@ export function FormInit() {
           <Button
             type="button"
             className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
-            onClick={() => handleNextStep()}
+            onClick={handleNextStep}
           >
             Vamos começar ?
           </Button>
