@@ -1,6 +1,6 @@
 import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
-import { DrawerDescription, DrawerTitle } from "@/components/ui/drawer";
+import { DrawerClose, DrawerDescription, DrawerTitle } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useProposals } from "@/hooks/use-proposals";
@@ -194,7 +194,7 @@ export function FormPerson() {
         </div>
       </div>
 
-      <div className="w-full flex justify-end space-x-6 border-t p-8">
+      <div className="w-full flex flex-col items-center space-y-6 border-t p-8">
         <Button
           type="button"
           className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
@@ -203,6 +203,12 @@ export function FormPerson() {
           {!isSubmitting && <span>Simular propostas</span>}
           {isSubmitting && <EllipsisLoader />}
         </Button>
+
+        <DrawerClose asChild>
+          <Button type="button" variant="ghost">
+            Voltar
+          </Button>
+        </DrawerClose>
       </div>
     </>
   )

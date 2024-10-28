@@ -52,7 +52,7 @@ export function FormInit() {
         </div>
       </div>
       <div className="w-full flex flex-col space-y-6 py-6 px-8">
-        <div className="w-full h-auto">
+        <div className="size-full">
           <Image
             src={portabilityBanner}
             width={820}
@@ -69,12 +69,7 @@ export function FormInit() {
       </div>
       <Separator />
       <DrawerFooter className="w-full p-8">
-        <div className="flex justify-end items-center space-x-6">
-          <DrawerClose asChild>
-            <Button type="button" variant="ghost">
-              Voltar
-            </Button>
-          </DrawerClose>
+        <div className="flex flex-col items-center space-y-6">
           <Button
             type="button"
             className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
@@ -82,6 +77,12 @@ export function FormInit() {
           >
             Vamos começar ?
           </Button>
+
+          <DrawerClose asChild>
+            <Button type="button" variant="ghost">
+              Voltar
+            </Button>
+          </DrawerClose>
         </div>
       </DrawerFooter>
     </>
