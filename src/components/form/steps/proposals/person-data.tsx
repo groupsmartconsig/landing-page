@@ -18,9 +18,11 @@ interface PersonDataProps {
 }
 
 export function PersonData({ personData }: PersonDataProps) {
+  const formattedDate = new Date(personData.dataNascimento).toLocaleDateString("pt-BR");
+
   return (
     <Dialog>
-      <div className="w-full py-2">
+      <div className="w-full py-5">
         <DialogTrigger asChild>
           <Button
             type="button"
@@ -45,6 +47,7 @@ export function PersonData({ personData }: PersonDataProps) {
             <TabsTrigger value="person-data">Dados pessoais</TabsTrigger>
             <TabsTrigger value="portability-data">Dados portabilidade</TabsTrigger>
           </TabsList>
+
           <TabsContent value="person-data">
             <div className="grid grid-cols-1 gap-y-3 p-3">
               <div className="flex flex-col space-y-2">
@@ -55,52 +58,45 @@ export function PersonData({ personData }: PersonDataProps) {
                   {personData.nome}
                 </p>
               </div>
-              <div className="flex justify-between items-center">
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm font-semibold">
-                    CPF
-                  </span>
-                  <p className="text-sm">
-                    {personData.cpf}
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm font-semibold">
-                    Cidade
-                  </span>
-                  <p className="text-sm">
-                    {personData.cidade} - {personData.uf}
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-between items-center">
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm font-semibold">
-                    Data de nascimento
-                  </span>
-                  <p className="text-sm">
-                    {personData.dataNascimento}
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm font-semibold">
-                    Idade
-                  </span>
-                  <p className="text-sm">
-                    {personData.idade}
-                  </p>
-                </div>
-              </div>
+
               <div className="flex flex-col space-y-2">
                 <span className="text-sm font-semibold">
-                  Benêficio
+                  CPF
                 </span>
                 <p className="text-sm">
-                  {personData.beneficioEspecie}
+                  {personData.cpf}
+                </p>
+              </div>
+
+              <div className="flex flex-col space-y-2">
+                <span className="text-sm font-semibold">
+                  Cidade
+                </span>
+                <p className="text-sm">
+                  {personData.cidade} - {personData.uf}
+                </p>
+              </div>
+
+              <div className="flex flex-col space-y-2">
+                <span className="text-sm font-semibold">
+                  Data de nascimento
+                </span>
+                <p className="text-sm">
+                  {formattedDate}
+                </p>
+              </div>
+
+              <div className="flex flex-col space-y-2">
+                <span className="text-sm font-semibold">
+                  Idade
+                </span>
+                <p className="text-sm">
+                  {personData.idade}
                 </p>
               </div>
             </div>
           </TabsContent>
+
           <TabsContent value="portability-data">
             <div className="grid grid-cols-1 gap-y-3 p-3">
               <div className="flex flex-col space-y-2">
@@ -111,41 +107,32 @@ export function PersonData({ personData }: PersonDataProps) {
                   {personData.banco}
                 </p>
               </div>
-              <div className="flex justify-between items-center">
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm font-semibold">
-                    Meio de pagamento
-                  </span>
-                  <p className="text-sm">
-                    {personData.meioPagamento}
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm font-semibold">
-                    Benêficio
-                  </span>
-                  <p className="text-sm">
-                    {personData.numeroBeneficio}
-                  </p>
-                </div>
+
+              <div className="flex flex-col space-y-2">
+                <span className="text-sm font-semibold">
+                  Meio de pagamento
+                </span>
+                <p className="text-sm">
+                  {personData.meioPagamento}
+                </p>
               </div>
-              <div className="flex justify-between items-center">
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm font-semibold">
-                    Agência
-                  </span>
-                  <p className="text-sm">
-                    {personData.agBanco}
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm font-semibold">
-                    Conta corrente
-                  </span>
-                  <p className="text-sm">
-                    {personData.contaCorrente}
-                  </p>
-                </div>
+
+              <div className="flex flex-col space-y-2">
+                <span className="text-sm font-semibold">
+                  Benêficio
+                </span>
+                <p className="text-sm">
+                  {personData.beneficioEspecie}
+                </p>
+              </div>
+
+              <div className="flex flex-col space-y-2">
+                <span className="text-sm font-semibold">
+                  Número do benêficio
+                </span>
+                <p className="text-sm">
+                  {personData.numeroBeneficio}
+                </p>
               </div>
             </div>
           </TabsContent>

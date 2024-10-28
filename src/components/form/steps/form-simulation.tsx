@@ -56,7 +56,7 @@ export function FormSimulation() {
         </div>
       </div>
 
-      <Carousel className="w-full max-w-72 mx-auto pt-8">
+      <Carousel className="w-full max-w-72 mx-auto">
         <CarouselContent>
           {proposals.map((proposal, index) => {
             const {
@@ -83,10 +83,10 @@ export function FormSimulation() {
         <CarouselNext />
       </Carousel>
 
-      <DrawerFooter className="w-full max-w-72 mx-auto px-0">
+      <DrawerFooter className="w-full max-w-72 mx-auto p-0">
         <Button
           type="button"
-          className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
+          className="bg-green-500 text-white w-full flex justify-center items-center font-medium px-6 hover:opacity-80 hover:text-black"
           onClick={handleCreateCustomer}
         >
           {!formState.isSubmitting && <span>Quero fazer a portabilidade</span>}
