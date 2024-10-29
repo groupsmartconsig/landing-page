@@ -40,6 +40,8 @@ const FooterContainer = dynamic(() => import(
   '@/components/shared/footer'
 ).then(mod => mod.FooterContainer), { ssr: true });
 
+export const revalidate = 21600 // 6 horas em segundos
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen overflow-hidden">
