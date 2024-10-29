@@ -20,6 +20,10 @@ const InfiniteSliderBanksContainer = dynamic(() => import(
   '@/components/shared/infinite-slider-banks'
 ).then(mod => mod.InfiniteSliderBanksContainer), { ssr: true });
 
+const InfiniteSliderBanksDesktopContainer = dynamic(() => import(
+  '@/components/shared/infinite-slider-banks-desktop'
+).then(mod => mod.InfiniteSliderBanksDesktopContainer), { ssr: true });
+
 const HeroVideoContainer = dynamic(() => import(
   '@/components/shared/hero-video'
 ).then(mod => mod.HeroVideoContainer), { ssr: true });
@@ -43,13 +47,23 @@ export default function LandingPage() {
       <InformativeContainer />
       <PortabilityContainer />
       <SimulationContainer />
-      <InfiniteSliderBanksContainer />
+
+      <div className="w-full block md:hidden">
+        <InfiniteSliderBanksContainer />
+      </div>
+
+      <div className="hidden md:block w-full">
+        <InfiniteSliderBanksDesktopContainer />
+      </div>
+
       <div className="max-w-6xl w-full mx-auto pt-16 px-3 md:px-0 md:pt-20 lg:max-w-7xl">
         <HeroVideoContainer />
       </div>
+
       <section className="pt-12 pb-16 bg-black md:py-16">
         <ReviewsContainer />
       </section>
+
       <FaqContainer />
       <FooterContainer />
     </div>

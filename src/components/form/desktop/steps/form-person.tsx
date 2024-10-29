@@ -213,7 +213,12 @@ export function DesktopFormPerson() {
             onClick={onSubmit}
           >
             {!isSubmitting && <span>Simular propostas</span>}
-            {isSubmitting && <EllipsisLoader />}
+            {isSubmitting && (
+              <div className="flex items-center gap-4">
+                Consultando
+                <EllipsisLoader />
+              </div>
+            )}
           </Button>
         </div>
       </DialogFooter>

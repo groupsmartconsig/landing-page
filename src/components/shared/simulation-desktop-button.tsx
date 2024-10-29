@@ -14,7 +14,7 @@ export function SimulationDesktopButton({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className={className || "w-full bg-primary-red font-bold text-lg"}>
+        <Button className={className || "h-12 w-full bg-primary-red font-bold text-lg"}>
           {title}
         </Button>
       </DialogTrigger>

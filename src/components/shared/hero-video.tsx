@@ -25,7 +25,7 @@ export function HeroVideoContainer() {
         <div className="hidden md:block md:max-w-sm md:w-full md:py-6 lg:max-w-md">
           <SimulationDesktopButton 
             title="Quero conquistar meus objetivos" 
-            className="w-full text-lg font-bold"
+            className="h-12 w-full text-lg font-bold"
           />
         </div>
       </div>
