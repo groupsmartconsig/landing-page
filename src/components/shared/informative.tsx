@@ -66,7 +66,11 @@ export function InformativeContainer() {
                   com parcelas menores e, possivelmente, valor liberado para uso. Faça uma simulação gratuita agora mesmo.
                 </CardDescription>
               </div>
-              <SimulationButton title="Quero simular agora" />
+
+              <SimulationButton 
+                title="Quero simular agora"
+                className="text-lg font-semibold"
+              />
             </CardHeader>
           </div>
         </div>

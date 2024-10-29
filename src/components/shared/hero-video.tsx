@@ -17,8 +17,11 @@ export function HeroVideoContainer() {
           e melhorou sua vida financeira.
         </p>
 
-        <div className="w-full pt-6 sm:max-w-xs sm:px-0 md:max-w-sm md:py-6">
-          <SimulationButton title="Quero conquistar meus objetivos" />
+        <div className="w-full pt-6 sm:max-w-xs sm:px-0 md:max-w-sm md:py-6 lg:max-w-md">
+          <SimulationButton 
+            title="Quero conquistar meus objetivos" 
+            className="md:w-full md:text-lg md:font-semibold"
+          />
         </div>
       </div>
 

@@ -77,7 +77,7 @@ export function HeaderContainer() {
 
               <SimulationButton
                 title="Simular agora"
-                className="bg-white text-primary font-semibold hover:bg-black hover:opacity-90"
+                className="bg-white text-primary text-lg font-semibold hover:bg-black hover:opacity-90"
               />
             </CardHeader>
 
