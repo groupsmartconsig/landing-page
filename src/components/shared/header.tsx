@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { LockKeyholeIcon } from 'lucide-react'
+import { SimulationDesktopButton } from './simulation-desktop-button'
 
 import elderlyCasual from '@/app/assets/images/elderly-casual.png'
 import elderlySmile from '@/app/assets/images/elderly-smile.png'
@@ -75,9 +76,9 @@ export function HeaderContainer() {
                 aumente seu benefício e libere um novo valor.
               </CardDescription>
 
-              <SimulationMobileButton
+              <SimulationDesktopButton
                 title="Simular agora"
-                className="bg-white text-primary text-lg font-semibold hover:bg-black hover:opacity-90"
+                className="bg-white text-primary text-lg font-bold hover:bg-black hover:opacity-90"
               />
             </CardHeader>
 

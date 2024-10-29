@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
+import { SimulationDesktopButton } from "./simulation-desktop-button";
 
 import elderlyHeadset from "@/app/assets/images/elderly-headset.png";
 import Image from "next/image";
@@ -55,10 +56,7 @@ export function PortabilityContainer() {
                 </CardDescription>
               </div>
 
-              <SimulationMobileButton 
-                title="Desejo fazer a portabilidade" 
-                className="text-lg font-semibold"
-              />
+              <SimulationDesktopButton title="Desejo fazer a portabilidade" />
             </CardHeader>
 
             <div className="relative bg-primary h-full max-w-md mx-auto rounded-2xl overflow-hidden">

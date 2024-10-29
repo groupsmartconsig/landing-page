@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle
 } from "../ui/card";
+import { SimulationDesktopButton } from "./simulation-desktop-button";
 
 import simulation from "@/app/assets/images/simulation.png";
 import Image from "next/image";
@@ -37,9 +38,7 @@ export function SimulationContainer() {
         />
 
         <div className="w-full px-6">
-          <SimulationMobileButton
-            title="Simule sem compromisso"
-          />
+          <SimulationMobileButton title="Simule sem compromisso" />
         </div>
       </div>
 
@@ -71,10 +70,7 @@ export function SimulationContainer() {
                   </CardDescription>
                 </div>
 
-                <SimulationMobileButton
-                  title="Simule sem compromisso"
-                  className="text-lg font-semibold"
-                />
+                <SimulationDesktopButton title="Simule sem compromisso" />
               </CardHeader>
             </div>
           </div>

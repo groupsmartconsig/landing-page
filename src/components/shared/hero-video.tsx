@@ -3,6 +3,7 @@
 import HeroVideoDialog from "@/components/magic-ui/hero-video-dialog";
 
 import { SimulationMobileButton } from "@/components/shared/simulation-mobile-button";
+import { SimulationDesktopButton } from "./simulation-desktop-button";
 
 export function HeroVideoContainer() {
   return (
@@ -12,15 +13,19 @@ export function HeroVideoContainer() {
           Depoimentos de Clientes
         </h3>
         <p className="w-full text-base text-muted-foreground font-medium sm:max-w-5xl md:text-2xl md:max-w-4xl">
-          Veja agora alguns de nossos depoimentos, incluindo um vídeo da nossa cliente Cristina, que precisava fazer uma reforma 
-          em sua casa. Através da portabilidade de empréstimo e com a ajuda da Smart Consig, conseguiu conquistar seus objetivos 
+          Veja agora alguns de nossos depoimentos, incluindo um vídeo da nossa cliente Cristina, que precisava fazer uma reforma
+          em sua casa. Através da portabilidade de empréstimo e com a ajuda da Smart Consig, conseguiu conquistar seus objetivos
           e melhorou sua vida financeira.
         </p>
 
-        <div className="w-full pt-6 sm:max-w-xs sm:px-0 md:max-w-sm md:py-6 lg:max-w-md">
-          <SimulationMobileButton 
+        <div className="w-full pt-6 sm:max-w-xs sm:px-0 md:hidden">
+          <SimulationMobileButton title="Quero conquistar meus objetivos" />
+        </div>
+
+        <div className="hidden md:block md:max-w-sm md:w-full md:py-6 lg:max-w-md">
+          <SimulationDesktopButton 
             title="Quero conquistar meus objetivos" 
-            className="md:w-full md:text-lg md:font-semibold"
+            className="w-full text-lg font-bold"
           />
         </div>
       </div>

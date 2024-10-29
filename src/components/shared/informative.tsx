@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
+import { SimulationDesktopButton } from "./simulation-desktop-button";
 
 import elderlyThoughtful from "@/app/assets/images/elderly-thoughtful.png";
 import Image from "next/image";
@@ -67,10 +68,7 @@ export function InformativeContainer() {
                 </CardDescription>
               </div>
 
-              <SimulationMobileButton 
-                title="Quero simular agora"
-                className="text-lg font-semibold"
-              />
+              <SimulationDesktopButton title="Quero simular agora" />
             </CardHeader>
           </div>
         </div>
