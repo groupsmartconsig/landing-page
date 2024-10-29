@@ -1,13 +1,16 @@
 import { Button } from '@/components/ui/button'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
-import { FormContent } from '../form'
+import { FormContent } from '../form/mobile'
 
-interface SimulationButtonProps {
+interface SimulationMobileButtonProps {
   title: string
   className?: string
 }
 
-export function SimulationButton({ title, className }: SimulationButtonProps) {
+export function SimulationMobileButton({ 
+  title, 
+  className 
+}: SimulationMobileButtonProps) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
