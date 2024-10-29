@@ -1,6 +1,6 @@
 'use client'
 
-import { SimulationButton } from '@/components/shared/simulation-button'
+import { SimulationMobileButton } from '@/components/shared/simulation-mobile-button'
 import {
   Card,
   CardContent,
@@ -57,7 +57,7 @@ export function HeaderContainer() {
               Transfira seu empréstimo de outros bancos e aproveite vantagens: reduza a parcela, pague menos juros,
               aumente seu benefício e libere um novo valor.
             </CardDescription>
-            <SimulationButton title="Simular agora" />
+            <SimulationMobileButton title="Simular agora" />
           </CardHeader>
 
           {/* Desktop */}
@@ -75,7 +75,7 @@ export function HeaderContainer() {
                 aumente seu benefício e libere um novo valor.
               </CardDescription>
 
-              <SimulationButton
+              <SimulationMobileButton
                 title="Simular agora"
                 className="bg-white text-primary text-lg font-semibold hover:bg-black hover:opacity-90"
               />

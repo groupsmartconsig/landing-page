@@ -1,6 +1,6 @@
 'use client'
 
-import { SimulationButton } from "@/components/shared/simulation-button";
+import { SimulationMobileButton } from "@/components/shared/simulation-mobile-button";
 import {
   Card,
   CardContent,
@@ -38,7 +38,7 @@ export function PortabilityContainer() {
                 Se você é aposentado ou pensionista do INSS, você pode solicitar a portabilidade com a Smart Consig. Basta ter um contrato de empréstimo ativo com outro banco e nós vamos cuidar do resto!
               </CardDescription>
             </div>
-            <SimulationButton title="Fazer a minha portabilidade" />
+            <SimulationMobileButton title="Fazer a minha portabilidade" />
           </CardHeader>
 
           {/* Desktop */}
@@ -55,7 +55,7 @@ export function PortabilityContainer() {
                 </CardDescription>
               </div>
 
-              <SimulationButton 
+              <SimulationMobileButton 
                 title="Desejo fazer a portabilidade" 
                 className="text-lg font-semibold"
               />

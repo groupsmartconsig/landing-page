@@ -2,7 +2,7 @@
 
 import HeroVideoDialog from "@/components/magic-ui/hero-video-dialog";
 
-import { SimulationButton } from "@/components/shared/simulation-button";
+import { SimulationMobileButton } from "@/components/shared/simulation-mobile-button";
 
 export function HeroVideoContainer() {
   return (
@@ -18,7 +18,7 @@ export function HeroVideoContainer() {
         </p>
 
         <div className="w-full pt-6 sm:max-w-xs sm:px-0 md:max-w-sm md:py-6 lg:max-w-md">
-          <SimulationButton 
+          <SimulationMobileButton 
             title="Quero conquistar meus objetivos" 
             className="md:w-full md:text-lg md:font-semibold"
           />

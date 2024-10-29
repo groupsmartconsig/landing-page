@@ -1,6 +1,6 @@
 'use client'
 
-import { SimulationButton } from "@/components/shared/simulation-button";
+import { SimulationMobileButton } from "@/components/shared/simulation-mobile-button";
 import {
   Card,
   CardContent,
@@ -38,7 +38,7 @@ export function InformativeContainer() {
                 A portabilidade é simples e rápida: nós cuidamos de toda a parte burocrática para você. Basta solicitar a transferência, que nós vamos apresentar a melhor condição para você, e pronto! Em poucos dias, seu empréstimo estará em um novo banco com parcelas menores e, possivelmente, valor liberado para uso. Faça uma simulação gratuita agora mesmo.
               </CardDescription>
             </div>
-            <SimulationButton title="Quero simular agora" />
+            <SimulationMobileButton title="Quero simular agora" />
           </CardHeader>
 
           {/* Desktop */}
@@ -67,7 +67,7 @@ export function InformativeContainer() {
                 </CardDescription>
               </div>
 
-              <SimulationButton 
+              <SimulationMobileButton 
                 title="Quero simular agora"
                 className="text-lg font-semibold"
               />
