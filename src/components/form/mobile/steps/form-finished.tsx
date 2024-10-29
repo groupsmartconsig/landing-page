@@ -18,7 +18,7 @@ import { useEffect, useRef, useState } from "react";
 
 import Confetti from "@/components/magic-ui/confetti";
 
-export function FormFinished() {
+export function MobileFormFinished() {
   const confettiRef = useRef<ConfettiRef>(null);
   const [count, setCount] = useState(5);
 

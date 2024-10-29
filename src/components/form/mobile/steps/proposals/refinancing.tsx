@@ -2,19 +2,19 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { CarouselItem } from "@/components/ui/carousel";
 import { ContractsRefinancingDetails, Proposal } from "@/types/proposals";
-import { PersonData } from "./person-data";
+import { MobilePersonData } from "./person-data";
 
-interface RefinancingContentProps {
+interface MobileRefinancingContentProps {
   proposal: Proposal;
   index: number;
   refinancing: ContractsRefinancingDetails | null;
 }
 
-export function RefinancingContent({
+export function MobileRefinancingContent({
   proposal,
   index,
   refinancing
-}: RefinancingContentProps) {
+}: MobileRefinancingContentProps) {
   return (
     <CarouselItem key={proposal.id}>
       <Card className="p-1">
@@ -110,7 +110,7 @@ export function RefinancingContent({
         </CardContent>
       </Card>
       
-      <PersonData personData={proposal.clienteDadosPessoais} />
+      <MobilePersonData personData={proposal.clienteDadosPessoais} />
     </CarouselItem>
   )
 }

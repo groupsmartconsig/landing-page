@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
-import { FormContent } from '../form/mobile'
+import { MobileFormContent } from '../form/mobile'
 
 interface SimulationMobileButtonProps {
   title: string
@@ -19,7 +19,7 @@ export function SimulationMobileButton({
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <FormContent />
+        <MobileFormContent />
       </DrawerContent>
     </Drawer>
   )

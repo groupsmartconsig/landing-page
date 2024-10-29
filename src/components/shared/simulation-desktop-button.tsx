@@ -1,3 +1,4 @@
+import { DesktopFormContent } from "../form/desktop"
 import { Button } from "../ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
 
@@ -18,7 +19,7 @@ export function SimulationDesktopButton({
         </Button>
       </DialogTrigger>
       <DialogContent>
-        teste
+        <DesktopFormContent />
       </DialogContent>
     </Dialog>
   )

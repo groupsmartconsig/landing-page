@@ -1,12 +1,12 @@
 import { ProposalsProvider } from '@/context/proposals-context'
 import { useState } from 'react'
-import { Stepper } from './stepper'
-import { FormFinished } from './steps/form-finished'
-import { FormInit } from './steps/form-init'
-import { FormPerson } from './steps/form-person'
-import { FormSimulation } from './steps/form-simulation'
+import { Stepper } from '../stepper'
+import { MobileFormFinished } from './steps/form-finished'
+import { MobileFormInit } from './steps/form-init'
+import { MobileFormPerson } from './steps/form-person'
+import { MobileFormSimulation } from './steps/form-simulation'
 
-export function FormContent() {
+export function MobileFormContent() {
   const [currentStep, setCurrentStep] = useState(0)
 
   return (
@@ -16,19 +16,19 @@ export function FormContent() {
           steps={[
             {
               label: 'Instruções para cadastro',
-              content: <FormInit />,
+              content: <MobileFormInit />,
             },
             {
               label: 'Formulário de dados pessoais',
-              content: <FormPerson />,
+              content: <MobileFormPerson />,
             },
             {
               label: 'Resultado da simulação',
-              content: <FormSimulation />
+              content: <MobileFormSimulation />
             },
             {
               label: 'Instruções para realizar a portabilidade',
-              content: <FormFinished />,
+              content: <MobileFormFinished />,
             },
           ]}
           currentStep={currentStep}

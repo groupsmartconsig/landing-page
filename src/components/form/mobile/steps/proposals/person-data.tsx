@@ -13,11 +13,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PersonDetails } from "@/types/proposals";
 import { EyeIcon } from "lucide-react";
 
-interface PersonDataProps {
+interface MobilePersonDataProps {
   personData: PersonDetails;
 }
 
-export function PersonData({ personData }: PersonDataProps) {
+export function MobilePersonData({ personData }: MobilePersonDataProps) {
   const formattedDate = new Date(personData.dataNascimento).toLocaleDateString("pt-BR");
 
   return (

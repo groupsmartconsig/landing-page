@@ -22,7 +22,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export function FormPerson() {
+export function MobileFormPerson() {
   const { nextStep } = useStepper();
   const { setProposals } = useProposals();
   const {

@@ -3,19 +3,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CarouselItem } from "@/components/ui/carousel";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ContractsPortabilityDetails, Proposal } from "@/types/proposals";
-import { PersonData } from "./person-data";
+import { MobilePersonData } from "./person-data";
 
-interface PortabilityContentProps {
+interface MobilePortabilityContentProps {
   proposal: Proposal;
   index: number;
   portability: ContractsPortabilityDetails;
 }
 
-export function PortabilityContent({
+export function MobilePortabilityContent({
   proposal,
   index,
   portability
-}: PortabilityContentProps) {
+}: MobilePortabilityContentProps) {
   return (
     <CarouselItem key={proposal.id}>
       <ScrollArea className="h-80 py-6">
@@ -98,7 +98,7 @@ export function PortabilityContent({
           </CardContent>
         </Card>
       </ScrollArea>
-      <PersonData personData={proposal.clienteDadosPessoais} />
+      <MobilePersonData personData={proposal.clienteDadosPessoais} />
     </CarouselItem>
   )
 }

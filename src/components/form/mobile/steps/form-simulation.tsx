@@ -12,10 +12,10 @@ import { useStepper } from "@/hooks/use-stepper";
 import { DataService } from "@/services/data-service";
 import { CircleDollarSignIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { PortabilityContent } from "./proposals/portability";
-import { RefinancingContent } from "./proposals/refinancing";
+import { MobilePortabilityContent } from "./proposals/portability";
+import { MobileRefinancingContent } from "./proposals/refinancing";
 
-export function FormSimulation() {
+export function MobileFormSimulation() {
   const { formState } = useForm();
   const { proposals } = useProposals();
   const { nextStep } = useStepper();
@@ -65,13 +65,13 @@ export function FormSimulation() {
             } = proposal;
 
             return portability ? (
-              <PortabilityContent
+              <MobilePortabilityContent
                 proposal={proposal}
                 index={index}
                 portability={portability}
               />
             ) : (
-              <RefinancingContent
+              <MobileRefinancingContent
                 proposal={proposal}
                 index={index}
                 refinancing={refinancing}
