@@ -18,7 +18,7 @@ export function SimulationDesktopButton({
           {title}
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="max-w-xl">
         <DesktopFormContent />
       </DialogContent>
     </Dialog>

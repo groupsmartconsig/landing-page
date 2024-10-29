@@ -38,7 +38,7 @@ export function DesktopFormInit() {
 
   return (
     <>
-      <div className="flex justify-center items-center space-x-4 pt-8 pb-4">
+      <div className="w-full flex items-center space-x-4 pt-8 pb-4 px-6">
         <span className="p-3 border rounded-2xl">
           <RocketIcon className="text-primary-red" />
         </span>
