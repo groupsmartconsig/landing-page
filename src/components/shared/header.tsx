@@ -1,6 +1,6 @@
 'use client'
 
-import { SimulationButton } from '@/components/shared/mobile/simulation-button'
+import { SimulationButton } from '@/components/shared/simulation-button'
 import {
   Card,
   CardContent,

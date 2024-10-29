@@ -16,20 +16,21 @@ const images = [
 
 export function InfiniteSliderBanksContainer() {
   return (
-    <div className="bg-gray-200 py-6 sm:bg-white sm:py-12">
-      <div className="max-w-[322px] mx-auto w-full flex flex-col justify-center-center space-y-2 py-6">
-        <h2 className="text-2xl font-bold sm:w-full sm:text-4xl sm:text-center sm:font-bold">
+    <div className="bg-gray-200 py-6 sm:py-12">
+      <div className="max-w-[322px] mx-auto w-full flex flex-col justify-center-center space-y-2 py-6 md:max-w-6xl md:space-y-12">
+        <h2 className="text-2xl font-bold sm:w-full sm:text-4xl sm:text-center sm:font-bold md:text-5xl">
           Única instituição <br />
           autorizada por todos <br />
           os Bancos.
         </h2>
-        <p className="w-full text-base font-medium sm:max-w-5xl">
+        <p className="w-full text-base font-medium sm:max-w-5xl md:text-2xl md:max-w-4xl md:mx-auto">
           Somos a única instituição autorizada por todos os bancos para garantir segurança e
           confiança nas suas operações financeiras. Com a nossa expertise, você tem a tranquilidade
           de contar com as melhores condições de mercado.
         </p>
       </div>
-      <div className="flex w-[200%] animate-[bannermove_10s_linear_infinite]">
+
+      <div className="flex w-[200%] animate-[bannermove_10s_linear_infinite] md:py-6">
         <div className='w-full flex items-center space-x-6'>
           {images.map((image, imageIndex) => (
             <div key={imageIndex} className="flex-shrink-0">

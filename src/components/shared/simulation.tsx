@@ -1,6 +1,6 @@
 'use client'
 
-import { SimulationButton } from "@/components/shared/mobile/simulation-button";
+import { SimulationButton } from "@/components/shared/simulation-button";
 
 import simulation from "@/app/assets/images/simulation.png";
 import Image from "next/image";

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
-import { FormContent } from '../../form'
+import { FormContent } from '../form'
 
 interface SimulationButtonProps {
   title: string

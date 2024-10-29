@@ -9,7 +9,7 @@ import {
 export function FaqContainer() {
   return (
     <div
-      className="bg-gray-200 h-[520px] w-full flex flex-col items-center justify-center overflow-hidden"
+      className="bg-gray-200 h-[520px] w-full flex flex-col items-center justify-center overflow-hidden md:h-[680px]"
     >
       <div className="w-full flex flex-col space-y-6">
         <p className="text-black text-2xl text-center font-bold tracking-tighter md:text-5xl">
