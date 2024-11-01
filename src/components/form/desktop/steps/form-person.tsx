@@ -83,7 +83,12 @@ export function DesktopFormPerson() {
       };
 
       const response = await DataService.getContractsByCustomerDocument(formData.cpf);
+      
       setProposals(response);
+
+      await DataService.createCustomer(
+        formData.name, formData.phoneNumber, formData.cpf
+      );
 
       localStorage.setItem("nome", formData.name);
       localStorage.setItem("contato", formData.phoneNumber);

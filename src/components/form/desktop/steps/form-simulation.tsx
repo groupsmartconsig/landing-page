@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dialog";
 import { useProposals } from "@/hooks/use-proposals";
 import { useStepper } from "@/hooks/use-stepper";
-import { DataService } from "@/services/data-service";
 import { CircleDollarSignIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { DesktopPortabilityContent } from "./proposals/portability";
@@ -24,25 +23,7 @@ export function DesktopFormSimulation() {
   const { proposals } = useProposals();
   const { nextStep } = useStepper();
 
-  const name = localStorage.getItem("nome");
-  const phone = localStorage.getItem("contato");
-  const document = localStorage.getItem("cpf");
-
-  const handleCreateCustomer = async () => {
-    try {
-      const fullName = name ? name : "";
-      const replaceDocumentValue = document ? document.replace(/\D/g, "") : "";
-      const replacePhoneValue = phone ? phone.replace(/[\s-()]/g, "") : "";
-
-      await DataService.createCustomer(
-        fullName, replacePhoneValue, replaceDocumentValue
-      );
-
-      nextStep();
-    } catch (error) {
-      console.error("Erro ao autenticar:", error);
-    }
-  }
+  const handleCreateCustomer =  () => nextStep();
 
   return (
     <>
