@@ -1,8 +1,11 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CarouselItem } from "@/components/ui/carousel";
 import { ContractsRefinancingDetails, Proposal } from "@/types/proposals";
-import { DesktopPersonData } from "./person-data";
+import { ChevronRightIcon, EyeIcon } from "lucide-react";
+
+import Link from "next/link";
 
 interface DesktopRefinancingContentProps {
   proposal: Proposal;
@@ -23,94 +26,104 @@ export function DesktopRefinancingContent({
             Proposta {index + 1}
           </Badge>
 
-          <div className="text-center">
-            <span className="font-semibold">Troco de volta</span>
-            <p className="text-2xl font-bold text-green-500">
-              {Number(
-                refinancing?.valorTroco
-              ).toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}
-            </p>
-          </div>
+          <Badge className="flex items-center justify-center bg-gray-200 text-black text-lg font-bold py-2 max-w-md w-full rounded-full hover:bg-gray-100">
+            {refinancing?.nomeBancoContratoAtual}
+          </Badge>
 
-          <div className="text-center">
-            <span className="font-semibold">Banco atual</span>
-            <p className="font-bold text-green-500">
-              {refinancing?.nomeBancoContratoAtual}
-            </p>
-          </div>
-
-          <div className="text-center">
-            <span className="font-semibold">Valor da Parcela</span>
-            <p className="text-xl font-bold text-green-500">
-              {Number(
-                refinancing?.valorParcela
-              ).toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}
-            </p>
-          </div>
-
-          <div className="text-center">
-            <span className="font-semibold">Taxa de Juros</span>
-            <div className="flex flex-col">
-              <p className="text-xl font-bold text-destructive">
-                <small>Antes</small> {""}
-                {refinancing?.antigaTaxaJuros
-                  .toFixed(2)
-                  .replace(".", ",")
-                }% a.m.`
-              </p>
-
-              <p className="text-lg font-bold text-green-500">
-                <small>Depois</small> {""}
-                {refinancing?.novaTaxaJuros
-                  .toFixed(2)
-                  .replace(".", ",")
-                }% a.m.`
-              </p>
+          <div className="w-full text-center pb-4 border-b border-gray-400">
+            <span className="text-lg font-bold">
+              Taxa de Juros
+            </span>
+            <div className="flex justify-between items-center pt-6">
+              <div className="flex flex-col space-y-3">
+                <span className="text-lg">Atual</span>
+                <p className="text-xl font-bold text-destructive">
+                  {refinancing?.antigaTaxaJuros
+                    .toFixed(2)
+                    .replace(".", ",")
+                  }% a.m.
+                </p>
+              </div>
+              <ChevronRightIcon className="size-12" />
+              <div className="flex flex-col space-y-3">
+                <span className="text-lg font-semibold">Reduzida</span>
+                <p className="text-xl font-bold text-green-500">
+                  {refinancing?.novaTaxaJuros
+                    .toFixed(2)
+                    .replace(".", ",")
+                  }% a.m.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="text-center">
-            <span className="font-semibold">Saldo devedor</span>
-            <div className="flex flex-col">
-              <p className="text-xl font-bold text-destructive">
-                <small>Antes</small> {""}
-                {Number(
-                  refinancing?.saldoDevedor ?
-                    refinancing.saldoDevedor + refinancing?.valorTroco
-                    : 0
-                ).toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
-              </p>
-              <p className="text-xl font-bold text-green-500">
-                <small>Depois</small> {""}
-                {Number(
-                  refinancing?.saldoDevedorReduzido
-                ).toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
-              </p>
+          <div className="w-full text-center pb-4 border-b border-gray-400">
+            <span className="text-lg font-bold">
+              Saldo devedor
+            </span>
+            <div className="flex justify-between items-center pt-6">
+              <div className="flex flex-col space-y-3">
+                <span className="text-lg">Atual</span>
+                <p className="text-xl font-bold text-destructive">
+                  {Number(
+                    refinancing?.saldoDevedor
+                  ).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </p>
+              </div>
+              <ChevronRightIcon className="size-12" />
+              <div className="flex flex-col space-y-3">
+                <span className="text-lg font-semibold">Reduzido</span>
+                <p className="text-xl font-bold text-green-500">
+                  {Number(
+                    refinancing?.saldoDevedorReduzido
+                  ).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="text-center">
-            <p className="font-semibold">Banco aprovado</p>
-            <p className="font-bold text-green-500">
-              {refinancing?.nomeBancoNovoContrato}
-            </p>
+          <div className="flex flex-col space-y-3">
+            <span className="text-2xl font-bold">
+              Troco de volta
+            </span>
+            <div className="flex items-center space-x-6">
+              <ChevronRightIcon className="size-12" />
+              <p className="text-4xl font-bold text-green-500">
+                {Number(
+                  refinancing?.valorTroco
+                ).toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })
+                  .replace(/\d(?=(?:\d{3})+(?!\d))/g, "*")
+                  .replace(/(\d{2})$/, "**")}
+              </p>
+            </div>
+            <span className="text-muted-foreground font-medium">
+              *Clique abaixo para acessar o valor total
+            </span>
           </div>
         </CardContent>
       </Card>
-      
-      <DesktopPersonData personData={proposal.clienteDadosPessoais} />
+
+      {/* <DesktopPersonData personData={proposal.clienteDadosPessoais} /> */}
+
+      <Link href="https://www.redirectmais.com/run/anuncio-teste">
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full flex items-center gap-2"
+        >
+          <EyeIcon className="size-4" />
+          Ver todos os detalhes
+        </Button>
+      </Link>
     </CarouselItem>
   )
 }

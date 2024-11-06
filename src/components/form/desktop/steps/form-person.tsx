@@ -1,7 +1,6 @@
 import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import {
-  DialogClose,
   DialogDescription,
   DialogFooter,
   DialogTitle
@@ -83,7 +82,7 @@ export function DesktopFormPerson() {
       };
 
       const response = await DataService.getContractsByCustomerDocument(formData.cpf);
-      
+
       setProposals(response);
 
       await DataService.createCustomer(
@@ -204,28 +203,20 @@ export function DesktopFormPerson() {
         </div>
       </div>
 
-      <DialogFooter className="w-full p-8">
-        <div className="flex justify-center items-center space-x-6">
-          <DialogClose asChild>
-            <Button type="button" variant="ghost">
-              Voltar
-            </Button>
-          </DialogClose>
-
-          <Button
-            type="button"
-            className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
-            onClick={onSubmit}
-          >
-            {!isSubmitting && <span>Simular propostas</span>}
-            {isSubmitting && (
-              <div className="flex items-center gap-4">
-                Consultando
-                <EllipsisLoader />
-              </div>
-            )}
-          </Button>
-        </div>
+      <DialogFooter className="w-full flex justify-center items-center p-8">
+        <Button
+          type="button"
+          className="w-full h-10 flex font-medium px-6 hover:bg-black hover:text-primary"
+          onClick={onSubmit}
+        >
+          {!isSubmitting && <span>Simular propostas</span>}
+          {isSubmitting && (
+            <div className="flex items-center gap-4">
+              Consultando
+              <EllipsisLoader />
+            </div>
+          )}
+        </Button>
       </DialogFooter>
     </>
   )

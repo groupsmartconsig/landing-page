@@ -1,6 +1,6 @@
 import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
-import { DrawerClose, DrawerDescription, DrawerTitle } from "@/components/ui/drawer";
+import { DrawerDescription, DrawerTitle } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useProposals } from "@/hooks/use-proposals";
@@ -78,12 +78,12 @@ export function MobileFormPerson() {
       };
 
       const response = await DataService.getContractsByCustomerDocument(formData.cpf);
-      
+
       setProposals(response);
 
-      await DataService.createCustomer(
-        formData.name, formData.phoneNumber, formData.cpf
-      );
+      // await DataService.createCustomer(
+      //   formData.name, formData.phoneNumber, formData.cpf
+      // );
 
       localStorage.setItem("nome", formData.name);
       localStorage.setItem("contato", formData.phoneNumber);
@@ -208,12 +208,6 @@ export function MobileFormPerson() {
           {!isSubmitting && <span>Simular propostas</span>}
           {isSubmitting && <EllipsisLoader />}
         </Button>
-
-        <DrawerClose asChild>
-          <Button type="button" variant="ghost">
-            Voltar
-          </Button>
-        </DrawerClose>
       </div>
     </>
   )

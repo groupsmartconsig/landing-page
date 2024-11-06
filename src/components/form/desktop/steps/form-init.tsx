@@ -1,10 +1,9 @@
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
-  DialogClose,
   DialogDescription,
   DialogFooter,
-  DialogTitle,
+  DialogTitle
 } from '@/components/ui/dialog'
 import { Separator } from '@/components/ui/separator'
 import { useStepper } from '@/hooks/use-stepper'
@@ -71,22 +70,14 @@ export function DesktopFormInit() {
 
       <Separator />
 
-      <DialogFooter className="w-full p-8">
-        <div className="flex justify-center items-center space-x-6">
-          <DialogClose asChild>
-            <Button type="button" variant="ghost">
-              Voltar
-            </Button>
-          </DialogClose>
-
-          <Button
-            type="button"
-            className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
-            onClick={handleNextStep}
-          >
-            Vamos começar ?
-          </Button>
-        </div>
+      <DialogFooter className="w-full flex justify-center items-center p-8">
+        <Button
+          type="button"
+          className="w-full h-10 flex font-medium px-6 hover:bg-black hover:text-primary"
+          onClick={handleNextStep}
+        >
+          Vamos começar ?
+        </Button>
       </DialogFooter>
     </>
   );

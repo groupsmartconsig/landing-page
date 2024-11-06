@@ -1,10 +1,9 @@
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
-  DrawerClose,
   DrawerDescription,
   DrawerFooter,
-  DrawerTitle,
+  DrawerTitle
 } from '@/components/ui/drawer'
 import { Separator } from '@/components/ui/separator'
 import { useStepper } from '@/hooks/use-stepper'
@@ -67,22 +66,18 @@ export function MobileFormInit() {
           Concordo com os termos de serviços e privacidade.
         </div>
       </div>
+
       <Separator />
+
       <DrawerFooter className="w-full p-8">
         <div className="flex flex-col items-center space-y-6">
           <Button
             type="button"
-            className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"
+            className="w-full flex font-medium px-6 hover:bg-black hover:text-primary"
             onClick={handleNextStep}
           >
             Vamos começar ?
           </Button>
-
-          <DrawerClose asChild>
-            <Button type="button" variant="ghost">
-              Voltar
-            </Button>
-          </DrawerClose>
         </div>
       </DrawerFooter>
     </>
