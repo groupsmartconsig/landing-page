@@ -64,13 +64,13 @@ export function MobileFormSimulation() {
         <CarouselNext />
       </Carousel>
 
-      <DrawerFooter className="w-full max-w-72 mx-auto p-0">
+      <DrawerFooter className="w-full max-w-72 mx-auto p-0 pt-3">
         <Button
           type="button"
-          className="bg-green-500 text-white w-full flex justify-center items-center font-medium px-6 hover:opacity-80 hover:text-black"
+          className="bg-green-500 text-white text-lg font-bold w-full flex justify-center items-center px-6 hover:opacity-80 hover:text-black"
           onClick={handleCreateCustomer}
         >
-          {!formState.isSubmitting && <span>Quero fazer a portabilidade</span>}
+          {!formState.isSubmitting && <span>Resgatar valor total</span>}
           {formState.isSubmitting && <EllipsisLoader />}
         </Button>
       </DrawerFooter>

@@ -74,7 +74,7 @@ export function DesktopFormSimulation() {
           className="bg-green-500 text-white max-w-96 w-full mx-auto flex justify-center items-center font-medium px-6 hover:opacity-80 hover:text-black"
           onClick={handleCreateCustomer}
         >
-          {!formState.isSubmitting && <span>Quero fazer a portabilidade</span>}
+          {!formState.isSubmitting && <span>Resgatar valor total</span>}
           {formState.isSubmitting && <EllipsisLoader />}
         </Button>
       </DialogFooter>

@@ -21,9 +21,9 @@ export function MobilePortabilityContent({
 }: MobilePortabilityContentProps) {
   return (
     <CarouselItem key={proposal.id}>
-      <ScrollArea className="h-80 py-6">
+      <ScrollArea className="h-96 py-6">
         <Card className="p-1">
-          <CardContent className="aspect-square flex flex-col items-center justify-between space-y-3 p-6">
+          <CardContent className="aspect-square flex flex-col items-center justify-between space-y-3 p-4">
             <Badge className="bg-green-500 text-white">
               Proposta {index + 1}
             </Badge>
@@ -63,10 +63,10 @@ export function MobilePortabilityContent({
               <span className="text-lg font-bold">
                 Valor da parcela
               </span>
-              <div className="flex justify-between items-center pt-6">
+              <div className="flex justify-between items-center gap-6 pt-6">
                 <div className="flex flex-col space-y-3">
                   <span className="text-lg">Atual</span>
-                  <p className="text-xl font-bold text-destructive">
+                  <p className="text-lg font-bold text-destructive">
                     {Number(
                       portability?.antigoValorParcela
                     ).toLocaleString("pt-BR", {
@@ -75,10 +75,9 @@ export function MobilePortabilityContent({
                     })}
                   </p>
                 </div>
-                <ChevronRightIcon className="size-12" />
                 <div className="flex flex-col space-y-3">
                   <span className="text-lg font-semibold">Reduzida</span>
-                  <p className="text-xl font-bold text-green-500">
+                  <p className="text-lg font-bold text-green-500">
                     {Number(
                       portability?.novoValorParcela
                     ).toLocaleString("pt-BR", {
@@ -91,10 +90,10 @@ export function MobilePortabilityContent({
             </div>
 
             <div className="flex flex-col space-y-3">
-              <span className="text-2xl font-bold">
+              <span className="text-2xl text-center font-bold">
                 Econômia na redução
               </span>
-              <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-3">
                 <ChevronRightIcon className="size-12" />
                 <p className="text-4xl font-bold text-green-500">
                   {Number(
@@ -107,7 +106,7 @@ export function MobilePortabilityContent({
                     .replace(/(\d{2})$/, "**")}
                 </p>
               </div>
-              <span className="text-muted-foreground font-medium">
+              <span className="text-muted-foreground text-xs text-center font-medium">
                 *Clique abaixo para acessar o valor total
               </span>
             </div>

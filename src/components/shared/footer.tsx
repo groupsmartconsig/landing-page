@@ -56,10 +56,7 @@ export function FooterContainer() {
                 Localização
               </span>
               <p className="max-w-xs w-full whitespace-pre-line text-sm font-medium tracking-tighter text-white">
-                Av. Maria Gebin de Moraes, 164 - Sala 02
-                Continental II, Guarulhos
-                São Paulo
-                07.179-835
+                R. Guaraciaba, 27 - Jardim Barbosa, Guarulhos - SP, 07111-020
               </p>
               <small className="text-gray-400">
                 CNPJ: 37.044.794/0001-03
