@@ -82,9 +82,9 @@ export default function MobileFormDataPage() {
 
       setProposals(response);
 
-      // await DataService.createCustomer(
-      //   formData.name, formData.phoneNumber, formData.cpf
-      // );
+      await DataService.createCustomer(
+        formData.name, formData.phoneNumber, formData.cpf
+      );
 
       localStorage.setItem("nome", formData.name);
       localStorage.setItem("contato", formData.phoneNumber);
