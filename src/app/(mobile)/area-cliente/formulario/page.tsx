@@ -4,7 +4,6 @@ import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import { useProposals } from "@/hooks/use-proposals";
 import { cn } from "@/lib/utils";
 import { DataService } from "@/services/data-service";
@@ -111,7 +110,7 @@ export default function MobileFormDataPage() {
           <h1 className="text-lg font-semibold leading-none tracking-tight">
             Informe os seus dados pessoais
           </h1>
-          <h3 className="max-w-64 text-sm text-muted-foreground">
+          <h3 className="max-w-64 text-[13px] text-muted-foreground">
             Preencha o formulário corretamente.
           </h3>
         </div>
@@ -200,10 +199,8 @@ export default function MobileFormDataPage() {
           </div>
         </div>
       </div>
-
-      <Separator />
       
-      <div className="w-full flex flex-col items-center space-y-6 p-8">
+      <div className="w-full flex flex-col items-center space-y-6 p-4">
         <Button
           type="button"
           className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"

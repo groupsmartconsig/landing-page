@@ -33,7 +33,7 @@ export default function MobileFormPage() {
   };
 
   return (
-    <div>
+    <>
       <div className="flex justify-center items-center space-x-4">
         <span className="p-3 border rounded-2xl">
           <RocketIcon className="text-primary-red" />
@@ -78,6 +78,6 @@ export default function MobileFormPage() {
           </Button>
         </div>
       </div>
-    </div>
+    </>
   )
 }

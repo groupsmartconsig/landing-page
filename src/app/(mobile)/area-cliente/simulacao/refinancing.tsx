@@ -34,7 +34,7 @@ export function MobileRefinancingDataContent({
             <div className="flex justify-between items-center pt-6">
               <div className="flex flex-col space-y-3">
                 <span className="text-lg">Atual</span>
-                <p className="text-xl font-bold text-destructive">
+                <p className="font-bold text-destructive">
                   {refinancing?.antigaTaxaJuros
                     .toFixed(2)
                     .replace(".", ",")
@@ -44,7 +44,7 @@ export function MobileRefinancingDataContent({
               <ChevronRightIcon className="size-12" />
               <div className="flex flex-col space-y-3">
                 <span className="text-lg font-semibold">Reduzida</span>
-                <p className="text-xl font-bold text-green-500">
+                <p className="font-bold text-green-500">
                   {refinancing?.novaTaxaJuros
                     .toFixed(2)
                     .replace(".", ",")
@@ -61,7 +61,7 @@ export function MobileRefinancingDataContent({
             <div className="flex justify-between items-center gap-6 pt-6">
               <div className="flex flex-col space-y-3">
                 <span className="text-lg">Atual</span>
-                <p className="text-lg font-bold text-destructive">
+                <p className="font-bold text-destructive">
                   {Number(
                     refinancing?.saldoDevedor
                   ).toLocaleString("pt-BR", {
@@ -73,7 +73,7 @@ export function MobileRefinancingDataContent({
               <ChevronRightIcon className="size-12" />
               <div className="flex flex-col space-y-3">
                 <span className="text-lg font-semibold">Reduzido</span>
-                <p className="text-lg font-bold text-green-500">
+                <p className="font-bold text-green-500">
                   {Number(
                     refinancing?.saldoDevedorReduzido
                   ).toLocaleString("pt-BR", {
@@ -89,7 +89,7 @@ export function MobileRefinancingDataContent({
             <span className="text-2xl text-center font-bold">
               Troco de volta
             </span>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center">
               <ChevronRightIcon className="size-12" />
               <p className="text-4xl font-bold text-green-500">
                 {Number(

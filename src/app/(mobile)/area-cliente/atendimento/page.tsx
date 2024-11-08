@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { ZapIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -43,7 +42,6 @@ export default function MobileFormFinishedPage() {
           </h3>
         </div>
       </div>
-      <Separator />
 
       <Card className="w-80 mx-auto my-12">
         <CardHeader>

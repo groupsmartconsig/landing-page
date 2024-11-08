@@ -15,11 +15,11 @@ export default function MobileFormLayout({ children }: MobileFormLayoutProps) {
     <ProposalsProvider>
       <div className="min-h-screen w-full flex justify-center items-center overflow-hidden sm:hidden">
         <div className="grid grid-cols-1">
-          <Link className="flex justify-center items-center py-16" href="/">
+          <Link className="flex justify-center items-center p-12" href="/">
             <Image
               src={logo}
-              width={487}
-              height={185}
+              width={450}
+              height={253}
               className="w-32"
               alt="Smartconsig logo"
             />
