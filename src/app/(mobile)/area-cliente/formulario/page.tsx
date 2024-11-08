@@ -4,6 +4,7 @@ import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import { useProposals } from "@/hooks/use-proposals";
 import { cn } from "@/lib/utils";
 import { DataService } from "@/services/data-service";
@@ -116,7 +117,7 @@ export default function MobileFormDataPage() {
         </div>
       </div>
 
-      <div className="max-w-sm w-full mx-auto pb-6 px-6">
+      <div className="max-w-sm w-full mx-auto pb-6 px-3">
         <div className="grid grid-cols-1 gap-4 py-5">
           <div className="space-y-2">
             <Label htmlFor="name">Nome completo</Label>
@@ -200,7 +201,9 @@ export default function MobileFormDataPage() {
         </div>
       </div>
 
-      <div className="w-full flex flex-col items-center space-y-6 border-t p-8">
+      <Separator />
+      
+      <div className="w-full flex flex-col items-center space-y-6 p-8">
         <Button
           type="button"
           className="w-full flex justify-center items-center font-medium px-6 hover:bg-black hover:text-primary"

@@ -15,7 +15,7 @@ export default function MobileFormLayout({ children }: MobileFormLayoutProps) {
     <ProposalsProvider>
       <div className="min-h-screen w-full flex justify-center items-center overflow-hidden sm:hidden">
         <div className="grid grid-cols-1">
-          <Link className="flex justify-center items-center pb-24" href="/">
+          <Link className="flex justify-center items-center py-16" href="/">
             <Image
               src={logo}
               width={487}

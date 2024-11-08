@@ -1,11 +1,8 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CarouselItem } from "@/components/ui/carousel";
 import { ContractsRefinancingDetails, Proposal } from "@/types/proposals";
-import { ChevronRightIcon, EyeIcon } from "lucide-react";
-
-import Link from "next/link";
+import { ChevronRightIcon } from "lucide-react";
 
 interface MobileRefinancingDataContentProps {
   proposal: Proposal;
@@ -111,17 +108,6 @@ export function MobileRefinancingDataContent({
           </div>
         </CardContent>
       </Card>
-
-      <Link href="https://www.redirectmais.com/run/anuncio-teste">
-        <Button
-          type="button"
-          variant="outline"
-          className="w-full flex items-center gap-2"
-        >
-          <EyeIcon className="size-4" />
-          Ver todos os detalhes
-        </Button>
-      </Link>
     </CarouselItem>
   )
 }
