@@ -1,26 +1,21 @@
 import { Button } from '@/components/ui/button'
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
-import { MobileFormContent } from '../form/mobile'
+
+import Link from 'next/link'
 
 interface SimulationMobileButtonProps {
   title: string
   className?: string
 }
 
-export function SimulationMobileButton({ 
-  title, 
-  className 
+export function SimulationMobileButton({
+  title,
+  className
 }: SimulationMobileButtonProps) {
   return (
-    <Drawer>
-      <DrawerTrigger asChild>
-        <Button className={className || "w-full bg-primary-red font-bold"}>
-          {title}
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <MobileFormContent />
-      </DrawerContent>
-    </Drawer>
+    <Link href="/area-cliente">
+      <Button className={className || "w-full bg-primary-red font-bold"}>
+        {title}
+      </Button>
+    </Link>
   )
 }
