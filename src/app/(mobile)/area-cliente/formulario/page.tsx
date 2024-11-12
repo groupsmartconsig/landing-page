@@ -6,7 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useProposals } from "@/hooks/use-proposals";
 import { cn } from "@/lib/utils";
+import { AuthService } from "@/services/auth-service";
 import { DataService } from "@/services/data-service";
+import { env } from "@/utils/env";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -25,7 +27,9 @@ type FormData = z.infer<typeof formSchema>;
 
 export default function MobileFormDataPage() {
   const route = useRouter();
+
   const { setProposals } = useProposals();
+
   const {
     control,
     register,
@@ -73,22 +77,32 @@ export default function MobileFormDataPage() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       const formData = {
+        username: env.NEXT_PUBLIC_USERNAME,
+        password: env.NEXT_PUBLIC_PASSWORD,
+      };
+
+      const personData = {
         name: data.name,
         phoneNumber: data.phoneNumber,
         cpf: data.cpf,
       };
 
-      const response = await DataService.getContractsByCustomerDocument(formData.cpf);
+      await AuthService.signIn(formData.username, formData.password);
+
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("401 Server Error: Token not found.");
+
+      const response = await DataService.getContractsByCustomerDocument(personData.cpf);
 
       setProposals(response);
 
       await DataService.createCustomer(
-        formData.name, formData.phoneNumber, formData.cpf
+        personData.name, personData.phoneNumber, personData.cpf
       );
 
-      localStorage.setItem("nome", formData.name);
-      localStorage.setItem("contato", formData.phoneNumber);
-      localStorage.setItem("cpf", formData.cpf);
+      localStorage.setItem("nome", personData.name);
+      localStorage.setItem("contato", personData.phoneNumber);
+      localStorage.setItem("cpf", personData.cpf);
 
       route.push("/area-cliente/simulacao")
     } catch (error) {
@@ -107,8 +121,9 @@ export default function MobileFormDataPage() {
           <TriangleIcon className="text-primary-red" />
         </span>
         <div>
-          <h1 className="text-lg font-semibold leading-none tracking-tight">
-            Faça uma simulação grátis dos seus contratos
+          <h1 className="text-lg font-semibold leading-none tracking-tight pb-1.5">
+            Faça uma simulação <br />
+            grátis dos seus contratos
           </h1>
           <h3 className="max-w-64 text-[13px] text-muted-foreground">
             Preencha o formulário corretamente.

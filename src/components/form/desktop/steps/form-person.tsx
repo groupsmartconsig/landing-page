@@ -10,7 +10,9 @@ import { Label } from "@/components/ui/label";
 import { useProposals } from "@/hooks/use-proposals";
 import { useStepper } from "@/hooks/use-stepper";
 import { cn } from "@/lib/utils";
+import { AuthService } from "@/services/auth-service";
 import { DataService } from "@/services/data-service";
+import { env } from "@/utils/env";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleIcon } from "lucide-react";
 import { useEffect } from "react";
@@ -76,22 +78,32 @@ export function DesktopFormPerson() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       const formData = {
+        username: env.NEXT_PUBLIC_USERNAME,
+        password: env.NEXT_PUBLIC_PASSWORD,
+      };
+
+      const personData = {
         name: data.name,
         phoneNumber: data.phoneNumber,
         cpf: data.cpf,
       };
 
-      const response = await DataService.getContractsByCustomerDocument(formData.cpf);
+      await AuthService.signIn(formData.username, formData.password);
+
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("401 Server Error: Token not found.");
+
+      const response = await DataService.getContractsByCustomerDocument(personData.cpf);
 
       setProposals(response);
 
       await DataService.createCustomer(
-        formData.name, formData.phoneNumber, formData.cpf
+        personData.name, personData.phoneNumber, personData.cpf
       );
 
-      localStorage.setItem("nome", formData.name);
-      localStorage.setItem("contato", formData.phoneNumber);
-      localStorage.setItem("cpf", formData.cpf);
+      localStorage.setItem("nome", personData.name);
+      localStorage.setItem("contato", personData.phoneNumber);
+      localStorage.setItem("cpf", personData.cpf);
 
       nextStep();
     } catch (error) {

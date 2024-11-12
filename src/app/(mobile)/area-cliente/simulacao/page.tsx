@@ -81,7 +81,7 @@ export default function MobileFormSimulationPage() {
         <Button
           type="button"
           className="bg-green-500 text-white text-lg font-bold w-full flex justify-center items-center px-6 hover:opacity-80 hover:text-black"
-          onClick={() => route.push("/area-cliente/atendimento")}
+          onClick={() => route.push("https://www.redirectmais.com/run/anuncio-teste")}
         >
           {!formState.isSubmitting && <span>Resgatar valor total</span>}
           {formState.isSubmitting && <EllipsisLoader />}

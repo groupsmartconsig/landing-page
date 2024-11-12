@@ -14,6 +14,7 @@ import {
 import { useProposals } from "@/hooks/use-proposals";
 import { useStepper } from "@/hooks/use-stepper";
 import { CircleDollarSignIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { DesktopPortabilityContent } from "./proposals/portability";
 import { DesktopRefinancingContent } from "./proposals/refinancing";
@@ -22,8 +23,7 @@ export function DesktopFormSimulation() {
   const { formState } = useForm();
   const { proposals } = useProposals();
   const { nextStep } = useStepper();
-
-  const handleCreateCustomer =  () => nextStep();
+  const router = useRouter();
 
   return (
     <>
@@ -72,7 +72,7 @@ export function DesktopFormSimulation() {
         <Button
           type="button"
           className="bg-green-500 text-white max-w-96 w-full mx-auto flex justify-center items-center font-medium px-6 hover:opacity-80 hover:text-black"
-          onClick={handleCreateCustomer}
+          onClick={() => router.push("https://www.redirectmais.com/run/anuncio-teste")}
         >
           {!formState.isSubmitting && <span>Resgatar valor total</span>}
           {formState.isSubmitting && <EllipsisLoader />}
