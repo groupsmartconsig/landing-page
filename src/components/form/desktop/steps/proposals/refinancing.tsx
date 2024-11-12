@@ -95,14 +95,12 @@ export function DesktopRefinancingContent({
             <div className="flex items-center space-x-6">
               <ChevronRightIcon className="size-12" />
               <p className="text-4xl font-bold text-green-500">
-                {Number(
-                  refinancing?.valorTroco
-                ).toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })
-                  .replace(/\d(?=(?:\d{3})+(?!\d))/g, "*")
-                  .replace(/(\d{2})$/, "**")}
+                {Number(refinancing?.valorTroco)
+                  .toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })
+                  .replace(/(\d)\d*\.(\d)/, "*.*$2")}
               </p>
             </div>
             <span className="text-muted-foreground font-medium">

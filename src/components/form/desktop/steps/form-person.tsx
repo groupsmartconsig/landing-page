@@ -111,7 +111,7 @@ export function DesktopFormPerson() {
         </span>
         <div>
           <DialogTitle className="text-lg">
-            Informe os seus dados pessoais
+            Faça uma simulação grátis dos seus contratos
           </DialogTitle>
           <DialogDescription className="text-sm">
             Preencha o formulário corretamente.
