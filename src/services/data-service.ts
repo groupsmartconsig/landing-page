@@ -14,7 +14,7 @@ export class DataService {
       }
 
       const { data } = await httpClient.get(
-        `/contratos/elegiveis?Cpf=${document}`,
+        `/contratos/elegiveis-vanguard?Cpf=${document}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
