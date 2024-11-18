@@ -93,11 +93,14 @@ export default function MobileFormDataPage() {
       if (!token) throw new Error("401 Server Error: Token not found.");
 
       const response = await DataService.getContractsByCustomerDocument(personData.cpf);
+      const replaceDocumentValue = personData.cpf.replace(/\D/g, "");
+      const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s-]/g, "");
 
       setProposals(response);
 
+
       await DataService.createCustomer(
-        personData.name, personData.phoneNumber, personData.cpf
+        personData.name, replacePhoneNumberValue, replaceDocumentValue
       );
 
       localStorage.setItem("nome", personData.name);

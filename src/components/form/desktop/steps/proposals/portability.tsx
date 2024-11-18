@@ -116,7 +116,7 @@ export function DesktopPortabilityContent({
         <Button
           type="button"
           variant="outline"
-          className="w-full flex items-center gap-2"
+          className="w-full flex items-center gap-2 my-3"
         >
           <EyeIcon className="size-4" />
           Ver todos os detalhes
