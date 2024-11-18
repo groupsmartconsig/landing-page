@@ -94,7 +94,7 @@ export default function MobileFormDataPage() {
 
       const response = await DataService.getContractsByCustomerDocument(personData.cpf);
       const replaceDocumentValue = personData.cpf.replace(/\D/g, "");
-      const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s-]/g, "");
+      const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s()-]/g, "");
 
       setProposals(response);
 

@@ -95,7 +95,7 @@ export function DesktopFormPerson() {
 
       const response = await DataService.getContractsByCustomerDocument(personData.cpf);
       const replaceDocumentValue = personData.cpf.replace(/\D/g, "");
-      const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s-]/g, "");
+      const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s()-]/g, "");
 
       setProposals(response);
 
