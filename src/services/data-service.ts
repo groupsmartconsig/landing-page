@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { toast } from "sonner";
+
 const httpClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_DATA_API,
 });
@@ -14,7 +16,7 @@ export class DataService {
       }
 
       const { data } = await httpClient.get(
-        `/contratos/elegiveis-vanguard?Cpf=${document}`,
+        `/contratos/detalhamento-vanguard?Cpf=${document}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -25,7 +27,20 @@ export class DataService {
       return data;
     } catch (error: any) {
       console.error("Erro ao buscar contratos:", error);
-      throw new Error("Erro ao realizar simulação, tente novamente.");
+      const name = localStorage.getItem("nome");
+      const contact = localStorage.getItem("contato");
+      const document = localStorage.getItem("cpf");
+
+      if (!name || !contact || !document) {
+        throw new Error("Dados do formulário não encontrados! tente novamente.");
+      }
+
+      await DataService.createCustomer(name, contact, document);
+
+      toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
+        description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
+        duration: 7000,
+      });
     }
   }
 
@@ -33,6 +48,7 @@ export class DataService {
     name: string,
     phoneNumber: string,
     cpf: string,
+    amountContractsElegible?: number,
     isWhatsappPhoneNumber?: true,
   ) {
     try {
@@ -49,6 +65,7 @@ export class DataService {
           phoneNumber,
           cpf,
           isWhatsappPhoneNumber,
+          amountContractsElegible
         },
         {
           headers: {
@@ -61,7 +78,6 @@ export class DataService {
       return data;
     } catch (error: any) {
       console.error("Erro ao cadastrar cliente:", error);
-      throw new Error("Erro ao realizar cadastro do cliente, tente novamente.");
     }
   }
 }

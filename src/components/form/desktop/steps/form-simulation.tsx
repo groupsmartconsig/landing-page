@@ -12,7 +12,6 @@ import {
   DialogTitle
 } from "@/components/ui/dialog";
 import { useProposals } from "@/hooks/use-proposals";
-import { useStepper } from "@/hooks/use-stepper";
 import { CircleDollarSignIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -22,8 +21,13 @@ import { DesktopRefinancingContent } from "./proposals/refinancing";
 export function DesktopFormSimulation() {
   const { formState } = useForm();
   const { proposals } = useProposals();
-  const { nextStep } = useStepper();
+
   const router = useRouter();
+
+  const handleRedirect = () => {
+    localStorage.clear();
+    router.push("https://www.redirectmais.com/run/anuncio-teste");
+  }
 
   return (
     <>
@@ -43,21 +47,21 @@ export function DesktopFormSimulation() {
 
       <Carousel className="w-full max-w-sm mx-auto">
         <CarouselContent>
-          {proposals.map((proposal, index) => {
+          {proposals?.contratosElegiveis.map((data, index) => {
             const {
               condicoesContratuaisPortabilidade: portability,
               condicoesContratuaisRefinanciamento: refinancing
-            } = proposal;
+            } = data;
 
             return portability ? (
               <DesktopPortabilityContent
-                proposal={proposal}
+                proposal={data}
                 index={index}
                 portability={portability}
               />
             ) : (
               <DesktopRefinancingContent
-                proposal={proposal}
+                proposal={data}
                 index={index}
                 refinancing={refinancing}
               />
@@ -72,7 +76,7 @@ export function DesktopFormSimulation() {
         <Button
           type="button"
           className="bg-green-500 text-white max-w-96 w-full mx-auto flex justify-center items-center font-medium px-6 hover:opacity-80 hover:text-black"
-          onClick={() => router.push("https://www.redirectmais.com/run/anuncio-teste")}
+          onClick={handleRedirect}
         >
           {!formState.isSubmitting && <span>Resgatar valor total</span>}
           {formState.isSubmitting && <EllipsisLoader />}

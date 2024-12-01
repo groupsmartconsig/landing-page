@@ -8,13 +8,13 @@ import { useProposals } from "@/hooks/use-proposals";
 import { cn } from "@/lib/utils";
 import { AuthService } from "@/services/auth-service";
 import { DataService } from "@/services/data-service";
+import { Proposal } from "@/types/proposals";
 import { env } from "@/utils/env";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { z } from "zod";
 
 const formSchema = z.object({
@@ -88,32 +88,29 @@ export default function MobileFormDataPage() {
       };
 
       await AuthService.signIn(formData.username, formData.password);
-
       const token = localStorage.getItem("token");
       if (!token) throw new Error("401 Server Error: Token not found.");
 
-      const response = await DataService.getContractsByCustomerDocument(personData.cpf);
       const replaceDocumentValue = personData.cpf.replace(/\D/g, "");
       const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s()-]/g, "");
-
-      setProposals(response);
-
+      localStorage.setItem("nome", personData.name);
+      localStorage.setItem("contato", replacePhoneNumberValue);
+      localStorage.setItem("cpf", replaceDocumentValue);
+      const response = await DataService.getContractsByCustomerDocument(personData.cpf);
+      const amountContracts: Proposal[] = await response.contratosElegiveis;
 
       await DataService.createCustomer(
-        personData.name, replacePhoneNumberValue, replaceDocumentValue
+        personData.name,
+        replacePhoneNumberValue,
+        replaceDocumentValue,
+        amountContracts.length
       );
 
-      localStorage.setItem("nome", personData.name);
-      localStorage.setItem("contato", personData.phoneNumber);
-      localStorage.setItem("cpf", personData.cpf);
-
-      route.push("/area-cliente/simulacao")
-    } catch (error) {
-      console.error("Erro:", error);
-      toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
-        description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
-        duration: 5000,
-      })
+      setProposals(response);
+      route.push("/area-cliente/simulacao");
+    } catch {
+      localStorage.clear();
+      route.push("/");
     }
   });
 

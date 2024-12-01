@@ -14,12 +14,11 @@ interface DesktopRefinancingContentProps {
 }
 
 export function DesktopRefinancingContent({
-  proposal,
   index,
   refinancing
 }: DesktopRefinancingContentProps) {
   return (
-    <CarouselItem key={proposal.id}>
+    <CarouselItem key={index}>
       <Card className="p-1">
         <CardContent className="aspect-square flex flex-col items-center justify-between space-y-3 p-6">
           <Badge className="bg-green-500 text-white">

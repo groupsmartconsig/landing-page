@@ -21,7 +21,13 @@ import Link from "next/link";
 export default function MobileFormSimulationPage() {
   const { formState } = useForm();
   const { proposals } = useProposals();
-  const route = useRouter()
+
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    localStorage.clear();
+    router.push("https://www.redirectmais.com/run/anuncio-teste");
+  }
 
   return (
     <>
@@ -41,21 +47,21 @@ export default function MobileFormSimulationPage() {
 
       <Carousel className="w-full max-w-[300px] mx-auto">
         <CarouselContent>
-          {proposals.map((proposal, index) => {
+          {proposals?.contratosElegiveis.map((data, index) => {
             const {
               condicoesContratuaisPortabilidade: portability,
               condicoesContratuaisRefinanciamento: refinancing
-            } = proposal;
+            } = data;
 
             return portability ? (
               <MobilePortabilityDataContent
-                proposal={proposal}
+                proposal={data}
                 index={index}
                 portability={portability}
               />
             ) : (
               <MobileRefinancingDataContent
-                proposal={proposal}
+                proposal={data}
                 index={index}
                 refinancing={refinancing}
               />
@@ -81,7 +87,7 @@ export default function MobileFormSimulationPage() {
         <Button
           type="button"
           className="bg-green-500 text-white text-lg font-bold w-full flex justify-center items-center px-6 hover:opacity-80 hover:text-black"
-          onClick={() => route.push("https://www.redirectmais.com/run/anuncio-teste")}
+          onClick={handleRedirect}
         >
           {!formState.isSubmitting && <span>Resgatar valor total</span>}
           {formState.isSubmitting && <EllipsisLoader />}

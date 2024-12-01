@@ -1,3 +1,15 @@
+export interface Contracts {
+  id: string;
+  contratosElegiveis: Proposal[];
+  contratosInelegiveis: IneligibleProposals[];
+}
+
+export interface Proposal {
+  clienteDadosPessoais: PersonDetails;
+  condicoesContratuaisPortabilidade: ContractsPortabilityDetails | null;
+  condicoesContratuaisRefinanciamento: ContractsRefinancingDetails | null;
+}
+
 export interface PersonDetails {
   numeroBeneficio: string;
   ufBeneficio: string;
@@ -48,10 +60,8 @@ export interface ContractsRefinancingDetails {
   qtdParcelasPagas: number
 }
 
-export interface Proposal {
-  id: string;
-  urlImagem: string;
-  clienteDadosPessoais: PersonDetails;
-  condicoesContratuaisPortabilidade: ContractsPortabilityDetails | null;
-  condicoesContratuaisRefinanciamento: ContractsRefinancingDetails | null;
+export interface IneligibleProposals {
+  banco: string
+  contrato: string
+  motivo: string
 }
