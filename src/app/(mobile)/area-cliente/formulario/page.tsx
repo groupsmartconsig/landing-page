@@ -106,6 +106,12 @@ export default function MobileFormDataPage() {
         amountContracts.length
       );
 
+      if (amountContracts.length <= 0) {
+        localStorage.clear();
+        route.push("/");
+        return;
+      }
+
       setProposals(response);
       route.push("/area-cliente/simulacao");
     } catch {

@@ -19,6 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleIcon } from "lucide-react";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const formSchema = z.object({
@@ -109,6 +110,18 @@ export function DesktopFormPerson() {
         replaceDocumentValue,
         amountContracts.length
       );
+
+      if (amountContracts.length <= 0) {
+        localStorage.clear();
+        window.location.reload();
+
+        toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
+          description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
+          duration: 7000,
+        });
+
+        return;
+      }
 
       setProposals(response);
       nextStep();
