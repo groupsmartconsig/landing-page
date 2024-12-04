@@ -25,7 +25,6 @@ export function DesktopFormSimulation() {
   const router = useRouter();
 
   const handleRedirect = () => {
-    localStorage.clear();
     router.push("https://www.redirectmais.com/run/anuncio-teste");
   }
 

@@ -4,6 +4,7 @@ import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { creationOrigin, useUtmParams } from "@/context/utm-context";
 import { useProposals } from "@/hooks/use-proposals";
 import { cn } from "@/lib/utils";
 import { FormData, formSchema } from "@/schemas/form";
@@ -13,7 +14,6 @@ import { Proposal } from "@/types/proposals";
 import { env } from "@/utils/env";
 import { maskCPF } from "@/utils/mask/mask-cpf";
 import { maskPhone } from "@/utils/mask/mask-phone";
-import { creationOrigin, getUtmData, useUtmParams } from "@/utils/utm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -22,11 +22,10 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 export default function MobileFormDataPage() {
-  useUtmParams();
-
   const route = useRouter();
-  const utmData = getUtmData();
   const { setProposals } = useProposals();
+  const { utmSource, utmContent, utmCampaign, utmId } = useUtmParams();
+
   const {
     control,
     register,
@@ -68,24 +67,24 @@ export default function MobileFormDataPage() {
         cpf: data.cpf,
       };
 
-      await AuthService.signIn(formData.username, formData.password);
-      const token = localStorage.getItem("token");
+      const auth = await AuthService.signIn(formData.username, formData.password);
+      const token = auth.accessToken;
       if (!token) throw new Error("401 Server Error: Token not found.");
 
       const replaceDocumentValue = personData.cpf.replace(/\D/g, "");
       const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s()-]/g, "");
-
-      localStorage.setItem("nome", personData.name);
-      localStorage.setItem("contato", replacePhoneNumberValue);
-      localStorage.setItem("cpf", replaceDocumentValue);
-
       const response = await DataService.getContractsByCustomerDocument(personData.cpf);
       const amountContracts: Proposal[] = await response.contratosElegiveis;
 
       const payload = {
         customerOrigin: {
           creationOrigin,
-          marketingDetails: { ...utmData }
+          marketingDetails: { 
+            utmCampaign,
+            utmContent,
+            utmSource,
+            utmId
+           }
         },
         name: personData.name,
         phonenumber: replacePhoneNumberValue,

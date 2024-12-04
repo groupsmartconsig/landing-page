@@ -25,10 +25,6 @@ export function DesktopFormInit() {
 
     try {
       await AuthService.signIn(data.username, data.password);
-
-      const token = localStorage.getItem("token");
-      if (!token) throw new Error("401 Server Error: Token not found.");
-
       nextStep();
     } catch (error) {
       console.error("Erro ao autenticar:", error);
