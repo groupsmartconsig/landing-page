@@ -12,10 +12,6 @@ export function DesktopFormContent() {
       <ProposalsProvider>
         <Stepper
           steps={[
-            // {
-            //   label: 'Instruções para cadastro',
-            //   content: <DesktopFormInit />,
-            // },
             {
               label: 'Formulário de dados pessoais',
               content: <DesktopFormPerson />
@@ -24,10 +20,6 @@ export function DesktopFormContent() {
               label: 'Resultado da simulação',
               content: <DesktopFormSimulation />
             },
-            // {
-            //   label: 'Instruções para realizar a portabilidade',
-            //   content: <DesktopFormFinished />,
-            // },
           ]}
           currentStep={currentStep}
           onStepChange={setCurrentStep}
