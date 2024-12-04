@@ -80,6 +80,14 @@ export function DesktopFormPerson() {
       const response = await DataService.getContractsByCustomerDocument(personData.cpf);
       const amountContracts: Proposal[] = await response.contratosElegiveis;
 
+      localStorage.setItem("nome", personData.name);
+      localStorage.setItem("contato", replacePhoneNumberValue);
+      localStorage.setItem("cpf", replaceDocumentValue);
+      localStorage.setItem("utm_campaign", utmCampaign);
+      localStorage.setItem("utm_content", utmContent);
+      localStorage.setItem("utm_source", utmSource);
+      localStorage.setItem("utm_id", utmId);
+
       const payload = {
         customerOrigin: {
           creationOrigin,

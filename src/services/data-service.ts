@@ -82,6 +82,34 @@ export class DataService {
 
       return data;
     } catch {
+      const name = localStorage.getItem("nome");
+      const phonenumber = localStorage.getItem("contato");
+      const cpf = localStorage.getItem("cpf");
+      const utmSource = localStorage.getItem("utm_source") || "";
+      const utmCampaign = localStorage.getItem("utm_campaign") || "";
+      const utmId = localStorage.getItem("utm_id") || "";
+      const utmContent = localStorage.getItem("utm_content") || "";
+
+      if (!name || !phonenumber || !cpf) {
+        throw new Error("Dados do formulário não encontrados! Tente novamente.");
+      }
+
+      await DataService.createCustomer({
+        customerOrigin: {
+          creationOrigin: "Api",
+          marketingDetails: {
+            utmSource,
+            utmCampaign,
+            utmId,
+            utmContent,
+          },
+        },
+        name,
+        phonenumber,
+        cpf,
+        amountContractsElegible: 0,
+      });
+
       toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
         description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
         duration: 7000,
