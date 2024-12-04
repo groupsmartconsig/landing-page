@@ -6,30 +6,27 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useProposals } from "@/hooks/use-proposals";
 import { cn } from "@/lib/utils";
+import { FormData, formSchema } from "@/schemas/form";
 import { AuthService } from "@/services/auth-service";
 import { DataService } from "@/services/data-service";
 import { Proposal } from "@/types/proposals";
 import { env } from "@/utils/env";
+import { maskCPF } from "@/utils/mask/mask-cpf";
+import { maskPhone } from "@/utils/mask/mask-phone";
+import { creationOrigin, getUtmData, useUtmParams } from "@/utils/utm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
-
-const formSchema = z.object({
-  name: z.string().min(4, "O nome completo é um campo obrigatório."),
-  cpf: z.string().min(14, "O CPF é obrigatório! Informe um CPF válido."),
-  phoneNumber: z.string().min(15, "Informe um telefone válido."),
-})
-
-type FormData = z.infer<typeof formSchema>;
+import { toast } from "sonner";
 
 export default function MobileFormDataPage() {
+  useUtmParams();
+
   const route = useRouter();
-
+  const utmData = getUtmData();
   const { setProposals } = useProposals();
-
   const {
     control,
     register,
@@ -37,6 +34,7 @@ export default function MobileFormDataPage() {
     formState: { errors, isSubmitting },
     setValue,
     watch,
+    reset
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,23 +43,6 @@ export default function MobileFormDataPage() {
       phoneNumber: ''
     }
   });
-
-  const maskCPF = (value: string) => {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-      .replace(/(-\d{2})\d+?$/, '$1')
-  }
-
-  const maskPhone = (value: string) => {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{2})(\d)/, '($1) $2')
-      .replace(/(\d{5})(\d)/, '$1-$2')
-      .replace(/(-\d{4})\d+?$/, '$1')
-  }
 
   const cpf = watch('cpf');
   const phoneNumber = watch('phoneNumber');
@@ -93,21 +74,33 @@ export default function MobileFormDataPage() {
 
       const replaceDocumentValue = personData.cpf.replace(/\D/g, "");
       const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s()-]/g, "");
+
       localStorage.setItem("nome", personData.name);
       localStorage.setItem("contato", replacePhoneNumberValue);
       localStorage.setItem("cpf", replaceDocumentValue);
+
       const response = await DataService.getContractsByCustomerDocument(personData.cpf);
       const amountContracts: Proposal[] = await response.contratosElegiveis;
 
-      await DataService.createCustomer(
-        personData.name,
-        replacePhoneNumberValue,
-        replaceDocumentValue,
-        amountContracts.length
-      );
+      const payload = {
+        customerOrigin: {
+          creationOrigin,
+          marketingDetails: { ...utmData }
+        },
+        name: personData.name,
+        phonenumber: replacePhoneNumberValue,
+        cpf: replaceDocumentValue,
+        amountContractsElegible: amountContracts.length,
+      }
+
+      await DataService.createCustomer(payload);
+      reset();
 
       if (amountContracts.length <= 0) {
-        localStorage.clear();
+        toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
+          description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
+          duration: 7000,
+        });
         route.push("/");
         return;
       }
@@ -115,7 +108,6 @@ export default function MobileFormDataPage() {
       setProposals(response);
       route.push("/area-cliente/simulacao");
     } catch {
-      localStorage.clear();
       route.push("/");
     }
   });

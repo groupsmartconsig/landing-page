@@ -11,28 +11,26 @@ import { Label } from "@/components/ui/label";
 import { useProposals } from "@/hooks/use-proposals";
 import { useStepper } from "@/hooks/use-stepper";
 import { cn } from "@/lib/utils";
+import { FormData, formSchema } from "@/schemas/form";
 import { AuthService } from "@/services/auth-service";
 import { DataService } from "@/services/data-service";
 import { Proposal } from "@/types/proposals";
 import { env } from "@/utils/env";
+import { maskCPF } from "@/utils/mask/mask-cpf";
+import { maskPhone } from "@/utils/mask/mask-phone";
+import { creationOrigin, getUtmData, useUtmParams } from "@/utils/utm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleIcon } from "lucide-react";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
-
-const formSchema = z.object({
-  name: z.string().min(4, "O nome completo é um campo obrigatório."),
-  cpf: z.string().min(14, "O CPF é obrigatório! Informe um CPF válido."),
-  phoneNumber: z.string().min(15, "Informe um telefone válido."),
-})
-
-type FormData = z.infer<typeof formSchema>
 
 export function DesktopFormPerson() {
+  useUtmParams();
+
   const { nextStep } = useStepper();
   const { setProposals } = useProposals();
+  const utmData = getUtmData();
   const {
     control,
     register,
@@ -40,6 +38,7 @@ export function DesktopFormPerson() {
     formState: { errors, isSubmitting },
     setValue,
     watch,
+    reset
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,23 +47,6 @@ export function DesktopFormPerson() {
       phoneNumber: ''
     }
   });
-
-  const maskCPF = (value: string) => {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-      .replace(/(-\d{2})\d+?$/, '$1')
-  }
-
-  const maskPhone = (value: string) => {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{2})(\d)/, '($1) $2')
-      .replace(/(\d{5})(\d)/, '$1-$2')
-      .replace(/(-\d{4})\d+?$/, '$1')
-  }
 
   const cpf = watch('cpf');
   const phoneNumber = watch('phoneNumber');
@@ -104,20 +86,25 @@ export function DesktopFormPerson() {
       const response = await DataService.getContractsByCustomerDocument(personData.cpf);
       const amountContracts: Proposal[] = await response.contratosElegiveis;
 
-      await DataService.createCustomer(
-        personData.name,
-        replacePhoneNumberValue,
-        replaceDocumentValue,
-        amountContracts.length
-      );
+      const payload = {
+        customerOrigin: {
+          creationOrigin,
+          marketingDetails: { ...utmData }
+        },
+        name: personData.name,
+        phonenumber: replacePhoneNumberValue,
+        cpf: replaceDocumentValue,
+        amountContractsElegible: amountContracts.length,
+      }
+
+      await DataService.createCustomer(payload);
+      reset();
 
       if (amountContracts.length <= 0) {
-        localStorage.clear();
-        window.location.reload();
-
         toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
           description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
-          duration: 7000,
+          duration: 500,
+          important: true,
         });
 
         return;
@@ -126,8 +113,7 @@ export function DesktopFormPerson() {
       setProposals(response);
       nextStep();
     } catch {
-      localStorage.clear();
-      window.location.reload();
+      reset();
     }
   });
 
