@@ -83,11 +83,7 @@ export function DesktopFormPerson() {
       localStorage.setItem("nome", personData.name);
       localStorage.setItem("contato", replacePhoneNumberValue);
       localStorage.setItem("cpf", replaceDocumentValue);
-      localStorage.setItem("utm_campaign", utmCampaign);
-      localStorage.setItem("utm_content", utmContent);
-      localStorage.setItem("utm_source", utmSource);
-      localStorage.setItem("utm_id", utmId);
-
+      
       const payload = {
         customerOrigin: {
           creationOrigin,
@@ -105,7 +101,6 @@ export function DesktopFormPerson() {
       }
 
       await DataService.createCustomer(payload);
-      reset();
 
       if (amountContracts.length <= 0) {
         toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
@@ -116,6 +111,7 @@ export function DesktopFormPerson() {
         return;
       }
 
+      reset();
       setProposals(response);
       nextStep();
     } catch {

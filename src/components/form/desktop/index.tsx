@@ -9,8 +9,8 @@ export function DesktopFormContent() {
   const [currentStep, setCurrentStep] = useState(0)
 
   return (
-    <form>
-      <UtmProviderSuspense>
+    <UtmProviderSuspense>
+      <form>
         <ProposalsProvider>
           <Stepper
             steps={[
@@ -27,7 +27,7 @@ export function DesktopFormContent() {
             onStepChange={setCurrentStep}
           />
         </ProposalsProvider>
-      </UtmProviderSuspense>
-    </form>
+      </form>
+    </UtmProviderSuspense>
   )
 }

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 
-import Link from 'next/link'
+import { UtmLink } from './utm-link'
 
 interface SimulationMobileButtonProps {
   title: string
@@ -12,10 +12,10 @@ export function SimulationMobileButton({
   className
 }: SimulationMobileButtonProps) {
   return (
-    <Link href="/area-cliente">
+    <UtmLink href="/area-cliente">
       <Button className={className || "w-full bg-primary-red font-bold"}>
         {title}
       </Button>
-    </Link>
+    </UtmLink>
   )
 }

@@ -33,6 +33,12 @@ export const UtmProvider = ({ children }: { children: React.ReactNode }) => {
       utmContent: searchParams.get("utm_content") || "",
       utmId: searchParams.get("utm_id") || "",
     };
+
+    localStorage.setItem("utm_campaign", utmParams.utmCampaign);
+    localStorage.setItem("utm_content", utmParams.utmContent);
+    localStorage.setItem("utm_source", utmParams.utmSource);
+    localStorage.setItem("utm_id", utmParams.utmId);
+
     setUtmData(utmParams);
   }, [searchParams]);
 

@@ -79,10 +79,6 @@ export default function MobileFormDataPage() {
       localStorage.setItem("nome", personData.name);
       localStorage.setItem("contato", replacePhoneNumberValue);
       localStorage.setItem("cpf", replaceDocumentValue);
-      localStorage.setItem("utm_campaign", utmCampaign);
-      localStorage.setItem("utm_content", utmContent);
-      localStorage.setItem("utm_source", utmSource);
-      localStorage.setItem("utm_id", utmId);
 
       const payload = {
         customerOrigin: {
@@ -108,7 +104,7 @@ export default function MobileFormDataPage() {
           toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
             description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
           });
-        }, 7000);
+        }, 3000);
         route.push("/");
         return;
       }
@@ -116,12 +112,12 @@ export default function MobileFormDataPage() {
       setProposals(response);
       route.push("/area-cliente/simulacao");
     } catch {
+      toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
+        description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
+      });
       setTimeout(() => {
-        toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
-          description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
-        });
-      }, 7000);
-      route.push("/");
+        route.push("/");
+      }, 3000);
     }
   });
 
