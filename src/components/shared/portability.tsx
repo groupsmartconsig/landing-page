@@ -33,10 +33,13 @@ export function PortabilityContainer() {
           <CardHeader className="relative z-10 max-w-[370px] mx-auto bg-black p-6 rounded-xl md:hidden">
             <div className="flex flex-col justify-center space-y-2">
               <CardTitle className="text-2xl text-primary-red font-bold leading-tight">
-                Quem pode fazer a Portabilidade?
+                Seu consignado pode liberar dinheiro!
               </CardTitle>
               <CardDescription className="text-base text-white tracking-tight pb-4">
-                Se você é aposentado ou pensionista do INSS, você pode solicitar a portabilidade com a Smart Consig. Basta ter um contrato de empréstimo ativo com outro banco e nós vamos cuidar do resto!
+                Ao revisar seu contrato, você pode acessar dinheiro que está retido
+                e aprovar a devolução pelos juros abusivos cobrados nas parcelas.
+                Faça agora uma simulação gratuita e descubra como liberar um valor de
+                até <strong>R$ 5.000,00</strong>! Não perca a chance de colocar mais dinheiro no seu bolso!
               </CardDescription>
             </div>
             <SimulationMobileButton title="Fazer a minha portabilidade" />
@@ -46,13 +49,15 @@ export function PortabilityContainer() {
           <div className="hidden md:grid md:grid-cols-2 md:place-items-center md:h-[680px] md:gap-6 xl:max-w-[1600px] lg:mx-auto lg:w-full">
             <CardHeader className="relative z-10 flex flex-col justify-center space-y-2 h-[80%] max-w-2xl mx-auto bg-black py-6 px-12 rounded-2xl">
               <div className="flex flex-col justify-center space-y-2">
-                <CardTitle className="text-4xl text-primary-red font-bold leading-tight">
-                  Quem pode fazer a Portabilidade?
+                <CardTitle className="text-3xl 2xl:text-4xl text-primary-red font-bold leading-tight">
+                  Seu consignado pode liberar dinheiro!
                 </CardTitle>
 
-                <CardDescription className="text-2xl text-white tracking-tight pb-4">
-                  Se você é aposentado ou pensionista do INSS, você pode solicitar a portabilidade com a Smart Consig.
-                  Basta ter um contrato de empréstimo ativo com outro banco e nós vamos cuidar do resto!
+                <CardDescription className="text-xl 2xl:text-2xl text-white tracking-tight pb-4">
+                  Ao revisar seu contrato, você pode acessar dinheiro que está retido
+                  e aprovar a devolução pelos juros abusivos cobrados nas parcelas.
+                  Faça agora uma simulação gratuita e descubra como liberar um valor de
+                  até <strong>R$ 5.000,00</strong>! Não perca a chance de colocar mais dinheiro no seu bolso!
                 </CardDescription>
               </div>
 

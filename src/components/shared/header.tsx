@@ -49,14 +49,12 @@ export function HeaderContainer() {
 
           <CardHeader className="relative z-10 max-w-[370px] mx-auto bg-gray-200 text-black p-6 rounded-xl md:hidden">
             <CardTitle className="text-2xl text-primary leading-tight">
-              Portabilidade de Consignado <br />
-              <strong className="text-2xl text-black font-bold">
-                Aumente o salário e libere valor
-              </strong>
+              Quer pagar menos no seu Consignado?
             </CardTitle>
             <CardDescription className="text-base text-black tracking-tight pb-4">
-              Transfira seu empréstimo de outros bancos e aproveite vantagens: reduza a parcela, pague menos juros,
-              aumente seu benefício e libere um novo valor.
+              Devolução aprovada! Recupere os juros abusivos pagos no seu empréstimo.
+              Aumente seu salário e resgate até <br />
+              <strong>R$ 5.000,00</strong> hoje!
             </CardDescription>
             <SimulationMobileButton title="Simular agora" />
           </CardHeader>
@@ -64,16 +62,13 @@ export function HeaderContainer() {
           {/* Desktop */}
           <div className="hidden md:grid md:grid-cols-2 md:place-items-center md:h-[680px] md:gap-6 xl:max-w-[1600px] lg:mx-auto lg:w-full">
             <CardHeader className="relative z-10 flex flex-col justify-center space-y-2 h-full max-w-xl mx-auto text-white p-6">
-              <CardTitle className="text-4xl text-white leading-tight">
-                Portabilidade de Consignado <br />
-                <strong className="text-3xl text-black font-bold">
-                  Aumente o salário e libere valor
-                </strong>
+              <CardTitle className="text-4xl text-black leading-tight">
+                Quer pagar menos no seu Consignado?
               </CardTitle>
 
               <CardDescription className="text-2xl text-white tracking-tight pb-4">
-                Transfira seu empréstimo de outros bancos e aproveite vantagens: reduza a parcela, pague menos juros,
-                aumente seu benefício e libere um novo valor.
+                Devolução aprovada! Recupere os juros abusivos pagos no seu empréstimo.
+                Aumente seu salário e resgate até <strong>R$ 5.000,00</strong> hoje!
               </CardDescription>
 
               <SimulationDesktopButton
