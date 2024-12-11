@@ -61,7 +61,7 @@ export function PortabilityContainer() {
                 </CardDescription>
               </div>
 
-              <SimulationDesktopButton title="Desejo fazer a portabilidade" />
+              <SimulationDesktopButton title="Desejo fazer a simulação" />
             </CardHeader>
 
             <div className="relative bg-primary h-full max-w-md mx-auto rounded-2xl overflow-hidden">
