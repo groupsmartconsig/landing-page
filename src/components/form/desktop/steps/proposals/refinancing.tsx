@@ -2,10 +2,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CarouselItem } from "@/components/ui/carousel";
+import { useStepper } from "@/hooks/use-stepper";
 import { ContractsRefinancingDetails, Proposal } from "@/types/proposals";
 import { ChevronRightIcon, EyeIcon } from "lucide-react";
-
-import Link from "next/link";
 
 interface DesktopRefinancingContentProps {
   proposal: Proposal;
@@ -17,6 +16,8 @@ export function DesktopRefinancingContent({
   index,
   refinancing
 }: DesktopRefinancingContentProps) {
+  const { nextStep } = useStepper();
+
   return (
     <CarouselItem key={index}>
       <Card className="p-1">
@@ -109,18 +110,15 @@ export function DesktopRefinancingContent({
         </CardContent>
       </Card>
 
-      {/* <DesktopPersonData personData={proposal.clienteDadosPessoais} /> */}
-
-      <Link href="https://www.redirectmais.com/run/anuncio-teste">
-        <Button
-          type="button"
-          variant="outline"
-          className="w-full flex items-center gap-2 my-3"
-        >
-          <EyeIcon className="size-4" />
-          Ver todos os detalhes
-        </Button>
-      </Link>
+      <Button
+        type="button"
+        variant="outline"
+        className="w-full flex items-center gap-2 my-3"
+        onClick={() => nextStep()}
+      >
+        <EyeIcon className="size-4" />
+        Ver todos os detalhes
+      </Button>
     </CarouselItem>
   )
 }

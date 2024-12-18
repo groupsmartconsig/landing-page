@@ -1,4 +1,5 @@
 import { CreateCustomerRequest } from "@/types/customer";
+import { InteractionResponse } from "@/types/interaction";
 import axios from "axios";
 
 import { toast } from "sonner";
@@ -56,7 +57,6 @@ export class DataService {
         },
       });
 
-      console.log(data);
       return data;
     } catch (error: any) {
       console.error("Erro ao cadastrar cliente:", error);
@@ -114,6 +114,38 @@ export class DataService {
         description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
         duration: 7000,
       });
+    }
+  }
+
+  static async createInteractionWithOperator() {
+    try {
+      const token = localStorage.getItem("token");
+      const name = localStorage.getItem("nome");
+      const cpf = localStorage.getItem("cpf");
+      const phonenumber = localStorage.getItem("contato");
+
+      if (!token || !name || !cpf || !phonenumber) {
+        throw new Error("Dados necessários não encontrados. Tente novamente");
+      }
+
+      const payload = {
+        customer: {
+          name: name,
+          cpf: cpf,
+          phoneNumber: phonenumber
+        }
+      }
+
+      const { data } = await httpClient.post<InteractionResponse>(`/interaction`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Internal server error!");
     }
   }
 }

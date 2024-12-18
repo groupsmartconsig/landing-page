@@ -25,7 +25,7 @@ export default function MobileFormSimulationPage() {
   const router = useRouter();
 
   const handleRedirect = () => {
-    router.push("https://www.redirectmais.com/run/anuncio-teste");
+    router.push("/area-cliente/atendimento");
   }
 
   return (
@@ -72,7 +72,7 @@ export default function MobileFormSimulationPage() {
       </Carousel>
 
       <div className="w-full max-w-72 mx-auto mt-auto flex flex-col space-y-3 px-0 pt-3 pb-16">
-        <Link href="https://www.redirectmais.com/run/anuncio-teste">
+        <Link href="/area-cliente/atendimento">
           <Button
             type="button"
             variant="outline"

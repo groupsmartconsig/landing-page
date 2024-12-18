@@ -1,6 +1,7 @@
 "use client";
 
-import type { ConfettiRef } from "@/components/magic-ui/confetti";
+import Confetti from "@/components/magic-ui/confetti";
+
 import {
   Card,
   CardContent,
@@ -8,23 +9,42 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
-import { ZapIcon } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 
-import Confetti from "@/components/magic-ui/confetti";
+import type { ConfettiRef } from "@/components/magic-ui/confetti";
+import { DataService } from "@/services/data-service";
+import { InteractionResponse } from "@/types/interaction";
+import { ZapIcon } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function MobileFormFinishedPage() {
   const confettiRef = useRef<ConfettiRef>(null);
   const [count, setCount] = useState(5);
+  const [operatorPhoneNumber, setOperatorPhoneNumber] = useState<string | null>(null);
+
+  const handleCreateInteraction = useCallback(async () => {
+    try {
+      const request: InteractionResponse = await DataService.createInteractionWithOperator();
+      if (request?.operator?.phonenumber) setOperatorPhoneNumber(request.operator.phonenumber);
+    } catch (error) {
+      console.error("Erro ao buscar operador:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    handleCreateInteraction();
+  }, [handleCreateInteraction]);
 
   useEffect(() => {
     if (count > 0) {
-      const timer = setTimeout(() => setCount(count - 1), 1000)
-      return () => clearTimeout(timer)
+      const timer = setTimeout(() => setCount((prev) => prev - 1), 1000);
+      return () => clearTimeout(timer);
     }
 
-    window.location.href = "https://www.redirectmais.com/run/anuncio-teste";
-  }, [count]);
+    if (operatorPhoneNumber) {
+      const message = "Recebi%20seu%20SMS%20e%20quero%20saber%20mais";
+      window.location.href = `https://wa.me/55${operatorPhoneNumber}?text=${message}`;
+    }
+  }, [count, operatorPhoneNumber]);
 
   return (
     <div className="w-full relative flex flex-col items-center justify-center overflow-hidden">
