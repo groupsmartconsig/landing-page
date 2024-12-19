@@ -12,19 +12,42 @@ import {
   DialogTitle
 } from "@/components/ui/dialog";
 import { useProposals } from "@/hooks/use-proposals";
-import { useStepper } from "@/hooks/use-stepper";
+import { DataService } from "@/services/data-service";
+import { InteractionResponse } from "@/types/interaction";
 import { CircleDollarSignIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { DesktopPortabilityContent } from "./proposals/portability";
 import { DesktopRefinancingContent } from "./proposals/refinancing";
 
 export function DesktopFormSimulation() {
+  const router = useRouter();
+
   const { formState } = useForm();
   const { proposals } = useProposals();
-  const { nextStep } = useStepper();
+  
+  const [operatorPhoneNumber, setOperatorPhoneNumber] = useState<string | null>(null);
 
-  const router = useRouter();
+  const handleCreateInteraction = useCallback(async () => {
+    try {
+      const request: InteractionResponse = await DataService.createInteractionWithOperator();
+      if (request?.operator?.phonenumber) setOperatorPhoneNumber(request.operator.phonenumber);
+    } catch (error) {
+      console.error("Erro ao buscar operador:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    handleCreateInteraction();
+  }, [handleCreateInteraction]);
+
+  const sendWhatsAppMessage = async () => {
+    if (operatorPhoneNumber) {
+      const message = "Vi%20no%20anúncio%20e%20quero%20ser%20atendido";
+      window.location.href = `https://wa.me/55${operatorPhoneNumber}?text=${message}`;
+    }
+  }
 
   return (
     <>
@@ -73,7 +96,7 @@ export function DesktopFormSimulation() {
         <Button
           type="button"
           className="bg-green-500 text-white max-w-96 w-full mx-auto flex justify-center items-center font-medium px-6 hover:opacity-80 hover:text-black"
-          onClick={() => nextStep()}
+          onClick={sendWhatsAppMessage}
         >
           {!formState.isSubmitting && <span>Resgatar valor total</span>}
           {formState.isSubmitting && <EllipsisLoader />}

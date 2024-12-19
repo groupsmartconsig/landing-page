@@ -1,13 +1,6 @@
 "use client"
 
-import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
-import { Button } from "@/components/ui/button";
-import { useProposals } from "@/hooks/use-proposals";
-import { CircleDollarSignIcon, EyeIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { MobilePortabilityDataContent } from "./portability";
-import { MobileRefinancingDataContent } from "./refinancing";
+import Link from "next/link";
 
 import {
   Carousel,
@@ -16,16 +9,44 @@ import {
   CarouselPrevious
 } from "@/components/ui/carousel";
 
-import Link from "next/link";
+import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
+import { Button } from "@/components/ui/button";
+import { useProposals } from "@/hooks/use-proposals";
+import { DataService } from "@/services/data-service";
+import { InteractionResponse } from "@/types/interaction";
+import { CircleDollarSignIcon, EyeIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { MobilePortabilityDataContent } from "./portability";
+import { MobileRefinancingDataContent } from "./refinancing";
 
 export default function MobileFormSimulationPage() {
+  const router = useRouter();
+
   const { formState } = useForm();
   const { proposals } = useProposals();
 
-  const router = useRouter();
+  const [operatorPhoneNumber, setOperatorPhoneNumber] = useState<string | null>(null);
 
-  const handleRedirect = () => {
-    router.push("/area-cliente/atendimento");
+  const handleCreateInteraction = useCallback(async () => {
+    try {
+      const request: InteractionResponse = await DataService.createInteractionWithOperator();
+      if (request?.operator?.phonenumber) setOperatorPhoneNumber(request.operator.phonenumber);
+    } catch (error) {
+      console.error("Erro ao buscar operador:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    handleCreateInteraction();
+  }, [handleCreateInteraction]);
+
+  const sendWhatsAppMessage = async () => {
+    if (operatorPhoneNumber) {
+      const message = "Vi%20no%20anúncio%20e%20quero%20ser%20atendido";
+      window.location.href = `https://wa.me/55${operatorPhoneNumber}?text=${message}`;
+    }
   }
 
   return (
@@ -86,7 +107,7 @@ export default function MobileFormSimulationPage() {
         <Button
           type="button"
           className="bg-green-500 text-white text-lg font-bold w-full flex justify-center items-center px-6 hover:opacity-80 hover:text-black"
-          onClick={handleRedirect}
+          onClick={sendWhatsAppMessage}
         >
           {!formState.isSubmitting && <span>Resgatar valor total</span>}
           {formState.isSubmitting && <EllipsisLoader />}

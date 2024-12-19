@@ -46,7 +46,7 @@ export function DesktopFormFinished() {
     }
 
     if (operatorPhoneNumber) {
-      const message = "Recebi%20seu%20SMS%20e%20quero%20saber%20mais";
+      const message = "Vi%20no%20anúncio%20e%20quero%20ser%20atendido";
       window.location.href = `https://wa.me/55${operatorPhoneNumber}?text=${message}`;
     }
   }, [count, operatorPhoneNumber]);
