@@ -16,7 +16,7 @@ export class AuthService {
     password: string,
   ) {
     try {
-      const { data } = await httpClient.post("/user/login", {
+      const { data } = await httpClient.post("/users/login", {
         username,
         password,
       })
