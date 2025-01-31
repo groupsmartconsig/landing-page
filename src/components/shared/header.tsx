@@ -48,27 +48,30 @@ export function HeaderContainer() {
           </div>
 
           <CardHeader className="relative z-10 max-w-[370px] mx-auto bg-gray-200 text-black p-6 rounded-xl md:hidden">
-            <CardTitle className="text-2xl text-primary leading-tight">
-              Quer pagar menos no seu Consignado?
+            <CardTitle className="text-xl text-primary leading-tight">
+              Portabilidade de Crédito
             </CardTitle>
-            <CardDescription className="text-base text-black tracking-tight pb-4">
-              Devolução aprovada! Recupere os juros abusivos pagos no seu empréstimo.
-              Aumente seu salário e resgate até <br />
-              <strong>R$ 5.000,00</strong> hoje!
+            <CardDescription className="text-xl text-black font-medium tracking-tight pb-4">
+              REALIZE SEUS SONHOS COM A <strong>SMART CONSIG</strong> E APROVEITE AS MENORES TAXAS. <br />
+              <strong className='text-xl font-bold text-black'>
+                Simule e contrate.
+              </strong>
             </CardDescription>
             <SimulationMobileButton title="Simular agora" />
           </CardHeader>
 
           {/* Desktop */}
           <div className="hidden md:grid md:grid-cols-2 md:place-items-center md:h-[680px] md:gap-6 xl:max-w-[1600px] lg:mx-auto lg:w-full">
-            <CardHeader className="relative z-10 flex flex-col justify-center space-y-2 h-full max-w-xl mx-auto text-white p-6">
-              <CardTitle className="text-4xl text-black leading-tight">
-                Quer pagar menos no seu Consignado?
+            <CardHeader className="relative z-10 flex flex-col justify-center space-y-2 h-full max-w-xl mx-auto text-white p-2">
+              <CardTitle className="text-3xl text-black leading-tight">
+                Portabilidade de Crédito
               </CardTitle>
 
-              <CardDescription className="text-2xl text-white tracking-tight pb-4">
-                Devolução aprovada! Recupere os juros abusivos pagos no seu empréstimo.
-                Aumente seu salário e resgate até <strong>R$ 5.000,00</strong> hoje!
+              <CardDescription className="text-4xl text-white font-medium tracking-tight pb-4">
+                REALIZE SEUS SONHOS COM A <strong>SMART CONSIG</strong> E APROVEITE AS MENORES TAXAS. <br />
+                <span className='text-3xl font-medium text-black'>
+                  Simule e contrate.
+                </span>
               </CardDescription>
 
               <SimulationDesktopButton

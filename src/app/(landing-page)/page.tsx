@@ -12,9 +12,21 @@ const PortabilityContainer = dynamic(() => import(
   '@/components/shared/portability'
 ).then(mod => mod.PortabilityContainer), { ssr: true });
 
-const SimulationContainer = dynamic(() => import(
-  '@/components/shared/simulation'
-).then(mod => mod.SimulationContainer), { ssr: true });
+const CompanyStatsSection = dynamic(() => import(
+  '@/components/shared/company-stats'
+).then(mod => mod.CompanyStatsSection), { ssr: true });
+
+const ExclusiveBenefitsSection = dynamic(() => import(
+  '@/components/shared/exclusive-benefits'
+).then(mod => mod.ExclusiveBenefitsSection), { ssr: true });
+
+const LoanProcessSection = dynamic(() => import(
+  '@/components/shared/loan-process'
+).then(mod => mod.LoanProcessSection), { ssr: true });
+
+const CompanyMissionSection = dynamic(() => import(
+  '@/components/shared/company-mission'
+).then(mod => mod.CompanyMissionSection));
 
 const InfiniteSliderBanksContainer = dynamic(() => import(
   '@/components/shared/infinite-slider-banks'
@@ -40,7 +52,7 @@ const FooterContainer = dynamic(() => import(
   '@/components/shared/footer'
 ).then(mod => mod.FooterContainer), { ssr: true });
 
-export const revalidate = 21600 // 6 horas em segundos
+// export const revalidate = 21600 // 6 horas em segundos
 
 export default function LandingPage() {
   return (
@@ -48,7 +60,10 @@ export default function LandingPage() {
       <HeaderContainer />
       <InformativeContainer />
       <PortabilityContainer />
-      <SimulationContainer />
+      <CompanyStatsSection />
+      <ExclusiveBenefitsSection />
+      <LoanProcessSection />
+      <CompanyMissionSection />
       <div className="w-full block md:hidden">
         <InfiniteSliderBanksContainer />
       </div>
