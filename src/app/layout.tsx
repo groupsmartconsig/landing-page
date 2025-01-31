@@ -8,7 +8,7 @@ import './globals.css'
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Smartconsig soluções financeiras',
+  title: 'Smart Consig',
   description: 'Há 5 anos atuando com credibilidade, segurança e qualidade.',
 }
 
