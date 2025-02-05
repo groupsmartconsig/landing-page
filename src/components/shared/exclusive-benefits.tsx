@@ -36,7 +36,7 @@ const benefits = [
 
 export function ExclusiveBenefitsSection() {
   return (
-    <div className="py-16 px-4">
+    <div className="py-16 px-5">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-primary-red text-xl font-medium mb-2">NOSSOS DIFERENCIAIS</p>

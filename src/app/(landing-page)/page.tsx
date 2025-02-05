@@ -4,14 +4,6 @@ const HeaderContainer = dynamic(() => import(
   '@/components/shared/header'
 ).then(mod => mod.HeaderContainer), { ssr: true });
 
-const InformativeContainer = dynamic(() => import(
-  '@/components/shared/informative'
-).then(mod => mod.InformativeContainer), { ssr: true });
-
-const PortabilityContainer = dynamic(() => import(
-  '@/components/shared/portability'
-).then(mod => mod.PortabilityContainer), { ssr: true });
-
 const CompanyStatsSection = dynamic(() => import(
   '@/components/shared/company-stats'
 ).then(mod => mod.CompanyStatsSection), { ssr: true });
@@ -52,16 +44,14 @@ const FooterContainer = dynamic(() => import(
   '@/components/shared/footer'
 ).then(mod => mod.FooterContainer), { ssr: true });
 
-// export const revalidate = 21600 // 6 horas em segundos
+export const revalidate = 21600 // 6 horas em segundos
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen overflow-hidden">
       <HeaderContainer />
-      <InformativeContainer />
-      <PortabilityContainer />
-      <CompanyStatsSection />
       <ExclusiveBenefitsSection />
+      <CompanyStatsSection />
       <LoanProcessSection />
       <CompanyMissionSection />
       <div className="w-full block md:hidden">

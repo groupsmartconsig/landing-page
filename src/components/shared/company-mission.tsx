@@ -46,7 +46,7 @@ const missionPoints = [
 
 export function CompanyMissionSection() {
   return (
-    <div className="bg-white text-black py-16 px-4">
+    <div className="bg-white text-black py-16 px-5">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <div className="space-y-8">
@@ -68,14 +68,14 @@ export function CompanyMissionSection() {
               />
 
               {/* Floating Labels */}
-              <div className="absolute bottom-6 left-6 bg-black text-primary-red rounded-full px-4 py-2">
+              <div className="absolute bottom-6 left-6 bg-zinc-950 text-[#fe001a] rounded-full px-4 py-2">
                 <span className="flex items-center gap-2">
                   <WalletIcon className="size-4" />
                   Crédito Facilitado
                 </span>
               </div>
 
-              <div className="absolute top-6 right-6 bg-black text-primary-red rounded-full px-4 py-2">
+              <div className="absolute top-6 right-6 bg-zinc-950 text-[#fe001a] rounded-full px-4 py-2">
                 <span className="flex items-center gap-2">
                   <UserCheckIcon className="size-4" />
                   Atendimento Premium

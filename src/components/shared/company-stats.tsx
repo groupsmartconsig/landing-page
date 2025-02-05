@@ -32,7 +32,7 @@ const overviewStats = [
 
 export function CompanyStatsSection() {
   return (
-    <div className="bg-black py-16 px-4">
+    <div className="bg-black py-16 px-5">
       <h2 className="text-center text-2xl text-white md:text-3xl font-bold mb-12">
         Conheça nossa empresa
       </h2>
