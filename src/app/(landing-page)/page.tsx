@@ -4,13 +4,13 @@ const HeaderContainer = dynamic(() => import(
   '@/components/shared/header'
 ).then(mod => mod.HeaderContainer), { ssr: true });
 
-const CompanyStatsSection = dynamic(() => import(
-  '@/components/shared/company-stats'
-).then(mod => mod.CompanyStatsSection), { ssr: true });
-
 const ExclusiveBenefitsSection = dynamic(() => import(
   '@/components/shared/exclusive-benefits'
 ).then(mod => mod.ExclusiveBenefitsSection), { ssr: true });
+
+const CompanyStatsSection = dynamic(() => import(
+  '@/components/shared/company-stats'
+).then(mod => mod.CompanyStatsSection), { ssr: true });
 
 const LoanProcessSection = dynamic(() => import(
   '@/components/shared/loan-process'
@@ -51,9 +51,9 @@ export default function LandingPage() {
     <div className="min-h-screen overflow-hidden">
       <HeaderContainer />
       <ExclusiveBenefitsSection />
+      <CompanyMissionSection />
       <CompanyStatsSection />
       <LoanProcessSection />
-      <CompanyMissionSection />
       <div className="w-full block md:hidden">
         <InfiniteSliderBanksContainer />
       </div>

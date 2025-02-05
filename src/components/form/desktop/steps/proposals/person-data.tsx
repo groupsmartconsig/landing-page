@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetClose,
@@ -9,6 +8,8 @@ import {
   SheetTitle,
   SheetTrigger
 } from "@/components/ui/sheet";
+
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PersonDetails } from "@/types/proposals";
 import { EyeIcon } from "lucide-react";

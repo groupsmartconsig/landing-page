@@ -1,6 +1,5 @@
 'use client'
 
-import { SimulationMobileButton } from '@/components/shared/simulation-mobile-button'
 import {
   Card,
   CardContent,
@@ -8,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+
+import { SimulationMobileButton } from '@/components/shared/simulation-mobile-button'
 import { LockKeyholeIcon } from 'lucide-react'
 import { SimulationDesktopButton } from './simulation-desktop-button'
 
@@ -68,7 +69,7 @@ export function HeaderContainer() {
           {/* Desktop */}
           <div className="hidden md:grid md:grid-cols-2 md:place-items-center md:h-[680px] md:gap-6 xl:max-w-[1600px] lg:mx-auto lg:w-full">
             <CardHeader className="relative z-10 flex flex-col justify-center space-y-2 h-full max-w-xl mx-auto text-white p-2">
-              <CardTitle className="text-3xl text-[#fe001a] leading-tight">
+              <CardTitle className="text-3xl text-[#fe001a] leading-tight xl:text-4xl">
                 Faça a portabilidade do seu contrato
                 de um jeito seguro e rapido!
               </CardTitle>
@@ -86,7 +87,7 @@ export function HeaderContainer() {
             </CardHeader>
 
             <div className="flex items-center space-x-6 h-full px-6 xl:px-0">
-              <div className="relative bg-white h-[80%] max-w-md mx-auto rounded-2xl overflow-hidden">
+              <div className="relative bg-[#fe001a] h-[80%] max-w-md mx-auto rounded-2xl overflow-hidden">
                 <Image
                   src={elderlyCasual}
                   width={500}
@@ -97,7 +98,7 @@ export function HeaderContainer() {
                 />
               </div>
 
-              <div className="relative bg-white h-full max-w-md mx-auto rounded-2xl overflow-hidden">
+              <div className="relative bg-[#fe001a] h-full max-w-md mx-auto rounded-2xl overflow-hidden">
                 <Image
                   src={elderlySmile}
                   width={500}
