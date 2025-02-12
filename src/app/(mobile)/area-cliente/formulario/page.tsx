@@ -23,6 +23,7 @@ import { toast } from "sonner";
 
 export default function MobileFormDataPage() {
   const route = useRouter();
+
   const { setProposals } = useProposals();
   const { utmSource, utmContent, utmCampaign, utmId } = useUtmParams();
 
@@ -116,8 +117,8 @@ export default function MobileFormDataPage() {
         description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
       });
       setTimeout(() => {
-        route.push("/");
-      }, 3000);
+        route.push(`/?utm_source=${utmSource}&utm_campaign=${utmCampaign}&utm_content=${utmContent}&utm_id=${utmId}`);
+      }, 2000);
     }
   });
 
