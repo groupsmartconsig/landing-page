@@ -13,11 +13,11 @@ const loanSteps = [
 export function LoanProcessSection() {
   return (
     <div className="grid lg:grid-cols-2">
-      <div className="bg-black text-white px-8 py-16 lg:px-16">
+      <div className="bg-medium-dark text-white px-8 py-16 lg:px-16">
         <div className="max-w-xl mx-auto">
           <div className="flex items-center gap-4 mb-8">
-            <div className="rounded-full border-2 border-medium-red p-3">
-              <WalletIcon className="size-6 text-primary-red" />
+            <div className="rounded-full border-2 border-danger-red p-3">
+              <WalletIcon className="size-6 text-danger-red" />
             </div>
             <h2 className="text-3xl font-bold">Como fazer a portabilidade?</h2>
           </div>
@@ -25,17 +25,17 @@ export function LoanProcessSection() {
           <div className="space-y-6 mb-12">
             {loanSteps.map((step, index) => (
               <div key={index} className="flex items-start gap-4">
-                <span className="text-primary-red font-bold text-xl">{String(index + 1).padStart(2, "0")}.</span>
+                <span className="text-danger-red font-bold text-xl">{String(index + 1).padStart(2, "0")}.</span>
                 <p className="text-white/80">{step}</p>
               </div>
             ))}
           </div>
 
-          <h3 className="text-primary-red text-3xl font-bold">Dinheiro na conta!</h3>
+          <h3 className="text-danger-red text-3xl font-bold">Dinheiro na conta!</h3>
         </div>
       </div>
 
-      <div className="relative min-h-[500px] bg-gradient-to-b from-[#8a090d] via-[#e42c33] to-[#e42c33] lg:min-h-[600px]">
+      <div className="relative min-h-[500px] bg-danger-red lg:min-h-[600px]">
         <Image
           src="/office.png"
           alt="Pessoa utilizando o celular"
@@ -45,7 +45,7 @@ export function LoanProcessSection() {
         />
 
         {/* Floating Labels */}
-        <div className="absolute top-1/4 left-8 bg-zinc-950 text-[#fe001a] rounded-full px-4 py-2 flex items-center gap-2">
+        <div className="absolute top-1/4 left-8 bg-medium-dark text-danger-red rounded-full px-4 py-2 flex items-center gap-2">
           <svg className="size-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M13 10V3L4 14H11V21L20 10H13Z"
@@ -58,7 +58,7 @@ export function LoanProcessSection() {
           Agilidade
         </div>
 
-        <div className="absolute top-1/2 right-8 bg-zinc-950 text-[#fe001a] rounded-full px-4 py-2 flex items-center gap-2">
+        <div className="absolute top-1/2 right-8 bg-medium-dark text-danger-red rounded-full px-4 py-2 flex items-center gap-2">
           <svg className="size-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M20 6L9 17L4 12"

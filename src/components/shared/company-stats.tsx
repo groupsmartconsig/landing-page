@@ -32,7 +32,7 @@ const overviewStats = [
 
 export function CompanyStatsSection() {
   return (
-    <div className="bg-black py-16 px-5">
+    <div className="bg-medium-dark py-16 px-5">
       <h2 className="text-center text-2xl text-white md:text-3xl font-bold mb-12">
         Conheça nossa empresa
       </h2>
@@ -41,7 +41,7 @@ export function CompanyStatsSection() {
         {overviewStats.map((stat, index) => (
           <Card key={index}>
             <CardHeader className="flex flex-col items-center pb-2">
-              <stat.icon className="w-8 h-8 text-primary-red mb-2" />
+              <stat.icon className="w-8 h-8 text-danger-red mb-2" />
               <CardTitle className="text-3xl font-bold">{stat.value}</CardTitle>
             </CardHeader>
             <CardContent className="text-center text-gray-600">

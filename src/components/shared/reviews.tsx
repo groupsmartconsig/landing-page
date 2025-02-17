@@ -99,7 +99,7 @@ const ReviewCard = ({
 export function ReviewsContainer() {
   return (
     <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden text-white md:shadow-xl">
-      <h5 className="max-w-60 text-2xl text-center font-bold text-primary leading-tight pb-12 sm:text-4xl md:max-w-full md:text-5xl md:font-semibold">
+      <h5 className="max-w-60 text-2xl text-center font-bold text-danger-red leading-tight pb-12 sm:text-4xl md:max-w-full md:text-5xl md:font-semibold">
         Avaliações dos nossos clientes
       </h5>
 
@@ -115,8 +115,8 @@ export function ReviewsContainer() {
         ))}
       </Marquee>
 
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-black"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-black"></div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3"></div>
     </div>
   );
 }

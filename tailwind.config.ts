@@ -12,6 +12,8 @@ const config: Config = {
 			colors: {
 				'primary-red': '#ec3237',
 				'medium-red': '#ca3438',
+				'danger-red': '#fe001a',
+				'medium-dark': '#211e1c',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {
@@ -84,9 +86,9 @@ const config: Config = {
 					}
 				},
 				bannermove: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-50%)' },
+				},
 				'border-beam': {
 					'100%': {
 						'offset-distance': '100%'

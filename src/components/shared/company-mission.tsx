@@ -51,7 +51,7 @@ export function CompanyMissionSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <div className="space-y-8">
             <div>
-              <p className="text-primary-red text-xl font-medium mb-4">NOSSA MISSÃO</p>
+              <p className="text-danger-red text-xl font-medium mb-4">NOSSA MISSÃO</p>
               <h2 className="text-3xl md:text-4xl font-bold leading-tight">
                 Gerar valor e satisfação a clientes, colaboradores e parceiros, atingindo a excelência de maneira
                 sustentável.
@@ -67,15 +67,14 @@ export function CompanyMissionSection() {
                 priority
               />
 
-              {/* Floating Labels */}
-              <div className="absolute bottom-6 left-6 bg-zinc-950 text-[#fe001a] rounded-full px-4 py-2">
+              <div className="absolute bottom-6 left-6 bg-medium-dark text-danger-red rounded-full px-4 py-2">
                 <span className="flex items-center gap-2">
                   <WalletIcon className="size-4" />
                   Crédito Facilitado
                 </span>
               </div>
 
-              <div className="absolute top-6 right-6 bg-zinc-950 text-[#fe001a] rounded-full px-4 py-2">
+              <div className="absolute top-6 right-6 bg-medium-dark text-danger-red rounded-full px-4 py-2">
                 <span className="flex items-center gap-2">
                   <UserCheckIcon className="size-4" />
                   Atendimento Premium
@@ -86,11 +85,11 @@ export function CompanyMissionSection() {
 
           <div className="grid sm:grid-cols-2 gap-6">
             {missionPoints.map((point, index) => (
-              <Card key={index} className="bg-black border border-zinc-800">
+              <Card key={index} className="bg-medium-dark">
                 <CardContent className="p-6">
                   <div className="flex flex-col gap-4">
-                    <div className="rounded-full border-2 border-medium-red p-3 w-fit">
-                      <point.icon className="size-6 text-primary-red" />
+                    <div className="rounded-full border-2 border-danger-red p-3 w-fit">
+                      <point.icon className="size-6 text-danger-red" />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg text-white mb-2">{point.title}</h3>

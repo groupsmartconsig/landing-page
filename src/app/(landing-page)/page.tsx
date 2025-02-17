@@ -60,10 +60,12 @@ export default function LandingPage() {
       <div className="hidden md:block w-full">
         <InfiniteSliderBanksDesktopContainer />
       </div>
-      <div className="max-w-6xl w-full mx-auto pt-16 px-3 md:px-0 md:pt-20 lg:max-w-7xl">
-        <HeroVideoContainer />
+      <div className='bg-medium-dark'>
+        <section className="max-w-6xl w-full mx-auto pt-16 px-3 md:px-0 md:pt-20 lg:max-w-7xl">
+          <HeroVideoContainer />
+        </section>
       </div>
-      <section className="pt-12 pb-16 bg-black md:py-16">
+      <section className="pt-12 pb-16 bg-medium-dark md:py-16">
         <ReviewsContainer />
       </section>
       <FaqContainer />
