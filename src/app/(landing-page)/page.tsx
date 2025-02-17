@@ -20,6 +20,10 @@ const CompanyMissionSection = dynamic(() => import(
   '@/components/shared/company-mission'
 ).then(mod => mod.CompanyMissionSection));
 
+const LGPDSection = dynamic(() => import(
+  '@/components/shared/lgpd-section'
+).then(mod => mod.LGPDSection), { ssr: true });
+
 const InfiniteSliderBanksContainer = dynamic(() => import(
   '@/components/shared/infinite-slider-banks'
 ).then(mod => mod.InfiniteSliderBanksContainer), { ssr: true });
@@ -54,6 +58,7 @@ export default function LandingPage() {
       <CompanyMissionSection />
       <CompanyStatsSection />
       <LoanProcessSection />
+      <LGPDSection />
       <div className="w-full block md:hidden">
         <InfiniteSliderBanksContainer />
       </div>

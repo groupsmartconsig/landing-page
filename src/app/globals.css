@@ -67,7 +67,11 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border
+    [&::-webkit-scrollbar]:w-2
+    [&::-webkit-scrollbar-track]:bg-border
+    [&::-webkit-scrollbar-thumb]:rounded-none
+    [&::-webkit-scrollbar-thumb]:bg-zinc-500/70;
   }
   body {
     @apply bg-background text-foreground;
