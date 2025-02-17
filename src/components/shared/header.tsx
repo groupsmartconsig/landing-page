@@ -27,8 +27,8 @@ export function HeaderContainer() {
           <header className="flex justify-between items-center pt-2 pb-6 px-6 md:max-w-3xl md:w-full md:mx-auto md:py-6 xl:px-0 lg:max-w-7xl">
             <Image
               src={logo}
-              width={400}
-              height={225}
+              width={450}
+              height={200}
               className="w-28 md:w-32"
               alt="Smartconsig logo"
             />
