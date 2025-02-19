@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const overviewStats = [
   {
     icon: MonitorIcon,
-    value: "+50mil",
+    value: "+55mil",
     label: "Clientes atendidos.",
   },
   {

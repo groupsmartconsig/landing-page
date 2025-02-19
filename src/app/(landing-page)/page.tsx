@@ -40,10 +40,6 @@ const ReviewsContainer = dynamic(() => import(
   '@/components/shared/reviews'
 ).then(mod => mod.ReviewsContainer), { ssr: true });
 
-const FaqContainer = dynamic(() => import(
-  '@/components/shared/faq'
-).then(mod => mod.FaqContainer), { ssr: true });
-
 const FooterContainer = dynamic(() => import(
   '@/components/shared/footer'
 ).then(mod => mod.FooterContainer), { ssr: true });
@@ -73,7 +69,6 @@ export default function LandingPage() {
       <section className="pt-12 pb-16 bg-medium-dark md:py-16">
         <ReviewsContainer />
       </section>
-      <FaqContainer />
       <FooterContainer />
     </div>
   )

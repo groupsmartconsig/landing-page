@@ -24,7 +24,7 @@ const missionPoints = [
   },
   {
     icon: HeartHandshakeIcon,
-    title: "Atendimento Vip",
+    title: "Atendimento Smart",
     description: "Temos uma equipe de consultores financeiros especializados.",
   },
   {
@@ -53,8 +53,8 @@ export function CompanyMissionSection() {
             <div>
               <p className="text-danger-red text-xl font-medium mb-4">NOSSA MISSÃO</p>
               <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-                Gerar valor e satisfação a clientes, colaboradores e parceiros, atingindo a excelência de maneira
-                sustentável.
+                Oferecer soluções financeiras para beneficiários do INSS, por meio de
+                uma gestão humanizada que transforme positivamente a vida de nossos clientes.
               </h2>
             </div>
 

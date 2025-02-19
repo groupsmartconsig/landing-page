@@ -54,14 +54,12 @@ export function HeaderContainer() {
 
           <CardHeader className="relative z-10 max-w-[370px] mx-auto bg-gray-300 text-black p-6 rounded-xl md:hidden">
             <CardTitle className="text-xl text-primary leading-tight">
-              Faça a portabilidade do seu contrato
-              de um jeito seguro e rapido!
+              Aposentados: Seu Empréstimo Virou um Problema?
             </CardTitle>
 
             <CardDescription className="text-xl text-black font-medium tracking-tight pb-4">
-              Podemos usar seu contrato com
-              juros alto para salvar suas finanças,
-              Clique agora mesmo e simule!
+              Descubra em 1 minuto como transferir seu consignado e {" "}
+              receba até R$ 7.000 dos juros abusivos. Simule Agora!
             </CardDescription>
 
             <SimulationMobileButton

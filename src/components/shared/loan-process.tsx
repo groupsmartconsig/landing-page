@@ -19,7 +19,7 @@ export function LoanProcessSection() {
             <div className="rounded-full border-2 border-danger-red p-3">
               <WalletIcon className="size-6 text-danger-red" />
             </div>
-            <h2 className="text-3xl font-bold">Como fazer a portabilidade?</h2>
+            <h2 className="text-2xl font-bold sm:text-3xl">Como fazer a redução de juros?</h2>
           </div>
 
           <div className="space-y-6 mb-12">

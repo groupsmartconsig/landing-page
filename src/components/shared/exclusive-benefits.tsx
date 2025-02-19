@@ -16,20 +16,20 @@ const benefits = [
   },
   {
     icon: WalletIcon,
-    title: "Orçamento",
-    description: "Não compromete o orçamento mensal.",
+    title: "Redução",
+    description: "nas parcelas, até 50% mais baratas.",
     variant: "red",
   },
   {
     icon: ClockIcon,
-    title: "10 minutos",
-    description: "para ter o seu dinheiro liberado",
+    title: "24 horas",
+    description: "ou menos para ter seu dinheiro liberado.",
     variant: "white",
   },
   {
     icon: ThumbsUpIcon,
     title: "Praticidade",
-    description: "aquisição do empréstimo feita 100% pelo celular.",
+    description: "processo feito 100% pelo celular.",
     variant: "black",
   },
 ]

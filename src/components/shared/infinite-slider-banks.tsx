@@ -16,7 +16,7 @@ const images = [
 
 export function InfiniteSliderBanksContainer() {
   return (
-    <div className="bg-white py-6 sm:py-12">
+    <div className="bg-white pb-16">
       <div className="w-full flex flex-col space-y-6 py-6 pl-5 md:max-w-6xl md:space-y-12 md:pl-0">
         <h2 className="text-4xl font-bold sm:w-full sm:text-4xl sm:text-center sm:font-bold md:text-5xl">
           Única instituição <br />

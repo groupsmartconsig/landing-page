@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export function LGPDSection() {
   return (
-    <div className="bg-white py-8 md:py-12">
+    <div className="bg-white py-16">
       <div className="flex flex-col items-center max-w-6xl w-full mx-auto space-y-6 py-6">
         <h2 className="w-full text-4xl font-bold pl-5 md:text-5xl md:text-center md:pl-0">
           Por que pedimos <br />

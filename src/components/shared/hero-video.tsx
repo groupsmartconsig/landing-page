@@ -2,12 +2,11 @@
 
 import HeroVideoDialog from "@/components/magic-ui/hero-video-dialog";
 
-
 export function HeroVideoContainer() {
   return (
     <div className="relative pb-16">
       <div className="flex justify-center items-center py-6 md:pt-0 md:pb-12">
-        <h3 className="text-2xl text-danger-red font-bold sm:px-0 md:text-5xl">
+        <h3 className="max-w-60 text-center text-2xl text-danger-red font-bold sm:max-w-full sm:px-0 md:text-5xl">
           Conheça a história de Cristina
         </h3>
       </div>
