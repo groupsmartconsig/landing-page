@@ -4,9 +4,9 @@
 // @ts-nocheck
 'use client'
 
-import Script from 'next/script'
+import Script from 'next/script';
 
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
 export default function FacebookPixel({ pixelId }: { pixelId: string }) {
   useEffect(() => {

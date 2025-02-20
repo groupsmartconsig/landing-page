@@ -1,9 +1,9 @@
+import FacebookPixel from '../components/shared/facebook-pixel'
+import './globals.css'
+
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import { Toaster } from 'sonner'
-
-import FacebookPixel from '../components/shared/facebook-pixel'
-import './globals.css'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -42,7 +42,7 @@ export default function RootLayout({
           ></iframe>
         </noscript>
         <main>{children}</main>
-        <FacebookPixel pixelId="1597315194197904" />
+        <FacebookPixel pixelId="987970639895164" />
         <Toaster position="top-center" richColors />
       </body>
     </html>
