@@ -1,6 +1,6 @@
 'use client'
 
-import logo from '@/app/assets/images/logo.png'
+import logo from '@/app/assets/images/logo-black.png'
 import Image from "next/image"
 
 import { UtmLink } from "@/components/shared/utm-link"

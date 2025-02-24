@@ -11,20 +11,22 @@ import {
 } from "@/components/ui/card";
 
 import type { ConfettiRef } from "@/components/magic-ui/confetti";
-import { DataService } from "@/services/data-service";
-import { InteractionResponse } from "@/types/interaction";
+import { useProposals } from "@/hooks/use-proposals";
 import { ZapIcon } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function MobileFormFinishedPage() {
   const confettiRef = useRef<ConfettiRef>(null);
+
+  const { operatorInteraction } = useProposals();
+
   const [count, setCount] = useState(5);
   const [operatorPhoneNumber, setOperatorPhoneNumber] = useState<string | null>(null);
 
   const handleCreateInteraction = useCallback(async () => {
     try {
-      const request: InteractionResponse = await DataService.createInteractionWithOperator();
-      if (request?.operator?.phonenumber) setOperatorPhoneNumber(request.operator.phonenumber);
+      const interaction = operatorInteraction;
+      if (interaction?.operator?.phonenumber) setOperatorPhoneNumber(interaction.operator.phonenumber);
     } catch (error) {
       console.error("Erro ao buscar operador:", error);
     }

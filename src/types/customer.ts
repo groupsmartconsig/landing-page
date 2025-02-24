@@ -1,5 +1,6 @@
 export interface CreateCustomerRequest {
   customerOrigin: CustomerOrigin;
+  assignedOperatorRequest: AssignedOperatorRequest
   name: string;
   phonenumber: string;
   cpf: string;
@@ -18,4 +19,11 @@ export interface MarketingDetails {
   utmCampaign: string;
   utmId: string;
   utmContent: string;
+}
+
+export interface AssignedOperatorRequest {
+  id: string
+  name: string
+  username: string
+  phonenumber: string
 }
