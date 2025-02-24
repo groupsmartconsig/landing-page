@@ -16,7 +16,7 @@ import { FormData, formSchema } from "@/schemas/form";
 import { AuthService } from "@/services/auth-service";
 import { DataService } from "@/services/data-service";
 import { InteractionResponse } from "@/types/interaction";
-import { Proposal } from "@/types/proposals";
+import { Contracts, Proposal } from "@/types/proposals";
 import { env } from "@/utils/env";
 import { maskCPF } from "@/utils/mask/mask-cpf";
 import { maskPhone } from "@/utils/mask/mask-phone";
@@ -78,13 +78,15 @@ export function DesktopFormPerson() {
 
       const replaceDocumentValue = personData.cpf.replace(/\D/g, "");
       const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s()-]/g, "");
-      const response = await DataService.getContractsByCustomerDocument(personData.cpf);
-      const amountContracts: Proposal[] = await response.contratosElegiveis;
-      const interaction: InteractionResponse = await DataService.createInteractionWithOperator();
 
       localStorage.setItem("nome", personData.name);
       localStorage.setItem("contato", replacePhoneNumberValue);
       localStorage.setItem("cpf", replaceDocumentValue);
+
+      const contracts: Contracts = await DataService.getContractsByCustomerDocument(personData.cpf);
+      const amountContracts: Proposal[] = contracts.contratosElegiveis;
+      const interaction: InteractionResponse = await DataService.createInteractionWithOperator();
+
       localStorage.setItem("operator_id", interaction.operator.id);
       localStorage.setItem("operator_name", interaction.operator.name);
       localStorage.setItem("operator_username", interaction.operator.username);
@@ -124,7 +126,7 @@ export function DesktopFormPerson() {
       }
 
       reset();
-      setProposals(response);
+      setProposals(contracts);
       setOperatorInteraction(interaction);
       nextStep();
     } catch {
