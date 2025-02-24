@@ -75,13 +75,15 @@ export default function MobileFormDataPage() {
 
       const replaceDocumentValue = personData.cpf.replace(/\D/g, "");
       const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s()-]/g, "");
-      const contracts: Contracts = await DataService.getContractsByCustomerDocument(personData.cpf);
-      const amountContracts: Proposal[] = contracts.contratosElegiveis;
-      const interaction: InteractionResponse = await DataService.createInteractionWithOperator();
 
       localStorage.setItem("nome", personData.name);
       localStorage.setItem("contato", replacePhoneNumberValue);
       localStorage.setItem("cpf", replaceDocumentValue);
+
+      const contracts: Contracts = await DataService.getContractsByCustomerDocument(personData.cpf);
+      const amountContracts: Proposal[] = contracts.contratosElegiveis;
+      const interaction: InteractionResponse = await DataService.createInteractionWithOperator();
+
       localStorage.setItem("operator_id", interaction.operator.id);
       localStorage.setItem("operator_name", interaction.operator.name);
       localStorage.setItem("operator_username", interaction.operator.username);
