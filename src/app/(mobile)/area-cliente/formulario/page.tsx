@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils";
 import { FormData, formSchema } from "@/schemas/form";
 import { AuthService } from "@/services/auth-service";
 import { DataService } from "@/services/data-service";
-import { Proposal } from "@/types/proposals";
+import { InteractionResponse } from "@/types/interaction";
+import { Contracts, Proposal } from "@/types/proposals";
 import { env } from "@/utils/env";
 import { maskCPF } from "@/utils/mask/mask-cpf";
 import { maskPhone } from "@/utils/mask/mask-phone";
@@ -22,9 +23,9 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 export default function MobileFormDataPage() {
-  const route = useRouter();
+  const router = useRouter();
 
-  const { setProposals } = useProposals();
+  const { setProposals, setOperatorInteraction } = useProposals();
   const { utmSource, utmContent, utmCampaign, utmId } = useUtmParams();
 
   const {
@@ -74,12 +75,17 @@ export default function MobileFormDataPage() {
 
       const replaceDocumentValue = personData.cpf.replace(/\D/g, "");
       const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s()-]/g, "");
-      const response = await DataService.getContractsByCustomerDocument(personData.cpf);
-      const amountContracts: Proposal[] = await response.contratosElegiveis;
+      const contracts: Contracts = await DataService.getContractsByCustomerDocument(personData.cpf);
+      const amountContracts: Proposal[] = contracts.contratosElegiveis;
+      const interaction: InteractionResponse = await DataService.createInteractionWithOperator();
 
       localStorage.setItem("nome", personData.name);
       localStorage.setItem("contato", replacePhoneNumberValue);
       localStorage.setItem("cpf", replaceDocumentValue);
+      localStorage.setItem("operator_id", interaction.operator.id);
+      localStorage.setItem("operator_name", interaction.operator.name);
+      localStorage.setItem("operator_username", interaction.operator.username);
+      localStorage.setItem("operator_contact", interaction.operator.phonenumber);
 
       const payload = {
         customerOrigin: {
@@ -90,6 +96,12 @@ export default function MobileFormDataPage() {
             utmSource,
             utmId
           }
+        },
+        assignedOperatorRequest: {
+          id: interaction.operator.id,
+          name: interaction.operator.name,
+          username: interaction.operator.username,
+          phonenumber: interaction.operator.phonenumber,
         },
         name: personData.name,
         phonenumber: replacePhoneNumberValue,
@@ -106,18 +118,19 @@ export default function MobileFormDataPage() {
             description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
           });
         }, 3000);
-        route.push("/");
+        router.push("/");
         return;
       }
 
-      setProposals(response);
-      route.push("/area-cliente/simulacao");
+      setProposals(contracts);
+      setOperatorInteraction(interaction);
+      router.push("/area-cliente/simulacao");
     } catch {
       toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
         description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
       });
       setTimeout(() => {
-        route.push(`/?utm_source=${utmSource}&utm_campaign=${utmCampaign}&utm_content=${utmContent}&utm_id=${utmId}`);
+        router.push(`/?utm_source=${utmSource}&utm_campaign=${utmCampaign}&utm_content=${utmContent}&utm_id=${utmId}`);
       }, 2000);
     }
   });

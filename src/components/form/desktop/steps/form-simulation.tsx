@@ -12,8 +12,6 @@ import {
   DialogTitle
 } from "@/components/ui/dialog";
 import { useProposals } from "@/hooks/use-proposals";
-import { DataService } from "@/services/data-service";
-import { InteractionResponse } from "@/types/interaction";
 import { CircleDollarSignIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -25,14 +23,14 @@ export function DesktopFormSimulation() {
   const router = useRouter();
 
   const { formState } = useForm();
-  const { proposals } = useProposals();
-  
+  const { proposals, operatorInteraction } = useProposals();
+
   const [operatorPhoneNumber, setOperatorPhoneNumber] = useState<string | null>(null);
 
   const handleCreateInteraction = useCallback(async () => {
     try {
-      const request: InteractionResponse = await DataService.createInteractionWithOperator();
-      if (request?.operator?.phonenumber) setOperatorPhoneNumber(request.operator.phonenumber);
+      const interaction = operatorInteraction;
+      if (interaction?.operator?.phonenumber) setOperatorPhoneNumber(interaction.operator.phonenumber);
     } catch (error) {
       console.error("Erro ao buscar operador:", error);
     }

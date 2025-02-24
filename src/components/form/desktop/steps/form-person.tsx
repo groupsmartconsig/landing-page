@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { FormData, formSchema } from "@/schemas/form";
 import { AuthService } from "@/services/auth-service";
 import { DataService } from "@/services/data-service";
+import { InteractionResponse } from "@/types/interaction";
 import { Proposal } from "@/types/proposals";
 import { env } from "@/utils/env";
 import { maskCPF } from "@/utils/mask/mask-cpf";
@@ -28,7 +29,7 @@ import { toast } from "sonner";
 export function DesktopFormPerson() {
   const { utmSource, utmContent, utmCampaign, utmId } = useUtmParams();
   const { nextStep } = useStepper();
-  const { setProposals } = useProposals();
+  const { setProposals, setOperatorInteraction } = useProposals();
 
   const {
     control,
@@ -79,11 +80,16 @@ export function DesktopFormPerson() {
       const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s()-]/g, "");
       const response = await DataService.getContractsByCustomerDocument(personData.cpf);
       const amountContracts: Proposal[] = await response.contratosElegiveis;
+      const interaction: InteractionResponse = await DataService.createInteractionWithOperator();
 
       localStorage.setItem("nome", personData.name);
       localStorage.setItem("contato", replacePhoneNumberValue);
       localStorage.setItem("cpf", replaceDocumentValue);
-      
+      localStorage.setItem("operator_id", interaction.operator.id);
+      localStorage.setItem("operator_name", interaction.operator.name);
+      localStorage.setItem("operator_username", interaction.operator.username);
+      localStorage.setItem("operator_contact", interaction.operator.phonenumber);
+
       const payload = {
         customerOrigin: {
           creationOrigin,
@@ -93,6 +99,12 @@ export function DesktopFormPerson() {
             utmSource,
             utmId
           }
+        },
+        assignedOperatorRequest: {
+          id: interaction.operator.id,
+          name: interaction.operator.name,
+          username: interaction.operator.username,
+          phonenumber: interaction.operator.phonenumber,
         },
         name: personData.name,
         phonenumber: replacePhoneNumberValue,
@@ -113,6 +125,7 @@ export function DesktopFormPerson() {
 
       reset();
       setProposals(response);
+      setOperatorInteraction(interaction);
       nextStep();
     } catch {
       reset();

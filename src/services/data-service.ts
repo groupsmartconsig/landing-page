@@ -1,7 +1,7 @@
-import { CreateCustomerRequest } from "@/types/customer";
-import { InteractionResponse } from "@/types/interaction";
 import axios from "axios";
 
+import { CreateCustomerRequest } from "@/types/customer";
+import { InteractionResponse } from "@/types/interaction";
 import { toast } from "sonner";
 
 const httpClient = axios.create({
@@ -9,49 +9,12 @@ const httpClient = axios.create({
 });
 
 export class DataService {
-  static async createCustomer({
-    customerOrigin: {
-      creationOrigin,
-      creationDate,
-      marketingDetails: {
-        utmCampaign,
-        utmContent,
-        utmSource,
-        utmId
-      }
-    },
-    name,
-    phonenumber,
-    cpf,
-    isWhatsappPhoneNumber = true,
-    amountContractsElegible,
-  }: CreateCustomerRequest) {
+  static async createCustomer(formData: CreateCustomerRequest) {
     try {
       const token = localStorage.getItem("token");
+      if (!token) throw new Error("Token não encontrado. Faça login novamente.");
 
-      if (!token) {
-        throw new Error("Token não encontrado. Faça login novamente.");
-      }
-
-      const payload = {
-        customerOrigin: {
-          creationOrigin,
-          ...(creationDate && { creationDate }),
-          marketingDetails: {
-            utmCampaign,
-            utmContent,
-            utmSource,
-            utmId,
-          },
-        },
-        name,
-        phonenumber,
-        cpf,
-        isWhatsappPhoneNumber,
-        amountContractsElegible,
-      };
-
-      const { data } = await httpClient.post(`/customer`, payload, {
+      const { data } = await httpClient.post(`/customer`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -89,6 +52,10 @@ export class DataService {
       const utmCampaign = localStorage.getItem("utm_campaign") || "";
       const utmId = localStorage.getItem("utm_id") || "";
       const utmContent = localStorage.getItem("utm_content") || "";
+      const operatorId = localStorage.getItem("operator_id") || "";
+      const operatorName = localStorage.getItem("operator_name") || "";
+      const operatorUsername = localStorage.getItem("operator_username") || "";
+      const operatorContact = localStorage.getItem("operator_contact") || "";
 
       if (!name || !phonenumber || !cpf) {
         throw new Error("Dados do formulário não encontrados! Tente novamente.");
@@ -103,6 +70,12 @@ export class DataService {
             utmId,
             utmContent,
           },
+        },
+        assignedOperatorRequest: {
+          id: operatorId,
+          name: operatorName,
+          username: operatorUsername,
+          phonenumber: operatorContact,
         },
         name,
         phonenumber,
