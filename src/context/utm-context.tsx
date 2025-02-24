@@ -1,5 +1,6 @@
 "use client";
 
+import { LoaderIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { createContext, Suspense, useContext, useEffect, useState } from "react";
 
@@ -47,7 +48,11 @@ export const UtmProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const UtmProviderSuspense = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={
+      <div className="min-h-screen w-full overflow-hidden">
+        <LoaderIcon className="size-8 animate-spin" />
+      </div>
+    }>
       <UtmProvider>{children}</UtmProvider>
     </Suspense>
   );

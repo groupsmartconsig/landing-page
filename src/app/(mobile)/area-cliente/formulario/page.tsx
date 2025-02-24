@@ -130,8 +130,8 @@ export default function MobileFormDataPage() {
         description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
       });
       setTimeout(() => {
-        router.push("/");
-      }, 3000);
+        router.push(`/?utm_source=${utmSource}&utm_campaign=${utmCampaign}&utm_content=${utmContent}&utm_id=${utmId}`);
+      }, 2000);
     }
   });
 
