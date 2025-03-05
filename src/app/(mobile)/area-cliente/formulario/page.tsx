@@ -14,6 +14,7 @@ import { InteractionResponse } from "@/types/interaction";
 import { Contracts, Proposal } from "@/types/proposals";
 import { env } from "@/utils/env";
 import { maskCPF } from "@/utils/mask/mask-cpf";
+import { maskFullName } from "@/utils/mask/mask-full-name";
 import { maskPhone } from "@/utils/mask/mask-phone";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleIcon } from "lucide-react";
@@ -45,8 +46,13 @@ export default function MobileFormDataPage() {
     }
   });
 
+  const name = watch('name');
   const cpf = watch('cpf');
   const phoneNumber = watch('phoneNumber');
+
+  useEffect(() => {
+    setValue('name', maskFullName(name));
+  }, [name, setValue]);
 
   useEffect(() => {
     setValue('cpf', maskCPF(cpf));
@@ -158,18 +164,24 @@ export default function MobileFormDataPage() {
         <div className="grid grid-cols-1 gap-4 py-5">
           <div className="space-y-2">
             <Label htmlFor="name">Nome completo</Label>
-            <Input
-              id="name"
-              autoComplete="off"
-              autoCorrect="off"
-              autoCapitalize="off"
-              maxLength={100}
-              className={cn(
-                errors?.name
-                  ? "border-primary-red focus-visible:ring-0"
-                  : "border-input"
+            <Controller
+              name="name"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  id="name"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  maxLength={100}
+                  className={cn(
+                    errors?.name
+                      ? "border-primary-red focus-visible:ring-0"
+                      : "border-input"
+                  )}
+                  {...field}
+                />
               )}
-              {...register("name")}
             />
             {errors?.name?.message && (
               <span className="pl-2 text-xs text-primary-red font-medium italic">
