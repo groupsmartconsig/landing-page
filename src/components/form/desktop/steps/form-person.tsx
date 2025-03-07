@@ -23,9 +23,9 @@ import { maskFullName } from "@/utils/mask/mask-full-name";
 import { maskPhone } from "@/utils/mask/mask-phone";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { toast } from "sonner";
 
 export function DesktopFormPerson() {
   const { utmSource, utmContent, utmCampaign, utmId } = useUtmParams();
@@ -52,6 +52,7 @@ export function DesktopFormPerson() {
   const name = watch('name');
   const cpf = watch('cpf');
   const phoneNumber = watch('phoneNumber');
+  const router = useRouter();
 
   useEffect(() => {
     setValue('name', maskFullName(name));
@@ -91,6 +92,30 @@ export function DesktopFormPerson() {
 
       const contracts: Contracts = await DataService.getContractsByCustomerDocument(personData.cpf);
       const amountContracts: Proposal[] = contracts.contratosElegiveis;
+
+      if (amountContracts.length <= 0) {
+        const payload = {
+          customerOrigin: {
+            creationOrigin,
+            marketingDetails: {
+              utmCampaign,
+              utmContent,
+              utmSource,
+              utmId
+            }
+          },
+          name: personData.name,
+          phonenumber: replacePhoneNumberValue,
+          cpf: replaceDocumentValue,
+          amountContractsElegible: amountContracts.length,
+        }
+
+        await DataService.createCustomer(payload);
+        reset();
+        router.push("/clientes/inadequados");
+        return;
+      }
+
       const interaction: InteractionResponse = await DataService.createInteractionWithOperator();
 
       localStorage.setItem("operator_id", interaction.operator.id);
@@ -121,16 +146,6 @@ export function DesktopFormPerson() {
       }
 
       await DataService.createCustomer(payload);
-
-      if (amountContracts.length <= 0) {
-        toast.warning("NENHUMA PROPOSTA ENCONTRADA PARA O CPF INFORMADO", {
-          description: "Infelizmente no momento não encontramos propostas de portabilidade para você.",
-          duration: 500,
-        });
-
-        return;
-      }
-
       reset();
       setProposals(contracts);
       setOperatorInteraction(interaction);
