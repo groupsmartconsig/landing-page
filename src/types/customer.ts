@@ -1,6 +1,6 @@
 export interface CreateCustomerRequest {
   customerOrigin: CustomerOrigin;
-  assignedOperatorRequest: AssignedOperatorRequest
+  assignedOperatorRequest?: AssignedOperatorRequest
   name: string;
   phonenumber: string;
   cpf: string;
