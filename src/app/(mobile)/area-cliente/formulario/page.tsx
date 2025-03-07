@@ -105,7 +105,7 @@ export default function MobileFormDataPage() {
 
         await DataService.createCustomer(payload);
         reset();
-        router.push("/clientes/sem-contratos");
+        router.push("/clientes/inadequados");
         return;
       }
 
@@ -143,7 +143,7 @@ export default function MobileFormDataPage() {
       setOperatorInteraction(interaction);
       router.push("/area-cliente/simulacao");
     } catch {
-      reset()
+      reset();
       router.push(`/?utm_source=${utmSource}&utm_campaign=${utmCampaign}&utm_content=${utmContent}&utm_id=${utmId}`);
     }
   });

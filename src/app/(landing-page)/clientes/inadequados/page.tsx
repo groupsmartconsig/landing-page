@@ -8,7 +8,7 @@ import { UtmLink } from '@/components/shared/utm-link'
 import { Button } from '@/components/ui/button'
 import { ArrowRightIcon } from 'lucide-react'
 
-export default function CustomerWithoutContract() {
+export default function UnsuitableCustomerPage() {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-28 sm:py-36">
@@ -26,12 +26,12 @@ export default function CustomerWithoutContract() {
 
         <div className="text-center">
           <h1 className="text-4xl font-semibold tracking-tight text-balance text-black sm:text-6xl">
-            Ops... Parece que você não possui nenhum contrato de empréstimo
+            Ops... Parece que você não possui nenhuma proposta disponível
           </h1>
 
           <p className="max-w-xs w-full mx-auto text-lg text-pretty text-muted-foreground font-medium mt-4 sm:text-2xl sm:max-w-full sm:mt-8">
-            No momento não identificamos nenhum contrato disponível em seu nome. De qualquer forma, salvamos os
-            seus dados na nossa base de dados e podemos entrar em contato com novas propostas para seu perfil.
+            No momento não identificamos nenhuma proposta disponível para você. De qualquer forma, salvamos os
+            seus dados na nossa base de dados e podemos entrar em contato com novas propostas para seu perfil em breve.
           </p>
 
           <div className="flex items-center justify-center mt-8">

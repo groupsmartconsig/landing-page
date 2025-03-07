@@ -109,7 +109,7 @@ export function DesktopFormPerson() {
 
         await DataService.createCustomer(payload);
         reset();
-        router.push("/clientes/sem-contratos");
+        router.push("/clientes/inadequados");
         return;
       }
 
