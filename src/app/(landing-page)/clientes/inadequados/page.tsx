@@ -6,14 +6,17 @@ import Link from 'next/link'
 
 import { UtmLink } from '@/components/shared/utm-link'
 import { Button } from '@/components/ui/button'
+import { useUtmParams } from '@/context/utm-context'
 import { ArrowRightIcon } from 'lucide-react'
 
 export default function UnsuitableCustomerPage() {
+  const { utmSource, utmContent, utmCampaign, utmId } = useUtmParams();
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-28 sm:py-36">
         <div className="flex justify-center items-center mb-8">
-          <UtmLink href="/">
+          <UtmLink href={`/?utm_source=${utmSource}&utm_campaign=${utmCampaign}&utm_content=${utmContent}&utm_id=${utmId}`}>
             <Image
               src={logo}
               width={450}
@@ -35,7 +38,7 @@ export default function UnsuitableCustomerPage() {
           </p>
 
           <div className="flex items-center justify-center mt-8">
-            <Link href="/">
+            <Link href={`/?utm_source=${utmSource}&utm_campaign=${utmCampaign}&utm_content=${utmContent}&utm_id=${utmId}`}>
               <Button
                 type='button'
                 className='flex items-center gap-2 text-lg px-12 py-6'
