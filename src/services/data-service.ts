@@ -71,12 +71,6 @@ export class DataService {
             utmContent,
           },
         },
-        assignedOperatorRequest: {
-          id: operatorId,
-          name: operatorName,
-          username: operatorUsername,
-          phonenumber: operatorContact,
-        },
         name,
         phonenumber,
         cpf,
