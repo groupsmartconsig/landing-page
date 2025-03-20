@@ -26,4 +26,5 @@ export interface AssignedOperatorRequest {
   name: string
   username: string
   phonenumber: string
+  teamId: string
 }
