@@ -10,6 +10,7 @@ export interface Operator {
   name: string
   username: string
   phonenumber: string
+  teamId: string
   isActiveToday: boolean
 }
 
