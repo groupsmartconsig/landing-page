@@ -35,7 +35,7 @@ export class DataService {
       }
 
       const { data } = await httpClient.get(
-        `/contratos/detalhamento-vanguard?Cpf=${document}`,
+        `/contratos/portabilidades-refinanciamentos/${document}/vanguard/unico-banco`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
