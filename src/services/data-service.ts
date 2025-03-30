@@ -12,7 +12,10 @@ export class DataService {
   static async createCustomer(formData: CreateCustomerRequest) {
     try {
       const token = localStorage.getItem("token");
-      if (!token) throw new Error("Token não encontrado. Faça login novamente.");
+
+      if (!token) {
+        throw new Error("Token não encontrado. Faça login novamente.");
+      }
 
       const { data } = await httpClient.post(`/customer`, formData, {
         headers: {
