@@ -83,7 +83,7 @@ export default function MobileFormDataPage() {
       localStorage.setItem("nome", personData.name);
       localStorage.setItem("contato", replacePhoneNumberValue);
       localStorage.setItem("cpf", replaceDocumentValue);
-      const contracts: Contracts = await DataService.getContractsByCustomerDocument(personData.cpf);
+      const contracts: Contracts = await DataService.getContractsByCustomerDocument(replaceDocumentValue);
       const amountContracts: Proposal[] = contracts.contratosElegiveis;
 
       if (amountContracts.length <= 0) {
