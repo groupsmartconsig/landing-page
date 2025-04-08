@@ -42,7 +42,7 @@ export default function RootLayout({
           ></iframe>
         </noscript>
         <main>{children}</main>
-        <FacebookPixel pixelId="987970639895164" />
+        <FacebookPixel pixelId="695701959550843" />
         <Toaster position="top-center" richColors />
       </body>
     </html>
