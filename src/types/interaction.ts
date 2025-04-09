@@ -10,8 +10,13 @@ export interface Operator {
   name: string
   username: string
   phonenumber: string
-  teamId: string;
+  teamDetails: Team,
   isActiveToday: boolean
+}
+
+export interface Team {
+  teamId: string
+  teamName: string
 }
 
 export interface Customer {

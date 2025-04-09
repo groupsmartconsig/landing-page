@@ -114,7 +114,8 @@ export default function MobileFormDataPage() {
       localStorage.setItem("operator_name", interaction.operator.name);
       localStorage.setItem("operator_username", interaction.operator.username);
       localStorage.setItem("operator_contact", interaction.operator.phonenumber);
-      localStorage.setItem("operator_team_id", interaction.operator.teamId);
+      localStorage.setItem("operator_team_id", interaction.operator.teamDetails.teamId);
+      localStorage.setItem("operator_team_name", interaction.operator.teamDetails.teamName);
 
       const payload = {
         customerOrigin: {
@@ -131,7 +132,8 @@ export default function MobileFormDataPage() {
           name: interaction.operator.name,
           username: interaction.operator.username,
           phonenumber: interaction.operator.phonenumber,
-          teamId: interaction.operator.teamId,
+          teamId: interaction.operator.teamDetails.teamId,
+          teamName: interaction.operator.teamDetails.teamName,
         },
         name: personData.name,
         phonenumber: replacePhoneNumberValue,
