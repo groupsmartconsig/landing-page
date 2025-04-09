@@ -1,1 +1,2 @@
-nodejs 22.13.1
+global nodejs 22.14.0
+local nodejs 22.14.0
