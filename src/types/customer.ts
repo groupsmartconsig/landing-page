@@ -26,5 +26,10 @@ export interface AssignedOperatorRequest {
   name: string
   username: string
   phonenumber: string
+  teamDetails: Team
+}
+
+export interface Team {
   teamId: string
+  teamName: string
 }

@@ -52,10 +52,6 @@ export class DataService {
       const utmCampaign = localStorage.getItem("utm_campaign") || "";
       const utmId = localStorage.getItem("utm_id") || "";
       const utmContent = localStorage.getItem("utm_content") || "";
-      const operatorId = localStorage.getItem("operator_id") || "";
-      const operatorName = localStorage.getItem("operator_name") || "";
-      const operatorUsername = localStorage.getItem("operator_username") || "";
-      const operatorContact = localStorage.getItem("operator_contact") || "";
 
       if (!name || !phonenumber || !cpf) {
         throw new Error("Dados do formulário não encontrados! Tente novamente.");
