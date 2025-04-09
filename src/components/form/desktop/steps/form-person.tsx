@@ -136,8 +136,10 @@ export function DesktopFormPerson() {
           name: interaction.operator.name,
           username: interaction.operator.username,
           phonenumber: interaction.operator.phonenumber,
-          teamId: interaction.operator.teamDetails.teamId,
-          teamName: interaction.operator.teamDetails.teamName,
+          teamDetails: {
+            teamId: interaction.operator.teamDetails.teamId,
+            teamName: interaction.operator.teamDetails.teamName,
+          }
         },
         name: personData.name,
         phonenumber: replacePhoneNumberValue,
