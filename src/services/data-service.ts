@@ -14,7 +14,7 @@ export class DataService {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("Token não encontrado. Faça login novamente.");
 
-      const { data } = await httpClient.post(`/customer`, formData, {
+      const { data } = await httpClient.post(`/customers`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
