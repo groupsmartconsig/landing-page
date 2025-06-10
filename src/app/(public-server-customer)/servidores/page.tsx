@@ -1,6 +1,7 @@
 import { PublicServerCustomerHeader } from "./_components/header/header";
 import { PublicServerCustomerPrimaryContainer } from "./_components/sections/primary-container";
 import { PublicServerCustomerSecondaryContainer } from "./_components/sections/secondary-container";
+import { PublicServerCustomerThirdContainer } from "./_components/sections/third-container";
 
 export default function PublicServerCustomerPage() {
   return (
@@ -8,6 +9,7 @@ export default function PublicServerCustomerPage() {
       <PublicServerCustomerHeader />
       <PublicServerCustomerPrimaryContainer />
       <PublicServerCustomerSecondaryContainer />
+      <PublicServerCustomerThirdContainer />
     </div>
   )
 }

@@ -5,7 +5,7 @@ import { ChevronRightIcon } from "lucide-react";
 
 export function PublicServerCustomerSecondaryContainer() {
   return (
-    <div className="grid grid-cols-1 px-6 pb-12">
+    <div className="grid grid-cols-1 px-6 pb-6">
       <div className="size-full py-6">
         <Image
           src="/container-secondary.png"
@@ -17,9 +17,9 @@ export function PublicServerCustomerSecondaryContainer() {
       </div>
 
       <div className="space-y-4">
-        <h1 className="text-lg text-black font-medium">
+        <h2 className="text-lg text-black font-medium">
           O que é a portabilidade do cartão consignado para servidores?
-        </h1>
+        </h2>
 
         <p className="text-[#555]">
           Muitos servidores estão pagando juros rotativos de até 15% ao mês em seus cartões.
