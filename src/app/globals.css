@@ -10,6 +10,7 @@
 
 @layer base {
   :root {
+    --font-sans: var(--font-open-sans);
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -74,6 +75,6 @@
     [&::-webkit-scrollbar-thumb]:bg-zinc-500/70;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
 }

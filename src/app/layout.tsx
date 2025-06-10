@@ -2,10 +2,15 @@ import FacebookPixel from '../components/shared/facebook-pixel'
 import './globals.css'
 
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
+import { Montserrat, Open_Sans } from 'next/font/google'
 import { Toaster } from 'sonner'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
+
+const openSans = Open_Sans({
+  variable: '--font-open-sans',
+  subsets: ['latin']
+})
 
 export const metadata: Metadata = {
   title: 'Smart Consig',
@@ -18,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt">
+    <html lang="pt-BR">
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -32,7 +37,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${montserrat.className} antialiased`}>
+      <body className={`${montserrat.className} ${openSans.variable} antialiased`}>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KX2X2J86"
