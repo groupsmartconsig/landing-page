@@ -1,4 +1,5 @@
 import { PublicServerCustomerHeader } from "./_components/header/header";
+import { PublicServerCustomerCarouselContainer } from "./_components/sections/carousel-container";
 import { PublicServerCustomerFeaturesContainer } from "./_components/sections/features-container";
 import { PublicServerCustomerOptionsContainer } from "./_components/sections/options-container";
 import { PublicServerCustomerPrimaryContainer } from "./_components/sections/primary-container";
@@ -15,6 +16,7 @@ export default function PublicServerCustomerPage() {
       <PublicServerCustomerSecondaryContainer />
       <PublicServerCustomerThirdContainer />
       <PublicServerCustomerOptionsContainer />
+      <PublicServerCustomerCarouselContainer />
       <PublicServerCustomerQuestionContainer />
       <PublicServerCustomerFeaturesContainer />
       <PublicServerCustomerTestimonialContainer />

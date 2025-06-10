@@ -10,7 +10,7 @@ export function PublicServerCustomerTestimonialContainer() {
         <div className="flex -space-x-2">
           <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
             <Image
-              src="/placeholder.svg?height=40&width=40"
+              src="/cliente-1.jpg?height=40&width=40"
               alt="Cliente 1"
               width={40}
               height={40}
@@ -20,7 +20,7 @@ export function PublicServerCustomerTestimonialContainer() {
 
           <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
             <Image
-              src="/placeholder.svg?height=40&width=40"
+              src="/cliente-2.jpg?height=40&width=40"
               alt="Cliente 2"
               width={40}
               height={40}
@@ -30,7 +30,7 @@ export function PublicServerCustomerTestimonialContainer() {
 
           <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
             <Image
-              src="/placeholder.svg?height=40&width=40"
+              src="/cliente-3.jpg?height=40&width=40"
               alt="Cliente 3"
               width={40}
               height={40}
@@ -40,7 +40,7 @@ export function PublicServerCustomerTestimonialContainer() {
 
           <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
             <Image
-              src="/placeholder.svg?height=40&width=40"
+              src="/cliente-4.jpg?height=40&width=40"
               alt="Cliente 4"
               width={40}
               height={40}
