@@ -50,7 +50,7 @@ export function PublicServerCustomerPrimaryContainer() {
             Portabilidade de cartão consignado para servidores públicos de São Paulo.
           </h1>
 
-          <p className="text-[#555] font-medium">
+          <p className="text-muted-foreground font-medium">
             Reduza os juros rotativos de até 15% ao mês para apenas 3,80%, regularize sua margem e diminua sua parcela — tudo com segurança e sem burocracia.
           </p>
         </div>

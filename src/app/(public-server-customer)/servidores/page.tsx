@@ -4,6 +4,7 @@ import { PublicServerCustomerOptionsContainer } from "./_components/sections/opt
 import { PublicServerCustomerPrimaryContainer } from "./_components/sections/primary-container";
 import { PublicServerCustomerQuestionContainer } from "./_components/sections/question-container";
 import { PublicServerCustomerSecondaryContainer } from "./_components/sections/secondary-container";
+import { PublicServerCustomerTestimonialContainer } from "./_components/sections/testimonial-container";
 import { PublicServerCustomerThirdContainer } from "./_components/sections/third-container";
 
 export default function PublicServerCustomerPage() {
@@ -16,6 +17,7 @@ export default function PublicServerCustomerPage() {
       <PublicServerCustomerOptionsContainer />
       <PublicServerCustomerQuestionContainer />
       <PublicServerCustomerFeaturesContainer />
+      <PublicServerCustomerTestimonialContainer />
     </div>
   )
 }
