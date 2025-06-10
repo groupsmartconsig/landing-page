@@ -60,10 +60,13 @@ export function PublicServerCustomerPrimaryContainer() {
             Simular crédito
           </Button>
 
-          <Button type="button" size="sm" variant="ghost" className="mx-auto flex items-center gap-1 text-white text-xs">
+          <Link
+            href="#"
+            className="flex justify-center items-center gap-0.5 text-xs text-white font-medium pt-4"
+          >
             <span>Saiba mais</span>
             <ChevronRightIcon className="size-4" />
-          </Button>
+          </Link>
         </div>
       </section>
     </div>

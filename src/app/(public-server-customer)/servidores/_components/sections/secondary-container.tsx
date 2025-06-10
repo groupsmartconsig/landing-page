@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
@@ -35,10 +36,13 @@ export function PublicServerCustomerSecondaryContainer() {
           Simular crédito
         </Button>
 
-        <Button type="button" size="sm" variant="ghost" className="mx-auto flex items-center gap-1 text-xs">
+        <Link
+          href="#"
+          className="flex justify-center items-center gap-0.5 text-xs font-medium pt-4"
+        >
           <span>Saiba mais</span>
           <ChevronRightIcon className="size-4" />
-        </Button>
+        </Link>
       </div>
     </div>
   )

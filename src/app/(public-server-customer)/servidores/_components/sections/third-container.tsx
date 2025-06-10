@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -48,9 +49,9 @@ export function PublicServerCustomerThirdContainer() {
       </div>
 
       <div className="space-y-6">
-        <h3 className="text-lg text-black font-medium tracking-tight">
+        <h4 className="text-lg text-black font-medium tracking-tight">
           Saiba como contratar a Portabilidade de Crédito Smart Consig
-        </h3>
+        </h4>
 
         {steps.map((item) => (
           <section key={item.id}>
@@ -85,10 +86,13 @@ export function PublicServerCustomerThirdContainer() {
           Simular crédito
         </Button>
 
-        <Button type="button" size="sm" variant="ghost" className="mx-auto flex items-center gap-1 text-xs">
-          <span>Saiba mais</span>
+        <Link
+          href="#"
+          className="flex justify-center items-center gap-0.5 text-xs font-medium pt-4"
+        >
+          <span>Solicitar Crédito</span>
           <ChevronRightIcon className="size-4" />
-        </Button>
+        </Link>
       </div>
     </div>
   )
