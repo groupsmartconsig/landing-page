@@ -1,6 +1,8 @@
 import { PublicServerCustomerHeader } from "./_components/header/header";
+import { PublicServerCustomerFeaturesContainer } from "./_components/sections/features-container";
 import { PublicServerCustomerOptionsContainer } from "./_components/sections/options-container";
 import { PublicServerCustomerPrimaryContainer } from "./_components/sections/primary-container";
+import { PublicServerCustomerQuestionContainer } from "./_components/sections/question-container";
 import { PublicServerCustomerSecondaryContainer } from "./_components/sections/secondary-container";
 import { PublicServerCustomerThirdContainer } from "./_components/sections/third-container";
 
@@ -12,6 +14,8 @@ export default function PublicServerCustomerPage() {
       <PublicServerCustomerSecondaryContainer />
       <PublicServerCustomerThirdContainer />
       <PublicServerCustomerOptionsContainer />
+      <PublicServerCustomerQuestionContainer />
+      <PublicServerCustomerFeaturesContainer />
     </div>
   )
 }

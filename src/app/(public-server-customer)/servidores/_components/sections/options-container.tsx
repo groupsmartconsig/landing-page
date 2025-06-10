@@ -61,7 +61,6 @@ export function PublicServerCustomerOptionsContainer() {
           </Card>
         ))}
       </div>
-
     </div>
   )
 }

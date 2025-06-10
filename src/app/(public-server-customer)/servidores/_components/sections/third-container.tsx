@@ -55,7 +55,7 @@ export function PublicServerCustomerThirdContainer() {
 
         {steps.map((item) => (
           <section key={item.id}>
-            <div className="flex items-center space-x-6 pb-4">
+            <div className="flex items-center space-x-6 pb-4 px-2">
               <span className="text-2xl text-secondary-red font-semibold">
                 {item.id}
               </span>
