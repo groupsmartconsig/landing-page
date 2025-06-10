@@ -9,8 +9,8 @@ import {
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 
-import { Button } from "@/components/ui/button";
 import { ChevronRightIcon, HomeIcon } from "lucide-react";
+import { PublicServerCustomerNavigateButton } from "../../navigate-button";
 
 export function PublicServerCustomerPrimaryContainer() {
   return (
@@ -56,9 +56,7 @@ export function PublicServerCustomerPrimaryContainer() {
         </div>
 
         <div className="w-full py-6 space-y-2">
-          <Button type="button" className="w-full bg-secondary-red rounded">
-            Simular crédito
-          </Button>
+          <PublicServerCustomerNavigateButton />
 
           <Link
             href="#"

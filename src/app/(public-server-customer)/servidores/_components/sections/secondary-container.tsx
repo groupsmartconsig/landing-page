@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
+import { PublicServerCustomerNavigateButton } from "../../navigate-button";
 
 export function PublicServerCustomerSecondaryContainer() {
   return (
@@ -32,9 +32,7 @@ export function PublicServerCustomerSecondaryContainer() {
       </div>
 
       <div className="w-full py-6 space-y-2">
-        <Button type="button" className="w-full bg-secondary-red rounded">
-          Simular crédito
-        </Button>
+        <PublicServerCustomerNavigateButton />
 
         <Link
           href="#"

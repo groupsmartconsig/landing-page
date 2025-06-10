@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { ChevronRightIcon } from "lucide-react";
+import { PublicServerCustomerNavigateButton } from "../../navigate-button";
 
 interface StepsProps {
   id: number;
@@ -82,9 +82,7 @@ export function PublicServerCustomerThirdContainer() {
       </div>
 
       <div className="w-full py-6 space-y-2">
-        <Button type="button" className="w-full bg-secondary-red rounded">
-          Simular crédito
-        </Button>
+        <PublicServerCustomerNavigateButton />
 
         <Link
           href="#"
