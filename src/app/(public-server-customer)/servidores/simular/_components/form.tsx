@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { PublicServerCustomerStepper } from "./stepper";
 import { PublicServerCustomerFinancialInfoForm } from "./steps/financial-info-form";
+import { PublicServerCustomerPersonalInfoForm } from "./steps/personal-info.form";
 
 export function PublicServerCustomerSimulationForm() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -22,7 +23,7 @@ export function PublicServerCustomerSimulationForm() {
             },
             {
               title: "Suas informações",
-              content: <PublicServerCustomerFinancialInfoForm />
+              content: <PublicServerCustomerPersonalInfoForm />
             },
             {
               title: "Suas informações",
