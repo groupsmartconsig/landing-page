@@ -19,8 +19,8 @@ export function PublicServerCustomerPersonalInfoForm() {
   const { nextStep } = useStepper();
 
   return (
-    <div className="grid grid-cols-1 items-center py-6">
-      <small className="text-[11px] text-muted-foreground pb-6">
+    <div className="grid grid-cols-1 items-center py-6 sm:py-12 md:py-16">
+      <small className="text-[11px] text-muted-foreground pb-6 sm:hidden">
         *Seus dados serão usados exclusivamente para entrarmos em contato e realizarmos a análise gratuita do seu contrato consignado com segurança e sigilo.
       </small>
 
@@ -86,14 +86,20 @@ export function PublicServerCustomerPersonalInfoForm() {
         )}
       />
 
-      <Button
-        type="button"
-        size="lg"
-        className="h-[56px] bg-secondary-red rounded-sm mt-12"
-        onClick={() => nextStep()}
-      >
-        Próximo
-      </Button>
+      <small className="hidden sm:flex text-[11px] text-muted-foreground pb-6">
+        *Seus dados serão usados exclusivamente para entrarmos em contato e realizarmos a análise gratuita do seu contrato consignado com segurança e sigilo.
+      </small>
+
+      <div className="w-full sm:flex sm:justify-center sm:items-center sm:mt-6">
+        <Button
+          type="button"
+          size="lg"
+          className="w-full h-14 bg-secondary-red rounded-sm mt-6 sm:h-10 sm:w-72 sm:text-sm sm:rounded"
+          onClick={() => nextStep()}
+        >
+          Próximo
+        </Button>
+      </div>
     </div>
   );
 }

@@ -24,7 +24,7 @@ export function PublicServerCustomerFinancialInfoForm() {
   const { nextStep } = useStepper();
 
   return (
-    <div className="grid grid-cols-1 items-center py-6">
+    <div className="grid grid-cols-1 items-center py-6 sm:py-12 md:py-16">
       <h1 className="text-xl font-medium">Perguntas</h1>
       <FormField
         control={form.control}
@@ -134,15 +134,17 @@ export function PublicServerCustomerFinancialInfoForm() {
       <small className="text-[11px] text-muted-foreground pb-4">
         *Caso o seu cartão não seja de um desses bancos, infelizmente não poderemos prosseguir com o atendimento.
       </small>
-      <Separator />
-      <Button
-        type="button"
-        size="lg"
-        className="h-[56px] bg-secondary-red rounded-sm mt-6"
-        onClick={() => nextStep()}
-      >
-        Próximo
-      </Button>
+      <Separator className="sm:hidden" />
+      <div className="w-full sm:flex sm:justify-center sm:items-center sm:mt-6">
+        <Button
+          type="button"
+          size="lg"
+          className="w-full h-14 bg-secondary-red rounded-sm mt-6 sm:h-10 sm:w-72 sm:text-sm sm:rounded sm:mt-12"
+          onClick={() => nextStep()}
+        >
+          Próximo
+        </Button>
+      </div>
     </div>
   );
 }

@@ -4,29 +4,34 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { XCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export function PublicServerCustomerFinishedStepContent() {
+export function PublicServerCustomerUnsuccessfulStepContent() {
   const router = useRouter();
 
   return (
     <div>
-      <div className="flex flex-col items-center space-y-2 p-6">
-        <h1 className="w-60 text-xl text-center font-medium p-4">
-          Parabéns por tomar essa decisão!
+      <div className="flex flex-col items-center space-y-2 p-6 sm:py-12">
+        <XCircleIcon className="hidden sm:flex sm:size-12 sm:text-secondary-red" />
+
+        <h1 className="w-60 text-xl text-center font-medium p-4 sm:w-72 sm:text-2xl md:w-96">
+          Não encontramos contratos válidos neste momento.
         </h1>
 
-        <p className="text-sm text-muted-foreground">
-          Recebemos suas informações com sucesso.
-          Agora, nosso time vai analisar todos os dados com atenção e, em breve, um dos nossos especialistas entrará em contato com você.
+        <p className="text-sm text-muted-foreground sm:max-w-md sm:py-2">
+          Recebemos seus dados e fizemos a simulação, mas no momento você ainda não atende aos critérios necessários para seguir com o processo.
         </p>
 
-        <p className="text-sm text-muted-foreground">
-          Enquanto isso, que tal conhecer um pouco mais sobre a nossa empresa?
-          Acompanhe nossos conteúdos e veja como ajudamos milhares de pessoas todos os dias!
+        <p className="text-sm text-muted-foreground sm:max-w-md sm:py-2">
+          Mas fique tranquilo(a): sua situação pode mudar a qualquer momento, e nossa equipe vai te manter atualizado(a)!
+        </p>
+
+        <p className="text-sm text-muted-foreground sm:max-w-md sm:py-2">
+          Enquanto isso, conheça melhor a Smart Consig e veja como ajudamos milhares de servidores a economizar todos os dias:
         </p>
       </div>
-      <section className="flex flex-col space-y-4 pb-6 px-6">
+      <section className="flex flex-col space-y-4 pb-6 px-6 sm:items-center sm:pb-8">
         <div className="flex items-center space-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +45,7 @@ export function PublicServerCustomerFinishedStepContent() {
             <path d="M11.469 5C7.918 5 5 7.914 5 11.469v9.062C5 24.082 7.914 27 11.469 27h9.062C24.082 27 27 24.086 27 20.531V11.47C27 7.918 24.086 5 20.531 5zm0 2h9.062A4.463 4.463 0 0125 11.469v9.062A4.463 4.463 0 0120.531 25H11.47A4.463 4.463 0 017 20.531V11.47A4.463 4.463 0 0111.469 7zm10.437 2.188a.902.902 0 00-.906.906c0 .504.402.906.906.906a.902.902 0 00.907-.906.902.902 0 00-.907-.906zM16 10c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 2c2.223 0 4 1.777 4 4s-1.777 4-4 4-4-1.777-4-4 1.777-4 4-4z" />
           </svg>
           <Link
-            className="text-xs tracking-wide"
+            className="text-xs tracking-wide hover:underline"
             href="https://www.instagram.com/smart_consig/"
           >
             Visite nosso perfil no Instagram.
@@ -67,15 +72,17 @@ export function PublicServerCustomerFinishedStepContent() {
           </Link>
         </div>
       </section>
-      <Separator />
-      <Button
-        type="button"
-        size="lg"
-        className="h-[56px] w-full bg-secondary-red rounded-sm mt-8"
-        onClick={() => router.push("/servidores")}
-      >
-        Voltar para o ínicio
-      </Button>
+      <Separator className="sm:hidden" />
+      <div className="w-full sm:flex sm:justify-center sm:items-center">
+        <Button
+          type="button"
+          size="lg"
+          className="w-full h-14 bg-secondary-red rounded-sm mt-8 sm:h-10 sm:w-72 sm:text-sm sm:rounded sm:mt-12"
+          onClick={() => router.push("/servidores")}
+        >
+          Voltar para o ínicio
+        </Button>
+      </div>
     </div>
   )
 }

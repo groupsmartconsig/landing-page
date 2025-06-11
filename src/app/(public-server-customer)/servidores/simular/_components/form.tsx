@@ -5,9 +5,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { PublicServerCustomerStepper } from "./stepper";
 import { PublicServerCustomerFinancialInfoForm } from "./steps/financial-info-form";
-import { PublicServerCustomerFinishedStepContent } from "./steps/finished-step-content";
 import { PublicServerCustomerPersonalInfoForm } from "./steps/personal-info.form";
 import { PublicServerCustomerPolicyInfoForm } from "./steps/policy-info-form";
+import { PublicServerCustomerSuccessfulStepContent } from "./steps/successful-step-content";
 import { PublicServerCustomerUploadDocumentForm } from "./steps/upload-document-form";
 
 export function PublicServerCustomerSimulationForm() {
@@ -38,7 +38,7 @@ export function PublicServerCustomerSimulationForm() {
             },
             {
               title: "",
-              content: <PublicServerCustomerFinishedStepContent />
+              content: <PublicServerCustomerSuccessfulStepContent />
             },
           ]}
           currentStep={currentStep}

@@ -38,7 +38,7 @@ export function PublicServerCustomerUploadDocumentForm() {
   const { nextStep } = useStepper();
 
   return (
-    <div className="grid grid-cols-1 items-center py-6">
+    <div className="grid grid-cols-1 items-center py-6 sm:py-12 md:py-16">
       <h1 className="text-xl font-medium px-2">
         Anexe seu contracheque
       </h1>
@@ -82,14 +82,16 @@ export function PublicServerCustomerUploadDocumentForm() {
         Utilizaremos este documento apenas para validar os dados do seu contrato consignado. Garantimos o uso seguro e sigiloso das suas informações.
       </p>
 
-      <Button
-        type="button"
-        size="lg"
-        className="h-[56px] bg-secondary-red rounded-sm mt-6"
-        onClick={() => nextStep()}
-      >
-        Próximo
-      </Button>
+      <div className="w-full sm:flex sm:justify-center sm:items-center sm:mt-6">
+        <Button
+          type="button"
+          size="lg"
+          className="w-full h-14 bg-secondary-red rounded-sm mt-6 sm:h-10 sm:w-72 sm:text-sm sm:rounded sm:mt-12"
+          onClick={() => nextStep()}
+        >
+          Próximo
+        </Button>
+      </div>
     </div>
   )
 }

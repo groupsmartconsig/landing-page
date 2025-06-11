@@ -29,10 +29,12 @@ export function PublicServerCustomerStepper({
 
   return (
     <StepperContext.Provider value={{ previousStep, nextStep }}>
-      <div className="p-6">
+      <div className="p-6 sm:max-w-5xl sm:w-full sm:mx-auto">
         <div
           className={cn(
-            currentStep + 1 === 5 ? 'hidden' : 'flex flex-col items-center space-y-4 py-4'
+            currentStep + 1 === 5 ?
+              'hidden' :
+              'flex flex-col items-center space-y-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0'
           )}
         >
           <h2 className="text-xl font-medium">
@@ -63,7 +65,9 @@ export function PublicServerCustomerStepper({
             currentStep + 1 === 5 ? 'hidden' : 'bg-[#555] mt-3'
           )}
         />
-        {steps[currentStep]?.content}
+        <main className='sm:max-w-lg sm:w-full sm:mx-auto md:max-w-xl md:w-full md:mx-auto'>
+          {steps[currentStep]?.content}
+        </main>
       </div>
     </StepperContext.Provider>
   )
