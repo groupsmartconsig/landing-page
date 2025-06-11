@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   Card,
   CardDescription,
@@ -7,9 +9,11 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
+import { useStepper } from "@/hooks/use-stepper";
 
 export function PublicServerCustomerPolicyInfoForm() {
+  const { nextStep } = useStepper();
+
   return (
     <div className="py-8">
       <Card className="p-6">
@@ -29,9 +33,10 @@ export function PublicServerCustomerPolicyInfoForm() {
       </Card>
 
       <Button
-        type="submit"
+        type="button"
         size="lg"
         className="h-[56px] w-full bg-secondary-red rounded-sm mt-16"
+        onClick={() => nextStep()}
       >
         Simular
       </Button>
