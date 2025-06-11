@@ -8,6 +8,7 @@ import { PublicServerCustomerFinancialInfoForm } from "./steps/financial-info-fo
 import { PublicServerCustomerFinishedStepContent } from "./steps/finished-step-content";
 import { PublicServerCustomerPersonalInfoForm } from "./steps/personal-info.form";
 import { PublicServerCustomerPolicyInfoForm } from "./steps/policy-info-form";
+import { PublicServerCustomerUploadDocumentForm } from "./steps/upload-document-form";
 
 export function PublicServerCustomerSimulationForm() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -29,7 +30,7 @@ export function PublicServerCustomerSimulationForm() {
             },
             {
               title: "Suas informações",
-              content: <PublicServerCustomerPersonalInfoForm />
+              content: <PublicServerCustomerUploadDocumentForm />
             },
             {
               title: "Suas informações",
