@@ -29,7 +29,7 @@ const options: OptionsProps[] = [
 
 export function PublicServerCustomerOptionsContainer() {
   return (
-    <div className="grid grid-cols-1 py-12 px-6">
+    <div className="grid grid-cols-1 py-12 px-6 md:max-w-5xl md:w-full md:mx-auto md:px-0">
       <div className="space-y-6">
         <h4 className="max-w-xs w-full text-lg text-black font-medium tracking-tight">
           Por aqui, você tem duas possibilidades de simulação:

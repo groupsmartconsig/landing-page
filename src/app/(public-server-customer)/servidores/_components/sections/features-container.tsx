@@ -43,29 +43,33 @@ const features: FeaturesProps[] = [
 
 export function PublicServerCustomerFeaturesContainer() {
   return (
-    <div className="bg-[#f5f5f6] grid grid-cols-1 p-6">
-      <div className="py-4 space-y-6">
-        <h4 className="max-w-xs w-full text-lg text-black font-medium">
-          Smart Consig: praticidade, segurança e juros mais baixos
-        </h4>
+    <div className="bg-[#f5f5f6]  w-full">
+      <div className="grid grid-cols-1 p-6 md:max-w-5xl md:w-full md:mx-auto">
+        <div className="py-4 space-y-6">
+          <h4 className="max-w-xs w-full text-lg text-black font-medium">
+            Smart Consig: praticidade, segurança e juros mais baixos
+          </h4>
 
-        {features.map((item) => (
-          <section key={item.id}>
-            <div className="flex flex-col space-y-4 py-4">
-              {item.icon}
+          <div className="md:flex md:justify-center md:items-center md:space-x-4">
+            {features.map((item) => (
+              <section key={item.id}>
+                <div className="flex flex-col space-y-4 py-4">
+                  {item.icon}
 
-              <div className="flex flex-col space-y-1.5">
-                <span className="font-medium">
-                  {item.title}
-                </span>
+                  <div className="flex flex-col space-y-1.5">
+                    <span className="font-medium">
+                      {item.title}
+                    </span>
 
-                <p className="text-sm text-[#555]">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          </section>
-        ))}
+                    <p className="text-sm text-[#555]">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

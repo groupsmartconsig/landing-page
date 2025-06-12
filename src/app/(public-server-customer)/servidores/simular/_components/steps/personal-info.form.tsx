@@ -48,7 +48,7 @@ export function PublicServerCustomerPersonalInfoForm() {
 
       <FormField
         control={form.control}
-        name="fullName"
+        name="phoneNumber"
         render={({ field }) => (
           <FormItem className="py-4">
             <FormLabel className="text-muted-foreground">

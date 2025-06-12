@@ -1,11 +1,11 @@
 import Image from "next/image"
+import Link from "next/link"
 
 import { ChevronRightIcon } from "lucide-react"
-import Link from "next/link"
 
 export function PublicServerCustomerTestimonialContainer() {
   return (
-    <div className="max-w-md mx-auto py-12 px-6">
+    <div className="max-w-md mx-auto pt-12 pb-16 px-6">
       <div className="flex items-center mb-3">
         <div className="flex -space-x-2">
           <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">

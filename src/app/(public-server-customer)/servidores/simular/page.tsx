@@ -1,6 +1,7 @@
 import logoWhiteImg from "@/app/assets/images/logo-white.png";
 import Image from "next/image";
 import Link from "next/link";
+
 import { PublicServerCustomerSimulationForm } from "./_components/form";
 
 export default function PublicServerCustomerSimulationPage() {

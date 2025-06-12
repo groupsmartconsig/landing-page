@@ -9,7 +9,7 @@ export function PublicServerCustomerNavigateButton() {
   return (
     <Button
       type="button"
-      className="w-full bg-secondary-red rounded"
+      className="w-full bg-secondary-red rounded sm:w-56 sm:h-9 sm:text-xs"
       onClick={() => router.push("/servidores/simular")}
     >
       Simular crédito
