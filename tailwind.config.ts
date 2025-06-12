@@ -11,6 +11,7 @@ const config: Config = {
 		extend: {
 			colors: {
 				'primary-red': '#ec3237',
+				'secondary-red': '#940b11',
 				'medium-red': '#ca3438',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
@@ -84,9 +85,9 @@ const config: Config = {
 					}
 				},
 				bannermove: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-50%)' },
+				},
 				'border-beam': {
 					'100%': {
 						'offset-distance': '100%'
