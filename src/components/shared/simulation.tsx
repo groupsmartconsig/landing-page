@@ -1,6 +1,8 @@
 'use client'
 
-import { SimulationMobileButton } from "@/components/shared/simulation-mobile-button";
+import simulation from "@/app/assets/images/simulation.png";
+import Image from "next/image";
+
 import {
   Card,
   CardContent,
@@ -8,10 +10,9 @@ import {
   CardHeader,
   CardTitle
 } from "../ui/card";
-import { SimulationDesktopButton } from "./simulation-desktop-button";
 
-import simulation from "@/app/assets/images/simulation.png";
-import Image from "next/image";
+import { SimulationMobileButton } from "@/components/shared/simulation-mobile-button";
+import { SimulationDesktopButton } from "./simulation-desktop-button";
 
 export function SimulationContainer() {
   return (

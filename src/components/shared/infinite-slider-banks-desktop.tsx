@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export function InfiniteSliderBanksDesktopContainer() {
   return (
-    <div className="bg-white py-16">
+    <div className="bg-gray-200 py-12">
       <div className="hidden md:flex flex-col justify-center-center max-w-6xl w-full mx-auto space-y-12 py-6">
         <h2 className="hidden sm:block w-full text-4xl text-center font-bold md:text-5xl">
           Única instituição <br />

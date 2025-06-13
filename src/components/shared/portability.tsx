@@ -1,5 +1,8 @@
 'use client'
 
+import elderlyHeadset from "@/app/assets/images/elderly-headset.png";
+import Image from "next/image";
+
 import {
   Card,
   CardContent,
@@ -8,8 +11,8 @@ import {
   CardTitle
 } from "@/components/ui/card";
 
-import elderlyHeadset from "@/app/assets/images/elderly-headset.png";
-import Image from "next/image";
+import { SimulationMobileButton } from "@/components/shared/simulation-mobile-button";
+import { SimulationDesktopButton } from "./simulation-desktop-button";
 
 export function PortabilityContainer() {
   return (
@@ -33,13 +36,14 @@ export function PortabilityContainer() {
               <CardTitle className="text-2xl text-primary-red font-bold leading-tight">
                 Seu consignado pode liberar dinheiro!
               </CardTitle>
-              <CardDescription className="text-base text-white tracking-tight">
+              <CardDescription className="text-base text-white tracking-tight pb-4">
                 Ao revisar seu contrato, você pode acessar dinheiro que está retido
                 e aprovar a devolução pelos juros abusivos cobrados nas parcelas.
                 Faça agora uma simulação gratuita e descubra como liberar um valor de
                 até <strong>R$ 5.000,00</strong>! Não perca a chance de colocar mais dinheiro no seu bolso!
               </CardDescription>
             </div>
+            <SimulationMobileButton title="Fazer a minha portabilidade" />
           </CardHeader>
 
           {/* Desktop */}
@@ -50,13 +54,15 @@ export function PortabilityContainer() {
                   Seu consignado pode liberar dinheiro!
                 </CardTitle>
 
-                <CardDescription className="text-xl 2xl:text-2xl text-white tracking-tight">
+                <CardDescription className="text-xl 2xl:text-2xl text-white tracking-tight pb-4">
                   Ao revisar seu contrato, você pode acessar dinheiro que está retido
                   e aprovar a devolução pelos juros abusivos cobrados nas parcelas.
                   Faça agora uma simulação gratuita e descubra como liberar um valor de
                   até <strong>R$ 5.000,00</strong>! Não perca a chance de colocar mais dinheiro no seu bolso!
                 </CardDescription>
               </div>
+
+              <SimulationDesktopButton title="Desejo fazer a simulação" />
             </CardHeader>
 
             <div className="relative bg-primary h-full max-w-md mx-auto rounded-2xl overflow-hidden">

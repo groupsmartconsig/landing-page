@@ -16,17 +16,17 @@ const images = [
 
 export function InfiniteSliderBanksContainer() {
   return (
-    <div className="bg-white pb-16">
-      <div className="w-full flex flex-col space-y-6 py-6 pl-5 md:max-w-6xl md:space-y-12 md:pl-0">
-        <h2 className="text-4xl font-bold sm:w-full sm:text-4xl sm:text-center sm:font-bold md:text-5xl">
+    <div className="bg-gray-200 py-6 sm:py-12">
+      <div className="max-w-[322px] mx-auto w-full flex flex-col justify-center-center space-y-2 py-6 md:max-w-6xl md:space-y-12">
+        <h2 className="text-2xl font-bold sm:w-full sm:text-4xl sm:text-center sm:font-bold md:text-5xl">
           Única instituição <br />
           autorizada por todos <br />
           os Bancos.
         </h2>
-        <p className="max-w-[340px] w-full text-lg sm:max-w-5xl md:text-2xl md:max-w-4xl md:mx-auto">
+        <p className="w-full text-base font-medium sm:max-w-5xl md:text-2xl md:max-w-4xl md:mx-auto">
           Somos a única instituição autorizada por todos os bancos para garantir segurança e
-          confiança nas suas <strong>operações financeiras</strong>. Com a nossa expertise, {" "}
-          você tem a tranquilidade de contar com as melhores condições de mercado.
+          confiança nas suas operações financeiras. Com a nossa expertise, você tem a tranquilidade
+          de contar com as melhores condições de mercado.
         </p>
       </div>
 

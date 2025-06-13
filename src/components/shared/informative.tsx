@@ -1,5 +1,8 @@
 'use client'
 
+import elderlyThoughtful from "@/app/assets/images/elderly-thoughtful.png";
+import Image from "next/image";
+
 import {
   Card,
   CardContent,
@@ -8,8 +11,8 @@ import {
   CardTitle
 } from "@/components/ui/card";
 
-import elderlyThoughtful from "@/app/assets/images/elderly-thoughtful.png";
-import Image from "next/image";
+import { SimulationMobileButton } from "@/components/shared/simulation-mobile-button";
+import { SimulationDesktopButton } from "./simulation-desktop-button";
 
 export function InformativeContainer() {
   return (
@@ -33,13 +36,14 @@ export function InformativeContainer() {
               <CardTitle className="text-2xl font-bold leading-tight">
                 Você sabe se o seu empréstimo tem juros abusivos?
               </CardTitle>
-              <CardDescription className="text-base text-black tracking-tight">
+              <CardDescription className="text-base text-black tracking-tight pb-4">
                 A taxa de juros no empréstimo consignado não pode ultrapassar  <strong>1,66%</strong> ao mês.
                 Quer descobrir se está pagando mais do que deveria? Faça agora uma simulação gratuita dos seus contratos.
                 Pare de perder dinheiro para o banco! Reduza suas parcelas e aumente seu salário. Aproveite essa oportunidade
                 para recuperar o que é seu!
               </CardDescription>
             </div>
+            <SimulationMobileButton title="Quero simular agora" />
           </CardHeader>
 
           {/* Desktop */}
@@ -61,13 +65,15 @@ export function InformativeContainer() {
                   Você sabe se o seu empréstimo tem juros abusivos?
                 </CardTitle>
 
-                <CardDescription className="text-xl 2xl:text-2xl text-black tracking-tight">
+                <CardDescription className="text-xl 2xl:text-2xl text-black tracking-tight pb-4">
                   A taxa de juros no empréstimo consignado não pode ultrapassar <strong>1,66%</strong> ao mês.
                   Quer descobrir se está pagando mais do que deveria? Faça agora uma simulação gratuita dos seus contratos.
                   Pare de perder dinheiro para o banco! Reduza suas parcelas e aumente seu salário. Aproveite essa oportunidade
                   para recuperar o que é seu!
                 </CardDescription>
               </div>
+
+              <SimulationDesktopButton title="Quero simular agora" />
             </CardHeader>
           </div>
         </div>
