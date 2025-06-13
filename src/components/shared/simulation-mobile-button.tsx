@@ -12,7 +12,7 @@ export function SimulationMobileButton({
   className
 }: SimulationMobileButtonProps) {
   return (
-    <UtmLink href="/area-cliente">
+    <UtmLink href="/simular/area-cliente">
       <Button className={className || "w-full bg-primary-red font-bold"}>
         {title}
       </Button>
