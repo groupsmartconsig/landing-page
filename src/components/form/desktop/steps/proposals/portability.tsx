@@ -90,7 +90,7 @@ export function DesktopPortabilityContent({
 
           <div className="flex flex-col space-y-3">
             <span className="text-2xl font-bold">
-              Econômia na redução
+              Economia na redução
             </span>
             <div className="flex items-center space-x-6">
               <ChevronRightIcon className="size-12" />

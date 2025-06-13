@@ -86,7 +86,7 @@ export function MobilePortabilityDataContent({
 
           <div className="flex flex-col space-y-3">
             <span className="text-2xl text-center font-bold">
-              Econômia na redução
+              Economia na redução
             </span>
             <div className="flex items-center">
               <ChevronRightIcon className="size-12" />
@@ -97,7 +97,7 @@ export function MobilePortabilityDataContent({
                   style: "currency",
                   currency: "BRL",
                 })
-                .replace(/(\d)\d*\.(\d)/, "*.*$2")}
+                  .replace(/(\d)\d*\.(\d)/, "*.*$2")}
               </p>
             </div>
             <span className="text-muted-foreground text-xs text-center font-medium">

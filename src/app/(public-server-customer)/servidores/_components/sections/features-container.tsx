@@ -24,7 +24,7 @@ const features: FeaturesProps[] = [
   {
     id: 2,
     icon: <CircleDollarSignIcon className="size-6 text-secondary-red" />,
-    title: "Econômia",
+    title: "Economia",
     description: "Taxas reduzidas e condições que cabem no seu bolso."
   },
   {
