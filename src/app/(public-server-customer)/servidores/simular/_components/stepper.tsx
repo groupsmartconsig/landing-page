@@ -32,7 +32,7 @@ export function PublicServerCustomerStepper({
       <div className="p-6 sm:max-w-5xl sm:w-full sm:mx-auto">
         <div
           className={cn(
-            currentStep + 1 === 5 ?
+            currentStep + 1 === 6 ?
               'hidden' :
               'flex flex-col items-center space-y-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0'
           )}
@@ -46,7 +46,7 @@ export function PublicServerCustomerStepper({
               <span
                 key={index}
                 className={cn(
-                  index + 1 === 5 ? 'hidden' : 'flex justify-center items-center rounded-full size-6 border',
+                  index + 1 === 6 ? 'hidden' : 'flex justify-center items-center rounded-full size-6 border',
                   index === currentStep ? "border-secondary-red" : "border-[#555]",
                 )}
               >
@@ -62,7 +62,7 @@ export function PublicServerCustomerStepper({
         </div>
         <Separator
           className={cn(
-            currentStep + 1 === 5 ? 'hidden' : 'bg-[#555] mt-3'
+            currentStep + 1 === 6 ? 'hidden' : 'bg-[#555] mt-3'
           )}
         />
         <main className='sm:max-w-lg sm:w-full sm:mx-auto md:max-w-xl md:w-full md:mx-auto'>

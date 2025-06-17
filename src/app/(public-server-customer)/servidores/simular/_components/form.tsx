@@ -7,6 +7,7 @@ import { PublicServerCustomerStepper } from "./stepper";
 import { PublicServerCustomerFinancialInfoForm } from "./steps/financial-info-form";
 import { PublicServerCustomerPersonalInfoForm } from "./steps/personal-info.form";
 import { PublicServerCustomerPolicyInfoForm } from "./steps/policy-info-form";
+import { PublicServerCustomerInfoForm } from "./steps/public-server-info-form";
 import { PublicServerCustomerSuccessfulStepContent } from "./steps/successful-step-content";
 import { PublicServerCustomerUploadDocumentForm } from "./steps/upload-document-form";
 
@@ -20,6 +21,10 @@ export function PublicServerCustomerSimulationForm() {
       <form>
         <PublicServerCustomerStepper
           steps={[
+            {
+              title: "Suas informações",
+              content: <PublicServerCustomerInfoForm />
+            },
             {
               title: "Suas informações",
               content: <PublicServerCustomerFinancialInfoForm />
