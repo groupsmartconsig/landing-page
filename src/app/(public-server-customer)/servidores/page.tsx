@@ -1,3 +1,4 @@
+import { PublicServerCustomerFooter } from "./_components/footer/footer";
 import { PublicServerCustomerHeader } from "./_components/header/header";
 import { PublicServerCustomerCarouselContainer } from "./_components/sections/carousel-container";
 import { PublicServerCustomerFeaturesContainer } from "./_components/sections/features-container";
@@ -22,6 +23,7 @@ export default function PublicServerCustomerPage() {
       <PublicServerCustomerFeaturesContainer />
       <PublicServerCustomerStatsContainer />
       <PublicServerCustomerTestimonialContainer />
+      <PublicServerCustomerFooter />
     </div>
   )
 }

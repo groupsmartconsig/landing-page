@@ -1,3 +1,7 @@
+import logo from "@/app/assets/images/logo-white.png";
+import Image from "next/image";
+import Link from "next/link";
+
 import {
   FacebookIcon,
   InstagramIcon,
@@ -5,13 +9,9 @@ import {
   PhoneIcon
 } from "lucide-react";
 
-import logo from "@/app/assets/images/logo-black.png";
-import Image from "next/image";
-import Link from "next/link";
-
-export function SimulationPageFooter() {
+export function PublicServerCustomerFooter() {
   return (
-    <div className="bg-white size-full flex flex-col items-center justify-center py-16 overflow-hidden">
+    <div className="bg-[#121212] size-full flex flex-col items-center justify-center py-16 overflow-hidden">
       <div className="w-full flex justify-between px-12 md:max-w-7xl md:w-full md:mx-auto md:px-0">
         <div className="hidden sm:flex flex-col space-y-6">
           <Image
@@ -21,13 +21,13 @@ export function SimulationPageFooter() {
             alt="logo"
             priority
           />
-          <p className="max-w-md w-full whitespace-pre-line text-base font-medium tracking-tighter text-black">
+          <p className="max-w-md w-full whitespace-pre-line text-base font-medium tracking-tighter text-white">
             Há 5 anos atuando com credibilidade, segurança e qualidade. Nascemos do desejo de empreender ajudando as pessoas a melhorarem suas condições financeiras!
           </p>
-          <small className="text-zinc-700 font-medium">
+          <small className="text-muted-foreground font-medium">
             Smart Consig Soluções Financeiras LTDA
           </small>
-          <small className="text-zinc-700 font-medium">
+          <small className="text-muted-foreground font-medium">
             CNPJ: 37.044.794/0001-03
           </small>
         </div>
@@ -45,11 +45,11 @@ export function SimulationPageFooter() {
               <span className="text-lg font-bold text-primary-red">
                 Contato
               </span>
-              <p className="inline-flex items-center gap-2 text-sm text-black hover:underline hover:text-zinc-800">
+              <p className="inline-flex items-center gap-2 text-sm text-white hover:underline hover:text-muted-foreground">
                 <PhoneIcon className="size-4" />
                 (11) 3308-7564
               </p>
-              <p className="inline-flex items-center gap-2 text-sm text-black hover:underline hover:text-zinc-800">
+              <p className="inline-flex items-center gap-2 text-sm text-white hover:underline hover:text-muted-foreground">
                 <MailIcon className="size-4" />
                 contato@gruposmartconsig.com.br
               </p>
@@ -58,7 +58,7 @@ export function SimulationPageFooter() {
               <span className="text-lg font-bold text-primary-red">
                 Localização
               </span>
-              <p className="max-w-xs w-full whitespace-pre-line text-sm font-medium tracking-tighter text-black">
+              <p className="max-w-xs w-full whitespace-pre-line text-sm font-medium tracking-tighter text-white">
                 R. Guaraciaba, 27 - Jardim Barbosa, Guarulhos - SP, 07111-020
               </p>
             </div>
@@ -69,13 +69,13 @@ export function SimulationPageFooter() {
               <div className="flex items-center gap-6">
                 <Link
                   href="https://www.instagram.com/smart_consig/?igshid=NTc4MTIwNjQ2YQ%3D%3D"
-                  className="inline-flex items-center gap-2 text-sm text-black hover:underline hover:text-zinc-800"
+                  className="inline-flex items-center gap-2 text-sm text-white hover:underline hover:text-muted-foreground"
                 >
                   <InstagramIcon className="size-5" />
                 </Link>
                 <Link
                   href="https://www.facebook.com/smartconsigsf?mibextid=LQQJ4d"
-                  className="inline-flex items-center gap-2 text-sm text-black hover:underline hover:text-zinc-800"
+                  className="inline-flex items-center gap-2 text-sm text-white hover:underline hover:text-muted-foreground"
                 >
                   <FacebookIcon className="size-5" />
                 </Link>
