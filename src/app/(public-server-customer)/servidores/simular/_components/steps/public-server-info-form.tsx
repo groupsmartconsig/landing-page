@@ -19,6 +19,7 @@ import { useStepper } from "@/hooks/use-stepper";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { PublicServerCustomerIsFederalOptions } from "./public-server-options/is-federal-options";
+import { PublicServerCustomerIsMunicipalOptions } from "./public-server-options/is-municipal-options";
 import { PublicServerCustomerIsStateOptions } from "./public-server-options/is-state-options";
 
 export function PublicServerCustomerInfoForm() {
@@ -99,8 +100,13 @@ export function PublicServerCustomerInfoForm() {
       {isFederal && (
         <PublicServerCustomerIsFederalOptions formControl={form.control} />
       )}
+
       {isState && (
         <PublicServerCustomerIsStateOptions formControl={form.control} />
+      )}
+
+      {itIsMunicipal && (
+        <PublicServerCustomerIsMunicipalOptions formControl={form.control} />
       )}
       <div className="w-full sm:flex sm:justify-center sm:items-center">
         <Button
