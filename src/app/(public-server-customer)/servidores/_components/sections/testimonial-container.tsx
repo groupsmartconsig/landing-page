@@ -74,8 +74,8 @@ export function PublicServerCustomerTestimonialContainer() {
   )
 
   return (
-    <div className="max-w-md mx-auto py-16 px-6">
-      <div className="flex items-center mb-3">
+    <div className="max-w-md mx-auto py-16 px-6 md:max-w-5xl md:w-full md:mx-auto">
+      <div className="flex items-center mb-3 md:hidden">
         <div className="flex -space-x-2">
           {customersAvatars.map((item) => (
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white" key={item.id}>
@@ -95,9 +95,31 @@ export function PublicServerCustomerTestimonialContainer() {
         </span>
       </div>
 
-      <h2 className="text-xl font-medium">
-        Veja o que os clientes Smart pensam:
-      </h2>
+      <div className="md:flex md:justify-between md:items-center">
+        <h2 className="text-xl font-medium md:max-w-xs">
+          Veja o que os clientes Smart pensam:
+        </h2>
+
+        <div className="hidden md:flex md:items-center">
+          <div className="flex -space-x-2">
+            {customersAvatars.map((item) => (
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white" key={item.id}>
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+          <span className="ml-3 text-secondary-red text-sm font-medium">
+            + de 55 mil clientes
+          </span>
+        </div>
+      </div>
 
       <Carousel
         plugins={[plugin.current]}
@@ -132,11 +154,11 @@ export function PublicServerCustomerTestimonialContainer() {
         </div>
       </Carousel>
 
-      <p className="text-muted-foreground text-sm font-medium mt-12 mb-6">
+      <p className="text-muted-foreground text-sm font-medium mt-12 mb-6 md:max-w-[640px] md:mt-4">
         Na Smart Consig, garantimos aos nossos clientes um processo com{" "}
-        <span className="font-semibold text-black">credibilidade</span>, <span className="font-semibold text-black">segurança</span>,{" "}
-        <span className="font-semibold text-black">qualidade</span>, <span className="font-semibold text-black">excelência</span> e um
-        atendimento <span className="font-semibold text-black">exclusivo</span> e <span className="font-semibold text-black">pessoal</span>.
+        <span className="font-semibold">credibilidade</span>, <span className="font-semibold">segurança</span>,{" "}
+        <span className="font-semibold">qualidade</span>, <span className="font-semibold">excelência</span> e um
+        atendimento <span className="font-semibold">exclusivo</span> e <span className="font-semibold">pessoal</span>.
       </p>
 
       <Link
@@ -146,6 +168,33 @@ export function PublicServerCustomerTestimonialContainer() {
         <span>Simular Crédito</span>
         <ChevronRightIcon className="size-4" />
       </Link>
+
+      <Carousel className="hidden md:flex md:pt-2">
+        <div className="flex flex-col">
+          <CarouselContent>
+            {testimonialCarousel.map((item) => (
+              <CarouselItem className="basis-1/3" key={item.id}>
+                <Image
+                  width={600}
+                  height={600}
+                  src={item.imgUrl}
+                  alt="Avaliações dos clientes da Smartconsig"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <div className="pt-6">
+            <CarouselPrevious
+              className="text-secondary-red border-secondary-red top-[100%] left-4 hover:bg-secondary-red hover:text-white"
+            />
+
+            <CarouselNext
+              className="text-secondary-red border-secondary-red top-[100%] right-0 left-16 hover:bg-secondary-red hover:text-white"
+            />
+          </div>
+        </div>
+      </Carousel>
     </div>
   )
 }
