@@ -21,7 +21,7 @@ export function PublicServerCustomerIsMunicipalOptions({
   return (
     <FormField
       control={formControl}
-      name="isStatePublicServer"
+      name="isMunicipalPublicServer"
       render={({ field }) => (
         <FormItem className="py-4 space-y-3">
           <FormLabel>

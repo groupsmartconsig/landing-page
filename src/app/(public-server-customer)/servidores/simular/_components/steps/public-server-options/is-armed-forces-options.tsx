@@ -11,21 +11,21 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Control, FieldValues } from "react-hook-form";
 
-interface PublicServerCustomerIsFederalOptionsProps {
+interface PublicServerCustomerIsArmedForcesOptionsProps {
   formControl: Control<FieldValues, any, FieldValues>
 }
 
-export function PublicServerCustomerIsFederalOptions({
+export function PublicServerCustomerIsArmedForcesOptions({
   formControl
-}: PublicServerCustomerIsFederalOptionsProps) {
+}: PublicServerCustomerIsArmedForcesOptionsProps) {
   return (
     <FormField
       control={formControl}
-      name="isFederalPublicServer"
+      name="isArmedForcesPublicServer"
       render={({ field }) => (
         <FormItem className="py-4 space-y-3">
           <FormLabel>
-            Você é servidor público federal de qual esfera?
+            Você é servidor público municipal de qual esfera?
           </FormLabel>
           <FormControl>
             <RadioGroup
@@ -35,50 +35,34 @@ export function PublicServerCustomerIsFederalOptions({
             >
               <FormItem className="flex items-center gap-x-2">
                 <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="publicServant" />
+                  <RadioGroupItem className="border-[#555]" value="activeMilitar" />
                 </FormControl>
                 <FormLabel className="font-normal pb-1">
-                  Concursado
+                  Militar Ativo
                 </FormLabel>
               </FormItem>
               <FormItem className="flex items-center gap-x-2">
                 <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="permanentAssets" />
+                  <RadioGroupItem className="border-[#555]" value="paidReservation" />
                 </FormControl>
                 <FormLabel className="font-normal pb-1">
-                  Ativo Permanente
+                  Reserva Remunerada
                 </FormLabel>
               </FormItem>
               <FormItem className="flex items-center gap-x-2">
                 <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="retiredOrPensioner" />
+                  <RadioGroupItem className="border-[#555]" value="retired" />
                 </FormControl>
                 <FormLabel className="font-normal pb-1">
-                  Aposentado ou pensionista
+                  Reformados
                 </FormLabel>
               </FormItem>
               <FormItem className="flex items-center gap-x-2">
                 <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="clt" />
+                  <RadioGroupItem className="border-[#555]" value="pensioners" />
                 </FormControl>
                 <FormLabel className="font-normal pb-1">
-                  CLT/Celetista
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-x-2">
-                <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="commissionedPosition" />
-                </FormControl>
-                <FormLabel className="font-normal pb-1">
-                  Cargo Comissionado
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-x-2">
-                <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="temporaryPosition" />
-                </FormControl>
-                <FormLabel className="font-normal pb-1">
-                  Cargo Temporário
+                  Pensionistas
                 </FormLabel>
               </FormItem>
               <FormItem className="flex items-center gap-x-2">

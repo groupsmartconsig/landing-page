@@ -18,6 +18,7 @@ import { Separator } from "@/components/ui/separator";
 import { useStepper } from "@/hooks/use-stepper";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { PublicServerCustomerIsArmedForcesOptions } from "./public-server-options/is-armed-forces-options";
 import { PublicServerCustomerIsFederalOptions } from "./public-server-options/is-federal-options";
 import { PublicServerCustomerIsMunicipalOptions } from "./public-server-options/is-municipal-options";
 import { PublicServerCustomerIsStateOptions } from "./public-server-options/is-state-options";
@@ -107,6 +108,10 @@ export function PublicServerCustomerInfoForm() {
 
       {itIsMunicipal && (
         <PublicServerCustomerIsMunicipalOptions formControl={form.control} />
+      )}
+
+      {isArmedForces && (
+        <PublicServerCustomerIsArmedForcesOptions formControl={form.control} />
       )}
       <div className="w-full sm:flex sm:justify-center sm:items-center">
         <Button
