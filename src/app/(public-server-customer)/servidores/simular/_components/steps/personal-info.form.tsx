@@ -28,7 +28,7 @@ export function PublicServerCustomerPersonalInfoForm() {
 
       <FormField
         control={form.control}
-        name="fullName"
+        name="name"
         render={({ field }) => (
           <FormItem className="py-4">
             <FormLabel className="text-muted-foreground">
@@ -68,7 +68,7 @@ export function PublicServerCustomerPersonalInfoForm() {
 
       <FormField
         control={form.control}
-        name="document"
+        name="cpf"
         render={({ field }) => (
           <FormItem className="py-4">
             <FormLabel className="text-muted-foreground">

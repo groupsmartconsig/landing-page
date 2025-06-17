@@ -28,7 +28,7 @@ export function PublicServerCustomerFinancialInfoForm() {
       <h1 className="text-xl font-medium">Perguntas</h1>
       <FormField
         control={form.control}
-        name="type"
+        name="hasAPayrollCard"
         render={({ field }) => (
           <FormItem className="py-4 space-y-3">
             <FormLabel>
@@ -42,7 +42,7 @@ export function PublicServerCustomerFinancialInfoForm() {
               >
                 <FormItem className="flex items-center gap-x-2">
                   <FormControl>
-                    <RadioGroupItem className="border-[#555]" value="sim" />
+                    <RadioGroupItem className="border-[#555]" value="yes" />
                   </FormControl>
                   <FormLabel className="font-normal pb-1">
                     Sim
@@ -50,7 +50,7 @@ export function PublicServerCustomerFinancialInfoForm() {
                 </FormItem>
                 <FormItem className="flex items-center gap-x-2">
                   <FormControl>
-                    <RadioGroupItem className="border-[#555]" value="nao" />
+                    <RadioGroupItem className="border-[#555]" value="no" />
                   </FormControl>
                   <FormLabel className="font-normal pb-1">
                     Não
@@ -65,7 +65,7 @@ export function PublicServerCustomerFinancialInfoForm() {
       <Separator />
       <FormField
         control={form.control}
-        name="type"
+        name="currentBank"
         render={({ field }) => (
           <FormItem className="py-4 space-y-3">
             <FormLabel>

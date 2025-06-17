@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { ChevronRightIcon, MenuIcon } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function PublicServerCustomerHeader() {
@@ -31,8 +31,6 @@ export function PublicServerCustomerHeader() {
           >
             Simular Crédito
           </Button>
-
-          <MenuIcon className="text-secondary-red size-7 md:hidden" />
 
           <Link
             href=""

@@ -31,7 +31,7 @@ export function PublicServerCustomerPrimaryContainer() {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/servidores" className="flex items-center gap-1 text-white">
+                  <Link href="/servidores" className="flex items-center gap-0.5 text-white">
                     <HomeIcon className="size-4" />
                     Home
                   </Link>
@@ -48,9 +48,9 @@ export function PublicServerCustomerPrimaryContainer() {
             </BreadcrumbList>
           </Breadcrumb>
 
-          <div className="space-y-4 md:mt-36 lg:mt-36">
+          <div className="space-y-4 md:mt-36 lg:mt-28">
             <h1 className="text-[22px] text-white md:max-w-xl md:text-4xl">
-              Portabilidade de cartão consignado para servidores públicos de São Paulo.
+              Portabilidade de cartão consignado para servidores públicos.
             </h1>
 
             <p className="text-muted-foreground font-medium md:max-w-xl md:text-lg md:text-white">

@@ -1,52 +1,93 @@
-import Image from "next/image"
-import Link from "next/link"
+"use client"
 
-import { ChevronRightIcon } from "lucide-react"
+import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
+import Link from "next/link";
+import * as React from "react";
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from "@/components/ui/carousel";
+
+import { ChevronRightIcon } from "lucide-react";
+
+interface CustomerAvatarProps {
+  id: number;
+  src: string;
+  alt: string;
+};
+
+interface TestimonialCarouselProps {
+  id: number;
+  imgUrl: string;
+}
+
+const customersAvatars: CustomerAvatarProps[] = [
+  {
+    id: 1,
+    src: "/cliente-1.jpg?height=40&width=40",
+    alt: "Cliente 1",
+  },
+  {
+    id: 2,
+    src: "/cliente-2.jpg?height=40&width=40",
+    alt: "Cliente 2",
+  },
+  {
+    id: 3,
+    src: "/cliente-3.jpg?height=40&width=40",
+    alt: "Cliente 3",
+  },
+  {
+    id: 4,
+    src: "/cliente-4.jpg?height=40&width=40",
+    alt: "Cliente 4",
+  },
+];
+
+const testimonialCarousel: TestimonialCarouselProps[] = [
+  {
+    id: 1,
+    imgUrl: "/available-1.png"
+  },
+  {
+    id: 2,
+    imgUrl: "/available-2.png"
+  },
+  {
+    id: 3,
+    imgUrl: "/available-3.png"
+  },
+  {
+    id: 4,
+    imgUrl: "/available-4.png"
+  },
+]
 
 export function PublicServerCustomerTestimonialContainer() {
+  const plugin = React.useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  )
+
   return (
-    <div className="max-w-md mx-auto pt-12 pb-16 px-6">
+    <div className="max-w-md mx-auto py-16 px-6">
       <div className="flex items-center mb-3">
         <div className="flex -space-x-2">
-          <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
-            <Image
-              src="/cliente-1.jpg?height=40&width=40"
-              alt="Cliente 1"
-              width={40}
-              height={40}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
-            <Image
-              src="/cliente-2.jpg?height=40&width=40"
-              alt="Cliente 2"
-              width={40}
-              height={40}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
-            <Image
-              src="/cliente-3.jpg?height=40&width=40"
-              alt="Cliente 3"
-              width={40}
-              height={40}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
-            <Image
-              src="/cliente-4.jpg?height=40&width=40"
-              alt="Cliente 4"
-              width={40}
-              height={40}
-              className="w-full h-full object-cover"
-            />
-          </div>
+          {customersAvatars.map((item) => (
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white" key={item.id}>
+              <Image
+                src={item.src}
+                alt={item.alt}
+                width={40}
+                height={40}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
         </div>
 
         <span className="ml-3 text-secondary-red text-sm font-medium">
@@ -54,15 +95,48 @@ export function PublicServerCustomerTestimonialContainer() {
         </span>
       </div>
 
-      <h2 className="text-xl font-medium mb-4">
-        5 anos de uma atuação sólida
+      <h2 className="text-xl font-medium">
+        Veja o que os clientes Smart pensam:
       </h2>
 
-      <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+      <Carousel
+        plugins={[plugin.current]}
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
+        className="md:hidden"
+      >
+        <div className="flex flex-col">
+          <CarouselContent>
+            {testimonialCarousel.map((item) => (
+              <CarouselItem key={item.id}>
+                <Image
+                  width={600}
+                  height={600}
+                  src={item.imgUrl}
+                  className="rounded-[48px]"
+                  alt="Avaliações dos clientes da Smartconsig"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <div className="mt-6">
+            <CarouselPrevious
+              className="text-secondary-red border-secondary-red top-[100%] left-4 hover:bg-secondary-red hover:text-white"
+            />
+
+            <CarouselNext
+              className="text-secondary-red border-secondary-red top-[100%] right-0 left-16 hover:bg-secondary-red hover:text-white"
+            />
+          </div>
+        </div>
+      </Carousel>
+
+      <p className="text-muted-foreground text-sm font-medium mt-12 mb-6">
         Na Smart Consig, garantimos aos nossos clientes um processo com{" "}
-        <span className="font-semibold">credibilidade</span>, <span className="font-semibold">segurança</span>,{" "}
-        <span className="font-semibold">qualidade</span>, <span className="font-semibold">excelência</span> e um
-        atendimento <span className="font-semibold">exclusivo</span> e <span className="font-semibold">pessoal</span>.
+        <span className="font-semibold text-black">credibilidade</span>, <span className="font-semibold text-black">segurança</span>,{" "}
+        <span className="font-semibold text-black">qualidade</span>, <span className="font-semibold text-black">excelência</span> e um
+        atendimento <span className="font-semibold text-black">exclusivo</span> e <span className="font-semibold text-black">pessoal</span>.
       </p>
 
       <Link

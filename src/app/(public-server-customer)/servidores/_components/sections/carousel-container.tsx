@@ -26,7 +26,7 @@ interface SecurityCarouselProps {
 
 const carousel: SecurityCarouselProps[] = [
   {
-    id: 2,
+    id: 1,
     title: "A Smart Consig não solicita transferências ou Pix",
     description: "Com vantagens exclusivas e taxas mais atrativas em comparação a contratos antigos, a Portabilidade é uma forma de transferir seu empréstimo para outro banco com melhores condições, podendo inclusive liberar um valor conforme análise."
   },
