@@ -48,7 +48,7 @@ export function PublicServerCustomerIsStateOptions({
   formControl
 }: PublicServerCustomerIsStateOptionsProps) {
   const id = useId();
-  const [open, setOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [label, setLabel] = useState<string>("");
 
   return (
@@ -86,14 +86,14 @@ export function PublicServerCustomerIsStateOptions({
             <FormItem className="py-4 space-y-3">
               <FormLabel>Qual autarquia você pertence?</FormLabel>
               <FormControl>
-                <Popover open={open} onOpenChange={setOpen}>
+                <Popover open={isOpen} onOpenChange={setIsOpen}>
                   <PopoverTrigger asChild>
                     <Button
                       id={id}
                       type="button"
                       variant="outline"
                       role="combobox"
-                      aria-expanded={open}
+                      aria-expanded={isOpen}
                       className="bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]"
                     >
                       <span className={cn("truncate", !label && "text-muted-foreground")}>
@@ -124,7 +124,7 @@ export function PublicServerCustomerIsStateOptions({
                               value={option.label}
                               onSelect={(currentValue) => {
                                 setLabel(currentValue === label ? "" : currentValue)
-                                setOpen(false)
+                                setIsOpen(false)
                               }}
                               className="cursor-pointer"
                             >
