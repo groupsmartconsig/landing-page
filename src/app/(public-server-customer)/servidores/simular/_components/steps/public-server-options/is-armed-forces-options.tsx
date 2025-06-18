@@ -28,10 +28,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { CheckIcon, ChevronDownIcon } from "lucide-react";
 import { useId, useState } from "react";
-import type { Control, FieldValues } from "react-hook-form";
+import { Control } from "react-hook-form";
+import { PublicServerCustomerSchema } from "../../form";
 
 interface PublicServerCustomerIsArmedForcesOptionsProps {
-  formControl: Control<FieldValues, any, FieldValues>
+  formControl: Control<PublicServerCustomerSchema>;
 }
 
 const options = [
@@ -46,6 +47,7 @@ export function PublicServerCustomerIsArmedForcesOptions({
   formControl
 }: PublicServerCustomerIsArmedForcesOptionsProps) {
   const id = useId();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [label, setLabel] = useState<string>("");
 
@@ -54,7 +56,7 @@ export function PublicServerCustomerIsArmedForcesOptions({
       <div className="hidden md:block">
         <FormField
           control={formControl}
-          name="isArmedForcesPublicServer"
+          name="publicServerCustomerInfoForm.isArmedForcesPublicServer"
           render={({ field }) => (
             <FormItem className="py-4 space-y-3">
               <FormLabel>
@@ -85,7 +87,7 @@ export function PublicServerCustomerIsArmedForcesOptions({
       <div className="md:hidden">
         <FormField
           control={formControl}
-          name="isArmedForcesPublicServer"
+          name="publicServerCustomerInfoForm.isArmedForcesPublicServer"
           render={({ field }) => (
             <FormItem className="py-4 space-y-3">
               <FormLabel>

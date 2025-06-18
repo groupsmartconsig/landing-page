@@ -17,18 +17,24 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useStepper } from "@/hooks/use-stepper";
 import { useFormContext } from "react-hook-form";
+import { PublicServerCustomerSchema } from "../form";
 
 export function PublicServerCustomerFinancialInfoForm() {
-  const form = useFormContext();
+  const form = useFormContext<PublicServerCustomerSchema>();
 
   const { nextStep } = useStepper();
+
+  async function handleNextStep() {
+    const isValid = await form.trigger("publicServerCustomerFinancial");
+    if (isValid) nextStep();
+  }
 
   return (
     <div className="grid grid-cols-1 items-center py-6 sm:py-12 md:py-16">
       <h1 className="text-xl font-medium">Perguntas</h1>
       <FormField
         control={form.control}
-        name="hasAPayrollCard"
+        name="publicServerCustomerFinancial.hasAPayrollCard"
         render={({ field }) => (
           <FormItem className="py-4 space-y-3">
             <FormLabel>
@@ -37,7 +43,6 @@ export function PublicServerCustomerFinancialInfoForm() {
             <FormControl>
               <RadioGroup
                 onValueChange={field.onChange}
-                defaultValue={field.value}
                 className="flex flex-col"
               >
                 <FormItem className="flex items-center gap-x-2">
@@ -65,7 +70,7 @@ export function PublicServerCustomerFinancialInfoForm() {
       <Separator />
       <FormField
         control={form.control}
-        name="currentBank"
+        name="publicServerCustomerFinancial.currentBank"
         render={({ field }) => (
           <FormItem className="py-4 space-y-3">
             <FormLabel>
@@ -74,7 +79,6 @@ export function PublicServerCustomerFinancialInfoForm() {
             <FormControl>
               <RadioGroup
                 onValueChange={field.onChange}
-                defaultValue={field.value}
                 className="flex flex-col"
               >
                 <FormItem className="flex items-center gap-x-2">
@@ -140,7 +144,7 @@ export function PublicServerCustomerFinancialInfoForm() {
           type="button"
           size="lg"
           className="w-full h-14 bg-secondary-red rounded-sm mt-6 sm:h-10 sm:w-72 sm:text-sm sm:rounded sm:mt-12"
-          onClick={() => nextStep()}
+          onClick={() => handleNextStep()}
         >
           Próximo
         </Button>

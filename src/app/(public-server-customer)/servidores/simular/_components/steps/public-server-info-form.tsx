@@ -18,13 +18,14 @@ import { Separator } from "@/components/ui/separator";
 import { useStepper } from "@/hooks/use-stepper";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { PublicServerCustomerSchema } from "../form";
 import { PublicServerCustomerIsArmedForcesOptions } from "./public-server-options/is-armed-forces-options";
 import { PublicServerCustomerIsFederalOptions } from "./public-server-options/is-federal-options";
 import { PublicServerCustomerIsMunicipalOptions } from "./public-server-options/is-municipal-options";
 import { PublicServerCustomerIsStateOptions } from "./public-server-options/is-state-options";
 
 export function PublicServerCustomerInfoForm() {
-  const form = useFormContext();
+  const form = useFormContext<PublicServerCustomerSchema>();
 
   const [isFederal, setIsFederal] = useState(false);
   const [isState, setIsState] = useState(false);
@@ -33,12 +34,17 @@ export function PublicServerCustomerInfoForm() {
 
   const { nextStep } = useStepper();
 
+  async function handleNextStep() {
+    const isValid = await form.trigger("publicServerCustomerInfoForm");
+    if (isValid) nextStep();
+  }
+
   return (
     <div className="grid grid-cols-1 items-center py-6 sm:py-12 md:py-16">
       <h1 className="text-xl font-medium">Perguntas</h1>
       <FormField
         control={form.control}
-        name="isPublicServer"
+        name="publicServerCustomerInfoForm"
         render={({ field }) => (
           <FormItem className="py-4 space-y-3">
             <FormLabel>
@@ -47,7 +53,6 @@ export function PublicServerCustomerInfoForm() {
             <FormControl>
               <RadioGroup
                 className="flex flex-col"
-                defaultValue={field.value}
                 onValueChange={(value) => {
                   field.onChange(value);
                   setIsFederal(value === "federal");
@@ -118,7 +123,7 @@ export function PublicServerCustomerInfoForm() {
           type="button"
           size="lg"
           className="w-full h-14 bg-secondary-red rounded-sm mt-6 sm:h-10 sm:w-72 sm:text-sm sm:rounded sm:mt-12"
-          onClick={() => nextStep()}
+          onClick={() => handleNextStep()}
         >
           Próximo
         </Button>

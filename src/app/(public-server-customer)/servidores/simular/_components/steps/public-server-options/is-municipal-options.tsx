@@ -28,10 +28,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { CheckIcon, ChevronDownIcon } from "lucide-react";
 import { useId, useState } from "react";
-import type { Control, FieldValues } from "react-hook-form";
+import { Control } from "react-hook-form";
+import { PublicServerCustomerSchema } from "../../form";
 
 interface PublicServerCustomerIsMunicipalOptionsProps {
-  formControl: Control<FieldValues, any, FieldValues>
+  formControl: Control<PublicServerCustomerSchema>;
 }
 
 const options = [
@@ -48,6 +49,7 @@ export function PublicServerCustomerIsMunicipalOptions({
   formControl
 }: PublicServerCustomerIsMunicipalOptionsProps) {
   const id = useId();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [label, setLabel] = useState<string>("");
 
@@ -56,7 +58,7 @@ export function PublicServerCustomerIsMunicipalOptions({
       <div className="hidden md:block">
         <FormField
           control={formControl}
-          name="isMunicipalPublicServer"
+          name="publicServerCustomerInfoForm.isMunicipalPublicServer"
           render={({ field }) => (
             <FormItem className="py-4 space-y-3">
               <FormLabel>
@@ -87,7 +89,7 @@ export function PublicServerCustomerIsMunicipalOptions({
       <div className="md:hidden">
         <FormField
           control={formControl}
-          name="isMunicipalPublicServer"
+          name="publicServerCustomerInfoForm.isMunicipalPublicServer"
           render={({ field }) => (
             <FormItem className="py-4 space-y-3">
               <FormLabel>

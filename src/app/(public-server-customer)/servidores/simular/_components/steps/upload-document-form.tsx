@@ -8,7 +8,7 @@ import { CloudUploadIcon } from "lucide-react";
 import { useState } from "react";
 
 export function PublicServerCustomerUploadDocumentForm() {
-  const [file, setFile] = useState<File | null>(null)
+  const [_, setFile] = useState<File | null>(null)
   const [isDragging, setIsDragging] = useState(false)
 
   const handleDragOver = (e: React.DragEvent) => {

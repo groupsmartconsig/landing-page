@@ -12,11 +12,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useStepper } from "@/hooks/use-stepper";
 import { useFormContext } from "react-hook-form";
+import { PublicServerCustomerSchema } from "../form";
 
 export function PublicServerCustomerPersonalInfoForm() {
-  const form = useFormContext();
+  const form = useFormContext<PublicServerCustomerSchema>();
 
   const { nextStep } = useStepper();
+
+  async function handleNextStep() {
+    const isValid = await form.trigger("publicServerCustomerPersonal");
+    if (isValid) nextStep();
+  }
 
   return (
     <div className="grid grid-cols-1 items-center py-6 sm:py-12 md:py-16">
@@ -28,7 +34,7 @@ export function PublicServerCustomerPersonalInfoForm() {
 
       <FormField
         control={form.control}
-        name="name"
+        name="publicServerCustomerPersonal.name"
         render={({ field }) => (
           <FormItem className="py-4">
             <FormLabel className="text-muted-foreground">
@@ -48,7 +54,7 @@ export function PublicServerCustomerPersonalInfoForm() {
 
       <FormField
         control={form.control}
-        name="phoneNumber"
+        name="publicServerCustomerPersonal.phoneNumber"
         render={({ field }) => (
           <FormItem className="py-4">
             <FormLabel className="text-muted-foreground">
@@ -68,7 +74,7 @@ export function PublicServerCustomerPersonalInfoForm() {
 
       <FormField
         control={form.control}
-        name="cpf"
+        name="publicServerCustomerPersonal.cpf"
         render={({ field }) => (
           <FormItem className="py-4">
             <FormLabel className="text-muted-foreground">
@@ -95,7 +101,7 @@ export function PublicServerCustomerPersonalInfoForm() {
           type="button"
           size="lg"
           className="w-full h-14 bg-secondary-red rounded-sm mt-6 sm:h-10 sm:w-72 sm:text-sm sm:rounded"
-          onClick={() => nextStep()}
+          onClick={() => handleNextStep()}
         >
           Próximo
         </Button>

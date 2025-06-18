@@ -1,6 +1,43 @@
 import { isValidCpf } from "@/utils/mask/mask-cpf";
 import { z } from "zod";
 
+export const publicServerCustomerInfoFormSchema = z.object({
+  isStatePublicServer: z.enum([
+    "pmsp",
+    "sefaz",
+    "spprev",
+    "hcgmusp",
+    "hcrp",
+    "iamspe",
+    "others"
+  ], { message: "Escolha uma autarquia." }),
+  isFederalPublicServer: z.enum([
+    "publicServant",
+    "permanentAssets",
+    "retiredOrPensioner",
+    "clt",
+    "commissionedPosition",
+    "temporaryPosition",
+    "others"
+  ], { message: "Escolha uma esfera federal." }),
+  isMunicipalPublicServer: z.enum([
+    "competitiveExam",
+    "permanentAssets",
+    "retiredOrPensioner",
+    "CLT/Celetista",
+    "commissionedPosition",
+    "temporaryPosition",
+    "others"
+  ], { message: "Escolha uma esfera municipal." }),
+  isArmedForcesPublicServer: z.enum([
+    "activeMilitar",
+    "paidReservation",
+    "retired",
+    "pensioners",
+    "others"
+  ], { message: "Escolha uma categoria das forças armadas." })
+});
+
 export const publicServerCustomerFinancialSchema = z.object({
   hasAPayrollCard: z.boolean({ message: "Escolha uma opção." }),
   currentBank: z.string().min(1, "Informe o banco que está descontando.")
@@ -26,4 +63,4 @@ export const publicServerCustomerPersonalSchema = z.object({
     .refine((cpf: string) => isValidCpf(cpf), {
       message: "Informe um CPF válido.",
     }),
-})
+});
