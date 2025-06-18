@@ -8,92 +8,146 @@ import {
   FormMessage
 } from "@/components/ui/form";
 
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from "@/components/ui/popover";
+
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList
+} from "@/components/ui/command";
+
+import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Control, FieldValues } from "react-hook-form";
+import { cn } from "@/lib/utils";
+import { CheckIcon, ChevronDownIcon } from "lucide-react";
+import { useId, useState } from "react";
+import type { Control, FieldValues } from "react-hook-form";
 
 interface PublicServerCustomerIsStateOptionsProps {
   formControl: Control<FieldValues, any, FieldValues>
 }
 
+const options = [
+  { value: "pmsp", label: "PMSP - Polícia Militar" },
+  { value: "sefaz", label: "SEFAZ - Secretaria da Fazenda e Planejamento" },
+  { value: "spprev", label: "SPPREV - Aposentados" },
+  { value: "hcgmusp", label: "HCFMUSP - Hospital das Clínicas da Faculdade de Medicina de São Paulo" },
+  { value: "hcrp", label: "HCRP - Hospital das Clínicas da Faculdade de Medicina de Ribeirão Preto" },
+  { value: "iamspe", label: "IAMSPE - Instituto de assistência médica ao servidor Público Estadual de S. Paulo" },
+  { value: "others", label: "Outros" },
+]
+
 export function PublicServerCustomerIsStateOptions({
   formControl
 }: PublicServerCustomerIsStateOptionsProps) {
+  const id = useId();
+  const [open, setOpen] = useState<boolean>(false);
+  const [label, setLabel] = useState<string>("");
+
   return (
-    <FormField
-      control={formControl}
-      name="isStatePublicServer"
-      render={({ field }) => (
-        <FormItem className="py-4 space-y-3">
-          <FormLabel>
-            Qual autarquia você pertence?
-          </FormLabel>
-          <FormControl>
-            <RadioGroup
-              onValueChange={field.onChange}
-              defaultValue={field.value}
-              className="flex flex-col"
-            >
-              <FormItem className="flex items-center gap-x-2">
-                <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="pmsp" />
-                </FormControl>
-                <FormLabel className="font-normal pb-1">
-                  PMSP - Polícia Militar
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-x-2">
-                <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="sefaz" />
-                </FormControl>
-                <FormLabel className="font-normal pb-1">
-                  SEFAZ - Secretaria da Fazenda e Planejamento
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-x-2">
-                <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="spprev" />
-                </FormControl>
-                <FormLabel className="font-normal pb-1">
-                  SPPREV - Aposentados
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-x-2">
-                <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="hcgmusp" />
-                </FormControl>
-                <FormLabel className="font-normal pb-1">
-                  HCFMUSP - Hopital das Clínicas da Faculdade de Medicina de São Paulo.
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-x-2">
-                <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="hcrp" />
-                </FormControl>
-                <FormLabel className="font-normal pb-1">
-                  HCRP - Hospital das Clínicas da Faculdade de Medicina de Ribeirão Preto.
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-x-2">
-                <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="iamspe" />
-                </FormControl>
-                <FormLabel className="font-normal pb-1">
-                  IAMSPE - Instituto de assistência médica ao servidor Público Estadual de S. Paulo.
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-x-2">
-                <FormControl>
-                  <RadioGroupItem className="border-[#555]" value="others" />
-                </FormControl>
-                <FormLabel className="font-normal pb-1">
-                  Outros
-                </FormLabel>
-              </FormItem>
-            </RadioGroup>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
+    <>
+      <div className="hidden md:block">
+        <FormField
+          control={formControl}
+          name="isStatePublicServer"
+          render={({ field }) => (
+            <FormItem className="py-4 space-y-3">
+              <FormLabel>Qual autarquia você pertence?</FormLabel>
+              <FormControl>
+                <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col">
+                  {options.map((option) => (
+                    <FormItem key={option.value} className="flex items-center gap-x-2">
+                      <FormControl>
+                        <RadioGroupItem className="border-[#555]" value={option.value} />
+                      </FormControl>
+                      <FormLabel className="font-normal pb-1">{option.label}</FormLabel>
+                    </FormItem>
+                  ))}
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
+
+      <div className="md:hidden">
+        <FormField
+          control={formControl}
+          name="isStatePublicServer"
+          render={({ field }) => (
+            <FormItem className="py-4 space-y-3">
+              <FormLabel>Qual autarquia você pertence?</FormLabel>
+              <FormControl>
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      id={id}
+                      type="button"
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={open}
+                      className="bg-background hover:bg-background border-input w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]"
+                    >
+                      <span className={cn("truncate", !label && "text-muted-foreground")}>
+                        {label
+                          ? options.find((option) => option.label === label)
+                            ?.label
+                          : "Escolher autarquia"}
+                      </span>
+                      <ChevronDownIcon
+                        size={16}
+                        className="text-muted-foreground/80 shrink-0"
+                        aria-hidden="true"
+                      />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="border-input w-full min-w-[var(--radix-popper-anchor-width)] p-0"
+                    align="start"
+                  >
+                    <Command className="max-w-xs">
+                      <CommandInput placeholder="Procurar..." />
+                      <CommandList>
+                        <CommandEmpty>Nenhum resultado encontrado.</CommandEmpty>
+                        <CommandGroup>
+                          {options.map((option) => (
+                            <CommandItem
+                              key={option.label}
+                              value={option.label}
+                              onSelect={(currentValue) => {
+                                setLabel(currentValue === label ? "" : currentValue)
+                                setOpen(false)
+                              }}
+                              className="cursor-pointer"
+                            >
+                              <CheckIcon
+                                className={cn(
+                                  "mr-2 size-4",
+                                  field.value === option.value ? "opacity-100" : "opacity-0"
+                                )}
+                              />
+                              <span className="text-xs">{option.label}</span>
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
+    </>
   )
 }
