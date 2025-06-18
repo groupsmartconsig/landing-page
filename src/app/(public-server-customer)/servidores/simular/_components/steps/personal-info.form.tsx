@@ -11,6 +11,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useStepper } from "@/hooks/use-stepper";
+import { maskCPF } from "@/utils/mask/mask-cpf";
+import { maskFullName } from "@/utils/mask/mask-full-name";
+import { maskPhone } from "@/utils/mask/mask-phone";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { PublicServerCustomerSchema } from "../form";
@@ -28,9 +31,7 @@ export function PublicServerCustomerPersonalInfoForm() {
     if (name && phoneNumber && document) {
       const timer = setTimeout(async () => {
         const isValid = await form.trigger("publicServerCustomerPersonal");
-        if (isValid) {
-          nextStep();
-        }
+        if (isValid) nextStep();
       }, 1000);
 
       return () => clearTimeout(timer);
@@ -41,6 +42,21 @@ export function PublicServerCustomerPersonalInfoForm() {
     const isValid = await form.trigger("publicServerCustomerPersonal");
     if (isValid) nextStep();
   }
+
+  const handleNameChange = (value: string) => {
+    const maskedValue = maskFullName(value);
+    return maskedValue;
+  };
+
+  const handlePhoneChange = (value: string) => {
+    const maskedValue = maskPhone(value);
+    return maskedValue;
+  };
+
+  const handleCPFChange = (value: string) => {
+    const maskedValue = maskCPF(value);
+    return maskedValue;
+  };
 
   return (
     <div className="grid grid-cols-1 items-center py-6 sm:py-12 md:py-16">
@@ -60,9 +76,17 @@ export function PublicServerCustomerPersonalInfoForm() {
             </FormLabel>
             <FormControl>
               <Input
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                maxLength={100}
                 placeholder="Informe seu nome"
                 className="px-0 border-x-0 border-t-0 border-b rounded-none"
                 {...field}
+                onChange={(e) => {
+                  const maskedValue = handleNameChange(e.target.value);
+                  field.onChange(maskedValue);
+                }}
               />
             </FormControl>
             <FormMessage />
@@ -80,9 +104,18 @@ export function PublicServerCustomerPersonalInfoForm() {
             </FormLabel>
             <FormControl>
               <Input
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                inputMode="numeric"
+                maxLength={15}
                 placeholder="Informe um telefone válido"
                 className="px-0 border-x-0 border-t-0 border-b rounded-none"
                 {...field}
+                onChange={(e) => {
+                  const maskedValue = handlePhoneChange(e.target.value);
+                  field.onChange(maskedValue);
+                }}
               />
             </FormControl>
             <FormMessage />
@@ -100,9 +133,18 @@ export function PublicServerCustomerPersonalInfoForm() {
             </FormLabel>
             <FormControl>
               <Input
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                inputMode="numeric"
+                maxLength={14}
                 placeholder="Informe seu CPF"
                 className="px-0 border-x-0 border-t-0 border-b rounded-none"
                 {...field}
+                onChange={(e) => {
+                  const maskedValue = handleCPFChange(e.target.value);
+                  field.onChange(maskedValue);
+                }}
               />
             </FormControl>
             <FormMessage />

@@ -31,7 +31,14 @@ export function PublicServerCustomerSimulationForm() {
   const [currentStep, setCurrentStep] = useState(0);
 
   const form = useForm<PublicServerCustomerSchema>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      publicServerCustomerPersonal: {
+        name: "",
+        phoneNumber: "",
+        cpf: ""
+      }
+    }
   });
 
   return (
