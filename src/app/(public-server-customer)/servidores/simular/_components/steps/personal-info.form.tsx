@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useStepper } from "@/hooks/use-stepper";
+import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { PublicServerCustomerSchema } from "../form";
 
@@ -18,6 +19,23 @@ export function PublicServerCustomerPersonalInfoForm() {
   const form = useFormContext<PublicServerCustomerSchema>();
 
   const { nextStep } = useStepper();
+
+  const name = form.watch("publicServerCustomerPersonal.name");
+  const phoneNumber = form.watch("publicServerCustomerPersonal.phoneNumber");
+  const document = form.watch("publicServerCustomerPersonal.cpf");
+
+  useEffect(() => {
+    if (name && phoneNumber && document) {
+      const timer = setTimeout(async () => {
+        const isValid = await form.trigger("publicServerCustomerPersonal");
+        if (isValid) {
+          nextStep();
+        }
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [name, phoneNumber, document, form, nextStep]);
 
   async function handleNextStep() {
     const isValid = await form.trigger("publicServerCustomerPersonal");

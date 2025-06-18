@@ -16,7 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useStepper } from "@/hooks/use-stepper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { PublicServerCustomerSchema } from "../form";
 import { PublicServerCustomerIsArmedForcesOptions } from "./public-server-options/is-armed-forces-options";
@@ -34,6 +34,31 @@ export function PublicServerCustomerInfoForm() {
 
   const { nextStep } = useStepper();
 
+  const publicServerType = form.watch("publicServerCustomerInfoForm.publicServerType");
+  const federal = form.watch("publicServerCustomerInfoForm.isFederalPublicServer");
+  const municipal = form.watch("publicServerCustomerInfoForm.isMunicipalPublicServer");
+  const state = form.watch("publicServerCustomerInfoForm.isStatePublicServer");
+  const armedForces = form.watch("publicServerCustomerInfoForm.isArmedForcesPublicServer");
+
+  useEffect(() => {
+    const shouldAutoAdvance =
+      (publicServerType === "federal" && federal) ||
+      (publicServerType === "state" && state) ||
+      (publicServerType === "municipal" && municipal) ||
+      (publicServerType === "armedForces" && armedForces);
+
+    if (shouldAutoAdvance) {
+      const timer = setTimeout(async () => {
+        const isValid = await form.trigger("publicServerCustomerInfoForm");
+        if (isValid) {
+          nextStep();
+        }
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [publicServerType, federal, municipal, state, armedForces, form, nextStep]);
+
   async function handleNextStep() {
     const isValid = await form.trigger("publicServerCustomerInfoForm");
     if (isValid) nextStep();
@@ -44,7 +69,7 @@ export function PublicServerCustomerInfoForm() {
       <h1 className="text-xl font-medium">Perguntas</h1>
       <FormField
         control={form.control}
-        name="publicServerCustomerInfoForm"
+        name="publicServerCustomerInfoForm.publicServerType"
         render={({ field }) => (
           <FormItem className="py-4 space-y-3">
             <FormLabel>

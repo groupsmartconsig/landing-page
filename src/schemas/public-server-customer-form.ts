@@ -2,6 +2,12 @@ import { isValidCpf } from "@/utils/mask/mask-cpf";
 import { z } from "zod";
 
 export const publicServerCustomerInfoFormSchema = z.object({
+  publicServerType: z.enum([
+    "federal",
+    "state",
+    "municipal",
+    "armedForces"
+  ], { message: "Escolha um tipo de servidor público." }),
   isStatePublicServer: z.enum([
     "pmsp",
     "sefaz",
@@ -10,7 +16,7 @@ export const publicServerCustomerInfoFormSchema = z.object({
     "hcrp",
     "iamspe",
     "others"
-  ], { message: "Escolha uma autarquia." }),
+  ], { message: "Escolha uma autarquia." }).optional(),
   isFederalPublicServer: z.enum([
     "publicServant",
     "permanentAssets",
@@ -19,7 +25,7 @@ export const publicServerCustomerInfoFormSchema = z.object({
     "commissionedPosition",
     "temporaryPosition",
     "others"
-  ], { message: "Escolha uma esfera federal." }),
+  ], { message: "Escolha uma esfera federal." }).optional(),
   isMunicipalPublicServer: z.enum([
     "competitiveExam",
     "permanentAssets",
@@ -28,18 +34,18 @@ export const publicServerCustomerInfoFormSchema = z.object({
     "commissionedPosition",
     "temporaryPosition",
     "others"
-  ], { message: "Escolha uma esfera municipal." }),
+  ], { message: "Escolha uma esfera municipal." }).optional(),
   isArmedForcesPublicServer: z.enum([
     "activeMilitar",
     "paidReservation",
     "retired",
     "pensioners",
     "others"
-  ], { message: "Escolha uma categoria das forças armadas." })
+  ], { message: "Escolha uma categoria das forças armadas." }).optional()
 });
 
 export const publicServerCustomerFinancialSchema = z.object({
-  hasAPayrollCard: z.boolean({ message: "Escolha uma opção." }),
+  hasAPayrollCard: z.enum(["yes", "no"], { message: "Escolha uma opção." }),
   currentBank: z.string().min(1, "Informe o banco que está descontando.")
 });
 
@@ -64,3 +70,12 @@ export const publicServerCustomerPersonalSchema = z.object({
       message: "Informe um CPF válido.",
     }),
 });
+
+// Schema principal que combina todos
+export const PublicServerCustomerSchema = z.object({
+  publicServerCustomerInfoForm: publicServerCustomerInfoFormSchema,
+  publicServerCustomerFinancial: publicServerCustomerFinancialSchema,
+  publicServerCustomerPersonal: publicServerCustomerPersonalSchema
+});
+
+export type PublicServerCustomerSchema = z.infer<typeof PublicServerCustomerSchema>;

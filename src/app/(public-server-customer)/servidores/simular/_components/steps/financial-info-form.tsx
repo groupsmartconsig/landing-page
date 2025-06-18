@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useStepper } from "@/hooks/use-stepper";
+import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { PublicServerCustomerSchema } from "../form";
 
@@ -23,6 +24,20 @@ export function PublicServerCustomerFinancialInfoForm() {
   const form = useFormContext<PublicServerCustomerSchema>();
 
   const { nextStep } = useStepper();
+
+  const hasPayrollCard = form.watch("publicServerCustomerFinancial.hasAPayrollCard");
+  const currentBank = form.watch("publicServerCustomerFinancial.currentBank");
+
+  useEffect(() => {
+    if (hasPayrollCard && currentBank) {
+      const timer = setTimeout(async () => {
+        const isValid = await form.trigger("publicServerCustomerFinancial");
+        if (isValid) nextStep();
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [hasPayrollCard, currentBank, form, nextStep]);
 
   async function handleNextStep() {
     const isValid = await form.trigger("publicServerCustomerFinancial");
