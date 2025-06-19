@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  publicServerCustomerDocumentUploadSchema,
   publicServerCustomerFinancialSchema,
   publicServerCustomerInfoFormSchema,
   publicServerCustomerPersonalSchema
@@ -24,6 +25,7 @@ const formSchema = z.object({
   publicServerCustomerInfoForm: publicServerCustomerInfoFormSchema,
   publicServerCustomerFinancial: publicServerCustomerFinancialSchema,
   publicServerCustomerPersonal: publicServerCustomerPersonalSchema,
+  publicServerCustomerDocumentUpload: publicServerCustomerDocumentUploadSchema,
 });
 
 export type PublicServerCustomerSchema = z.infer<typeof formSchema>;

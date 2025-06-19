@@ -71,11 +71,30 @@ export const publicServerCustomerPersonalSchema = z.object({
     }),
 });
 
-// Schema principal que combina todos
+export const publicServerCustomerDocumentUploadSchema = z.object({
+  file: z
+    .instanceof(File, {
+      message: "É obrigatório anexar um arquivo"
+    })
+    .refine(
+      (file) => file.type === "application/pdf",
+      {
+        message: "Apenas arquivos PDF são permitidos"
+      }
+    )
+    .refine(
+      (file) => file.size <= 10 * 1024 * 1024, // 10MB
+      {
+        message: "O arquivo deve ter no máximo 10MB"
+      }
+    )
+});
+
 export const PublicServerCustomerSchema = z.object({
   publicServerCustomerInfoForm: publicServerCustomerInfoFormSchema,
   publicServerCustomerFinancial: publicServerCustomerFinancialSchema,
-  publicServerCustomerPersonal: publicServerCustomerPersonalSchema
+  publicServerCustomerPersonal: publicServerCustomerPersonalSchema,
+  publicServerCustomerDocumentUpload: publicServerCustomerDocumentUploadSchema
 });
 
 export type PublicServerCustomerSchema = z.infer<typeof PublicServerCustomerSchema>;

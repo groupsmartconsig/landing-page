@@ -1,41 +1,83 @@
 "use client"
 
+import {
+  AlertCircleIcon,
+  CheckCircleIcon,
+  CloudUploadIcon
+} from "lucide-react";
+
 import { Button } from "@/components/ui/button";
+import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useStepper } from "@/hooks/use-stepper";
-import { CloudUploadIcon } from "lucide-react";
+import { PublicServerCustomerSchema } from "@/schemas/public-server-customer-form";
 import { useState } from "react";
+import { useFormContext } from "react-hook-form";
 
 export function PublicServerCustomerUploadDocumentForm() {
-  const [_, setFile] = useState<File | null>(null)
-  const [isDragging, setIsDragging] = useState(false)
+  const [isDragging, setIsDragging] = useState(false);
+  const [fileError, setFileError] = useState<string>("");
+
+  const form = useFormContext<PublicServerCustomerSchema>();
+
+  const { nextStep } = useStepper();
+
+  const validateFile = (file: File): string | null => {
+    if (file.type !== "application/pdf") {
+      return "Apenas arquivos PDF são permitidos";
+    }
+
+    if (file.size > 10 * 1024 * 1024) { // 10MB
+      return "O arquivo deve ter no máximo 10MB";
+    }
+
+    return null;
+  };
+
+  const handleFileSelection = (file: File) => {
+    const error = validateFile(file);
+
+    if (error) {
+      setFileError(error);
+      form.setValue("publicServerCustomerDocumentUpload.file", undefined as any);
+    } else {
+      setFileError("");
+      form.setValue("publicServerCustomerDocumentUpload.file", file);
+      form.trigger("publicServerCustomerDocumentUpload.file");
+    }
+  };
 
   const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(true)
-  }
+    e.preventDefault();
+    setIsDragging(true);
+  };
 
   const handleDragLeave = () => {
-    setIsDragging(false)
-  }
+    setIsDragging(false);
+  };
 
   const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(false)
+    e.preventDefault();
+    setIsDragging(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      setFile(e.dataTransfer.files[0])
+      handleFileSelection(e.dataTransfer.files[0]);
     }
-  }
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setFile(e.target.files[0])
+      handleFileSelection(e.target.files[0]);
     }
-  }
+  };
 
-  const { nextStep } = useStepper();
+  const handleNext = async () => {
+    const isValid = await form.trigger("publicServerCustomerDocumentUpload.file");
+    if (isValid) nextStep();
+  };
+
+  const currentFile = form.watch("publicServerCustomerDocumentUpload.file");
 
   return (
     <div className="grid grid-cols-1 items-center py-6 sm:py-12 md:py-16">
@@ -44,40 +86,80 @@ export function PublicServerCustomerUploadDocumentForm() {
       </h1>
 
       <div className="px-2 mt-4">
-        <div
-          className={`border-2 ${isDragging ? "border-secondary-red" : "border-muted-"} rounded-lg p-6 flex flex-col items-center justify-center`}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-        >
-          <CloudUploadIcon className="text-secondary-red size-12" />
+        <FormField
+          control={form.control}
+          name="publicServerCustomerDocumentUpload.file"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <div
+                  className={`border-2 ${isDragging
+                    ? "border-secondary-red"
+                    : currentFile
+                      ? "border-green-500"
+                      : "border-muted-foreground"
+                    } rounded-lg p-6 flex flex-col items-center justify-center transition-colors`}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                >
+                  {currentFile ? (
+                    <CheckCircleIcon className="text-green-500 size-12" />
+                  ) : (
+                    <CloudUploadIcon className="text-secondary-red size-12" />
+                  )}
 
-          <span className="text-[#555] text-xl font-medium mb-1">
-            Arraste o arquivo aqui
-          </span>
+                  <span className="text-[#555] text-xl font-medium mb-1">
+                    {currentFile ? "Arquivo selecionado" : "Arraste o arquivo aqui"}
+                  </span>
 
-          <p className="w-64 text-muted-foreground text-xs text-center mb-4">
-            Arraste e solte o arquivo aqui ou navegue pelo seu dispositivo
-          </p>
+                  <p className="w-64 text-muted-foreground text-xs text-center mb-4">
+                    {currentFile
+                      ? `${currentFile.name} (${(currentFile.size / 1024 / 1024).toFixed(2)} MB)`
+                      : "Arraste e solte o arquivo PDF aqui ou navegue pelo seu dispositivo"
+                    }
+                  </p>
 
-          <Label htmlFor="file-upload">
-            <div className="bg-secondary-red text-xs text-white px-4 py-2 rounded cursor-pointer">
-              Procurar arquivo
-            </div>
+                  <Label htmlFor="file-upload">
+                    <div className="bg-secondary-red text-xs text-white px-4 py-2 rounded cursor-pointer hover:bg-secondary-red/90 transition-colors">
+                      {currentFile ? "Alterar arquivo" : "Procurar arquivo PDF"}
+                    </div>
 
-            <Input
-              id="file-upload"
-              type="file"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-          </Label>
-        </div>
+                    <Input
+                      id="file-upload"
+                      type="file"
+                      accept=".pdf,application/pdf"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+                  </Label>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {fileError && (
+          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
+            <AlertCircleIcon className="size-4 text-secondary-red flex-shrink-0" />
+            <p className="text-sm text-secondary-red">{fileError}</p>
+          </div>
+        )}
+
+        {currentFile && !fileError && (
+          <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2">
+            <CheckCircleIcon className="size-4 text-green-500 flex-shrink-0" />
+            <p className="text-sm text-green-700">
+              ✓ Arquivo PDF válido selecionado
+            </p>
+          </div>
+        )}
       </div>
 
       <p className="text-xs text-muted-foreground py-6">
         <strong className="text-black">
-          Anexe seu contracheque mais recente:
+          Anexe seu contracheque mais recente (apenas PDF):
         </strong> <br />
         Utilizaremos este documento apenas para validar os dados do seu contrato consignado. Garantimos o uso seguro e sigiloso das suas informações.
       </p>
@@ -86,12 +168,12 @@ export function PublicServerCustomerUploadDocumentForm() {
         <Button
           type="button"
           size="lg"
-          className="w-full h-14 bg-secondary-red rounded-sm mt-6 sm:h-10 sm:w-72 sm:text-sm sm:rounded sm:mt-12"
-          onClick={() => nextStep()}
+          className="w-full h-14 bg-secondary-red rounded-sm mt-6 sm:h-10 sm:w-72 sm:text-sm sm:rounded sm:mt-12 hover:bg-secondary-red/90 transition-colors"
+          onClick={handleNext}
         >
           Próximo
         </Button>
       </div>
     </div>
-  )
+  );
 }
