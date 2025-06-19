@@ -1,3 +1,5 @@
+"use client"
+
 import logoWhiteImg from "@/app/assets/images/logo-white.png";
 import Image from "next/image";
 import Link from "next/link";
