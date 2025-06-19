@@ -8,7 +8,7 @@ import {
 
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { PublicServerCustomerStepper } from "./stepper";
@@ -17,6 +17,7 @@ import { PublicServerCustomerPersonalInfoForm } from "./steps/personal-info.form
 import { PublicServerCustomerPolicyInfoForm } from "./steps/policy-info-form";
 import { PublicServerCustomerInfoForm } from "./steps/public-server-info-form";
 import { PublicServerCustomerSuccessfulStepContent } from "./steps/successful-step-content";
+import { PublicServerCustomerUnsuccessfulStepContent } from "./steps/unsuccessful-step-content";
 import { PublicServerCustomerUploadDocumentForm } from "./steps/upload-document-form";
 
 const formSchema = z.object({
@@ -29,6 +30,7 @@ export type PublicServerCustomerSchema = z.infer<typeof formSchema>;
 
 export function PublicServerCustomerSimulationForm() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isAValidCustomer, setIsAValidCustomer] = useState(false);
 
   const form = useForm<PublicServerCustomerSchema>({
     resolver: zodResolver(formSchema),
@@ -41,6 +43,51 @@ export function PublicServerCustomerSimulationForm() {
     }
   });
 
+  const validateCustomerEligibility = () => {
+    const formData = form.getValues();
+    const hasAPayrollCard = formData.publicServerCustomerFinancial?.hasAPayrollCard;
+    const selectedBank = formData.publicServerCustomerFinancial?.currentBank;
+    const isFederal = formData.publicServerCustomerInfoForm.isFederalPublicServer;
+    const isMunicipal = formData.publicServerCustomerInfoForm.isMunicipalPublicServer;
+    const isState = formData.publicServerCustomerInfoForm.isStatePublicServer;
+    const isArmedForces = formData.publicServerCustomerInfoForm.isArmedForcesPublicServer;
+    let isValid = true;
+
+    if (
+      isFederal === "commissionedPosition" ||
+      isFederal === "temporaryPosition" ||
+      isFederal === "clt" ||
+      isFederal === "others"
+    ) {
+      isValid = false;
+    }
+
+    if (
+      isMunicipal === "commissionedPosition" ||
+      isMunicipal === "temporaryPosition" ||
+      isMunicipal === "CLT/Celetista" ||
+      isMunicipal === "others"
+    ) {
+      isValid = false;
+    }
+
+    if (isState === "others") isValid = false;
+    if (isArmedForces === "others") isValid = false;
+    if (hasAPayrollCard === "no") isValid = false;
+    if (selectedBank === "outro") isValid = false;
+
+    setIsAValidCustomer(isValid);
+  };
+
+  const watchedFields = form.watch([
+    "publicServerCustomerInfoForm",
+    "publicServerCustomerFinancial"
+  ]);
+
+  useEffect(() => {
+    validateCustomerEligibility();
+  }, [watchedFields]);
+
   return (
     <Form {...form}>
       <form>
@@ -52,11 +99,15 @@ export function PublicServerCustomerSimulationForm() {
             },
             {
               title: "Suas informações",
-              content: <PublicServerCustomerFinancialInfoForm />
+              content: isAValidCustomer ?
+                <PublicServerCustomerFinancialInfoForm /> :
+                <PublicServerCustomerUnsuccessfulStepContent />
             },
             {
               title: "Suas informações",
-              content: <PublicServerCustomerPersonalInfoForm />
+              content: isAValidCustomer ?
+                <PublicServerCustomerPersonalInfoForm /> :
+                <PublicServerCustomerUnsuccessfulStepContent />
             },
             {
               title: "Suas informações",
