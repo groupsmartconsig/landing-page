@@ -15,13 +15,15 @@ export function InstitutionalHeader() {
   return (
     <header className="w-full">
       <div className="flex justify-between items-center py-4 px-6 sm:px-8 md:px-12">
-        <Image
-          src={logoRedImg}
-          width={400}
-          height={180}
-          className="w-1/4 sm:w-[6%]"
-          alt="Logo da Smartconsig na cor vermelha"
-        />
+        <Link href="/">
+          <Image
+            src={logoRedImg}
+            width={400}
+            height={180}
+            className="w-1/5 sm:w-1/4"
+            alt="Logo da Smartconsig na cor vermelha"
+          />
+        </Link>
 
         <InstitutionalNavigationMenu />
 
