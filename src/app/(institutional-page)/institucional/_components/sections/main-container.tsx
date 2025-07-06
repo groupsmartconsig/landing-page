@@ -1,0 +1,47 @@
+import Image from "next/image";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
+export function InstitutionalMainContainer() {
+  return (
+    <div className="grid grid-cols-1">
+      <div className="size-full md:hidden">
+        <Image
+          src="/women.png"
+          width={1536}
+          height={1024}
+          alt="Mulher sorrindo no telefone"
+          className="w-full"
+        />
+      </div>
+
+      <section className="flex flex-col bg-transparent py-6 md:bg-[url(/women.png)] md:bg-cover md:bg-no-repeat md:size-full md:mb-16 lg:mb-20">
+        <div className="md:max-w-6xl md:w-full md:mx-auto">
+          <div className="space-y-8 mt-28 md:mt-44">
+            <Badge variant="outline" className="text-white">
+              Benefícios
+            </Badge>
+
+            <h1 className="text-[22px] text-white md:max-w-xl md:text-4xl">
+              Um novo cartão, mais vantagens para servidores públicos
+            </h1>
+
+            <p className="text-muted-foreground font-medium md:max-w-xl md:text-[19px] md:text-white">
+              Chegou a hora de deixar pra trás o cartão antigo com juros altos e conhecer o Cartão Benefício Smart. Uma solução mais leve, moderna e cheia de vantagens: descontos em farmácias, clube de vantagens, possibilidade de saque e zero anuidade — tudo com desconto direto na folha e muito mais controle.
+            </p>
+          </div>
+
+          <div className="flex items-center w-full py-8">
+            <Button
+              type="button"
+              className="w-full bg-secondary-red rounded sm:w-72 sm:h-11"
+            >
+              Quero conhecer os benefícios
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

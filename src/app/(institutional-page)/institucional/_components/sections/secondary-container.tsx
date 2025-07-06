@@ -44,7 +44,7 @@ const features: FeaturesProps[] = [
 export function InstitutionalSecondaryContainer() {
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 p-6 md:max-w-5xl md:w-full md:mx-auto lg:py-12 2xl:py-24">
+      <div className="grid grid-cols-1 p-6 md:max-w-5xl md:w-full md:mx-auto lg:py-12 2xl:py-16">
         <div className="py-4 space-y-6">
           <h4 className="max-w-xs w-full text-lg text-black font-medium">
             Smart Consig: praticidade, segurança e juros mais baixos
