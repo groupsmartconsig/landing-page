@@ -7,6 +7,16 @@ import { ChevronRightIcon } from "lucide-react";
 export function InstitutionalCardingContainer() {
   return (
     <div className="grid grid-cols-1 px-6 pb-6 md:grid-cols-2 md:h-[460px] md:max-w-5xl md:w-full md:mx-auto md:px-0 md:py-12">
+      <div className="size-full pt-12 pb-6 sm:hidden">
+        <Image
+          src="/carding.png"
+          width={4800}
+          height={2700}
+          alt="Imagem ilustrativa de um cartão de crédito na cor preta"
+          className="w-full"
+        />
+      </div>
+
       <div className="space-y-4 md:py-6">
         <h2 className="text-lg text-black font-medium">
           Cartão Benefício Smart Consig
@@ -57,7 +67,7 @@ export function InstitutionalCardingContainer() {
         </Link>
       </div>
 
-      <div className="size-full py-6">
+      <div className="hidden sm:block size-full py-6">
         <Image
           src="/carding.png"
           width={4800}

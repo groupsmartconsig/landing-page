@@ -1,21 +1,10 @@
-import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export function InstitutionalMainContainer() {
   return (
-    <div className="grid grid-cols-1">
-      <div className="size-full md:hidden">
-        <Image
-          src="/women.png"
-          width={1536}
-          height={1024}
-          alt="Mulher sorrindo no telefone"
-          className="w-full"
-        />
-      </div>
-
+    <div className="hidden sm:grid grid-cols-1">
       <section className="flex flex-col py-6 bg-[#121212] md:bg-[url(/women.png)] md:bg-cover md:bg-center md:bg-no-repeat md:size-full md:mb-16 lg:mb-20">
         <div className="xl:max-w-6xl xl:w-full xl:mx-auto">
           <div className="space-y-8 mt-28 md:mt-44">

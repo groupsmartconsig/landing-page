@@ -11,7 +11,7 @@ import {
 
 export function InstitutionalFooterContainer() {
   return (
-    <div className="bg-[#f5f5f6] size-full flex flex-col items-center justify-center py-12 overflow-hidden">
+    <div className="bg-[#f5f5f6] size-full flex flex-col items-center justify-center pt-12 pb-48 sm:py-12 sm:overflow-hidden">
       <div className="w-full flex justify-between items-center px-12 lg:max-w-7xl lg:w-full lg:mx-auto lg:px-0">
         <div className="hidden sm:flex flex-col space-y-6">
           <Image
@@ -62,7 +62,7 @@ export function InstitutionalFooterContainer() {
                 CNPJ: 37.044.794/0001-03
               </small>
             </div>
-            <div className="flex flex-col space-y-3">
+            <div className="hidden sm:flex flex-col space-y-3">
               <span className="text-lg font-bold text-primary-red">
                 Redes sociais
               </span>

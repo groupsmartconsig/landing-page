@@ -3,7 +3,7 @@ import { ArrowUpRightFromSquareIcon } from "lucide-react";
 
 export function InstitutionalWorkWithUsContainer() {
   return (
-    <div className="bg-[#121212] w-full">
+    <div className="hidden sm:flex bg-[#121212] w-full">
       <section className="p-6 md:max-w-3xl md:w-full md:mx-auto">
         <div className="flex flex-col space-y-6 py-6 md:flex-row md:justify-between md:items-center md:space-y-0">
           <h2 className="max-w-sm w-full text-xl text-white font-semibold lg:text-2xl">

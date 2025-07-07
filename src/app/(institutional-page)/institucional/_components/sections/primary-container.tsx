@@ -17,12 +17,12 @@ export function InstitutionalPrimaryContainer() {
 
       <section className="flex flex-col bg-[#121212] p-6 md:bg-[url(/old-man-phone.jpg)] md:bg-cover md:bg-no-repeat md:h-[720px]">
         <div className="md:max-w-6xl md:w-full md:mx-auto">
-          <div className="space-y-8 md:mt-40">
-            <h1 className="text-[22px] text-black md:max-w-xl md:text-4xl">
+          <div className="space-y-4 sm:space-y-8 md:mt-40">
+            <h1 className="text-[22px] text-white sm:text-black md:max-w-xl md:text-4xl">
               Pra cada conquista, conte com a gente
             </h1>
 
-            <p className="text-[#555] font-medium md:max-w-xl md:text-lg">
+            <p className="text-white font-light sm:text-[#555] sm:font-medium md:max-w-xl md:text-lg">
               Oferecemos crédito, orientação e apoio pra transformar sonhos em realidade - com respeito, transparência e foco no que importa: você.
             </p>
           </div>

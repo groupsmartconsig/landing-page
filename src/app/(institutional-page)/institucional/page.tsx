@@ -11,7 +11,7 @@ import { InstitutionalWorkWithUsContainer } from "./_components/sections/work-wi
 
 export default function InstitutionalPage() {
   return (
-    <div className="min-h-screen overflow-hidden">
+    <div className="min-h-screen">
       <InstitutionalHeader />
       <InstitutionalPrimaryContainer />
       <InstitutionalSecondaryContainer />
