@@ -16,7 +16,7 @@ export function InstitutionalPrimaryContainer() {
     <div className="grid grid-cols-1">
       <div className="size-full md:hidden">
         <Image
-          src="/container-primary.png"
+          src="/old-man-phone.jpg"
           width={1536}
           height={1024}
           alt="Homem sorrindo no telefone"
@@ -24,13 +24,13 @@ export function InstitutionalPrimaryContainer() {
         />
       </div>
 
-      <section className="flex flex-col bg-[#121212] p-6 md:bg-[url(/container-primary.png)] md:bg-cover md:bg-no-repeat md:h-[720px]">
+      <section className="flex flex-col bg-[#121212] p-6 md:bg-[url(/old-man-phone.jpg)] md:bg-cover md:bg-no-repeat md:h-[720px]">
         <div className="md:max-w-6xl md:w-full md:mx-auto">
-          <Breadcrumb className="pb-6 md:pt-8 lg:pt-16">
+          <Breadcrumb className="pb-6 md:pt-8 lg:pt-20">
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/servidores" className="flex items-center gap-0.5 text-white">
+                  <Link href="/servidores" className="flex items-center gap-0.5 text-black">
                     <HomeIcon className="size-4" />
                     Home
                   </Link>
@@ -40,11 +40,11 @@ export function InstitutionalPrimaryContainer() {
           </Breadcrumb>
 
           <div className="space-y-8 md:mt-36 lg:mt-28">
-            <h1 className="text-[22px] text-white md:max-w-xl md:text-4xl">
+            <h1 className="text-[22px] text-black md:max-w-xl md:text-4xl">
               Pra cada conquista, conte com a gente
             </h1>
 
-            <p className="text-muted-foreground font-medium md:max-w-xl md:text-lg md:text-white">
+            <p className="text-[#555] font-medium md:max-w-xl md:text-lg">
               Oferecemos crédito, orientação e apoio pra transformar sonhos em realidade - com respeito, transparência e foco no que importa: você.
             </p>
           </div>

@@ -20,7 +20,7 @@ export function InstitutionalHeader() {
             src={logoRedImg}
             width={400}
             height={180}
-            className="w-1/5 sm:w-1/4"
+            className="w-1/5 lg:w-1/2 2xl:w-1/4"
             alt="Logo da Smartconsig na cor vermelha"
           />
         </Link>
