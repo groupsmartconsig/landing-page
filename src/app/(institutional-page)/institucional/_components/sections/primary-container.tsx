@@ -1,15 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList
-} from "@/components/ui/breadcrumb";
 
 import { Button } from "@/components/ui/button";
-import { HomeIcon } from "lucide-react";
 
 export function InstitutionalPrimaryContainer() {
   return (
@@ -26,20 +17,7 @@ export function InstitutionalPrimaryContainer() {
 
       <section className="flex flex-col bg-[#121212] p-6 md:bg-[url(/old-man-phone.jpg)] md:bg-cover md:bg-no-repeat md:h-[720px]">
         <div className="md:max-w-6xl md:w-full md:mx-auto">
-          <Breadcrumb className="pb-6 md:pt-8 lg:pt-20">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="/servidores" className="flex items-center gap-0.5 text-black">
-                    <HomeIcon className="size-4" />
-                    Home
-                  </Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-
-          <div className="space-y-8 md:mt-36 lg:mt-28">
+          <div className="space-y-8 md:mt-40">
             <h1 className="text-[22px] text-black md:max-w-xl md:text-4xl">
               Pra cada conquista, conte com a gente
             </h1>

@@ -1,4 +1,4 @@
-import { FooterContainer } from "@/components/shared/footer";
+import { InstitutionalFooterContainer } from "./_components/footer/footer";
 import { InstitutionalHeader } from "./_components/header/header";
 import { InstitutionalCompanyContainer } from "./_components/sections/company-container";
 import { InstitutionalMainContainer } from "./_components/sections/main-container";
@@ -19,7 +19,7 @@ export default function InstitutionalPage() {
       <InstitutionalCompanyContainer />
       <InstitutionalSquadContainer />
       <InstitutionalWorkWithUsContainer />
-      <FooterContainer />
+      <InstitutionalFooterContainer />
     </div>
   )
 }

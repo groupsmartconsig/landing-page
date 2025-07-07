@@ -16,10 +16,10 @@ export function InstitutionalMainContainer() {
         />
       </div>
 
-      <section className="flex flex-col bg-transparent py-6 md:bg-[url(/women.png)] md:bg-cover md:bg-no-repeat md:size-full md:mb-16 lg:mb-20">
-        <div className="md:max-w-6xl md:w-full md:mx-auto">
+      <section className="flex flex-col py-6 bg-[#121212] md:bg-[url(/women.png)] md:bg-cover md:bg-center md:bg-no-repeat md:size-full md:mb-16 lg:mb-20">
+        <div className="xl:max-w-6xl xl:w-full xl:mx-auto">
           <div className="space-y-8 mt-28 md:mt-44">
-            <Badge variant="outline" className="text-white">
+            <Badge variant="outline" className="text-secondary-red border-secondary-red">
               Benefícios
             </Badge>
 
