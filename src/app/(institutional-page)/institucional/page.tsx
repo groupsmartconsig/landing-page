@@ -1,5 +1,6 @@
 import { InstitutionalFooterContainer } from "./_components/footer/footer";
 import { InstitutionalHeader } from "./_components/header/header";
+import { InstitutionalCardingContainer } from "./_components/sections/carding-container";
 import { InstitutionalCompanyContainer } from "./_components/sections/company-container";
 import { InstitutionalMainContainer } from "./_components/sections/main-container";
 import { InstitutionalPrimaryContainer } from "./_components/sections/primary-container";
@@ -14,6 +15,7 @@ export default function InstitutionalPage() {
       <InstitutionalHeader />
       <InstitutionalPrimaryContainer />
       <InstitutionalSecondaryContainer />
+      <InstitutionalCardingContainer />
       <InstitutionalMainContainer />
       <InstitutionalStatsContainer />
       <InstitutionalCompanyContainer />
