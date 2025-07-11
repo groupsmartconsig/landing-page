@@ -4,12 +4,13 @@ import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { creationOrigin, useUtmParams } from "@/context/utm-context";
+import { useUtmParams } from "@/context/utm-context";
 import { useProposals } from "@/hooks/use-proposals";
 import { cn } from "@/lib/utils";
 import { FormData, formSchema } from "@/schemas/form";
 import { AuthService } from "@/services/auth-service";
 import { DataService } from "@/services/data-service";
+import { CustomerOrigin } from "@/types/customer";
 import { InteractionResponse } from "@/types/interaction";
 import { Contracts, Proposal } from "@/types/proposals";
 import { env } from "@/utils/env";
@@ -30,7 +31,6 @@ export default function MobileFormDataPage() {
 
   const {
     control,
-    register,
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
@@ -88,14 +88,12 @@ export default function MobileFormDataPage() {
 
       if (amountContracts.length <= 0) {
         const payload = {
-          customerOrigin: {
-            creationOrigin,
-            marketingDetails: {
-              utmCampaign,
-              utmContent,
-              utmSource,
-              utmId
-            }
+          customerOrigin: CustomerOrigin.Api,
+          marketingDetails: {
+            utmCampaign,
+            utmContent,
+            utmSource,
+            utmId
           },
           name: personData.name,
           phonenumber: replacePhoneNumberValue,
@@ -118,14 +116,12 @@ export default function MobileFormDataPage() {
       localStorage.setItem("operator_team_name", interaction.operator.teamDetails.teamName);
 
       const payload = {
-        customerOrigin: {
-          creationOrigin,
-          marketingDetails: {
-            utmCampaign,
-            utmContent,
-            utmSource,
-            utmId
-          }
+        customerOrigin: CustomerOrigin.Api,
+        marketingDetails: {
+          utmCampaign,
+          utmContent,
+          utmSource,
+          utmId
         },
         assignedOperatorRequest: {
           id: interaction.operator.id,

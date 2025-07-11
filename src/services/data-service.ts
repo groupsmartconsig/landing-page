@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import { CreateCustomerRequest } from "@/types/customer";
+import {
+  CreateCustomerRequest,
+  CreatePublicServerCustomerRequest,
+  CustomerOrigin
+} from "@/types/customer";
+
 import { InteractionResponse } from "@/types/interaction";
 import { toast } from "sonner";
 
@@ -26,6 +31,23 @@ export class DataService {
     }
   }
 
+  static async createPublicServerCustomer(formData: CreatePublicServerCustomerRequest) {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("Token não encontrado. Faça login novamente.");
+
+      const { data } = await httpClient.post(`/customers`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return data;
+    } catch (error: any) {
+      console.error("Erro ao cadastrar cliente:", error);
+    }
+  }
+
   static async getContractsByCustomerDocument(document: string) {
     try {
       const token = localStorage.getItem("token");
@@ -35,7 +57,6 @@ export class DataService {
       }
 
       const { data } = await httpClient.get(
-        //`/contratos/portabilidades-refinanciamentos/${document}/vanguard/unico-banco`,
         `/contratos/refinanciamentos/${document}/vanguard-inss`,
         {
           headers: {
@@ -59,14 +80,12 @@ export class DataService {
       }
 
       await DataService.createCustomer({
-        customerOrigin: {
-          creationOrigin: "Api",
-          marketingDetails: {
-            utmSource,
-            utmCampaign,
-            utmId,
-            utmContent,
-          },
+        customerOrigin: CustomerOrigin.Api,
+        marketingDetails: {
+          utmSource,
+          utmCampaign,
+          utmId,
+          utmContent,
         },
         name,
         phonenumber,
