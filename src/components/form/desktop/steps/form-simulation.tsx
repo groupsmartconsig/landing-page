@@ -13,15 +13,12 @@ import {
 } from "@/components/ui/dialog";
 import { useProposals } from "@/hooks/use-proposals";
 import { CircleDollarSignIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { DesktopPortabilityContent } from "./proposals/portability";
 import { DesktopRefinancingContent } from "./proposals/refinancing";
 
 export function DesktopFormSimulation() {
-  const router = useRouter();
-
   const { formState } = useForm();
   const { proposals, operatorInteraction } = useProposals();
 

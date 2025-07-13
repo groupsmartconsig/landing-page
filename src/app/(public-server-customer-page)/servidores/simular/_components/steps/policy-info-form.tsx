@@ -12,7 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import { useStepper } from "@/hooks/use-stepper";
 
 export function PublicServerCustomerPolicyInfoForm() {
-  const { nextStep } = useStepper();
+  const { previousStep, nextStep } = useStepper();
 
   return (
     <div className="py-8 sm:py-16">
@@ -32,14 +32,34 @@ export function PublicServerCustomerPolicyInfoForm() {
         </CardHeader>
       </Card>
 
-      <div className="w-full sm:flex sm:justify-center sm:items-center sm:mt-6">
+      <div className="w-full flex flex-col items-center space-y-6 sm:flex-row sm:justify-center sm:items-center sm:space-x-6 sm:space-y-0 sm:mt-6">
         <Button
           type="button"
           size="lg"
-          className="w-full h-14 bg-secondary-red rounded-sm mt-6 sm:h-10 sm:w-72 sm:text-sm sm:rounded sm:mt-12"
+          variant="outline"
+          className="hidden sm:flex h-10 w-72 text-sm rounded text-secondary-red border-secondary-red"
+          onClick={() => previousStep()}
+        >
+          Voltar
+        </Button>
+
+        <Button
+          type="button"
+          size="lg"
+          className="w-full h-14 bg-secondary-red rounded-sm sm:h-10 sm:w-72 sm:text-sm sm:rounded"
           onClick={() => nextStep()}
         >
-          Simular
+          Próximo
+        </Button>
+
+        <Button
+          type="button"
+          size="lg"
+          variant="outline"
+          className="h-14 w-full rounded-sm text-secondary-red border-secondary-red sm:hidden"
+          onClick={() => previousStep()}
+        >
+          Voltar
         </Button>
       </div>
     </div>

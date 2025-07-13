@@ -131,4 +131,26 @@ export class DataService {
       throw new Error("Internal server error!");
     }
   }
+
+  static async uploadFile(File: File, FileName: string) {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("Token não encontrado. Faça login novamente.");
+
+      const formData = new FormData();
+      formData.append("File", File);
+      formData.append("FileName", FileName);
+
+      const { data } = await httpClient.post(`/files/import/document`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Internal server error!");
+    }
+  }
 }

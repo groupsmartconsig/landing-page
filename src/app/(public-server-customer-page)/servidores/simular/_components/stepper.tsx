@@ -10,12 +10,14 @@ export interface PublicServerCustomerStepperProps {
     title: string
     content: React.ReactNode
   }[]
+  stepIsVisible: boolean
 }
 
 export function PublicServerCustomerStepper({
   steps,
   currentStep,
-  onStepChange
+  onStepChange,
+  stepIsVisible
 }: PublicServerCustomerStepperProps) {
   const previousStep = useCallback(() => {
     const newStep = Math.max(0, currentStep - 1)
@@ -30,41 +32,45 @@ export function PublicServerCustomerStepper({
   return (
     <StepperContext.Provider value={{ previousStep, nextStep }}>
       <div className="p-6 sm:max-w-5xl sm:w-full sm:mx-auto">
-        <div
-          className={cn(
-            currentStep + 1 === 6 ?
-              'hidden' :
-              'flex flex-col items-center space-y-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0'
-          )}
-        >
-          <h2 className="text-xl font-medium">
-            {steps[currentStep]?.title}
-          </h2>
+        {stepIsVisible && (
+          <>
+            <div
+              className={cn(
+                currentStep + 1 === 6 ?
+                  'hidden' :
+                  'flex flex-col items-center space-y-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0'
+              )}
+            >
+              <h2 className="text-xl font-medium">
+                {steps[currentStep]?.title}
+              </h2>
 
-          <div className='flex items-center space-x-4'>
-            {steps.map((item, index) => (
-              <span
-                key={index}
-                className={cn(
-                  index + 1 === 6 ? 'hidden' : 'flex justify-center items-center rounded-full size-6 border',
-                  index === currentStep ? "border-secondary-red" : "border-[#555]",
-                )}
-              >
-                <strong className={cn(
-                  'text-xs',
-                  index === currentStep ? "text-secondary-red" : "text-[#555]"
-                )}>
-                  {index + 1}
-                </strong>
-              </span>
-            ))}
-          </div>
-        </div>
-        <Separator
-          className={cn(
-            currentStep + 1 === 6 ? 'hidden' : 'bg-[#555] mt-3'
-          )}
-        />
+              <div className='flex items-center space-x-4'>
+                {steps.map((item, index) => (
+                  <span
+                    key={index}
+                    className={cn(
+                      index + 1 === 6 ? 'hidden' : 'flex justify-center items-center rounded-full size-6 border',
+                      index === currentStep ? "border-secondary-red" : "border-[#555]",
+                    )}
+                  >
+                    <strong className={cn(
+                      'text-xs',
+                      index === currentStep ? "text-secondary-red" : "text-[#555]"
+                    )}>
+                      {index + 1}
+                    </strong>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <Separator
+              className={cn(
+                currentStep + 1 === 6 ? 'hidden' : 'bg-[#555] mt-3'
+              )}
+            />
+          </>
+        )}
         <main className='sm:max-w-lg sm:w-full sm:mx-auto md:max-w-xl md:w-full md:mx-auto'>
           {steps[currentStep]?.content}
         </main>

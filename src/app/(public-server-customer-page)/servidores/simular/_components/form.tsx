@@ -9,7 +9,7 @@ import {
 
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { PublicServerCustomerStepper } from "./stepper";
@@ -34,6 +34,8 @@ export function PublicServerCustomerSimulationForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isAValidCustomer, setIsAValidCustomer] = useState(false);
 
+  const stepRef = useRef(0);
+
   const form = useForm<PublicServerCustomerSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,7 +47,7 @@ export function PublicServerCustomerSimulationForm() {
     }
   });
 
-  const validateCustomerEligibility = () => {
+  const validateCustomerEligibility = async () => {
     const formData = form.getValues();
     const hasAPayrollCard = formData.publicServerCustomerFinancial?.hasAPayrollCard;
     const selectedBank = formData.publicServerCustomerFinancial?.currentBank;
@@ -83,7 +85,7 @@ export function PublicServerCustomerSimulationForm() {
 
   const watchedFields = form.watch([
     "publicServerCustomerInfoForm",
-    "publicServerCustomerFinancial"
+    "publicServerCustomerFinancial",
   ]);
 
   useEffect(() => {
@@ -126,6 +128,7 @@ export function PublicServerCustomerSimulationForm() {
           ]}
           currentStep={currentStep}
           onStepChange={setCurrentStep}
+          stepIsVisible={true}
         />
       </form>
     </Form>

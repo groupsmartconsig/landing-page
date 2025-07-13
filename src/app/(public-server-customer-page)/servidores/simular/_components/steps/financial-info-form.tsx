@@ -23,7 +23,7 @@ import { PublicServerCustomerSchema } from "../form";
 export function PublicServerCustomerFinancialInfoForm() {
   const form = useFormContext<PublicServerCustomerSchema>();
 
-  const { nextStep } = useStepper();
+  const { previousStep, nextStep } = useStepper();
 
   const hasPayrollCard = form.watch("publicServerCustomerFinancial.hasAPayrollCard");
   const currentBank = form.watch("publicServerCustomerFinancial.currentBank");
@@ -154,14 +154,34 @@ export function PublicServerCustomerFinancialInfoForm() {
         *Caso o seu cartão não seja de um desses bancos, infelizmente não poderemos prosseguir com o atendimento.
       </small>
       <Separator className="sm:hidden" />
-      <div className="w-full sm:flex sm:justify-center sm:items-center sm:mt-6">
+      <div className="w-full flex flex-col items-center space-y-6 sm:flex-row sm:justify-center sm:items-center sm:space-x-6 sm:space-y-0 sm:mt-6">
         <Button
           type="button"
           size="lg"
-          className="w-full h-14 bg-secondary-red rounded-sm mt-6 sm:h-10 sm:w-72 sm:text-sm sm:rounded sm:mt-12"
+          variant="outline"
+          className="hidden sm:flex h-10 w-72 text-sm rounded text-secondary-red border-secondary-red"
+          onClick={() => previousStep()}
+        >
+          Voltar
+        </Button>
+
+        <Button
+          type="button"
+          size="lg"
+          className="w-full h-14 bg-secondary-red rounded-sm sm:h-10 sm:w-72 sm:text-sm sm:rounded"
           onClick={() => handleNextStep()}
         >
           Próximo
+        </Button>
+
+        <Button
+          type="button"
+          size="lg"
+          variant="outline"
+          className="h-14 w-full rounded-sm text-secondary-red border-secondary-red sm:hidden"
+          onClick={() => previousStep()}
+        >
+          Voltar
         </Button>
       </div>
     </div>
