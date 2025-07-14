@@ -42,10 +42,10 @@ export function PublicServerCustomerInfoForm() {
 
   useEffect(() => {
     const shouldAutoAdvance =
-      (publicServerType === "federal" && federal) ||
-      (publicServerType === "state" && state) ||
-      (publicServerType === "municipal" && municipal) ||
-      (publicServerType === "armedForces" && armedForces);
+      (publicServerType === "1" && federal) ||
+      (publicServerType === "2" && state) ||
+      (publicServerType === "3" && municipal) ||
+      (publicServerType === "4" && armedForces);
 
     if (shouldAutoAdvance) {
       const timer = setTimeout(async () => {
@@ -80,17 +80,17 @@ export function PublicServerCustomerInfoForm() {
                 className="flex flex-col"
                 onValueChange={(value) => {
                   field.onChange(value);
-                  setIsFederal(value === "federal");
-                  setIsState(value === "state");
-                  setItIsMunicipal(value === "municipal");
-                  setIsArmedForces(value === "armedForces");
+                  setIsFederal(value === "1");
+                  setIsState(value === "2");
+                  setItIsMunicipal(value === "3");
+                  setIsArmedForces(value === "4");
                 }}
               >
                 <FormItem className="flex items-center gap-x-2">
                   <FormControl>
                     <RadioGroupItem
                       className="border-[#555]"
-                      value="federal"
+                      value="1"
                     />
                   </FormControl>
                   <FormLabel className="font-normal pb-1">
@@ -99,7 +99,7 @@ export function PublicServerCustomerInfoForm() {
                 </FormItem>
                 <FormItem className="flex items-center gap-x-2">
                   <FormControl>
-                    <RadioGroupItem className="border-[#555]" value="state" />
+                    <RadioGroupItem className="border-[#555]" value="2" />
                   </FormControl>
                   <FormLabel className="font-normal pb-1">
                     Estadual
@@ -107,7 +107,7 @@ export function PublicServerCustomerInfoForm() {
                 </FormItem>
                 <FormItem className="flex items-center gap-x-2">
                   <FormControl>
-                    <RadioGroupItem className="border-[#555]" value="municipal" />
+                    <RadioGroupItem className="border-[#555]" value="3" />
                   </FormControl>
                   <FormLabel className="font-normal pb-1">
                     Municipal
@@ -115,7 +115,7 @@ export function PublicServerCustomerInfoForm() {
                 </FormItem>
                 <FormItem className="flex items-center gap-x-2">
                   <FormControl>
-                    <RadioGroupItem className="border-[#555]" value="armedForces" />
+                    <RadioGroupItem className="border-[#555]" value="4" />
                   </FormControl>
                   <FormLabel className="font-normal pb-1">
                     Forças Armadas
@@ -127,7 +127,9 @@ export function PublicServerCustomerInfoForm() {
           </FormItem>
         )}
       />
+
       <Separator />
+
       {isFederal && (
         <PublicServerCustomerIsFederalOptions formControl={form.control} />
       )}
@@ -143,6 +145,7 @@ export function PublicServerCustomerInfoForm() {
       {isArmedForces && (
         <PublicServerCustomerIsArmedForcesOptions formControl={form.control} />
       )}
+
       <div className="w-full sm:flex sm:justify-center sm:items-center">
         <Button
           type="button"

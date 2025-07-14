@@ -36,13 +36,13 @@ interface PublicServerCustomerIsFederalOptionsProps {
 }
 
 const options = [
-  { value: "publicServant", label: "Concursado" },
-  { value: "permanentAssets", label: "Ativo Permanente" },
-  { value: "retiredOrPensioner", label: "Aposentado ou pensionista" },
-  { value: "clt", label: "CLT/Celetista" },
-  { value: "commissionedPosition", label: "Cargo Comissionado" },
-  { value: "temporaryPosition", label: "Cargo Temporário" },
-  { value: "others", label: "Outros" },
+  { value: "1", label: "Concursado" },
+  { value: "2", label: "Ativo Permanente" },
+  { value: "3", label: "Aposentado ou pensionista" },
+  { value: "4", label: "CLT/Celetista" },
+  { value: "5", label: "Cargo Comissionado" },
+  { value: "6", label: "Cargo Temporário" },
+  { value: "7", label: "Outros" },
 ]
 
 export function PublicServerCustomerIsFederalOptions({

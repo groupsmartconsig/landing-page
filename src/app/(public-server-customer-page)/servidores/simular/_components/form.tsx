@@ -56,25 +56,25 @@ export function PublicServerCustomerSimulationForm() {
     let isValid = true;
 
     if (
-      isFederal === "commissionedPosition" ||
-      isFederal === "temporaryPosition" ||
-      isFederal === "clt" ||
-      isFederal === "others"
+      isFederal === "5" || // CommissionedPosition = 5
+      isFederal === "6" || // TemporaryPosition = 6
+      isFederal === "4" || // CltCeletista = 4
+      isFederal === "7"    // Other = 7
     ) {
       isValid = false;
     }
 
     if (
-      isMunicipal === "commissionedPosition" ||
-      isMunicipal === "temporaryPosition" ||
-      isMunicipal === "CLT/Celetista" ||
-      isMunicipal === "others"
+      isMunicipal === "5" || // CommissionedPosition = 5
+      isMunicipal === "6" || // TemporaryPosition = 6
+      isMunicipal === "4" || // CLTEmployee = 4
+      isMunicipal === "7"    // Other = 7
     ) {
       isValid = false;
     }
 
-    if (isState === "others") isValid = false;
-    if (isArmedForces === "others") isValid = false;
+    if (isState === "7") isValid = false; // Others = 7
+    if (isArmedForces === "5") isValid = false; // Others = 5
     if (hasAPayrollCard === "no") isValid = false;
     if (selectedBank === "outro") isValid = false;
 

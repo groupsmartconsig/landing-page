@@ -3,44 +3,44 @@ import { z } from "zod";
 
 export const publicServerCustomerInfoFormSchema = z.object({
   publicServerType: z.enum([
-    "federal",
-    "state",
-    "municipal",
-    "armedForces"
+    "1", // Federal = 1
+    "2", // State = 2
+    "3", // Municipal = 3
+    "4"  // ArmedForces = 4
   ], { message: "Escolha um tipo de servidor público." }),
   isStatePublicServer: z.enum([
-    "pmsp",
-    "sefaz",
-    "spprev",
-    "hcgmusp",
-    "hcrp",
-    "iamspe",
-    "others"
+    "1", // MilitaryPoliceOfSaoPaulo = 1
+    "2", // FinanceAndPlanningSecretary = 2
+    "3", // RetiredEmployees = 3
+    "4", // HospitalClinicsFMUSP = 4
+    "5", // HospitalClinicsFMRP = 5
+    "6", // MedicalAssistanceInstituteSP = 6
+    "7"  // Others = 7
   ], { message: "Escolha uma autarquia." }).optional(),
   isFederalPublicServer: z.enum([
-    "publicServant",
-    "permanentAssets",
-    "retiredOrPensioner",
-    "clt",
-    "commissionedPosition",
-    "temporaryPosition",
-    "others"
+    "1", // CivilServant = 1
+    "2", // PermanentActive = 2
+    "3", // RetiredOrPensioner = 3
+    "4", // CltCeletista = 4
+    "5", // CommissionedPosition = 5
+    "6", // TemporaryPosition = 6
+    "7"  // Other = 7
   ], { message: "Escolha uma esfera federal." }).optional(),
   isMunicipalPublicServer: z.enum([
-    "competitiveExam",
-    "permanentAssets",
-    "retiredOrPensioner",
-    "CLT/Celetista",
-    "commissionedPosition",
-    "temporaryPosition",
-    "others"
+    "1", // PermanentEmployee = 1
+    "2", // PermanentActive = 2
+    "3", // RetiredOrPensioner = 3
+    "4", // CLTEmployee = 4
+    "5", // CommissionedPosition = 5
+    "6", // TemporaryPosition = 6
+    "7"  // Other = 7
   ], { message: "Escolha uma esfera municipal." }).optional(),
   isArmedForcesPublicServer: z.enum([
-    "activeMilitar",
-    "paidReservation",
-    "retired",
-    "pensioners",
-    "others"
+    "1", // ActiveMilitary = 1
+    "2", // RetiredReserve = 2
+    "3", // Retired = 3
+    "4", // Pensioners = 4
+    "5"  // Others = 5
   ], { message: "Escolha uma categoria das forças armadas." }).optional()
 });
 
