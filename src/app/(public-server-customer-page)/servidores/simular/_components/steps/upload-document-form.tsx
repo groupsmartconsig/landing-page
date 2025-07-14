@@ -83,9 +83,8 @@ export function PublicServerCustomerUploadDocumentForm() {
         if (currentFile) {
           await DataService.uploadFile(currentFile, "4293681");
           toast.success("Arquivo enviado com sucesso!");
+          nextStep();
         }
-
-        nextStep();
       } catch (error) {
         toast.error("Erro ao enviar o arquivo. Tente novamente.");
       }

@@ -11,8 +11,19 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useStepper } from "@/hooks/use-stepper";
 
-export function PublicServerCustomerPolicyInfoForm() {
+interface PublicServerCustomerPolicyInfoFormProps {
+  onSubmit: () => void;
+}
+
+export function PublicServerCustomerPolicyInfoForm({
+  onSubmit
+}: PublicServerCustomerPolicyInfoFormProps) {
   const { previousStep, nextStep } = useStepper();
+
+  const handleNextStep = () => {
+    onSubmit();
+    nextStep();
+  };
 
   return (
     <div className="py-8 sm:py-16">
@@ -47,7 +58,7 @@ export function PublicServerCustomerPolicyInfoForm() {
           type="button"
           size="lg"
           className="w-full h-14 bg-secondary-red rounded-sm sm:h-10 sm:w-72 sm:text-sm sm:rounded"
-          onClick={() => nextStep()}
+          onClick={handleNextStep}
         >
           Próximo
         </Button>

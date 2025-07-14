@@ -16,6 +16,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useStepper } from "@/hooks/use-stepper";
+import { AuthService } from "@/services/auth-service";
+import { env } from "@/utils/env";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { PublicServerCustomerSchema } from "../form";
@@ -50,6 +52,13 @@ export function PublicServerCustomerInfoForm() {
     if (shouldAutoAdvance) {
       const timer = setTimeout(async () => {
         const isValid = await form.trigger("publicServerCustomerInfoForm");
+        const formData = {
+          username: env.NEXT_PUBLIC_USERNAME,
+          password: env.NEXT_PUBLIC_PASSWORD,
+        };
+
+        await AuthService.signIn(formData.username, formData.password);
+
         if (isValid) {
           nextStep();
         }

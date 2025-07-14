@@ -86,13 +86,17 @@ export function PublicServerCustomerSimulationForm() {
     "publicServerCustomerFinancial",
   ]);
 
+  const onSubmit = form.handleSubmit(async data => {
+    console.log(data)
+  });
+
   useEffect(() => {
     validateCustomerEligibility();
   }, [watchedFields]);
 
   return (
     <Form {...form}>
-      <form>
+      <form onSubmit={onSubmit}>
         <PublicServerCustomerStepper
           steps={[
             {
@@ -117,7 +121,7 @@ export function PublicServerCustomerSimulationForm() {
             },
             {
               title: "Suas informações",
-              content: <PublicServerCustomerPolicyInfoForm />
+              content: <PublicServerCustomerPolicyInfoForm onSubmit={onSubmit} />
             },
             {
               title: "",
