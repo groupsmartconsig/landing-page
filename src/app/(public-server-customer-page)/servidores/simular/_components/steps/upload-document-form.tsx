@@ -12,14 +12,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useStepper } from "@/hooks/use-stepper";
 import { PublicServerCustomerSchema } from "@/schemas/public-server-customer-form";
+import { DataService } from "@/services/data-service";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { toast } from "sonner";
 
 export function PublicServerCustomerUploadDocumentForm() {
   const [isDragging, setIsDragging] = useState(false);
   const [fileError, setFileError] = useState<string>("");
 
   const form = useFormContext<PublicServerCustomerSchema>();
+  const currentFile = form.watch("publicServerCustomerDocumentUpload.file");
 
   const { previousStep, nextStep } = useStepper();
 
@@ -74,10 +77,20 @@ export function PublicServerCustomerUploadDocumentForm() {
 
   const handleNextStep = async () => {
     const isValid = await form.trigger("publicServerCustomerDocumentUpload.file");
-    if (isValid) nextStep();
-  };
 
-  const currentFile = form.watch("publicServerCustomerDocumentUpload.file");
+    if (isValid) {
+      try {
+        if (currentFile) {
+          await DataService.uploadFile(currentFile, "4293681");
+          toast.success("Arquivo enviado com sucesso!");
+        }
+
+        nextStep();
+      } catch (error) {
+        toast.error("Erro ao enviar o arquivo. Tente novamente.");
+      }
+    }
+  };
 
   return (
     <div className="grid grid-cols-1 items-center py-6 sm:py-12 md:py-16">

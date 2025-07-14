@@ -9,7 +9,7 @@ import {
 
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { PublicServerCustomerStepper } from "./stepper";
@@ -33,8 +33,6 @@ export type PublicServerCustomerSchema = z.infer<typeof formSchema>;
 export function PublicServerCustomerSimulationForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isAValidCustomer, setIsAValidCustomer] = useState(false);
-
-  const stepRef = useRef(0);
 
   const form = useForm<PublicServerCustomerSchema>({
     resolver: zodResolver(formSchema),
