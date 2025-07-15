@@ -14,7 +14,7 @@ export interface CreatePublicServerCustomerRequest {
   segment?: Segment
   marketingDetails: MarketingDetails
   assignedOperatorRequest?: AssignedOperatorRequest
-  publicServantDetails: PublicServantDetails
+  publicServantDetails?: PublicServantDetails
   name: string
   phonenumber: string
   cpf: string

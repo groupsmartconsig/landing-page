@@ -52,6 +52,7 @@ export function PublicServerCustomerInfoForm() {
     if (shouldAutoAdvance) {
       const timer = setTimeout(async () => {
         const isValid = await form.trigger("publicServerCustomerInfoForm");
+
         const formData = {
           username: env.NEXT_PUBLIC_USERNAME,
           password: env.NEXT_PUBLIC_PASSWORD,

@@ -32,7 +32,16 @@ export function PublicServerCustomerPersonalInfoForm() {
     if (name && phoneNumber && document) {
       const timer = setTimeout(async () => {
         const isValid = await form.trigger("publicServerCustomerPersonal");
-        if (isValid) nextStep();
+
+        if (isValid) {
+          const replacePhoneNumberValue = phoneNumber.replace(/[\s()-]/g, "");
+          const replaceDocumentValue = document.replace(/\D/g, "");
+
+          localStorage.setItem(storageKeys.publicServerCustomerName, name);
+          localStorage.setItem(storageKeys.publicServerCustomerContact, replacePhoneNumberValue);
+          localStorage.setItem(storageKeys.publicServerCustomerDocument, replaceDocumentValue);
+          nextStep();
+        }
       }, 1000);
 
       return () => clearTimeout(timer);
@@ -41,15 +50,7 @@ export function PublicServerCustomerPersonalInfoForm() {
 
   async function handleNextStep() {
     const isValid = await form.trigger("publicServerCustomerPersonal");
-    const replacePhoneNumberValue = phoneNumber.replace(/[\s()-]/g, "");
-    const replaceDocumentValue = document.replace(/\D/g, "");
-
-    if (isValid) {
-      localStorage.setItem(storageKeys.publicServerCustomerName, name);
-      localStorage.setItem(storageKeys.publicServerCustomerContact, replacePhoneNumberValue);
-      localStorage.setItem(storageKeys.publicServerCustomerDocument, replaceDocumentValue);
-      nextStep();
-    }
+    if (isValid) nextStep();
   }
 
   const handleNameChange = (value: string) => {

@@ -6,6 +6,7 @@ import {
   CloudUploadIcon
 } from "lucide-react";
 
+import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -21,6 +22,7 @@ import { toast } from "sonner";
 export function PublicServerCustomerUploadDocumentForm() {
   const [isDragging, setIsDragging] = useState(false);
   const [fileError, setFileError] = useState<string>("");
+  const [isUploading, setIsUploading] = useState(false);
 
   const form = useFormContext<PublicServerCustomerSchema>();
   const currentFile = form.watch("publicServerCustomerDocumentUpload.file");
@@ -76,21 +78,24 @@ export function PublicServerCustomerUploadDocumentForm() {
     }
   };
 
-  const handleNextStep = async () => {
+  const handleUploadedFile = async () => {
     const isValid = await form.trigger("publicServerCustomerDocumentUpload.file");
-    const customerDocument = storageKeys.publicServerCustomerDocument;
+    const customerDocument = localStorage.getItem(storageKeys.publicServerCustomerDocument);
 
     if (!customerDocument) return null;
 
     if (isValid) {
       try {
         if (currentFile) {
+          setIsUploading(true);
           await DataService.uploadFile(currentFile, customerDocument);
           toast.success("Arquivo enviado com sucesso!");
           nextStep();
         }
       } catch (error) {
         toast.error("Erro ao enviar o arquivo. Tente novamente.");
+      } finally {
+        setIsUploading(false);
       }
     }
   };
@@ -185,8 +190,10 @@ export function PublicServerCustomerUploadDocumentForm() {
           type="button"
           size="lg"
           variant="outline"
-          className="hidden sm:flex h-10 w-72 text-sm rounded text-secondary-red border-secondary-red"
+          className="hidden sm:flex h-10 w-72 text-sm rounded text-secondary-red border-secondary-red disabled:bg-zinc-100 disabled:border-none"
+          disabled={isUploading}
           onClick={() => previousStep()}
+
         >
           Voltar
         </Button>
@@ -195,16 +202,18 @@ export function PublicServerCustomerUploadDocumentForm() {
           type="button"
           size="lg"
           className="w-full h-14 bg-secondary-red rounded-sm sm:h-10 sm:w-72 sm:text-sm sm:rounded"
-          onClick={() => handleNextStep()}
+          disabled={isUploading}
+          onClick={() => handleUploadedFile()}
         >
-          Próximo
+          {isUploading ? <EllipsisLoader /> : "Próximo"}
         </Button>
 
         <Button
           type="button"
           size="lg"
           variant="outline"
-          className="h-14 w-full rounded-sm text-secondary-red border-secondary-red sm:hidden"
+          className="h-14 w-full rounded-sm text-secondary-red border-secondary-red sm:hidden disabled:bg-zinc-100 disabled:border-none"
+          disabled={isUploading}
           onClick={() => previousStep()}
         >
           Voltar

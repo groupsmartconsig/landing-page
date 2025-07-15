@@ -8,6 +8,9 @@ import {
 } from "@/schemas/public-server-customer-form";
 
 import { Form } from "@/components/ui/form";
+import { storageKeys } from "@/config/storage-keys";
+import { DataService } from "@/services/data-service";
+import { CustomerOrigin, Segment } from "@/types/customer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -87,7 +90,34 @@ export function PublicServerCustomerSimulationForm() {
   ]);
 
   const onSubmit = form.handleSubmit(async data => {
-    console.log(data)
+    const formData = {
+      customerOrigin: CustomerOrigin.Api,
+      marketingDetails: {
+        utmSource: localStorage.getItem(storageKeys.utmSource) || "",
+        utmCampaign: localStorage.getItem(storageKeys.utmCampaign) || "",
+        utmId: localStorage.getItem(storageKeys.utmId) || "",
+        utmContent: localStorage.getItem(storageKeys.utmContent) || "",
+      },
+      assignedOperatorRequest: {
+        id: localStorage.getItem(storageKeys.operatorId) || "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        name: localStorage.getItem(storageKeys.operatorName) || "",
+        username: localStorage.getItem(storageKeys.operatorUsername) || "",
+        phonenumber: localStorage.getItem(storageKeys.operatorContact) || "",
+        teamDetails: {
+          teamId: localStorage.getItem(storageKeys.operatorTeamId) || "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          teamName: localStorage.getItem(storageKeys.operatorTeamName) || "",
+        },
+      },
+      segment: Segment.PublicServant,
+      name: localStorage.getItem(storageKeys.publicServerCustomerName) || "",
+      phonenumber: localStorage.getItem(storageKeys.publicServerCustomerContact) || "",
+      cpf: localStorage.getItem(storageKeys.publicServerCustomerDocument) || "",
+      amountContractsElegible: 0
+    }
+
+    console.log(formData);
+
+    await DataService.createPublicServerCustomer(formData)
   });
 
   useEffect(() => {

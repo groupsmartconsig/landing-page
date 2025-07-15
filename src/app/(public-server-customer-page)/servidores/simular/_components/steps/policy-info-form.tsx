@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 
 import {
@@ -7,9 +9,12 @@ import {
   CardTitle
 } from "@/components/ui/card";
 
+import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useStepper } from "@/hooks/use-stepper";
+import { useState } from "react";
+import { toast } from "sonner";
 
 interface PublicServerCustomerPolicyInfoFormProps {
   onSubmit: () => void;
@@ -18,11 +23,22 @@ interface PublicServerCustomerPolicyInfoFormProps {
 export function PublicServerCustomerPolicyInfoForm({
   onSubmit
 }: PublicServerCustomerPolicyInfoFormProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { previousStep, nextStep } = useStepper();
 
   const handleNextStep = () => {
-    onSubmit();
-    nextStep();
+    try {
+      setIsSubmitting(true);
+      onSubmit();
+      toast.success("Sua proposta foi cadastrada com sucesso!");
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao cadastrar a sua proposta! Tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+      nextStep();
+    }
   };
 
   return (
@@ -48,7 +64,8 @@ export function PublicServerCustomerPolicyInfoForm({
           type="button"
           size="lg"
           variant="outline"
-          className="hidden sm:flex h-10 w-72 text-sm rounded text-secondary-red border-secondary-red"
+          className="hidden sm:flex h-10 w-72 text-sm rounded text-secondary-red border-secondary-red disabled:bg-zinc-100 disabled:border-none"
+          disabled={isSubmitting}
           onClick={() => previousStep()}
         >
           Voltar
@@ -58,16 +75,18 @@ export function PublicServerCustomerPolicyInfoForm({
           type="button"
           size="lg"
           className="w-full h-14 bg-secondary-red rounded-sm sm:h-10 sm:w-72 sm:text-sm sm:rounded"
+          disabled={isSubmitting}
           onClick={handleNextStep}
         >
-          Próximo
+          {isSubmitting ? <EllipsisLoader /> : "Próximo"}
         </Button>
 
         <Button
           type="button"
           size="lg"
           variant="outline"
-          className="h-14 w-full rounded-sm text-secondary-red border-secondary-red sm:hidden"
+          className="h-14 w-full rounded-sm text-secondary-red border-secondary-red sm:hidden disabled:bg-zinc-100 disabled:border-none"
+          disabled={isSubmitting}
           onClick={() => previousStep()}
         >
           Voltar
