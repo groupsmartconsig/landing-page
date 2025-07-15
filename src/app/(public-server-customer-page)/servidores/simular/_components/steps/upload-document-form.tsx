@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { storageKeys } from "@/config/storage-keys";
 import { useStepper } from "@/hooks/use-stepper";
 import { PublicServerCustomerSchema } from "@/schemas/public-server-customer-form";
 import { DataService } from "@/services/data-service";
@@ -77,11 +78,14 @@ export function PublicServerCustomerUploadDocumentForm() {
 
   const handleNextStep = async () => {
     const isValid = await form.trigger("publicServerCustomerDocumentUpload.file");
+    const customerDocument = storageKeys.publicServerCustomerDocument;
+
+    if (!customerDocument) return null;
 
     if (isValid) {
       try {
         if (currentFile) {
-          await DataService.uploadFile(currentFile, "4293681");
+          await DataService.uploadFile(currentFile, customerDocument);
           toast.success("Arquivo enviado com sucesso!");
           nextStep();
         }

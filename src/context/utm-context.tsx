@@ -1,5 +1,6 @@
 "use client";
 
+import { storageKeys } from "@/config/storage-keys";
 import { LoaderIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { createContext, Suspense, useContext, useEffect, useState } from "react";
@@ -35,10 +36,11 @@ export const UtmProvider = ({ children }: { children: React.ReactNode }) => {
       utmId: searchParams.get("utm_id") || "",
     };
 
-    localStorage.setItem("utm_campaign", utmParams.utmCampaign);
-    localStorage.setItem("utm_content", utmParams.utmContent);
-    localStorage.setItem("utm_source", utmParams.utmSource);
-    localStorage.setItem("utm_id", utmParams.utmId);
+    localStorage.setItem(storageKeys.utmSource, utmParams.utmSource);
+    localStorage.setItem(storageKeys.utmMedium, utmParams.utmMedium);
+    localStorage.setItem(storageKeys.utmCampaign, utmParams.utmCampaign);
+    localStorage.setItem(storageKeys.utmContent, utmParams.utmContent);
+    localStorage.setItem(storageKeys.utmId, utmParams.utmId);
 
     setUtmData(utmParams);
   }, [searchParams]);
@@ -64,8 +66,10 @@ export const useUtmParams = () => {
 
 export const getUtmData = () => {
   const context = useContext(UtmContext);
+
   if (!context) {
     throw new Error("getUtmData deve ser usado dentro do UtmProvider.");
   }
+
   return context;
 };

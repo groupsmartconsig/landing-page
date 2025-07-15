@@ -4,6 +4,7 @@ import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { storageKeys } from "@/config/storage-keys";
 import { useUtmParams } from "@/context/utm-context";
 import { useProposals } from "@/hooks/use-proposals";
 import { cn } from "@/lib/utils";
@@ -80,9 +81,11 @@ export default function MobileFormDataPage() {
 
       const replaceDocumentValue = personData.cpf.replace(/\D/g, "");
       const replacePhoneNumberValue = personData.phoneNumber.replace(/[\s()-]/g, "");
-      localStorage.setItem("nome", personData.name);
-      localStorage.setItem("contato", replacePhoneNumberValue);
-      localStorage.setItem("cpf", replaceDocumentValue);
+
+      localStorage.setItem(storageKeys.customerName, personData.name);
+      localStorage.setItem(storageKeys.customerContact, replacePhoneNumberValue);
+      localStorage.setItem(storageKeys.customerDocument, replaceDocumentValue);
+
       const contracts: Contracts = await DataService.getContractsByCustomerDocument(replaceDocumentValue);
       const amountContracts: Proposal[] = contracts.contratosElegiveis;
 
@@ -108,12 +111,13 @@ export default function MobileFormDataPage() {
       }
 
       const interaction: InteractionResponse = await DataService.createInteractionWithOperator();
-      localStorage.setItem("operator_id", interaction.operator.id);
-      localStorage.setItem("operator_name", interaction.operator.name);
-      localStorage.setItem("operator_username", interaction.operator.username);
-      localStorage.setItem("operator_contact", interaction.operator.phonenumber);
-      localStorage.setItem("operator_team_id", interaction.operator.teamDetails.teamId);
-      localStorage.setItem("operator_team_name", interaction.operator.teamDetails.teamName);
+
+      localStorage.setItem(storageKeys.operatorId, interaction.operator.id);
+      localStorage.setItem(storageKeys.operatorName, interaction.operator.name);
+      localStorage.setItem(storageKeys.operatorUsername, interaction.operator.username);
+      localStorage.setItem(storageKeys.operatorContact, interaction.operator.phonenumber);
+      localStorage.setItem(storageKeys.operatorTeamId, interaction.operator.teamDetails.teamId);
+      localStorage.setItem(storageKeys.operatorTeamName, interaction.operator.teamDetails.teamName);
 
       const payload = {
         customerOrigin: CustomerOrigin.Api,

@@ -10,6 +10,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { storageKeys } from "@/config/storage-keys";
 import { useStepper } from "@/hooks/use-stepper";
 import { maskCPF } from "@/utils/mask/mask-cpf";
 import { maskFullName } from "@/utils/mask/mask-full-name";
@@ -40,7 +41,15 @@ export function PublicServerCustomerPersonalInfoForm() {
 
   async function handleNextStep() {
     const isValid = await form.trigger("publicServerCustomerPersonal");
-    if (isValid) nextStep();
+    const replacePhoneNumberValue = phoneNumber.replace(/[\s()-]/g, "");
+    const replaceDocumentValue = document.replace(/\D/g, "");
+
+    if (isValid) {
+      localStorage.setItem(storageKeys.publicServerCustomerName, name);
+      localStorage.setItem(storageKeys.publicServerCustomerContact, replacePhoneNumberValue);
+      localStorage.setItem(storageKeys.publicServerCustomerDocument, replaceDocumentValue);
+      nextStep();
+    }
   }
 
   const handleNameChange = (value: string) => {

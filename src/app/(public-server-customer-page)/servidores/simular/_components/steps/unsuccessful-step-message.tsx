@@ -9,6 +9,11 @@ import { useRouter } from "next/navigation";
 export function PublicServerCustomerUnsuccessfulStepMessage() {
   const router = useRouter();
 
+  const handleRedirect = () => {
+    localStorage.clear();
+    router.push("/servidores");
+  }
+
   return (
     <div>
       <div className="flex flex-col items-center space-y-2 p-6 sm:py-12">
@@ -77,7 +82,7 @@ export function PublicServerCustomerUnsuccessfulStepMessage() {
           type="button"
           size="lg"
           className="w-full h-14 bg-secondary-red rounded-sm mt-8 sm:h-10 sm:w-72 sm:text-sm sm:rounded sm:mt-12"
-          onClick={() => router.push("/servidores")}
+          onClick={handleRedirect}
         >
           Voltar para o ínicio
         </Button>

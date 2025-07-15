@@ -1,3 +1,4 @@
+import { storageKeys } from '@/config/storage-keys';
 import axios from 'axios';
 
 const tenant = process.env.NEXT_PUBLIC_TENANT
@@ -21,7 +22,7 @@ export class AuthService {
         password,
       })
 
-      localStorage.setItem("token", data.accessToken);
+      localStorage.setItem(storageKeys.accessToken, data.accessToken);
 
       return data
     } catch (error) {
