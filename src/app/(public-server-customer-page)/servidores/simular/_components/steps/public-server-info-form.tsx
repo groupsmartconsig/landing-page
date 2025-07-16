@@ -44,23 +44,22 @@ export function PublicServerCustomerInfoForm() {
 
   useEffect(() => {
     const shouldAutoAdvance =
-      (publicServerType === "1" && federal) ||
-      (publicServerType === "2" && state) ||
-      (publicServerType === "3" && municipal) ||
-      (publicServerType === "4" && armedForces);
+      (publicServerType === "Federal" && federal) ||
+      (publicServerType === "State" && state) ||
+      (publicServerType === "Municipal" && municipal) ||
+      (publicServerType === "ArmedForces" && armedForces);
 
     if (shouldAutoAdvance) {
       const timer = setTimeout(async () => {
         const isValid = await form.trigger("publicServerCustomerInfoForm");
 
-        const formData = {
-          username: env.NEXT_PUBLIC_USERNAME,
-          password: env.NEXT_PUBLIC_PASSWORD,
-        };
-
-        await AuthService.signIn(formData.username, formData.password);
-
         if (isValid) {
+          const formData = {
+            username: env.NEXT_PUBLIC_USERNAME,
+            password: env.NEXT_PUBLIC_PASSWORD,
+          };
+
+          await AuthService.signIn(formData.username, formData.password);
           nextStep();
         }
       }, 500);
@@ -90,18 +89,15 @@ export function PublicServerCustomerInfoForm() {
                 className="flex flex-col"
                 onValueChange={(value) => {
                   field.onChange(value);
-                  setIsFederal(value === "1");
-                  setIsState(value === "2");
-                  setItIsMunicipal(value === "3");
-                  setIsArmedForces(value === "4");
+                  setIsFederal(value === "Federal");
+                  setIsState(value === "State");
+                  setItIsMunicipal(value === "Municipal");
+                  setIsArmedForces(value === "ArmedForces");
                 }}
               >
                 <FormItem className="flex items-center gap-x-2">
                   <FormControl>
-                    <RadioGroupItem
-                      className="border-[#555]"
-                      value="1"
-                    />
+                    <RadioGroupItem className="border-[#555]" value="Federal" />
                   </FormControl>
                   <FormLabel className="font-normal pb-1">
                     Federal
@@ -109,7 +105,7 @@ export function PublicServerCustomerInfoForm() {
                 </FormItem>
                 <FormItem className="flex items-center gap-x-2">
                   <FormControl>
-                    <RadioGroupItem className="border-[#555]" value="2" />
+                    <RadioGroupItem className="border-[#555]" value="State" />
                   </FormControl>
                   <FormLabel className="font-normal pb-1">
                     Estadual
@@ -117,7 +113,7 @@ export function PublicServerCustomerInfoForm() {
                 </FormItem>
                 <FormItem className="flex items-center gap-x-2">
                   <FormControl>
-                    <RadioGroupItem className="border-[#555]" value="3" />
+                    <RadioGroupItem className="border-[#555]" value="Municipal" />
                   </FormControl>
                   <FormLabel className="font-normal pb-1">
                     Municipal
@@ -125,7 +121,7 @@ export function PublicServerCustomerInfoForm() {
                 </FormItem>
                 <FormItem className="flex items-center gap-x-2">
                   <FormControl>
-                    <RadioGroupItem className="border-[#555]" value="4" />
+                    <RadioGroupItem className="border-[#555]" value="ArmedForces" />
                   </FormControl>
                   <FormLabel className="font-normal pb-1">
                     Forças Armadas
@@ -137,25 +133,19 @@ export function PublicServerCustomerInfoForm() {
           </FormItem>
         )}
       />
-
       <Separator />
-
       {isFederal && (
         <PublicServerCustomerIsFederalOptions formControl={form.control} />
       )}
-
       {isState && (
         <PublicServerCustomerIsStateOptions formControl={form.control} />
       )}
-
       {itIsMunicipal && (
         <PublicServerCustomerIsMunicipalOptions formControl={form.control} />
       )}
-
       {isArmedForces && (
         <PublicServerCustomerIsArmedForcesOptions formControl={form.control} />
       )}
-
       <div className="w-full sm:flex sm:justify-center sm:items-center">
         <Button
           type="button"

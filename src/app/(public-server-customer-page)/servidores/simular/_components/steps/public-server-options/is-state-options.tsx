@@ -36,14 +36,14 @@ interface PublicServerCustomerIsStateOptionsProps {
 }
 
 const options = [
-  { value: "pmsp", label: "PMSP - Polícia Militar" },
-  { value: "sefaz", label: "SEFAZ - Secretaria da Fazenda e Planejamento" },
-  { value: "spprev", label: "SPPREV - Aposentados" },
-  { value: "hcgmusp", label: "HCFMUSP - Hospital das Clínicas da Faculdade de Medicina de São Paulo" },
-  { value: "hcrp", label: "HCRP - Hospital das Clínicas da Faculdade de Medicina de Ribeirão Preto" },
-  { value: "iamspe", label: "IAMSPE - Instituto de assistência médica ao servidor Público Estadual de S. Paulo" },
-  { value: "others", label: "Outros" },
-]
+  { value: "MilitaryPoliceOfSaoPaulo", label: "PMSP - Polícia Militar" },
+  { value: "FinanceAndPlanningSecretary", label: "SEFAZ - Secretaria da Fazenda e Planejamento" },
+  { value: "RetiredEmployees", label: "SPPREV - Aposentados" },
+  { value: "HospitalClinicsFMUSP", label: "HCFMUSP - Hospital das Clínicas da Faculdade de Medicina de São Paulo" },
+  { value: "HospitalClinicsFMRP", label: "HCRP - Hospital das Clínicas da Faculdade de Medicina de Ribeirão Preto" },
+  { value: "MedicalAssistanceInstituteSP", label: "IAMSPE - Instituto de assistência médica ao servidor Público Estadual de S. Paulo" },
+  { value: "Others", label: "Outros" },
+];
 
 export function PublicServerCustomerIsStateOptions({
   formControl

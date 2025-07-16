@@ -36,12 +36,12 @@ interface PublicServerCustomerIsArmedForcesOptionsProps {
 }
 
 const options = [
-  { value: "activeMilitar", label: "Militar Ativo" },
-  { value: "paidReservation", label: "Reserva Remunerada" },
-  { value: "retired", label: "Reformados" },
-  { value: "pensioners", label: "Pensionistas" },
-  { value: "others", label: "Outros" },
-]
+  { value: "ActiveMilitary", label: "Militar Ativo" },
+  { value: "RetiredReserve", label: "Reserva Remunerada" },
+  { value: "Retired", label: "Reformados" },
+  { value: "Pensioners", label: "Pensionistas" },
+  { value: "Others", label: "Outros" },
+];
 
 export function PublicServerCustomerIsArmedForcesOptions({
   formControl

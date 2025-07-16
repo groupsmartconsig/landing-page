@@ -3,44 +3,48 @@ import { z } from "zod";
 
 export const publicServerCustomerInfoFormSchema = z.object({
   publicServerType: z.enum([
-    "1", // Federal = 1
-    "2", // State = 2
-    "3", // Municipal = 3
-    "4"  // ArmedForces = 4
+    "Federal",
+    "State",
+    "Municipal",
+    "ArmedForces"
   ], { message: "Escolha um tipo de servidor público." }),
+
   isStatePublicServer: z.enum([
-    "1", // MilitaryPoliceOfSaoPaulo = 1
-    "2", // FinanceAndPlanningSecretary = 2
-    "3", // RetiredEmployees = 3
-    "4", // HospitalClinicsFMUSP = 4
-    "5", // HospitalClinicsFMRP = 5
-    "6", // MedicalAssistanceInstituteSP = 6
-    "7"  // Others = 7
+    "MilitaryPoliceOfSaoPaulo",
+    "FinanceAndPlanningSecretary",
+    "RetiredEmployees",
+    "HospitalClinicsFMUSP",
+    "HospitalClinicsFMRP",
+    "MedicalAssistanceInstituteSP",
+    "Others"
   ], { message: "Escolha uma autarquia." }).optional(),
+
   isFederalPublicServer: z.enum([
-    "1", // CivilServant = 1
-    "2", // PermanentActive = 2
-    "3", // RetiredOrPensioner = 3
-    "4", // CltCeletista = 4
-    "5", // CommissionedPosition = 5
-    "6", // TemporaryPosition = 6
-    "7"  // Other = 7
+    "CivilServant",
+    "PermanentActive",
+    "RetiredOrPensioner",
+    "CltCeletista",
+    "CommissionedPosition",
+    "TemporaryPosition",
+    "Other"
   ], { message: "Escolha uma esfera federal." }).optional(),
+
   isMunicipalPublicServer: z.enum([
-    "1", // PermanentEmployee = 1
-    "2", // PermanentActive = 2
-    "3", // RetiredOrPensioner = 3
-    "4", // CLTEmployee = 4
-    "5", // CommissionedPosition = 5
-    "6", // TemporaryPosition = 6
-    "7"  // Other = 7
+    "PermanentEmployee",
+    "PermanentActive",
+    "RetiredOrPensioner",
+    "CLTEmployee",
+    "CommissionedPosition",
+    "TemporaryPosition",
+    "Other"
   ], { message: "Escolha uma esfera municipal." }).optional(),
+
   isArmedForcesPublicServer: z.enum([
-    "1", // ActiveMilitary = 1
-    "2", // RetiredReserve = 2
-    "3", // Retired = 3
-    "4", // Pensioners = 4
-    "5"  // Others = 5
+    "ActiveMilitary",
+    "RetiredReserve",
+    "Retired",
+    "Pensioners",
+    "Others"
   ], { message: "Escolha uma categoria das forças armadas." }).optional()
 });
 

@@ -19,7 +19,7 @@ export function PublicServerCustomerHeader() {
             src={logoRedImg}
             width={400}
             height={180}
-            className="w-1/4 sm:w-[7%]"
+            className="w-1/4 sm:w-[14%] xl:w-[8%]"
             alt="Logo da Smartconsig na cor vermelha"
           />
         </Link>

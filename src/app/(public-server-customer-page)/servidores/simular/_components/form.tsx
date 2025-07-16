@@ -7,10 +7,27 @@ import {
   publicServerCustomerPersonalSchema
 } from "@/schemas/public-server-customer-form";
 
+import {
+  ArmedForcesPublicServant,
+  CreatePublicServerCustomerRequest,
+  CustomerOrigin,
+  FederalServantLink,
+  MunicipalPublicServantLink,
+  Segment,
+  StatePublicServantLink
+} from "@/types/customer";
+
+import {
+  armedForcesLinkMap,
+  federalServantLinkMap,
+  municipalServantLinkMap,
+  publicServantTypeMap,
+  stateServantLinkMap
+} from "@/utils/mappers/public-servant-type-mapper";
+
 import { Form } from "@/components/ui/form";
 import { storageKeys } from "@/config/storage-keys";
 import { DataService } from "@/services/data-service";
-import { CustomerOrigin, Segment } from "@/types/customer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -59,25 +76,25 @@ export function PublicServerCustomerSimulationForm() {
     let isValid = true;
 
     if (
-      isFederal === "5" || // CommissionedPosition = 5
-      isFederal === "6" || // TemporaryPosition = 6
-      isFederal === "4" || // CltCeletista = 4
-      isFederal === "7"    // Other = 7
+      isFederal === "CommissionedPosition" ||
+      isFederal === "TemporaryPosition" ||
+      isFederal === "CltCeletista" ||
+      isFederal === "Other"
     ) {
       isValid = false;
     }
 
     if (
-      isMunicipal === "5" || // CommissionedPosition = 5
-      isMunicipal === "6" || // TemporaryPosition = 6
-      isMunicipal === "4" || // CLTEmployee = 4
-      isMunicipal === "7"    // Other = 7
+      isMunicipal === "CommissionedPosition" ||
+      isMunicipal === "TemporaryPosition" ||
+      isMunicipal === "CLTEmployee" ||
+      isMunicipal === "Other"
     ) {
       isValid = false;
     }
 
-    if (isState === "7") isValid = false; // Others = 7
-    if (isArmedForces === "5") isValid = false; // Others = 5
+    if (isState === "Others") isValid = false;
+    if (isArmedForces === "Others") isValid = false;
     if (hasAPayrollCard === "no") isValid = false;
     if (selectedBank === "outro") isValid = false;
 
@@ -90,7 +107,9 @@ export function PublicServerCustomerSimulationForm() {
   ]);
 
   const onSubmit = form.handleSubmit(async data => {
-    const formData = {
+    const publicServantType = publicServantTypeMap[data.publicServerCustomerInfoForm.publicServerType];
+
+    const formData: CreatePublicServerCustomerRequest = {
       customerOrigin: CustomerOrigin.Api,
       marketingDetails: {
         utmSource: localStorage.getItem(storageKeys.utmSource) || "",
@@ -98,27 +117,32 @@ export function PublicServerCustomerSimulationForm() {
         utmId: localStorage.getItem(storageKeys.utmId) || "",
         utmContent: localStorage.getItem(storageKeys.utmContent) || "",
       },
-      assignedOperatorRequest: {
-        id: localStorage.getItem(storageKeys.operatorId) || "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        name: localStorage.getItem(storageKeys.operatorName) || "",
-        username: localStorage.getItem(storageKeys.operatorUsername) || "",
-        phonenumber: localStorage.getItem(storageKeys.operatorContact) || "",
-        teamDetails: {
-          teamId: localStorage.getItem(storageKeys.operatorTeamId) || "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          teamName: localStorage.getItem(storageKeys.operatorTeamName) || "",
-        },
-      },
       segment: Segment.PublicServant,
+      publicServantDetails: {
+        publicServantType,
+        federalServantLink: data.publicServerCustomerInfoForm.isFederalPublicServer
+          ? federalServantLinkMap[data.publicServerCustomerInfoForm.isFederalPublicServer]
+          : FederalServantLink.None,
+        statePublicServantLink: data.publicServerCustomerInfoForm.isStatePublicServer
+          ? stateServantLinkMap[data.publicServerCustomerInfoForm.isStatePublicServer]
+          : StatePublicServantLink.None,
+        municipalPublicServantLink: data.publicServerCustomerInfoForm.isMunicipalPublicServer
+          ? municipalServantLinkMap[data.publicServerCustomerInfoForm.isMunicipalPublicServer]
+          : MunicipalPublicServantLink.None,
+        armedForcesPublicServant: data.publicServerCustomerInfoForm.isArmedForcesPublicServer
+          ? armedForcesLinkMap[data.publicServerCustomerInfoForm.isArmedForcesPublicServer]
+          : ArmedForcesPublicServant.None,
+      },
       name: localStorage.getItem(storageKeys.publicServerCustomerName) || "",
       phonenumber: localStorage.getItem(storageKeys.publicServerCustomerContact) || "",
       cpf: localStorage.getItem(storageKeys.publicServerCustomerDocument) || "",
       amountContractsElegible: 0
-    }
+    };
 
-    console.log(formData);
-
-    await DataService.createPublicServerCustomer(formData)
+    await DataService.createPublicServerCustomer(formData);
+    await DataService.createInteractionWithOperator();
   });
+
 
   useEffect(() => {
     validateCustomerEligibility();

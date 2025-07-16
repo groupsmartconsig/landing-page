@@ -109,7 +109,7 @@ export class DataService {
       const cpf = localStorage.getItem(storageKeys.customerDocument);
 
       if (!token || !name || !cpf || !phonenumber) {
-        throw new Error("Dados necessários não encontrados. Tente novamente");
+        throw new Error("Dados necessários não encontrados. Tente novamente.");
       }
 
       const payload = {

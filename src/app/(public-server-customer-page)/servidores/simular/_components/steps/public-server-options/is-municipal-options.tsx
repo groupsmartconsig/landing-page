@@ -36,14 +36,14 @@ interface PublicServerCustomerIsMunicipalOptionsProps {
 }
 
 const options = [
-  { value: "competitiveExam", label: "Concursado" },
-  { value: "permanentAssets", label: "Ativo Permanente" },
-  { value: "retiredOrPensioner", label: "Aposentado ou pensionista" },
-  { value: "CLT/Celetista", label: "CLT/Celetista" },
-  { value: "commissionedPosition", label: "Cargo Comissionado" },
-  { value: "temporaryPosition", label: "Cargo Temporário" },
-  { value: "others", label: "Outro" },
-]
+  { value: "PermanentEmployee", label: "Concursado" },
+  { value: "PermanentActive", label: "Ativo Permanente" },
+  { value: "RetiredOrPensioner", label: "Aposentado ou pensionista" },
+  { value: "CLTEmployee", label: "CLT/Celetista" },
+  { value: "CommissionedPosition", label: "Cargo Comissionado" },
+  { value: "TemporaryPosition", label: "Cargo Temporário" },
+  { value: "Other", label: "Outro" },
+];
 
 export function PublicServerCustomerIsMunicipalOptions({
   formControl
