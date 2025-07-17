@@ -139,8 +139,15 @@ export function PublicServerCustomerSimulationForm() {
       amountContractsElegible: 0
     };
 
-    await DataService.createPublicServerCustomer(formData);
-    await DataService.createInteractionWithOperator();
+    const response = await DataService.createPublicServerCustomer(formData);
+
+    if (response) {
+      await DataService.createInteraction(
+        data.publicServerCustomerPersonal.name,
+        data.publicServerCustomerPersonal.cpf,
+        data.publicServerCustomerPersonal.phoneNumber,
+      );
+    }
   });
 
 

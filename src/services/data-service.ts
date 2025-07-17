@@ -133,6 +133,35 @@ export class DataService {
     }
   }
 
+  static async createInteraction(name: string, document: string, phoneNumber: string) {
+    try {
+      const token = localStorage.getItem(storageKeys.accessToken);
+
+      if (!token) {
+        throw new Error("Unauthorized action.");
+      }
+
+      const payload = {
+        customer: {
+          name: name,
+          cpf: document,
+          phoneNumber: phoneNumber
+        }
+      }
+
+      const { data } = await httpClient.post<InteractionResponse>(`/interaction`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Internal server error!");
+    }
+  }
+
   static async uploadFile(File: File, FileName: string) {
     try {
       const token = localStorage.getItem(storageKeys.accessToken);

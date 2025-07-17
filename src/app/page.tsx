@@ -1,13 +1,13 @@
 "use client"
 
-import InstitutionalPage from "./(institutional-page)/institucional/page";
-
 import { UtmProviderSuspense } from "@/context/utm-context";
+
+import LandingPage from "./(landing-page)/page";
 
 export default function HomePage() {
   return (
     <UtmProviderSuspense>
-      <InstitutionalPage />
+      <LandingPage />
     </UtmProviderSuspense>
   )
 }
