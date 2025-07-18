@@ -12,7 +12,9 @@ import {
 import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { storageKeys } from "@/config/storage-keys";
 import { useStepper } from "@/hooks/use-stepper";
+import { DataService } from "@/services/data-service";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -27,17 +29,24 @@ export function PublicServerCustomerPolicyInfoForm({
 
   const { previousStep, nextStep } = useStepper();
 
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
     try {
       setIsSubmitting(true);
-      onSubmit();
+      Promise.resolve(onSubmit());
+
+      await DataService.createInteraction(
+        localStorage.getItem(storageKeys.publicServerCustomerName)!,
+        localStorage.getItem(storageKeys.publicServerCustomerDocument)!,
+        localStorage.getItem(storageKeys.publicServerCustomerContact)!,
+      );
+
       toast.success("Sua proposta foi cadastrada com sucesso!");
+      nextStep();
     } catch (error) {
       console.log(error);
       toast.error("Erro ao cadastrar a sua proposta! Tente novamente.");
     } finally {
       setIsSubmitting(false);
-      nextStep();
     }
   };
 

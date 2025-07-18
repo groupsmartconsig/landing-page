@@ -139,17 +139,8 @@ export function PublicServerCustomerSimulationForm() {
       amountContractsElegible: 0
     };
 
-    const response = await DataService.createPublicServerCustomer(formData);
-
-    if (response) {
-      await DataService.createInteraction(
-        data.publicServerCustomerPersonal.name,
-        data.publicServerCustomerPersonal.cpf,
-        data.publicServerCustomerPersonal.phoneNumber,
-      );
-    }
+    await DataService.createPublicServerCustomer(formData);
   });
-
 
   useEffect(() => {
     validateCustomerEligibility();
