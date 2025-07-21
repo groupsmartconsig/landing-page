@@ -3,44 +3,48 @@ import { z } from "zod";
 
 export const publicServerCustomerInfoFormSchema = z.object({
   publicServerType: z.enum([
-    "federal",
-    "state",
-    "municipal",
-    "armedForces"
+    "Federal",
+    "State",
+    "Municipal",
+    "ArmedForces"
   ], { message: "Escolha um tipo de servidor público." }),
+
   isStatePublicServer: z.enum([
-    "pmsp",
-    "sefaz",
-    "spprev",
-    "hcgmusp",
-    "hcrp",
-    "iamspe",
-    "others"
+    "MilitaryPoliceOfSaoPaulo",
+    "FinanceAndPlanningSecretary",
+    "RetiredEmployees",
+    "HospitalClinicsFMUSP",
+    "HospitalClinicsFMRP",
+    "MedicalAssistanceInstituteSP",
+    "Others"
   ], { message: "Escolha uma autarquia." }).optional(),
+
   isFederalPublicServer: z.enum([
-    "publicServant",
-    "permanentAssets",
-    "retiredOrPensioner",
-    "clt",
-    "commissionedPosition",
-    "temporaryPosition",
-    "others"
+    "CivilServant",
+    "PermanentActive",
+    "RetiredOrPensioner",
+    "CltCeletista",
+    "CommissionedPosition",
+    "TemporaryPosition",
+    "Other"
   ], { message: "Escolha uma esfera federal." }).optional(),
+
   isMunicipalPublicServer: z.enum([
-    "competitiveExam",
-    "permanentAssets",
-    "retiredOrPensioner",
-    "CLT/Celetista",
-    "commissionedPosition",
-    "temporaryPosition",
-    "others"
+    "PermanentEmployee",
+    "PermanentActive",
+    "RetiredOrPensioner",
+    "CLTEmployee",
+    "CommissionedPosition",
+    "TemporaryPosition",
+    "Other"
   ], { message: "Escolha uma esfera municipal." }).optional(),
+
   isArmedForcesPublicServer: z.enum([
-    "activeMilitar",
-    "paidReservation",
-    "retired",
-    "pensioners",
-    "others"
+    "ActiveMilitary",
+    "RetiredReserve",
+    "Retired",
+    "Pensioners",
+    "Others"
   ], { message: "Escolha uma categoria das forças armadas." }).optional()
 });
 

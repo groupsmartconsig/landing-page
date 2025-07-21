@@ -1,6 +1,12 @@
 import axios from "axios";
 
-import { CreateCustomerRequest } from "@/types/customer";
+import {
+  CreateCustomerRequest,
+  CreatePublicServerCustomerRequest,
+  CustomerOrigin
+} from "@/types/customer";
+
+import { storageKeys } from "@/config/storage-keys";
 import { InteractionResponse } from "@/types/interaction";
 import { toast } from "sonner";
 
@@ -11,7 +17,24 @@ const httpClient = axios.create({
 export class DataService {
   static async createCustomer(formData: CreateCustomerRequest) {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem(storageKeys.accessToken);
+      if (!token) throw new Error("Token não encontrado. Faça login novamente.");
+
+      const { data } = await httpClient.post(`/customers`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return data;
+    } catch (error: any) {
+      console.error("Erro ao cadastrar cliente:", error);
+    }
+  }
+
+  static async createPublicServerCustomer(formData: CreatePublicServerCustomerRequest) {
+    try {
+      const token = localStorage.getItem(storageKeys.accessToken);
       if (!token) throw new Error("Token não encontrado. Faça login novamente.");
 
       const { data } = await httpClient.post(`/customers`, formData, {
@@ -28,14 +51,13 @@ export class DataService {
 
   static async getContractsByCustomerDocument(document: string) {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem(storageKeys.accessToken);
 
       if (!token) {
         throw new Error("Token não encontrado. Faça login novamente.");
       }
 
       const { data } = await httpClient.get(
-        //`/contratos/portabilidades-refinanciamentos/${document}/vanguard/unico-banco`,
         `/contratos/refinanciamentos/${document}/vanguard-inss`,
         {
           headers: {
@@ -46,27 +68,25 @@ export class DataService {
 
       return data;
     } catch {
-      const name = localStorage.getItem("nome");
-      const phonenumber = localStorage.getItem("contato");
-      const cpf = localStorage.getItem("cpf");
-      const utmSource = localStorage.getItem("utm_source") || "";
-      const utmCampaign = localStorage.getItem("utm_campaign") || "";
-      const utmId = localStorage.getItem("utm_id") || "";
-      const utmContent = localStorage.getItem("utm_content") || "";
+      const name = localStorage.getItem(storageKeys.customerName);
+      const phonenumber = localStorage.getItem(storageKeys.customerContact);
+      const cpf = localStorage.getItem(storageKeys.customerDocument);
+      const utmSource = localStorage.getItem(storageKeys.utmSource) || "";
+      const utmCampaign = localStorage.getItem(storageKeys.utmCampaign) || "";
+      const utmId = localStorage.getItem(storageKeys.utmId) || "";
+      const utmContent = localStorage.getItem(storageKeys.utmContent) || "";
 
       if (!name || !phonenumber || !cpf) {
         throw new Error("Dados do formulário não encontrados! Tente novamente.");
       }
 
       await DataService.createCustomer({
-        customerOrigin: {
-          creationOrigin: "Api",
-          marketingDetails: {
-            utmSource,
-            utmCampaign,
-            utmId,
-            utmContent,
-          },
+        customerOrigin: CustomerOrigin.Api,
+        marketingDetails: {
+          utmSource,
+          utmCampaign,
+          utmId,
+          utmContent,
         },
         name,
         phonenumber,
@@ -83,13 +103,13 @@ export class DataService {
 
   static async createInteractionWithOperator() {
     try {
-      const token = localStorage.getItem("token");
-      const name = localStorage.getItem("nome");
-      const cpf = localStorage.getItem("cpf");
-      const phonenumber = localStorage.getItem("contato");
+      const token = localStorage.getItem(storageKeys.accessToken);
+      const name = localStorage.getItem(storageKeys.customerName);
+      const phonenumber = localStorage.getItem(storageKeys.customerContact);
+      const cpf = localStorage.getItem(storageKeys.customerDocument);
 
       if (!token || !name || !cpf || !phonenumber) {
-        throw new Error("Dados necessários não encontrados. Tente novamente");
+        throw new Error("Dados necessários não encontrados. Tente novamente.");
       }
 
       const payload = {
@@ -101,6 +121,57 @@ export class DataService {
       }
 
       const { data } = await httpClient.post<InteractionResponse>(`/interaction`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Internal server error!");
+    }
+  }
+
+  static async createInteraction(name: string, document: string, phoneNumber: string) {
+    try {
+      const token = localStorage.getItem(storageKeys.accessToken);
+
+      if (!token) {
+        throw new Error("Unauthorized action.");
+      }
+
+      const payload = {
+        customer: {
+          name: name,
+          cpf: document,
+          phoneNumber: phoneNumber
+        }
+      }
+
+      const { data } = await httpClient.post<InteractionResponse>(`/interaction`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Internal server error!");
+    }
+  }
+
+  static async uploadFile(File: File, FileName: string) {
+    try {
+      const token = localStorage.getItem(storageKeys.accessToken);
+      if (!token) throw new Error("Token não encontrado. Faça login novamente.");
+
+      const formData = new FormData();
+      formData.append("File", File);
+      formData.append("FileName", FileName);
+
+      const { data } = await httpClient.post(`/files/import/document`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

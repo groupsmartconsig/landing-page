@@ -12,7 +12,7 @@ import {
 export function FooterContainer() {
   return (
     <div className="bg-black size-full flex flex-col items-center justify-center py-12 overflow-hidden">
-      <div className="w-full flex justify-between items-center px-12 md:max-w-7xl md:w-full md:mx-auto md:px-0">
+      <div className="w-full flex justify-between items-center px-12 lg:max-w-7xl lg:w-full lg:mx-auto lg:px-0">
         <div className="hidden sm:flex flex-col space-y-6">
           <Image
             src={logo}
