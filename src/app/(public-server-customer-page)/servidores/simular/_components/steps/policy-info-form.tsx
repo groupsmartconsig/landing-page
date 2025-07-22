@@ -32,7 +32,7 @@ export function PublicServerCustomerPolicyInfoForm({
   const handleNextStep = async () => {
     try {
       setIsSubmitting(true);
-      Promise.resolve(onSubmit());
+      await onSubmit();
 
       await DataService.createInteraction(
         localStorage.getItem(storageKeys.publicServerCustomerName)!,

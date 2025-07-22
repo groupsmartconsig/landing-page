@@ -139,7 +139,8 @@ export function PublicServerCustomerSimulationForm() {
       amountContractsElegible: 0
     };
 
-    await DataService.createPublicServerCustomer(formData);
+    const createUser = await DataService.createPublicServerCustomer(formData);
+    Promise.resolve(createUser);
   });
 
   useEffect(() => {
