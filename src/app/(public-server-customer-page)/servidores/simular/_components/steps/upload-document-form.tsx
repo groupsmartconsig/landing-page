@@ -80,15 +80,17 @@ export function PublicServerCustomerUploadDocumentForm() {
 
   const handleUploadedFile = async () => {
     const isValid = await form.trigger("publicServerCustomerDocumentUpload.file");
-    const customerDocument = localStorage.getItem(storageKeys.publicServerCustomerDocument);
 
-    if (!customerDocument) return null;
+    const customerContact = localStorage.getItem(storageKeys.publicServerCustomerContact);
+    if (!customerContact) return null;
+
+    const formattedCustomerContact = customerContact.replace(/[\s()-]/g, "");
 
     if (isValid) {
       try {
         if (currentFile) {
           setIsUploading(true);
-          await DataService.uploadFile(currentFile, customerDocument);
+          await DataService.uploadFile(currentFile, formattedCustomerContact);
           toast.success("Arquivo enviado com sucesso!");
           nextStep();
         }
@@ -193,7 +195,6 @@ export function PublicServerCustomerUploadDocumentForm() {
           className="hidden sm:flex h-10 w-72 text-sm rounded text-secondary-red border-secondary-red disabled:bg-zinc-100 disabled:border-none"
           disabled={isUploading}
           onClick={() => previousStep()}
-
         >
           Voltar
         </Button>
