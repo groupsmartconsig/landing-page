@@ -12,7 +12,6 @@ import {
 import { EllipsisLoader } from "@/components/shared/ellipsis-loader";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { storageKeys } from "@/config/storage-keys";
 import { useStepper } from "@/hooks/use-stepper";
 import { DataService } from "@/services/data-service";
 import { useState } from "react";
@@ -34,16 +33,12 @@ export function PublicServerCustomerPolicyInfoForm({
       setIsSubmitting(true);
       await onSubmit();
 
-      await DataService.createInteraction(
-        localStorage.getItem(storageKeys.publicServerCustomerName)!,
-        localStorage.getItem(storageKeys.publicServerCustomerDocument)!,
-        localStorage.getItem(storageKeys.publicServerCustomerContact)!,
-      );
+      const response = await DataService.createInteractionWithDigisac();
+      const message = "Vim%20pelo%20anúncio%20e%20quero%20ser%20atendido";
 
       toast.success("Sua proposta foi cadastrada com sucesso!");
-      nextStep();
-    } catch (error) {
-      console.log(error);
+      window.location.href = `https://wa.me/${response.phoneNumber}?text=${message}`;
+    } catch {
       toast.error("Erro ao cadastrar a sua proposta! Tente novamente.");
     } finally {
       setIsSubmitting(false);

@@ -162,6 +162,28 @@ export class DataService {
     }
   }
 
+  static async createInteractionWithDigisac() {
+    try {
+      const token = localStorage.getItem(storageKeys.accessToken);
+
+      if (!token) {
+        throw new Error("Unauthorized action.");
+      }
+
+      const { data } = await httpClient.post<{ phoneNumber: string }>(
+        `/interaction/assign-digisac`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Internal server error!");
+    }
+  }
+
   static async uploadFile(File: File, FileName: string) {
     try {
       const token = localStorage.getItem(storageKeys.accessToken);
