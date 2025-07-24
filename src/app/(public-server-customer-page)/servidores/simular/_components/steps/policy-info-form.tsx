@@ -34,7 +34,7 @@ export function PublicServerCustomerPolicyInfoForm({
       await onSubmit();
 
       const response = await DataService.createInteractionWithDigisac();
-      const message = "Olá,%20me%cadastrei%no%20site%e%quero%20simular.";
+      const message = "Olá,%20me%20cadastrei%20no%20site%20e%20quero%20simular.";
 
       toast.success("Sua proposta foi cadastrada com sucesso!");
       window.location.href = `https://wa.me/${response.phoneNumber}?text=${message}`;

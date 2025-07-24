@@ -95,7 +95,10 @@ export function PublicServerCustomerUploadDocumentForm() {
           nextStep();
         }
       } catch (error) {
-        toast.error("Erro ao enviar o arquivo. Tente novamente.");
+        console.log(error)
+        toast.error("Erro ao enviar o arquivo. Tente novamente.", {
+          description: `${error}`
+        });
       } finally {
         setIsUploading(false);
       }
