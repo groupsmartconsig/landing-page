@@ -14,15 +14,13 @@ export function PublicServerCustomerHeader() {
   return (
     <header className="w-full overflow-hidden">
       <div className="flex justify-between items-center py-4 px-6 sm:px-8 md:px-12">
-        <Link href="/" className="size-full">
-          <Image
-            src={logoRedImg}
-            width={400}
-            height={180}
-            className="w-1/4 sm:w-[14%] xl:w-[8%]"
-            alt="Logo da Smartconsig na cor vermelha"
-          />
-        </Link>
+        <Image
+          src={logoRedImg}
+          width={400}
+          height={180}
+          className="w-1/4 sm:w-[14%] xl:w-[8%]"
+          alt="Logo da Smartconsig na cor vermelha"
+        />
 
         <div className="flex items-center space-x-3 md:space-x-6">
           <Button
