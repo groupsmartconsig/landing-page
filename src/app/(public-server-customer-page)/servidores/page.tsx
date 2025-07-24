@@ -1,5 +1,3 @@
-import FacebookPixel from "@/components/shared/facebook-pixel";
-
 import { PublicServerCustomerFooter } from "./_components/footer/footer";
 import { PublicServerCustomerHeader } from "./_components/header/header";
 import { PublicServerCustomerCarouselContainer } from "./_components/sections/carousel-container";
@@ -26,7 +24,6 @@ export default function PublicServerCustomerPage() {
       <PublicServerCustomerStatsContainer />
       <PublicServerCustomerTestimonialContainer />
       <PublicServerCustomerFooter />
-      <FacebookPixel pixelId="1124010946274670" />
     </div>
   )
 }
