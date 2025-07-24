@@ -35,6 +35,9 @@ export default function RootLayout({
             `,
           }}
         />
+
+        <script src="node_modules/eruda/eruda.js"></script>
+        <script>eruda.init();</script>
       </head>
       <body className={`${montserrat.className} ${openSans.variable} antialiased`}>
         <noscript>
