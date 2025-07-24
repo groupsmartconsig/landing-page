@@ -26,7 +26,7 @@ export function PublicServerCustomerPolicyInfoForm({
 }: PublicServerCustomerPolicyInfoFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { previousStep, nextStep } = useStepper();
+  const { previousStep } = useStepper();
 
   const handleNextStep = async () => {
     try {
@@ -34,7 +34,7 @@ export function PublicServerCustomerPolicyInfoForm({
       await onSubmit();
 
       const response = await DataService.createInteractionWithDigisac();
-      const message = "Olá%20vi%20no%20anúncio%20e%20quero%20simular";
+      const message = "Olá,%20me%cadastrei%no%20site%e%quero%20simular.";
 
       toast.success("Sua proposta foi cadastrada com sucesso!");
       window.location.href = `https://wa.me/${response.phoneNumber}?text=${message}`;
