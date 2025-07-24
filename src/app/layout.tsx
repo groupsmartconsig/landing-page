@@ -1,4 +1,3 @@
-import FacebookPixel from '../components/shared/facebook-pixel'
 import './globals.css'
 
 import type { Metadata } from 'next'
@@ -47,7 +46,6 @@ export default function RootLayout({
           ></iframe>
         </noscript>
         <main>{children}</main>
-        <FacebookPixel pixelId="695701959550843" />
         <Toaster position="top-center" richColors />
       </body>
     </html>
