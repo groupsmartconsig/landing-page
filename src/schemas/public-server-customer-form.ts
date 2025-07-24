@@ -1,4 +1,3 @@
-import { isValidCpf } from "@/utils/mask/mask-cpf";
 import { z } from "zod";
 
 export const publicServerCustomerInfoFormSchema = z.object({
@@ -67,12 +66,6 @@ export const publicServerCustomerPersonalSchema = z.object({
   phoneNumber: z
     .string()
     .min(15, "Informe um telefone válido."),
-  cpf: z
-    .string()
-    .min(14, "O CPF é obrigatório! Informe um CPF válido.")
-    .refine((cpf: string) => isValidCpf(cpf), {
-      message: "Informe um CPF válido.",
-    }),
 });
 
 export const publicServerCustomerDocumentUploadSchema = z.object({

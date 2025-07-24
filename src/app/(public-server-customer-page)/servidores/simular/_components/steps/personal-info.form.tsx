@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { storageKeys } from "@/config/storage-keys";
 import { useStepper } from "@/hooks/use-stepper";
-import { maskCPF } from "@/utils/mask/mask-cpf";
 import { maskFullName } from "@/utils/mask/mask-full-name";
 import { maskPhone } from "@/utils/mask/mask-phone";
 import { useEffect } from "react";
@@ -26,20 +25,17 @@ export function PublicServerCustomerPersonalInfoForm() {
 
   const name = form.watch("publicServerCustomerPersonal.name");
   const phoneNumber = form.watch("publicServerCustomerPersonal.phoneNumber");
-  const document = form.watch("publicServerCustomerPersonal.cpf");
 
   useEffect(() => {
-    if (name && phoneNumber && document) {
+    if (name && phoneNumber) {
       const timer = setTimeout(async () => {
         const isValid = await form.trigger("publicServerCustomerPersonal");
 
         if (isValid) {
           const replacePhoneNumberValue = phoneNumber.replace(/[\s()-]/g, "");
-          const replaceDocumentValue = document.replace(/\D/g, "");
 
           localStorage.setItem(storageKeys.publicServerCustomerName, name);
           localStorage.setItem(storageKeys.publicServerCustomerContact, replacePhoneNumberValue);
-          localStorage.setItem(storageKeys.publicServerCustomerDocument, replaceDocumentValue);
           nextStep();
         }
       }, 1000);
@@ -60,11 +56,6 @@ export function PublicServerCustomerPersonalInfoForm() {
 
   const handlePhoneChange = (value: string) => {
     const maskedValue = maskPhone(value);
-    return maskedValue;
-  };
-
-  const handleCPFChange = (value: string) => {
-    const maskedValue = maskCPF(value);
     return maskedValue;
   };
 
@@ -124,35 +115,6 @@ export function PublicServerCustomerPersonalInfoForm() {
                 {...field}
                 onChange={(e) => {
                   const maskedValue = handlePhoneChange(e.target.value);
-                  field.onChange(maskedValue);
-                }}
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
-        name="publicServerCustomerPersonal.cpf"
-        render={({ field }) => (
-          <FormItem className="py-4">
-            <FormLabel className="text-muted-foreground">
-              CPF
-            </FormLabel>
-            <FormControl>
-              <Input
-                autoComplete="off"
-                autoCorrect="off"
-                autoCapitalize="off"
-                inputMode="numeric"
-                maxLength={14}
-                placeholder="Informe seu CPF"
-                className="px-0 border-x-0 border-t-0 border-b rounded-none"
-                {...field}
-                onChange={(e) => {
-                  const maskedValue = handleCPFChange(e.target.value);
                   field.onChange(maskedValue);
                 }}
               />

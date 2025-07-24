@@ -60,7 +60,6 @@ export function PublicServerCustomerSimulationForm() {
       publicServerCustomerPersonal: {
         name: "",
         phoneNumber: "",
-        cpf: ""
       }
     }
   });
@@ -135,7 +134,7 @@ export function PublicServerCustomerSimulationForm() {
       },
       name: localStorage.getItem(storageKeys.publicServerCustomerName) || "",
       phonenumber: localStorage.getItem(storageKeys.publicServerCustomerContact) || "",
-      cpf: localStorage.getItem(storageKeys.publicServerCustomerDocument) || "",
+      cpf: "57255858082",
       amountContractsElegible: 0
     };
 

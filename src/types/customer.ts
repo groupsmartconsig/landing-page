@@ -17,7 +17,7 @@ export interface CreatePublicServerCustomerRequest {
   publicServantDetails?: PublicServantDetails
   name: string
   phonenumber: string
-  cpf: string
+  cpf?: string
   amountContractsElegible: number
 }
 
