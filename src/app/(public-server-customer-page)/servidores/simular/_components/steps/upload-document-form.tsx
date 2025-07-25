@@ -1,5 +1,6 @@
 "use client"
 
+
 import {
   AlertCircleIcon,
   CheckCircleIcon,
@@ -18,10 +19,12 @@ import { DataService } from "@/services/data-service";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { toast } from "sonner";
+import { SacLinkButton } from "../sac-link-button";
 
 export function PublicServerCustomerUploadDocumentForm() {
   const [isDragging, setIsDragging] = useState(false);
   const [fileError, setFileError] = useState<string>("");
+  const [uploadError, setUploadError] = useState<boolean>(false);
   const [isUploading, setIsUploading] = useState(false);
 
   const form = useFormContext<PublicServerCustomerSchema>();
@@ -59,9 +62,7 @@ export function PublicServerCustomerUploadDocumentForm() {
     setIsDragging(true);
   };
 
-  const handleDragLeave = () => {
-    setIsDragging(false);
-  };
+  const handleDragLeave = () => setIsDragging(false);
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -89,16 +90,15 @@ export function PublicServerCustomerUploadDocumentForm() {
     if (isValid) {
       try {
         if (currentFile) {
+          setUploadError(false);
           setIsUploading(true);
           await DataService.uploadFile(currentFile, formattedCustomerContact);
           toast.success("Arquivo enviado com sucesso!");
           nextStep();
         }
-      } catch (error) {
-        console.log(error)
-        toast.error("Erro ao enviar o arquivo. Tente novamente.", {
-          description: `${error}`
-        });
+      } catch {
+        setUploadError(true);
+        toast.error("Erro ao enviar o arquivo. Tente novamente.");
       } finally {
         setIsUploading(false);
       }
@@ -115,7 +115,7 @@ export function PublicServerCustomerUploadDocumentForm() {
         <FormField
           control={form.control}
           name="publicServerCustomerDocumentUpload.file"
-          render={({ field }) => (
+          render={() => (
             <FormItem>
               <FormControl>
                 <div
@@ -189,6 +189,8 @@ export function PublicServerCustomerUploadDocumentForm() {
         </strong> <br />
         Utilizaremos este documento apenas para validar os dados do seu contrato consignado. Garantimos o uso seguro e sigiloso das suas informações.
       </p>
+
+      {uploadError && <SacLinkButton />}
 
       <div className="w-full flex flex-col items-center space-y-6 sm:flex-row sm:justify-center sm:items-center sm:space-x-6 sm:space-y-0 sm:mt-6">
         <Button

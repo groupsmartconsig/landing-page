@@ -16,6 +16,7 @@ import { useStepper } from "@/hooks/use-stepper";
 import { DataService } from "@/services/data-service";
 import { useState } from "react";
 import { toast } from "sonner";
+import { SacLinkButton } from "../sac-link-button";
 
 interface PublicServerCustomerPolicyInfoFormProps {
   onSubmit: () => void;
@@ -24,12 +25,14 @@ interface PublicServerCustomerPolicyInfoFormProps {
 export function PublicServerCustomerPolicyInfoForm({
   onSubmit
 }: PublicServerCustomerPolicyInfoFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const { previousStep } = useStepper();
 
   const handleNextStep = async () => {
     try {
+      setIsError(false);
       setIsSubmitting(true);
       await onSubmit();
 
@@ -39,6 +42,7 @@ export function PublicServerCustomerPolicyInfoForm({
       toast.success("Sua proposta foi cadastrada com sucesso!");
       window.location.href = `https://wa.me/${response.phoneNumber}?text=${message}`;
     } catch {
+      setIsError(true);
       toast.error("Erro ao cadastrar a sua proposta! Tente novamente.");
     } finally {
       setIsSubmitting(false);
@@ -63,7 +67,9 @@ export function PublicServerCustomerPolicyInfoForm({
         </CardHeader>
       </Card>
 
-      <div className="w-full flex flex-col items-center space-y-6 sm:flex-row sm:justify-center sm:items-center sm:space-x-6 sm:space-y-0 sm:mt-6">
+      {isError && <SacLinkButton />}
+
+      <div className="w-full flex flex-col items-center space-y-6 sm:flex-row sm:justify-center sm:items-center sm:space-x-6 sm:space-y-0 sm:mt-6 md:mt-12">
         <Button
           type="button"
           size="lg"
