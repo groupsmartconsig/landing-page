@@ -1,46 +1,13 @@
-import dynamic from 'next/dynamic';
-
-const HeaderContainer = dynamic(() => import(
-  '@/components/shared/header'
-).then(mod => mod.HeaderContainer), { ssr: true });
-
-const InformativeContainer = dynamic(() => import(
-  '@/components/shared/informative'
-).then(mod => mod.InformativeContainer), { ssr: true });
-
-const PortabilityContainer = dynamic(() => import(
-  '@/components/shared/portability'
-).then(mod => mod.PortabilityContainer), { ssr: true });
-
-const SimulationContainer = dynamic(() => import(
-  '@/components/shared/simulation'
-).then(mod => mod.SimulationContainer), { ssr: true });
-
-const InfiniteSliderBanksContainer = dynamic(() => import(
-  '@/components/shared/infinite-slider-banks'
-).then(mod => mod.InfiniteSliderBanksContainer), { ssr: true });
-
-const InfiniteSliderBanksDesktopContainer = dynamic(() => import(
-  '@/components/shared/infinite-slider-banks-desktop'
-).then(mod => mod.InfiniteSliderBanksDesktopContainer), { ssr: true });
-
-const HeroVideoContainer = dynamic(() => import(
-  '@/components/shared/hero-video'
-).then(mod => mod.HeroVideoContainer), { ssr: true });
-
-const ReviewsContainer = dynamic(() => import(
-  '@/components/shared/reviews'
-).then(mod => mod.ReviewsContainer), { ssr: true });
-
-const FaqContainer = dynamic(() => import(
-  '@/components/shared/faq'
-).then(mod => mod.FaqContainer), { ssr: true });
-
-const FooterContainer = dynamic(() => import(
-  '@/components/shared/footer'
-).then(mod => mod.FooterContainer), { ssr: true });
-
-export const revalidate = 21600 // 6 horas em segundos
+import { HeaderContainer } from '@/components/shared/header';
+import { InformativeContainer } from '@/components/shared/informative';
+import { PortabilityContainer } from '@/components/shared/portability';
+import { SimulationContainer } from '@/components/shared/simulation';
+import { InfiniteSliderBanksContainer } from '@/components/shared/infinite-slider-banks';
+import { InfiniteSliderBanksDesktopContainer } from '@/components/shared/infinite-slider-banks-desktop';
+import { HeroVideoContainer } from '@/components/shared/hero-video';
+import { ReviewsContainer } from '@/components/shared/reviews';
+import { FaqContainer } from '@/components/shared/faq';
+import { FooterContainer } from '@/components/shared/footer';
 
 export default function LandingPage() {
   return (
