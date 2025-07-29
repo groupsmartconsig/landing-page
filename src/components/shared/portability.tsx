@@ -1,5 +1,3 @@
-'use client'
-
 import elderlyHeadset from "@/app/assets/images/elderly-headset.png";
 import Image from "next/image";
 
@@ -27,7 +25,6 @@ export function PortabilityContainer() {
               height={591}
               alt="Elderly headset man"
               className="object-cover w-full h-full"
-              priority
             />
           </div>
 
@@ -72,7 +69,6 @@ export function PortabilityContainer() {
                 height={700}
                 alt="Elderly headset man"
                 className="object-cover w-full h-full"
-                priority
               />
             </div>
           </div>

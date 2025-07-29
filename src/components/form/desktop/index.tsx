@@ -1,3 +1,5 @@
+'use client'
+
 import { ProposalsProvider } from '@/context/proposals-context'
 import { UtmProviderSuspense } from '@/context/utm-context'
 import { useState } from 'react'

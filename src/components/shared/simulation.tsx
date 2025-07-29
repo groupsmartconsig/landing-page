@@ -1,5 +1,3 @@
-'use client'
-
 import simulation from "@/app/assets/images/simulation.png";
 import Image from "next/image";
 
@@ -35,7 +33,6 @@ export function SimulationContainer() {
           height={4800}
           className="h-[600px] w-auto rounded-xl sm:h-[700px]"
           alt="Simulação de crédito"
-          priority
         />
 
         <div className="w-full px-6">
@@ -55,7 +52,6 @@ export function SimulationContainer() {
                   height={700}
                   alt="Simulação de crédito"
                   className="object-cover w-full h-full"
-                  priority
                 />
               </div>
 

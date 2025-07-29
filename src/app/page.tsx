@@ -1,5 +1,3 @@
-"use client"
-
 import { UtmProviderSuspense } from "@/context/utm-context";
 
 import LandingPage from "./(landing-page)/page";

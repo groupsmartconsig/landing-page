@@ -1,5 +1,3 @@
-'use client'
-
 import HeroVideoDialog from "@/components/magic-ui/hero-video-dialog";
 
 import { SimulationMobileButton } from "@/components/shared/simulation-mobile-button";

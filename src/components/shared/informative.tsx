@@ -1,5 +1,3 @@
-'use client'
-
 import elderlyThoughtful from "@/app/assets/images/elderly-thoughtful.png";
 import Image from "next/image";
 
@@ -27,7 +25,6 @@ export function InformativeContainer() {
               height={700}
               alt="Thoughtful old woman"
               className="object-cover w-full h-full"
-              priority
             />
           </div>
 
@@ -55,7 +52,6 @@ export function InformativeContainer() {
                 height={700}
                 alt="Thoughtful old woman"
                 className="object-cover w-full h-full"
-                priority
               />
             </div>
 

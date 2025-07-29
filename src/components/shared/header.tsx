@@ -1,5 +1,3 @@
-'use client'
-
 import elderlyCasual from '@/app/assets/images/elderly-casual.png'
 import elderlySmile from '@/app/assets/images/elderly-smile.png'
 import logo from '@/app/assets/images/logo-white.png'
@@ -29,6 +27,7 @@ export function HeaderContainer() {
               height={200}
               className="w-20 md:w-24 xl:w-28"
               alt="Smartconsig logo"
+              quality={80}
             />
             <div className="flex items-center justify-center gap-x-2 text-sm text-white md:text-base">
               <LockKeyholeIcon className="size-4 md:size-5" />
