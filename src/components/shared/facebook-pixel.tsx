@@ -6,33 +6,12 @@
 
 import Script from 'next/script';
 
-import { useEffect } from 'react';
-
 export default function FacebookPixel({ pixelId }: { pixelId: string }) {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.fbq = function () {
-        window.fbq.callMethod
-          ? window.fbq.callMethod.apply(window.fbq, arguments)
-          : window.fbq.queue.push(arguments)
-      }
-
-      if (!window._fbq) window._fbq = window.fbq
-
-      window.fbq.push = window.fbq
-      window.fbq.loaded = true
-      window.fbq.version = '2.0'
-      window.fbq.queue = []
-      window.fbq('init', pixelId)
-      window.fbq('track', 'PageView')
-    }
-  }, [pixelId])
-
   return (
     <>
       <Script
         id="fb-pixel"
-        strategy="afterInteractive"
+        strategy="worker"
         dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s)

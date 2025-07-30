@@ -1,3 +1,5 @@
+'use client';
+
 import { useUtmParams } from "@/context/utm-context";
 import { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,6 +13,7 @@ export const UtmLink = ({ href, children, ...props }: UtmLinkProps) => {
   const router = useRouter();
 
   const addUtmParams = (url: string | URL) => {
+    if (typeof window === "undefined") return;
     const urlObj = new URL(url.toString(), window.location.origin);
     if (utmSource) urlObj.searchParams.set("utm_source", utmSource);
     if (utmMedium) urlObj.searchParams.set("utm_medium", utmMedium);
@@ -22,7 +25,9 @@ export const UtmLink = ({ href, children, ...props }: UtmLinkProps) => {
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-    router.push(addUtmParams(href.toString()));
+    const utmParams = addUtmParams(href.toString());
+    if (!utmParams) return;
+    router.push(utmParams);
   };
 
   return (
