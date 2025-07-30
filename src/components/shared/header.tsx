@@ -27,7 +27,8 @@ export function HeaderContainer() {
               height={200}
               className="w-20 md:w-24 xl:w-28"
               alt="Smartconsig logo"
-              quality={80}
+              priority
+              quality={75}
             />
             <div className="flex items-center justify-center gap-x-2 text-sm text-white md:text-base">
               <LockKeyholeIcon className="size-4 md:size-5" />
@@ -39,10 +40,11 @@ export function HeaderContainer() {
           <div className="relative bg-red-500 h-72 max-w-[350px] mx-auto rounded-t-2xl overflow-hidden md:hidden">
             <Image
               src={elderlySmile}
-              width={500}
-              height={500}
+              width={150}
+              height={200}
               alt="Smiling man"
               className="object-cover w-full h-full"
+              quality={75}
               priority
             />
           </div>
