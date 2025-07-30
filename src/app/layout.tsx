@@ -6,11 +6,16 @@ import { Toaster } from 'sonner'
 import {GoogleTagManager} from '@next/third-parties/google'
 
 
-const montserrat = Montserrat({ subsets: ['latin'] })
+const montserrat = Montserrat({ 
+  subsets: ['latin'],
+  weight:['400', '500', '600', '700'],
+
+})
 
 const openSans = Open_Sans({
   variable: '--font-open-sans',
-  subsets: ['latin']
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
