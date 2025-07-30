@@ -99,9 +99,9 @@ const ReviewCard = ({
 export function ReviewsContainer() {
   return (
     <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden text-white md:shadow-xl">
-      <h5 className="max-w-60 text-2xl text-center font-bold text-primary leading-tight pb-12 sm:text-4xl md:max-w-full md:text-5xl md:font-semibold">
+      <h2 className="max-w-60 text-2xl text-center font-bold text-primary leading-tight pb-12 sm:text-4xl md:max-w-full md:text-5xl md:font-semibold">
         Avaliações dos nossos clientes
-      </h5>
+      </h2>
 
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((review) => (

@@ -68,12 +68,14 @@ export function PublicServerCustomerFooter() {
               </span>
               <div className="flex items-center gap-6">
                 <Link
+                  aria-label="Instagram"
                   href="https://www.instagram.com/smart_consig/?igshid=NTc4MTIwNjQ2YQ%3D%3D"
                   className="inline-flex items-center gap-2 text-sm text-white hover:underline hover:text-muted-foreground"
                 >
                   <InstagramIcon className="size-5" />
                 </Link>
                 <Link
+                  aria-label="Facebook"
                   href="https://www.facebook.com/smartconsigsf?mibextid=LQQJ4d"
                   className="inline-flex items-center gap-2 text-sm text-white hover:underline hover:text-muted-foreground"
                 >
