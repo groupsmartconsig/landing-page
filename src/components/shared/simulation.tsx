@@ -29,8 +29,8 @@ export function SimulationContainer() {
 
         <Image
           src={simulation}
-          width={3375}
-          height={4800}
+          width={600}
+          height={700}
           className="h-[600px] w-auto rounded-xl sm:h-[700px]"
           alt="Simulação de crédito"
         />
@@ -52,6 +52,7 @@ export function SimulationContainer() {
                   height={700}
                   alt="Simulação de crédito"
                   className="object-cover w-full h-full"
+                  loading="lazy"
                 />
               </div>
 

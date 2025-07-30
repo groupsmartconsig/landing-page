@@ -37,10 +37,10 @@ export function InfiniteSliderBanksContainer() {
               <Image
                 src={image.src}
                 alt={image.alt}
-                width={1080}
-                height={1080}
+                width={120}
+                height={120}
                 className="h-[120px] w-full object-contain"
-                priority
+                loading="lazy"
               />
             </div>
           ))}

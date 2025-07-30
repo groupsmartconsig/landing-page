@@ -24,89 +24,89 @@ export function InfiniteSliderBanksDesktopContainer() {
           src="/banrisul.png"
           alt="Banco banrisul"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
         <Image
           src="/bmg.png"
           alt="Banco bmg"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
         <Image
           src="/bradesco.png"
           alt="Banco bradesco"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
         <Image
           src="/c6.png"
           alt="Banco c6"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
         <Image
           src="/caixa.png"
           alt="Banco caixa"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
         <Image
           src="/crefisa.png"
           alt="Banco crefisa"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
         <Image
           src="/daycoval.png"
           alt="Banco daycoval"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
         <Image
           src="/itau.png"
           alt="Banco itau"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
         <Image
           src="/pan.png"
           alt="Banco pan"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
         <Image
           src="/safra.png"
           alt="Banco safra"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
         <Image
           src="/santander.png"
           alt="Banco santander"
           className="h-[120px] w-auto"
-          width={1080}
-          height={1080}
-          priority
+          width={120}
+          height={120}
+          loading='lazy'
         />
       </InfiniteSlider>
     </div>

@@ -25,6 +25,7 @@ export function PortabilityContainer() {
               height={591}
               alt="Elderly headset man"
               className="object-cover w-full h-full"
+              loading="lazy"
             />
           </div>
 
@@ -69,6 +70,7 @@ export function PortabilityContainer() {
                 height={700}
                 alt="Elderly headset man"
                 className="object-cover w-full h-full"
+                loading="lazy"
               />
             </div>
           </div>

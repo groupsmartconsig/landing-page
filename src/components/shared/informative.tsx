@@ -25,6 +25,7 @@ export function InformativeContainer() {
               height={700}
               alt="Thoughtful old woman"
               className="object-cover w-full h-full"
+              loading="lazy"
             />
           </div>
 
@@ -46,12 +47,22 @@ export function InformativeContainer() {
           {/* Desktop */}
           <div className="hidden md:grid md:grid-cols-2 md:place-items-center md:h-[680px] md:gap-6 xl:max-w-[1600px] lg:mx-auto lg:w-full">
             <div className="relative bg-red-500 h-full max-w-md mx-auto rounded-2xl overflow-hidden">
+              <figure className="relative w-full h-full max-w-[500px] max-h-[700px]">
+                <Image
+                  src={elderlyThoughtful}
+                  fill
+                  alt="Thoughtful old woman"
+                  className="object-cover"
+                  loading="lazy"
+                />
+              </figure>
               <Image
                 src={elderlyThoughtful}
                 width={500}
                 height={700}
                 alt="Thoughtful old woman"
                 className="object-cover w-full h-full"
+                loading="lazy"
               />
             </div>
 

@@ -1,7 +1,11 @@
-import HeroVideoDialog from "@/components/magic-ui/hero-video-dialog";
+import dynamic from 'next/dynamic';
+
+const HeroVideoDialog = dynamic(() => import("@/components/magic-ui/hero-video-dialog"));
 
 import { SimulationMobileButton } from "@/components/shared/simulation-mobile-button";
 import { SimulationDesktopButton } from "./simulation-desktop-button";
+
+import image from '../../../public/video-thumbnail.png'
 
 export function HeroVideoContainer() {
   return (
@@ -32,7 +36,7 @@ export function HeroVideoContainer() {
         className="block z-10"
         animationStyle="top-in-bottom-out"
         videoSrc="video.mp4"
-        thumbnailSrc="video-thumbnail.png"
+        thumbnailSrc={image.src}
         thumbnailAlt="Hero Video"
       />
     </div>
