@@ -8,6 +8,7 @@ import {
   MailIcon,
   PhoneIcon
 } from "lucide-react";
+import { PublicServerCustomerTermsAndPolicies } from "./terms-and-policies";
 
 export function PublicServerCustomerFooter() {
   return (
@@ -30,6 +31,12 @@ export function PublicServerCustomerFooter() {
           <small className="text-muted-foreground font-medium">
             CNPJ: 37.044.794/0001-03
           </small>
+          <div className="flex items-center gap-1">
+            <p className="text-muted-foreground hover:text-primary text-[11px] text-balance">
+              Ao navegar pelo nosso site, você concorda com nossos
+            </p>
+            <PublicServerCustomerTermsAndPolicies />
+          </div>
         </div>
         <div className="flex items-center space-x-20">
           <div className="grid grid-cols-1 gap-6">

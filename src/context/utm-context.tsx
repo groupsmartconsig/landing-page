@@ -19,6 +19,7 @@ const UtmContext = createContext({} as UtmContextProps);
 
 export const UtmProvider = ({ children }: { children: React.ReactNode }) => {
   const searchParams = useSearchParams();
+
   const [utmData, setUtmData] = useState({
     utmSource: "",
     utmMedium: "",
