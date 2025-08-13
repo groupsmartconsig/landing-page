@@ -5,7 +5,7 @@ import { DesktopButton } from "../../button/desktop/desktop-button";
 import cardImage from "@/app/assets/images/brasilcard-card.png"
 import Image from "next/image";
 
-export const ApproveSection = (): JSX.Element => {
+export function ApproveSection (): JSX.Element {
   const benefits = [
     {
       icon: <Clock4 className="h-14 w-auto" />,
@@ -43,8 +43,8 @@ export const ApproveSection = (): JSX.Element => {
         </p>
       </header>
 
-      <div className="flex flex-wrap items-center justify-center py-6 sm:py-0 gap-2 sm:gap-[0px_0px] relative self-stretch w-full">
-        <figure className="relative w-full sm:w-5/12 h-[350px] sm:h-[450px]">
+      <div className="flex flex-wrap sm:flex-nowrap items-center justify-center py-6 sm:py-0 gap-2 sm:gap-[0px_0px] relative self-stretch w-full">
+        <figure className="relative w-full sm:w-6/12 h-[350px] sm:h-[450px]">
           <Image 
             src={cardImage}
             alt="cartão de crédito azul com o logo da Brasilcard"
@@ -54,7 +54,8 @@ export const ApproveSection = (): JSX.Element => {
         </figure>
 
         <div className="flex flex-col h-full items-start gap-4 relative flex-1 grow">
-          <div className="hidden sm:grid grid-cols-2 grid-rows-2 gap-2 pl-12 pr-4 pt-8 pb-4 w-[690px] h-96 top-0 left-0">
+          <div className="hidden sm:grid grid-cols-2 grid-rows-2 gap-2 lg:pl-12 lg:pr-4 pt-8 pb-4 sm:w-full
+           lg:w-[690px]">
             {benefits.map((benefit, index) => (
               <Card
                 key={index}

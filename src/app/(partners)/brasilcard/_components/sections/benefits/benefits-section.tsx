@@ -1,9 +1,9 @@
-import Image from "next/image";
 import { DesktopButton } from "../../button/desktop/desktop-button";
 
+import Image from "next/image";
 import handCard from "@/app/assets/images/brasilcard-hand.png";
 
-export const BenefitsSection = (): JSX.Element => {
+export function BenefitsSection (): JSX.Element {
   const benefits = [
     {
       text: (
@@ -50,20 +50,20 @@ export const BenefitsSection = (): JSX.Element => {
         </h1>
       </header>
 
-      <main className="flex flex-wrap lg:h-[500px] items-center justify-center gap-[0px_0px] relative self-stretch w-full">
-        <div className="flex flex-col lg:h-[500px] items-start pb-4 sm:pb-0 gap-3 relative flex-1 grow">
-          <ul className="flex flex-col gap-6 pl-0 sm:pr-4 py-4 w-full sm:w-[690px] h-fit sm:h-96 top-0 left-0">
+      <main className="flex flex-wrap lg:flex-nowrap lg:h-[500px] items-center justify-center gap-6 relative self-stretch w-full">
+        <div className="flex flex-col lg:min-h-[500px] items-center lg:items-start sm:min-w-[576px] lg:w-5/12 pb-4 sm:pb-0 gap-3 relative flex-1 grow">
+          <ul className="flex items-center justify-center lg:justify-start flex-col gap-6 pl-0 py-4 w-full max-w-xl h-fit">
             {benefits.map((benefit, index) => (
               <li
                 key={index}
-                className={`relative sm:row-[${index + 1}_/_${index + 2}] sm:col-[1_/_2] w-auto font-semibold text-transparent text-lg sm:text-2xl tracking-[0] leading-[normal]`}
+                className={`relative w-full font-semibold text-transparent text-lg sm:text-2xl tracking-[0] leading-[normal]`}
               >
                 {benefit.text}
               </li>
             ))}
           </ul>
 
-          <div className="hidden lg:flex flex-col h-[100px] items-start justify-center gap-2.5 py-2.5 relative self-stretch w-full">
+          <div className="hidden lg:flex flex-col h-[100px] items-start justify-center relative self-stretch w-full">
             <DesktopButton 
               className="w-full max-w-xl h-12 bg-black text-primary text-lg font-bold hover:bg-black hover:opacity-80" 
               label="Quero aproveitar as vantagens" 
@@ -71,7 +71,7 @@ export const BenefitsSection = (): JSX.Element => {
           </div>
         </div>
 
-        <figure className="relative w-full h-[400px] sm:w-[450px] sm:h-[500px]">
+        <figure className="relative pt-4 w-full h-[400px] sm:w-[450px] sm:h-[500px]">
           <Image 
            src={handCard}
            alt="mão segurano um cartão de crédito da Brasilcard"

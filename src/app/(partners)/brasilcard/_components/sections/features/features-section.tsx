@@ -1,8 +1,18 @@
+import { 
+  Banknote, 
+  CalendarClock, 
+  CalendarDays, 
+  ChartNoAxesCombined, 
+  Percent, 
+  ShieldCheck, 
+  ShoppingBag, 
+  ShoppingCart 
+} from "lucide-react";
+
 import { Card, CardContent } from "@/components/ui/card" ;
-import { Banknote, CalendarClock, CalendarDays, ChartNoAxesCombined, Percent, ShieldCheck, ShoppingBag, ShoppingCart } from "lucide-react";
 import { DesktopButton } from "../../button/desktop/desktop-button";
 
-export const FeaturesSection = (): JSX.Element => {
+export function FeaturesSection(): JSX.Element {
   const features = [
     { 
       icon: <CalendarClock className="h-14 w-auto" />, 

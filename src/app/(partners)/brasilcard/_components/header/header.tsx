@@ -1,11 +1,11 @@
-import Image from "next/image";
-
-import Logo from "@/app/assets/images/logo-white.png"
-import HeadlineImage from "@/app/assets/images/brasilcard-header.png"
 import { LockKeyholeIcon } from "lucide-react";
 import { DesktopButton } from "../button/desktop/desktop-button";
 
-export const HeaderSection = (): JSX.Element => {
+import Image from "next/image";
+import Logo from "@/app/assets/images/logo-white.png"
+import HeadlineImage from "@/app/assets/images/brasilcard-header.png"
+
+export function HeaderSection (): JSX.Element {
   return (
     <header className="flex flex-col h-[100dvh] items-center justify-end sm:gap-[52px] relative w-full bg-transparent bg-[linear-gradient(180deg,rgba(138,9,13,1)_0%,rgba(228,44,51,1)_100%)]">
       <nav className="flex h-[80px] items-center justify-between px-3 sm:px-8 lg:px-[150px] py-0 relative w-full backdrop-blur-[2px] backdrop-brightness-[100%]">
