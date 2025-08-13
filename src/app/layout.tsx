@@ -36,6 +36,7 @@ export default function RootLayout({
           }}
         />
       </head>
+
       <body className={`${montserrat.className} ${openSans.variable} antialiased`}>
         <noscript>
           <iframe
