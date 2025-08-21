@@ -1,14 +1,14 @@
 import { LockKeyholeIcon } from "lucide-react";
-import { DesktopButton } from "../button/desktop/desktop-button";
+import { SolicitationForm } from "../forms/solicitation/solicitation-form";
 
 import Image from "next/image";
-import Logo from "@/app/assets/images/logo-white.png"
-import HeadlineImage from "@/app/assets/images/brasilcard-header.png"
+import Logo from "@/app/assets/images/logo-red.png"
+import HeadlineImage from "@/app/assets/images/partners/brasilcard/cards.png"
 
 export function HeaderSection (): JSX.Element {
   return (
-    <header className="flex flex-col h-[100dvh] items-center justify-end sm:gap-[52px] relative w-full bg-transparent bg-[linear-gradient(180deg,rgba(138,9,13,1)_0%,rgba(228,44,51,1)_100%)]">
-      <nav className="flex h-[80px] items-center justify-between px-3 sm:px-8 lg:px-[150px] py-0 relative w-full backdrop-blur-[2px] backdrop-brightness-[100%]">
+    <header id="solicitar-cartao" className="flex flex-col min-h-[90dvh] items-center justify-end relative w-full bg-transparent">
+      <nav className="flex h-[80px] items-center justify-between px-8 lg:px-[150px] py-0 relative w-full backdrop-blur-[2px] backdrop-brightness-[100%]">
         <figure className=" w-20 md:w-24 xl:w-28 h-full inline-flex items-center relative flex-[0_0_auto]">
           <Image
             src={Logo}
@@ -21,33 +21,26 @@ export function HeaderSection (): JSX.Element {
           />
         </figure>
 
-        <figure className="flex items-center justify-center gap-x-2 text-sm text-white md:text-base">
+        <figure className="flex items-center justify-center gap-x-2 text-sm text-red-800 md:text-base">
           <LockKeyholeIcon className="size-4 md:size-5" />
           <span>Site seguro</span>
         </figure>
       </nav>
 
-      <main className="flex items-end justify-center px-3 sm:px-8 lg:gap-6 lg:px-[150px] py-0 relative flex-1 w-full grow">
-        <section className="flex h-full flex-col items-center justify-center gap-1 px-0 py-14 relative flex-1 grow">
-          <h1 className="font-semibold text-xl sm:text-4xl text-black leading-tight">
-            Aprovado na hora, usado para sempre.
+      <main className="flex flex-wrap-reverse sm:flex-nowrap items-center py-12 gap-3 px-2 md:px-6 lg:px-36 justify-center relative w-full grow bg-[url('/brasilcard-headline-background.png')]">
+        <section className="w-full sm:w-1/2 px-9 h-full gap-y-5 flex flex-col items-start justify-center">
+          <h1 className="text-white font-normal text-3xl">
+              Garanta seu Cartão <span className="font-bold">BrasilCard</span>: Rápido, Fácil e 100% Digital.
           </h1>
-
-          <p className="text-lg sm:text-2xl text-white tracking-tight pb-4">
-            A liberdade de ter seu crédito aprovado na hora que você mais
-            precisa. Nosso processo é rápido e 100% digital para você já sair
-            usando.
-          </p>
-
-          <DesktopButton label="Solicite Agora"  />
+          <SolicitationForm />
         </section>
-
-        <figure className="hidden sm:block relative h-full w-1/2">
+        <figure className="relative h-60 sm:h-96 w-full sm:w-1/2">
             <Image 
               src={HeadlineImage}
-              alt="mulher negra com o sorrindo e segurando um cartão de crédito"
+              alt="mulher negra sorrindo e segurando um cartão de crédito"
               priority
               fill
+              className="object-contain"
             />
         </figure>
       </main>
