@@ -1,13 +1,13 @@
 import { FooterContainer } from "@/components/shared/footer";
-import { HeaderSection } from "./_components/header/header";
-import { AboutSection } from "./_components/sections/about/about-section";
-import { ProductSection } from "./_components/sections/product/product-section";
 import { SocialSection } from "./_components/sections/social/social-section";
+import { ProductSection } from "./_components/sections/product/product-section";
+import { AboutSection } from "./_components/sections/about/about-section";
+import { BrasilcardHeaderSection } from "./_components/header/header";
 
 export default function BrasilCardPage (){
     return(
         <main>
-            <HeaderSection />
+            <BrasilcardHeaderSection />
             <AboutSection />
             <ProductSection />
             <SocialSection />

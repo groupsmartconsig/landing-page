@@ -7,7 +7,6 @@ import { maskCPF } from "@/utils/mask/mask-cpf";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { BrasilCartSolicitationFormSchema, BrasilCartSolicitationFormData } from "@/schemas/brasil-card-solicitation.form";
 import { CalendarIcon } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -16,6 +15,7 @@ import { occupations } from "@/utils/enums/occupations-enum";
 import { UFs } from "@/utils/enums/ufs-enum";
 import { format } from "date-fns";
 import { maskDate } from "@/utils/mask/mask-date";
+import { BrasilCardAnalysisFormData, BrasilCardAnalysisSchema } from "../../../schemas/analysis-schema";
 
 import {
   Form,
@@ -33,22 +33,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-
-export function SolicitationForm() {
-  const form = useForm<BrasilCartSolicitationFormData>({
-    resolver: zodResolver(BrasilCartSolicitationFormSchema),
+export function AnalysisForm() {
+  const form = useForm<BrasilCardAnalysisFormData>({
+    resolver: zodResolver(BrasilCardAnalysisSchema),
     defaultValues: {
       cpf: "",
       uf: "",
-      occupation: "",
-      birthday: ""
+      employment_status: "",
+      birth_day: ""
     },
   });
 
-  const { watch, setValue, getFieldState } = form;
+  const { watch, setValue, } = form;
 
   const cpf = watch("cpf");
-  const birthday = watch('birthday')
+  const birthday = watch('birth_day')
 
   useEffect(() => {
     setValue("cpf", maskCPF(cpf));
@@ -56,13 +55,11 @@ export function SolicitationForm() {
   }, [cpf, setValue]);
 
   useEffect(()=>{
-    setValue('birthday', maskDate(birthday))
+    setValue('birth_day', maskDate(birthday))
 
   }, [birthday, setValue ])
 
-  function onSubmit(data: BrasilCartSolicitationFormData) {
-    data.birthday.replaceAll("/", "-")
-    
+  function onSubmit(data: BrasilCardAnalysisFormData) {  
     axios.post('/api/brasilcard/client-analyse', data)
       .then((resp)=>{
         console.log(resp);
@@ -117,7 +114,7 @@ export function SolicitationForm() {
         />
         <FormField
           control={form.control}
-          name="occupation"
+          name="employment_status"
           render={({ field }) => (
             <FormItem>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -129,7 +126,7 @@ export function SolicitationForm() {
                 <SelectContent>
                   {occupations.map((occupation, index)=>{
                     return(
-                      <SelectItem key={`${occupation}-${index}`} value={occupation} >{occupation}</SelectItem>
+                      <SelectItem key={`${occupation}-${index}`} value={`000${index + 1}`} >{occupation}</SelectItem>
                     )
                   })}
                 </SelectContent>
@@ -140,7 +137,7 @@ export function SolicitationForm() {
         />
         <FormField 
           control={form.control}
-          name="birthday"
+          name="birth_day"
           render={({field})=>(
             <FormItem>
               <FormControl>
@@ -174,7 +171,7 @@ export function SolicitationForm() {
                           captionLayout="dropdown"
                           onSelect={(value)=>{
                             if(value){
-                              setValue('birthday', format(value.toDateString(), 'dd/MM/yyyy'))
+                              setValue('birth_day', format(value.toDateString(), 'dd/MM/yyyy'))
                             }
                           }}
                         />
