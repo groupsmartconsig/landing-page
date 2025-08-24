@@ -13,17 +13,40 @@ import { Calendar } from "@/components/ui/calendar";
 import { ptBR } from "date-fns/locale";
 import { format } from "date-fns";
 
-export function SolicitationForm(): JSX.Element{
-    const form = useForm<BrasilCardSolicitationFormData>({
-        resolver: zodResolver(BrasilCardSolicitationSchema),
-        defaultValues: {
+export interface SolicitationFormData{
+    name: string
+    cpf: string, 
+    identity_document_number: string,
+    identity_document_state: string,
+    cellphone: string,
+    email: string,
+    birth_date: string,
+    sex: string,
+    marital_status: string,
+    mother_name: string,
+    job: string,
+    job_company: string,
+    employment_status: string,
+    income: string,
+    zipcode: string,
+    city: string,
+    state: string,
+    type_street: string,
+    address: string,
+    number: string,
+    complement: string,
+    neighborhood: string,
+    politically_exposed_position: boolean,
+    politically_exposed_position_date: string,
+    politically_exposed_relative: boolean,
+}
 
-        }
-    })
+export function SolicitationForm(): JSX.Element{
+    const form = useForm<SolicitationFormData>()
 
     const { watch, setValue } = form;
 
-    function onSubmit(data: BrasilCardSolicitationFormData){
+    function onSubmit(data: SolicitationFormData){
         console.log("...")
     }
 
