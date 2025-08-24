@@ -1,6 +1,7 @@
 'use client'
 
 import HeroVideoDialog from "@/components/magic-ui/hero-video-dialog";
+import videoThumbnail from "../../../../../../public/video-thumbnail.png"
 
 export function SimulationPageHeroVideoSection() {
   return (
@@ -15,7 +16,7 @@ export function SimulationPageHeroVideoSection() {
         className="block z-10"
         animationStyle="top-in-bottom-out"
         videoSrc="video.mp4"
-        thumbnailSrc="video-thumbnail.png"
+        thumbnailSrc={videoThumbnail.src}
         thumbnailAlt="Hero Video"
       />
     </div>
