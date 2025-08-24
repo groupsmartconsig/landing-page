@@ -1,10 +1,9 @@
 import { LockKeyholeIcon } from "lucide-react";
-
+import { AnalysisForm } from "../forms/analysis/analysis-form";
 
 import Image from "next/image";
 import Logo from "@/app/assets/images/logo-red.png"
 import HeadlineImage from "@/app/assets/images/partners/brasilcard/cards.png"
-import { AnalysisForm } from "../forms/analysis/analysis-form";
 
 export function BrasilcardHeaderSection (): JSX.Element {
   return (
@@ -34,6 +33,7 @@ export function BrasilcardHeaderSection (): JSX.Element {
               Garanta seu Cartão <span className="font-bold">BrasilCard</span>: Rápido, Fácil e 100% Digital.
           </h1>
           <AnalysisForm />
+          
         </section>
         <figure className="relative h-60 sm:h-96 w-full sm:w-1/2">
             <Image 

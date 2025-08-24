@@ -1,10 +1,10 @@
 "use client";
+
 import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { maskCPF } from "@/utils/mask/mask-cpf";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { isValidCpf, maskCPF } from "@/utils/mask/mask-cpf";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { CalendarIcon } from "lucide-react";
@@ -15,7 +15,6 @@ import { occupations } from "@/utils/enums/occupations-enum";
 import { UFs } from "@/utils/enums/ufs-enum";
 import { format } from "date-fns";
 import { maskDate } from "@/utils/mask/mask-date";
-import { BrasilCardAnalysisFormData, BrasilCardAnalysisSchema } from "../../../schemas/analysis-schema";
 
 import {
   Form,
@@ -33,25 +32,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function AnalysisForm() {
-  const form = useForm<BrasilCardAnalysisFormData>({
-    resolver: zodResolver(BrasilCardAnalysisSchema),
-    defaultValues: {
-      cpf: "",
-      uf: "",
-      employment_status: "",
-      birth_day: ""
-    },
-  });
+export interface AnalysisForm  {
+    cpf: string
+    uf: string
+    employment_status: string
+    birth_day: string
+}
 
-  const { watch, setValue, } = form;
+export function AnalysisForm() {
+  const form = useForm<AnalysisForm>();
+
+  const { watch, setValue, setError, clearErrors } = form;
 
   const cpf = watch("cpf");
+  const uf = watch('uf');
+  const employment_status = watch("employment_status")
   const birthday = watch('birth_day')
 
   useEffect(() => {
-    setValue("cpf", maskCPF(cpf));
-    
+    if(cpf){
+        setValue("cpf", maskCPF(cpf))
+    }
   }, [cpf, setValue]);
 
   useEffect(()=>{
@@ -59,10 +60,65 @@ export function AnalysisForm() {
 
   }, [birthday, setValue ])
 
-  function onSubmit(data: BrasilCardAnalysisFormData) {  
+  function validateCPF(){
+    if(!cpf){
+        setError('cpf', {message: "CPF é obrigatório"})
+        return false;
+    }
+    if(!isValidCpf(cpf)){
+        setError('cpf', {message: "Informe um CPF válido."})
+          return false;
+    }
+    
+    clearErrors("cpf")
+    return true;
+  }
+
+  function validateUF(){
+    if(!uf){
+        setError("uf", { message: "UF é obrigatório"})
+        return false
+    }
+
+    return true
+  }
+
+  function validateEmploymentStatus(){
+    if(!employment_status){
+        setError('employment_status', { message: 'Situação empregatícia é obrigatório'})
+        return false
+    }
+
+    return true
+  }
+
+  function validateBirthDay(){
+    if(!birthday){
+        setError("birth_day", {message: "Data de aniversário é obrigatório"})
+        return false;
+    }
+    return true;
+  }
+
+  function onSubmit(data: AnalysisForm) {
+    const isCPFValid = validateCPF()
+    const isUFValid = validateUF()
+    const isEmploymentStatusValid = validateEmploymentStatus()
+    const isBirthDayValid = validateBirthDay()
+
+    if(!isCPFValid || !isUFValid || !isEmploymentStatusValid || !isBirthDayValid) return;
+
     axios.post('/api/brasilcard/client-analyse', data)
       .then((resp)=>{
-        console.log(resp);
+        if(resp.data.status === "approved"){
+          alert(`Parabéns! Você foi aprovado para o cartão BrasilCard com limite de R$ ${resp.data.card_limit}`)
+        }
+        if(resp.data.status === "rejected"){
+          alert("Infelizmente você não foi aprovado para o cartão BrasilCard")
+        }
+      })
+      .catch((err)=>{
+        console.log(err);
       })
   }
 
@@ -77,8 +133,8 @@ export function AnalysisForm() {
               <FormControl>
                 <Input
                   placeholder="CPF"
-                  {...field}
                   maxLength={14}
+                  {...field}
                 />
               </FormControl>
               <FormMessage />
@@ -90,7 +146,7 @@ export function AnalysisForm() {
           name="uf"
           render={({ field }) => (
             <FormItem>
-                <Select onValueChange={field.onChange} defaultValue={field.value} >
+                <Select onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Selecione a sua UF" />
@@ -117,7 +173,7 @@ export function AnalysisForm() {
           name="employment_status"
           render={({ field }) => (
             <FormItem>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Situação Empregatícia" />
@@ -167,11 +223,10 @@ export function AnalysisForm() {
                         <Calendar
                           mode="single"
                           locale={ptBR}
-                          selected={ new Date(field.value) ?? undefined}
                           captionLayout="dropdown"
                           onSelect={(value)=>{
                             if(value){
-                              setValue('birth_day', format(value.toDateString(), 'dd/MM/yyyy'))
+                              setValue('birth_day', format(value, 'dd/MM/yyyy'))
                             }
                           }}
                         />
@@ -180,6 +235,7 @@ export function AnalysisForm() {
                   </div>
                 </div>
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -188,3 +244,4 @@ export function AnalysisForm() {
     </Form>
   );
 }
+
