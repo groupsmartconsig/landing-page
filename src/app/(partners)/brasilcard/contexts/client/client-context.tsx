@@ -56,7 +56,9 @@ export const ClientSolicitationProvider = ({ children }: { children: ReactNode }
             } catch (error) {
                 console.error("Erro ao buscar estados:", error);
             }
-        }},[])
+        }
+        fetchStates()
+    },[])
 
 
     return (
