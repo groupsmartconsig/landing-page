@@ -2,8 +2,6 @@
 
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { BrasilCardSolicitationSchema, BrasilCardSolicitationFormData } from "../../../schemas/solicitation-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
