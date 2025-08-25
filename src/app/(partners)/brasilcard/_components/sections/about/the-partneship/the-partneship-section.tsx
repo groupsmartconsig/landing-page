@@ -1,5 +1,6 @@
 import Image from "next/image";
 import partneshipImage from "@/app/assets/images/smartconsig.webp"
+
 import { PartnerLabel } from "../../../partner-label/partner-label";
 
 export function ThePartneshipSection(){

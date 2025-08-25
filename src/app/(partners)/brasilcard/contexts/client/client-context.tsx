@@ -1,8 +1,9 @@
 "use client"
 
-import { ClientStates } from '@/app/api/brasilcard/types/client-states';
 import axios from 'axios';
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+
+import { ClientStates } from '@/app/api/brasilcard/types/client-states';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 export interface ClientSolicitationData{
     name?: string
@@ -31,8 +32,6 @@ export interface ClientSolicitationData{
     politically_exposed_position_date?: string,
     politically_exposed_relative?: boolean,
 }
-
-
 
 type ClientSolicitationContextType = {
     clientData: ClientSolicitationData;
