@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { clientAddressStatesDataBrasilcard } from "../../functions/client-address-states-data";
-import { ClientStatesResponse } from "../../types/client-states";
 
-export async function GET(): Promise<NextResponse<ClientStatesResponse | { error: string }> | void> {
+export async function GET() {
     try {
         const States = await clientAddressStatesDataBrasilcard()
         
@@ -10,9 +9,9 @@ export async function GET(): Promise<NextResponse<ClientStatesResponse | { error
             return NextResponse.json({ error: "Erro ao buscar estados" }, {status: 500})
         }
 
-        NextResponse.json(States)
+        return NextResponse.json(States)
 
     } catch (error) {
-        NextResponse.json({ error }, {status: 500} );
+        return NextResponse.json({ error }, {status: 500} );
     }
 }

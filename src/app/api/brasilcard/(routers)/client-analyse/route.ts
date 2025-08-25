@@ -14,8 +14,7 @@ export async function POST(request: NextRequest) {
 
       client.birth_date = client.birth_date.split("/").reverse().join("-")
       client.cpf = client.cpf.replaceAll(".",'').replaceAll("-","")
-      
-      
+            
       const login = await loginBrasilcard({
         relative: env.NEXT_PUBLIC_BRASIL_CARD_RELATIVE,
         username: env.NEXT_PUBLIC_BRASIL_CARD_USERNAME,
