@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     if(body){
       const client: AnalysisForm = body
 
-      client.birth_day = client.birth_day.split("/").reverse().join("-")
+      client.birth_date = client.birth_date.split("/").reverse().join("-")
       client.cpf = client.cpf.replaceAll(".",'').replaceAll("-","")
       
       

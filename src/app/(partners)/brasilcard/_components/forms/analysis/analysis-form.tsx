@@ -31,15 +31,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useClientSolicitationContext } from "../../../contexts/client/client-context";
+import { useRouter } from "next/navigation";
 
 export interface AnalysisForm  {
     cpf: string
     uf: string
     employment_status: string
-    birth_day: string
+    birth_date: string
 }
 
 export function AnalysisForm() {
+  const { setClientData, stateOptions } = useClientSolicitationContext()
+  const router = useRouter()
   const form = useForm<AnalysisForm>();
 
   const { watch, setValue, setError, clearErrors } = form;
@@ -47,7 +51,7 @@ export function AnalysisForm() {
   const cpf = watch("cpf");
   const uf = watch('uf');
   const employment_status = watch("employment_status")
-  const birthday = watch('birth_day')
+  const birthday = watch('birth_date')
 
   useEffect(() => {
     if(cpf){
@@ -56,7 +60,7 @@ export function AnalysisForm() {
   }, [cpf, setValue]);
 
   useEffect(()=>{
-    setValue('birth_day', maskDate(birthday))
+    setValue('birth_date', maskDate(birthday))
 
   }, [birthday, setValue ])
 
@@ -94,27 +98,40 @@ export function AnalysisForm() {
 
   function validateBirthDay(){
     if(!birthday){
-        setError("birth_day", {message: "Data de aniversário é obrigatório"})
+        setError("birth_date", {message: "Data de aniversário é obrigatório"})
         return false;
     }
     return true;
   }
 
-  function onSubmit(data: AnalysisForm) {
+  function validateInputs(){
     const isCPFValid = validateCPF()
     const isUFValid = validateUF()
     const isEmploymentStatusValid = validateEmploymentStatus()
     const isBirthDayValid = validateBirthDay()
 
-    if(!isCPFValid || !isUFValid || !isEmploymentStatusValid || !isBirthDayValid) return;
+    if(!isCPFValid || !isUFValid || !isEmploymentStatusValid || !isBirthDayValid) return false;
+
+    return true;
+  }
+
+  function onSubmit(data: AnalysisForm) {
+    if(!validateInputs()) return;
 
     axios.post('/api/brasilcard/client-analyse', data)
       .then((resp)=>{
         if(resp.data.status === "approved"){
-          alert(`Parabéns! Você foi aprovado para o cartão BrasilCard com limite de R$ ${resp.data.card_limit}`)
+          setClientData({
+            cpf: data.cpf,
+            uf: data.uf,
+            employment_status: data.employment_status,
+            birth_date: data.birth_date
+          })
+
+          router.push('/brasilcard/analise/solicitacao')
         }
         if(resp.data.status === "rejected"){
-          alert("Infelizmente você não foi aprovado para o cartão BrasilCard")
+          router.push('/brasilcard/analise/reprovado')
         }
       })
       .catch((err)=>{
@@ -154,10 +171,10 @@ export function AnalysisForm() {
                   </FormControl>
                   <SelectContent>
                     {
-                      UFs.map((uf)=>{
+                      stateOptions.map((state, index)=>{
                         return(
-                          <SelectItem key={`uf-${uf}`} value={uf}>
-                            {uf}
+                          <SelectItem key={`uf-${uf}`} value={state.codigo}>
+                            {state.descricao}
                           </SelectItem>
                         )
                       })
@@ -193,7 +210,7 @@ export function AnalysisForm() {
         />
         <FormField 
           control={form.control}
-          name="birth_day"
+          name="birth_date"
           render={({field})=>(
             <FormItem>
               <FormControl>
@@ -226,7 +243,7 @@ export function AnalysisForm() {
                           captionLayout="dropdown"
                           onSelect={(value)=>{
                             if(value){
-                              setValue('birth_day', format(value, 'dd/MM/yyyy'))
+                              setValue('birth_date', format(value, 'dd/MM/yyyy'))
                             }
                           }}
                         />
