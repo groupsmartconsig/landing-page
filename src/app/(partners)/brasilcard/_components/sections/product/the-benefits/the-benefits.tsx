@@ -48,22 +48,22 @@ export function TheBenefits (){
   ];
 
     return(
-        <section className="gap-8 px-4 py-10 lg:px-36 flex flex-col w-full justify-center relative pb-8">
-            <h2 className="font-bold text-lg max-w-[600px]">
+        <section className="gap-8 px-12 py-16 lg:px-36 flex flex-col w-full justify-center relative pb-8">
+            <h2 className="font-bold text-2xl max-w-[600px]">
               Todas as vantagens que um cartão de crédito pode oferecer, você encontra na {<PartnerLabel />}!
             </h2>
 
-            <ul className="grid w-full grid-cols-2 h-fit lg:grid-cols-4 lg:h-[500px] gap-6 relative">
+            <ul className="grid w-full grid-cols-2 pb-3 h-fit lg:grid-cols-4 lg:min-h-[400px] gap-6 relative">
               {benefits.map((feature, index) => (
                 <Card
                     key={index}
-                    className={`w-full h-fit py-4 bg-transparent rounded-[10px] overflow-hidden shadow-[0px_0px_5px_3px_#00000033] border-none`}
+                    className={`w-full h-fit py-4 sm:py-8 bg-transparent rounded-[10px] overflow-hidden shadow-[0px_0px_5px_3px_#00000033] border-none`}
                 >
                     <CardContent className="flex flex-col  items-center justify-center gap-3 h-fit">
                         <figure className="relative text-red-800 h-[50px] sm:h-[60px]">
                           {feature.icon}
                         </figure>
-                        <p className="relative font-bold text-sm sm:text-base text-center h-4">
+                        <p className="relative font-semibold text-sm sm:text-base text-center h-10">
                           {feature.title}
                         </p>
                     </CardContent>

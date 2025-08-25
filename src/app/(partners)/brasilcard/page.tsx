@@ -6,12 +6,11 @@ import { BrasilcardHeaderSection } from "./_components/header/header";
 
 export default function BrasilCardPage (){
     return(
-        <main>
+        <main className="flex flex-col items-center justify-center w-full bg-white">
             <BrasilcardHeaderSection />
             <AboutSection />
             <ProductSection />
             <SocialSection />
-            <FooterContainer />
         </main>
     )
 }

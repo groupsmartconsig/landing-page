@@ -20,18 +20,18 @@ export function TheProductSection(){
     ]
 
     return(
-        <section className="p-4 px-12 flex justify-center flex-wrap sm:flex-nowrap gap-1 sm:gap-8 sm:p-6 lg:px-36">
-            <figure className="flex items-center overflow-clip rounded-sm justify-center relative w-full sm:w-1/2 min-w-80 min-h-[448px]">
+        <section className="w-full max-w-7xl px-12 flex justify-center flex-wrap sm:flex-nowrap gap-8 sm:p-6 lg:px-36 py-12">
+            <figure className="flex items-center overflow-clip h-80 rounded-sm justify-center relative w-full sm:w-1/2 min-w-80 sm:min-h-[448px]">
                 <Image 
                   src={CardImage}
                   alt="Cartão de crédito BrasilCard"
                   fill
                   loading="lazy"
-                  className=" object-contain"
+                  className="object-cover bg-[#F5F5F6] sm:bg-transparent"
                 />
             </figure>
-            <article className="flex  flex-col gap-3 items-start justify-center relative w-full sm:w-1/2 min-w-80 sm:min-h-[448px]">
-                <h2 className="font-bold text-lg">
+            <article className="flex flex-col gap-3 items-start justify-center relative w-full sm:w-1/2 min-w-80 sm:min-h-[448px]">
+                <h2 className="font-bold text-2xl">
                     Saiba como contratar o seu cartão de crédito {<PartnerLabel />}.
                 </h2>
                 <ul className="w-full">
