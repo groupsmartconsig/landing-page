@@ -3,15 +3,17 @@ import { clientAddressStatesDataBrasilcard } from "../../functions/client-addres
 
 export async function GET() {
     try {
-        const States = await clientAddressStatesDataBrasilcard()
-        
-        if(!States){
-            return NextResponse.json({ error: "Erro ao buscar estados" }, {status: 500})
+        const states = await clientAddressStatesDataBrasilcard()
+
+        if (!states) {
+            return NextResponse.json(
+                { error: "Erro ao buscar estados" },
+                { status: 500 }
+            );
         }
 
-        return NextResponse.json(States)
-
+        return NextResponse.json(states)
     } catch (error) {
-        return NextResponse.json({ error }, {status: 500} );
+        return NextResponse.json({ error }, { status: 500 });
     }
 }

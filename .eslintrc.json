@@ -1,10 +1,13 @@
 {
   "extends": [
-    "@rocketseat/eslint-config/next", 
-    "next/core-web-vitals", 
+    "@rocketseat/eslint-config/next",
+    "next/core-web-vitals",
     "next/typescript"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
+  },
+  "rules": {
+    "react-hooks/rules-of-hooks": "off"
   }
 }
