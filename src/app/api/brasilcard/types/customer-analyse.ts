@@ -2,7 +2,7 @@ export interface ClientAnalyseRequest {
   cpf: string;
   employment_status: string;
   uf: string;
-  birth_day: string;
+  birth_date: string;
 }
 
 export interface ClientAnalyseResponse {

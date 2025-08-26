@@ -1,7 +1,4 @@
-export async function clientAddressStatesDataBrasilcard(
-  token: string,
-  document?: string,
-) {
+export async function clientAddressStatesDataBrasilcard() {
   const url = `${process.env.NEXT_PUBLIC_BRASIL_CARD_URL}/state`;
 
   try {
@@ -9,7 +6,6 @@ export async function clientAddressStatesDataBrasilcard(
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       }
     });
 
