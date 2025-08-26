@@ -35,7 +35,6 @@ export interface ClientSolicitationData{
 
 type ClientSolicitationContextType = {
     clientData: ClientSolicitationData;
-    stateOptions: ClientStates[]
     setClientData: React.Dispatch<React.SetStateAction<ClientSolicitationData>>;
     resetClient: () => void;
 };
@@ -44,24 +43,10 @@ const ClientSolicitationFormContext = createContext<ClientSolicitationContextTyp
 
 export const ClientSolicitationProvider = ({ children }: { children: ReactNode }) => {
     const [clientData, setClientData] = useState<ClientSolicitationData>({} as ClientSolicitationData);
-    const [stateOptions, setStateOptions] = useState<ClientStates[]>([] as ClientStates[])
     const resetClient = () => setClientData({} as ClientSolicitationData);
 
-    useEffect(()=>{
-        const fetchStates = async () => {
-            try {
-                const response = await axios.get('/api/brasilcard/states');
-                setStateOptions(response.data.states);
-            } catch (error) {
-                console.error("Erro ao buscar estados:", error);
-            }
-        }
-        fetchStates()
-    },[])
-
-
     return (
-        <ClientSolicitationFormContext.Provider value={{ clientData, setClientData, resetClient, stateOptions }}>
+        <ClientSolicitationFormContext.Provider value={{ clientData, setClientData, resetClient }}>
             {children}
         </ClientSolicitationFormContext.Provider>
     );

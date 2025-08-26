@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/select";
 import { useClientSolicitationContext } from "../../../contexts/client/client-context";
 import { useRouter } from "next/navigation";
+import { States } from "../../../consts/states-const";
 
 export interface AnalysisForm  {
     cpf: string
@@ -42,7 +43,7 @@ export interface AnalysisForm  {
 }
 
 export function AnalysisForm() {
-  const { setClientData, stateOptions } = useClientSolicitationContext()
+  const { setClientData } = useClientSolicitationContext()
   const router = useRouter()
   const form = useForm<AnalysisForm>();
 
@@ -171,15 +172,9 @@ export function AnalysisForm() {
                   </FormControl>
                   <SelectContent>
                     {
-                      stateOptions ? stateOptions.map((state, index)=>{
-                        return( 
-                          <SelectItem key={`uf-${uf}`} value={state.codigo}>
-                            {state.descricao}
-                          </SelectItem>
-                        )
-                      }) : UFs.map((uf) => (
-                        <SelectItem key={`uf-${uf}`} value={uf}>
-                          {uf}
+                       States.map((state) => (
+                        <SelectItem key={`state-${state.descricao}`} value={state.codigo}>
+                          {state.descricao}
                         </SelectItem>
                       ))
                     }
