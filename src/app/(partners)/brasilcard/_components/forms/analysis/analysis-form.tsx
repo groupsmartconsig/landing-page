@@ -34,6 +34,7 @@ import {
 import { useClientSolicitationContext } from "../../../contexts/client/client-context";
 import { useRouter } from "next/navigation";
 import { States } from "../../../consts/states-const";
+import { ClientDataResponse } from "@/app/api/brasilcard/types/client-data";
 
 export interface AnalysisForm  {
     cpf: string
@@ -120,14 +121,34 @@ export function AnalysisForm() {
     if(!validateInputs()) return;
 
     axios.post('/api/brasilcard/client-analyse', data)
-      .then((resp)=>{
+      .then(async (resp)=>{
         if(resp.data.status === "approved"){
-          setClientData({
-            cpf: data.cpf,
-            uf: data.uf,
-            employment_status: data.employment_status,
-            birth_date: data.birth_date
-          })
+          const clientData = await axios.get<ClientDataResponse>('/api/brasilcard/client-data?cpf=' + data.cpf.replace(/\D/g, ''))
+            .then((response)=>{
+              return response.data
+            })
+
+          if(clientData){
+            setClientData({
+              name: clientData.name || undefined,
+              cpf: clientData.cpf || undefined,
+              email: clientData.email || undefined,
+              cellphone: clientData.cellphone || undefined,
+              birth_date: clientData.birth_date || undefined,
+              mother_name: clientData.mother_name || undefined,
+              zipcode: clientData.zipcode || undefined,
+              city: clientData.city || undefined,
+              uf: clientData.state || undefined,
+              address: clientData.address || undefined,
+              type_street: clientData.address_type || undefined,
+              number: clientData.number || undefined,
+              complement: clientData.complement || undefined,
+              neighborhood: clientData.neighborhood || undefined,
+              sex: clientData.sex || undefined,
+              identity_document_number: clientData.identity_document_number || undefined,
+              identity_document_state: clientData.identity_document_state || undefined,
+            })
+          }
 
           router.push('/brasilcard/analise/solicitacao')
         }

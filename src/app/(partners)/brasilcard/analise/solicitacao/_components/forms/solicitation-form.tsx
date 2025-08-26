@@ -10,6 +10,7 @@ import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { ptBR } from "date-fns/locale";
 import { format } from "date-fns";
+import { useClientSolicitationContext } from "@/app/(partners)/brasilcard/contexts/client/client-context";
 
 export interface SolicitationFormData{
     name: string
@@ -40,7 +41,10 @@ export interface SolicitationFormData{
 }
 
 export function SolicitationForm(): JSX.Element{
-    const form = useForm<SolicitationFormData>()
+    const { clientData } = useClientSolicitationContext();
+    const form = useForm<SolicitationFormData>({
+        defaultValues: clientData
+    })
 
     const { watch, setValue } = form;
 
