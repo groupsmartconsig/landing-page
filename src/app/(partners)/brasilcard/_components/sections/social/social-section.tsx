@@ -2,7 +2,7 @@ import { TheFaqs } from "./the-faqs/the-faqs";
 
 export function SocialSection(){
     return (
-        <section className="py-14 flex flex-col gap-y-12">
+        <section className="py-14 flex flex-col gap-y-12 w-full">
             <TheFaqs />
         </section>
     )

@@ -21,16 +21,18 @@ export function TheAdvantages(){
     ]
 
     return(
-        <ul className="grid py-10 px-4 lg:px-36 gap-6 w-full grid-cols-2 lg:grid-cols-4 relative">
+        <ul className="bg-[#121212] grid py-10 px-12 lg:px-36 gap-6 w-full grid-cols-2 lg:grid-cols-4 relative">
             {advantages.map((advantage)=>{
                 return(
-                    <li className="h-full flex flex-col items-start pb-4 pl-1" key={`advantage-${advantage.label}`}>
+                    <li className="h-full flex flex-col items-center pb-4 pl-1" key={`advantage-${advantage.label}`}>
+                    
                         <figure className="h-16">
                             {advantage.icon}
                         </figure>
-                        <h4 className="font-semibold text-sm sm:text-base max-w-[250px]">
+                        <h4 className="font-semibold text-white text-center text-sm sm:text-base max-w-[250px]">
                             {advantage.label}
                         </h4>
+                    
                     </li>
                 )
             })}
