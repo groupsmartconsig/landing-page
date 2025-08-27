@@ -1,8 +1,5 @@
 "use client"
 
-import axios from 'axios';
-
-import { ClientStates } from '@/app/api/brasilcard/types/client-states';
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 export interface ClientSolicitationData{
@@ -42,9 +39,32 @@ type ClientSolicitationContextType = {
 const ClientSolicitationFormContext = createContext<ClientSolicitationContextType | undefined>(undefined);
 
 export const ClientSolicitationProvider = ({ children }: { children: ReactNode }) => {
-    const [clientData, setClientData] = useState<ClientSolicitationData>({} as ClientSolicitationData);
-    const resetClient = () => setClientData({} as ClientSolicitationData);
+    const [clientData, saveClientData] = useState<ClientSolicitationData>({} as ClientSolicitationData);
+    
+    useEffect(() => {
+        const storedData = localStorage.getItem('brasilCardClientData');
+        if (storedData) {
+            saveClientData(JSON.parse(storedData));
+        }
+    }, []);
 
+
+    const resetClient = () => {
+        localStorage.removeItem('brasilCardClientData');
+        setClientData({} as ClientSolicitationData)
+    };
+
+
+    const setClientData = (data: React.SetStateAction<ClientSolicitationData>) => {
+        saveClientData(prevData => {
+            const newData = typeof data === 'function' ? data(prevData) : data;
+            const updatedData = { ...prevData, ...newData };
+            localStorage.setItem('brasilCardClientData', JSON.stringify(updatedData));
+            return updatedData;
+        });
+    };
+
+    
     return (
         <ClientSolicitationFormContext.Provider value={{ clientData, setClientData, resetClient }}>
             {children}
