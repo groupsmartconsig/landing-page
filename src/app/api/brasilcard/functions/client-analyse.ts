@@ -6,7 +6,7 @@ import type {
 export async function clientAnalyseBrasilcard(
   data: ClientAnalyseRequest,
   token: string
-): Promise<ClientAnalyseResponse> {
+): Promise<Omit<ClientAnalyseResponse, 'clienDetails'>> {
   const url = `${process.env.NEXT_PUBLIC_BRASIL_CARD_URL}/visa/client-analyse`;
 
   try {
@@ -19,10 +19,14 @@ export async function clientAnalyseBrasilcard(
       }
     });
 
-    const result = (await response.json()) as ClientAnalyseResponse;
+    if(!response.ok){
+      throw new Error(`Erro ao realizar a analise no sistema visa: ${response.statusText}`)
+    }
+
+    const result = (await response.json()) as Omit<ClientAnalyseResponse, "clienDetails">;
     return result;
   } catch (error) {
-    console.log(error);
+    
     throw error;
   }
 }

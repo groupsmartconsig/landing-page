@@ -1,3 +1,6 @@
+import { MarketingDetails } from "@/types/customer";
+import { ClientDataResponse } from "./client-data";
+
 export interface ClientAnalyseRequest {
   cpf: string;
   employment_status: string;
@@ -5,9 +8,16 @@ export interface ClientAnalyseRequest {
   birth_date: string;
 }
 
+
 export interface ClientAnalyseResponse {
   pre_approved: boolean;
   card_limit: number;
   status: string;
   message: string;
+  clientDetails: ClientDataResponse
+}
+
+export interface CustomerAnalyseRequest{
+  customer: ClientAnalyseRequest
+  marketingDetails: MarketingDetails
 }

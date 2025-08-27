@@ -1,10 +1,10 @@
 import { env } from "@/utils/env";
 import { NextRequest, NextResponse } from "next/server";
-import { loginBrasilcard } from "../../functions/login-brasilcard";
-import { clientRegisterProposalBrasilcard } from "../../functions/client-register-proposal";
-import { clientRegisterThirdBrasilcard } from "../../functions/client-register-third";
-import { ClientRegisterProposalRequest } from "../../types/client-register-proposal";
-import { ClientRegisterThirdRequest } from "../../types/client-register-third";
+import { loginBrasilcard } from "../../brasilcard/functions/login-brasilcard";
+import { clientRegisterProposalBrasilcard } from "../../brasilcard/functions/client-register-proposal";
+import { clientRegisterThirdBrasilcard } from "../../brasilcard/functions/client-register-third";
+import { ClientRegisterProposalRequest } from "../../brasilcard/types/client-register-proposal";
+import { ClientRegisterThirdRequest } from "../../brasilcard/types/client-register-third";
 
 export async function POST(request: NextRequest) {
   try {

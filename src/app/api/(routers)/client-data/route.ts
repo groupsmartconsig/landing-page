@@ -1,8 +1,8 @@
 import { env } from "@/utils/env";
 import { NextRequest, NextResponse } from "next/server";
-import { ClientDataRequest } from "../../types/client-data";
-import { clientDataBrasilcard } from "../../functions/client-data";
-import { loginBrasilcard } from "../../functions/login-brasilcard";
+import { ClientDataRequest } from "../../brasilcard/types/client-data";
+import { clientDataBrasilcard } from "../../brasilcard/functions/client-data";
+import { loginBrasilcard } from "../../brasilcard/functions/login-brasilcard";
 
 export async function GET(request: NextRequest){
     try {

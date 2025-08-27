@@ -25,7 +25,8 @@ export enum CustomerOrigin {
   None,
   FileImportation,
   Api,
-  LeadImportation
+  LeadImportation,
+  BrasilCard
 }
 
 export enum Segment {
