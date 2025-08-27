@@ -6,7 +6,7 @@ export default function SolitacaoPage(){
     return(
         <main >
             <HeaderSection />
-            <section className="px-12 lg:px-44 pb-20">
+            <section className="px-12 lg:px-44 pb-20 flex justify-center items-center w-full">
                 <SolicitationForm />
             </section>
             <FooterContainer />

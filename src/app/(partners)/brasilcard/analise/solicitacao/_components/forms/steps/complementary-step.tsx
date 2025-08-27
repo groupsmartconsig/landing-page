@@ -23,10 +23,10 @@ interface StepProps {
 export function ComplementaryDataStep({ control, setValue }: StepProps) {
     return (
         <section className="flex flex-col gap-6">
-            <h3 className=" font-semibold text-xl">
+            <h3 className=" font-semibold text-lg">
                 Dados Complementares (Etapa 3 de 3)
             </h3>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 justify-between">
+            <div className="grid grid-cols-1 gap-x-12 gap-6 sm:grid-cols-2 justify-between">
                 <FormField
                     control={control}
                     name="marital_status"

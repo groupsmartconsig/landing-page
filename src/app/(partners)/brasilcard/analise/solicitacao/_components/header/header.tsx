@@ -32,7 +32,7 @@ export function HeaderSection (): JSX.Element {
               Garanta seu Cartão <span className="font-bold">BrasilCard</span>: Rápido, Fácil e 100% Digital.
           </h1>
         </section>
-        <figure className="relative h-60 sm:h-80 w-full sm:w-1/2">
+        <figure className="relative h-40 w-full sm:w-1/2">
             <Image 
               src={HeadlineImage}
               alt="mulher negra sorrindo e segurando um cartão de crédito"

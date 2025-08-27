@@ -80,27 +80,27 @@ export function SolicitationForm() {
 
     return (
          <Form {...form} >
-            <form onSubmit={(e) => e.preventDefault()} className="py-12 flex flex-col gap-9">
-                
+            <form onSubmit={(e) => e.preventDefault()} className="py-12 w-full max-w-4xl flex flex-col gap-9">
+                                
                 {currentStep === 0 && <PersonalDataStep control={form.control} setValue={form.setValue} form={form} />}
                 {currentStep === 1 && <AddressStep control={form.control} />}
                 {currentStep === 2 && <ComplementaryDataStep control={form.control} setValue={form.setValue} />}
                 
-                <div className="flex justify-end gap-4 mt-8">
+                <div className="grid grid-cols-1 sm:grid-cols-4 justify-end gap-4 mt-8">
                     {currentStep > 0 && (
-                        <Button type="button" variant="outline" onClick={handlePreviousStep}>
+                        <Button className="sm:col-start-3" type="button" variant="outline" onClick={handlePreviousStep}>
                             Anterior
                         </Button>
                     )}
                     
                     {currentStep < 2 ? (
-                         <Button type="button" className="bg-cyan-900 hover:bg-cyan-700" onClick={handleNextStep}>
+                         <Button type="button" className="bg-cyan-900 sm:col-start-4 hover:bg-cyan-700" onClick={handleNextStep}>
                             Próximo
                         </Button>
                     ) : (
                         <Button 
                             type="button"
-                            className="bg-cyan-900 hover:bg-cyan-700" 
+                            className="bg-cyan-900 sm:col-start-4 hover:bg-cyan-700" 
                             onClick={form.handleSubmit(onSubmit)}
                         >
                             Enviar Solicitação

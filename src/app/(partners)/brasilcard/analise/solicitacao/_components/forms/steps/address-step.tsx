@@ -14,8 +14,8 @@ interface StepProps {
 export function AddressStep({ control }: StepProps) {
     return (
         <section className="flex flex-col gap-6">
-            <h3 className=" font-semibold text-xl">Endereço (Etapa 2 de 3)</h3>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <h3 className=" font-semibold text-lg">Endereço (Etapa 2 de 3)</h3>
+            <div className="grid grid-cols-1 gap-x-12 gap-6 sm:grid-cols-2 ">
                 <FormField
                     control={control}
                     name="zipcode"

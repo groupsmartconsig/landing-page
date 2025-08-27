@@ -20,14 +20,14 @@ export function TheProductSection(){
     ]
 
     return(
-        <section className="w-full max-w-7xl px-12 flex justify-center flex-wrap sm:flex-nowrap gap-8 sm:p-6 lg:px-36 py-12">
+        <section className="w-full max-w-7xl px-12 flex justify-center flex-wrap sm:flex-nowrap gap-8 sm:p-6 lg:px-36 xl:px-0 py-12 sm:py-24">
             <figure className="flex items-center overflow-clip h-80 rounded-sm justify-center relative w-full sm:w-1/2 min-w-80 sm:min-h-[448px]">
                 <Image 
                   src={CardImage}
                   alt="Cartão de crédito BrasilCard"
                   fill
                   loading="lazy"
-                  className="object-cover bg-[#F5F5F6] sm:bg-transparent"
+                  className="object-cover bg-[#F5F5F6] sm:bg-transparent sm:object-contain"
                 />
             </figure>
             <article className="flex flex-col gap-3 items-start justify-center relative w-full sm:w-1/2 min-w-80 sm:min-h-[448px]">

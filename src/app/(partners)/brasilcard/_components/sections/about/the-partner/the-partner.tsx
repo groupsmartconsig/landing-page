@@ -6,7 +6,7 @@ import { PartnerLabel } from "../../../partner-label/partner-label";
 export function ThePartnerSection(){
     return(
             <section className="w-full py-24 flex flex-col justify-center items-center bg-[#F5F5F6]">
-                <div className="w-full max-w-7xl flex flex-wrap-reverse sm:flex-nowrap justify-center px-12 lg:px-36 gap-9">
+                <div className="w-full max-w-7xl flex flex-wrap-reverse sm:flex-nowrap justify-center px-12 lg:px-36 xl:px-0 gap-9">
                     <article className="flex flex-col gap-3 items-start justify-center relative w-full sm:w-1/2 min-w-80 sm:min-h-[448px]">
                         <h2 className="font-bold text-2xl">
                             Conheça a {<PartnerLabel />}: Tradição e Segurança

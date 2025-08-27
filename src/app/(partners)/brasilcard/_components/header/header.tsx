@@ -8,7 +8,7 @@ import HeadlineImage from "@/app/assets/images/partners/brasilcard/cards.png"
 export function BrasilcardHeaderSection (): JSX.Element {
   return (
     <header id="solicitar-cartao" className="flex flex-col min-h-[90dvh] items-center justify-end relative w-full bg-transparent">
-      <nav className="flex max-w-7xl h-[80px] items-center justify-between px-8 lg:px-[150px] py-0 relative w-full backdrop-blur-[2px] backdrop-brightness-[100%]">
+      <nav className="flex max-w-7xl h-[80px] items-center justify-between px-8 lg:px-[150px] xl:px-0 py-0 relative w-full backdrop-blur-[2px] backdrop-brightness-[100%]">
         <figure className=" w-20 md:w-24 xl:w-28 h-full inline-flex items-center relative flex-[0_0_auto]">
           <Image
             src={Logo}

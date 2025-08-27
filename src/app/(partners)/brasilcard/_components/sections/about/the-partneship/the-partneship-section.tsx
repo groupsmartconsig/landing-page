@@ -5,7 +5,7 @@ import { PartnerLabel } from "../../../partner-label/partner-label";
 
 export function ThePartneshipSection(){
     return(
-        <section className="flex w-full max-w-7xl justify-center flex-wrap sm:flex-nowrap gap-8 py-24 px-12 lg:px-36">
+        <section className="flex w-full max-w-7xl justify-center flex-wrap sm:flex-nowrap gap-8 py-24 px-12 lg:px-36 xl:px-0">
             <section className="sm:p-4 lg:p-9 flex justify-center items-center w-full sm:w-1/2 h-80 min-w-80 sm:min-h-[400px]">
                 <figure className="overflow-clip w-full h-full rounded-sm relative ">
                     <Image 
