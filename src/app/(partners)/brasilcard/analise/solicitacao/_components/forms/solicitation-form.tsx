@@ -2,42 +2,15 @@
 
 import { useState } from "react";
 import { Form } from "@/components/ui/form";
-import { useForm, FieldName } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+import { useForm, FieldName } from "react-hook-form";
 import { useClientSolicitationContext } from "@/app/(partners)/brasilcard/contexts/client/client-context";
 import { PersonalDataStep } from "./steps/personal-step";
 import { AddressStep } from "./steps/address-step";
 import { ComplementaryDataStep } from "./steps/complementary-step";
-import { SolicitationFormData, solicitationResolver } from "./solicitation-resolver";
+import { solicitationResolver } from "./resolvers/solicitation-resolver";
+import { SolicitationFormData } from "./types/solicitation-form";
 
-`export interface SolicitationFormData {
-    name: string
-    cpf: string,
-    identity_document_number: string,
-    identity_document_state: string,
-    cellphone: string,
-    email: string,
-    birth_date: string,
-    sex: string,
-    marital_status: string,
-    mother_name: string,
-    job: string,
-    job_company: string,
-    employment_status: string,
-    income: string,
-    zipcode: string,
-    city: string,
-    state: string,
-    type_street: string,
-    address: string,
-    number: string,
-    complement: string,
-    neighborhood: string,
-    politically_exposed_position: boolean,
-    politically_exposed_position_date: string,
-    politically_exposed_relative: boolean,
-}
-`
 const stepFields: FieldName<SolicitationFormData>[][] = [
     ['name', 'cpf', 'birth_date', 'mother_name', 'identity_document_number', 'identity_document_state', 'cellphone', 'email', 'sex'],
     ['zipcode', 'city', 'state', 'type_street', 'address', 'number', 'neighborhood', 'complement'],
