@@ -45,10 +45,6 @@ export const solicitationResolver: Resolver<SolicitationFormData> = async (value
     errors.job = validateJob(values.job);
     errors.employment_status = validateEmploymentStatus(values.employment_status);
     errors.income = validateIncome(values.income);
-
-    values.politically_exposed_position && (
-        errors.politically_exposed_position_date = validatePoliticallyExposedPositionDate(values.politically_exposed_position_date)
-    );
         
     const isValid = Object.keys(errors).length === 0;
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 export interface ClientSolicitationData{
     name?: string
@@ -39,21 +39,15 @@ type ClientSolicitationContextType = {
 const ClientSolicitationFormContext = createContext<ClientSolicitationContextType | undefined>(undefined);
 
 export const ClientSolicitationProvider = ({ children }: { children: ReactNode }) => {
-    const [clientData, saveClientData] = useState<ClientSolicitationData>({} as ClientSolicitationData);
-    
-    useEffect(() => {
-        const storedData = localStorage.getItem('brasilCardClientData');
-        if (storedData) {
-            saveClientData(JSON.parse(storedData));
+    const [clientData, saveClientData] = useState<ClientSolicitationData>(
+        () => {
+            if (typeof window !== "undefined") {
+                const storedData = localStorage.getItem("brasilCardClientData");
+                return storedData ? JSON.parse(storedData) : {};
+            }
+            return {};
         }
-    }, []);
-
-
-    const resetClient = () => {
-        localStorage.removeItem('brasilCardClientData');
-        setClientData({} as ClientSolicitationData)
-    };
-
+    );
 
     const setClientData = (data: React.SetStateAction<ClientSolicitationData>) => {
         saveClientData(prevData => {
@@ -64,6 +58,10 @@ export const ClientSolicitationProvider = ({ children }: { children: ReactNode }
         });
     };
 
+    const resetClient = () => {
+        localStorage.removeItem('brasilCardClientData');
+        setClientData({} as ClientSolicitationData)
+    };
     
     return (
         <ClientSolicitationFormContext.Provider value={{ clientData, setClientData, resetClient }}>

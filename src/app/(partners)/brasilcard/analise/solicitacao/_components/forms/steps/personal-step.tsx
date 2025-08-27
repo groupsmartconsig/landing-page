@@ -1,3 +1,5 @@
+"use client"
+
 import { Control, Form, UseFormSetValue } from "react-hook-form";
 import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -7,12 +9,12 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { SolicitationFormData } from "@/app/(partners)/brasilcard/schemas/solicitation-schema";
 import { maskDate } from "@/utils/mask/mask-date";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { States } from "@/app/(partners)/brasilcard/consts/states-const";
 import { maskPhone } from "@/utils/mask/mask-phone";
 import { maskCPF } from "@/utils/mask/mask-cpf";
+import { SolicitationFormData } from "../types/solicitation-form";
 
 interface StepProps {
     control: Control<SolicitationFormData>;
@@ -144,7 +146,7 @@ export function PersonalDataStep({ control, setValue, form }: StepProps) {
                     disabled = {control._defaultValues.identity_document_state ? true : false}
                     render={({ field }) => (
                         <FormItem>
-                            <Select onValueChange={field.onChange} >
+                            <Select onValueChange={field.onChange} defaultValue={control._defaultValues.identity_document_state}>
                                 <FormControl>
                                     <SelectTrigger>
                                         <SelectValue placeholder="UF do RG" />

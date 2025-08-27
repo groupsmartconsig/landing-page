@@ -1,3 +1,5 @@
+"use client"
+
 import { Control, UseFormSetValue } from "react-hook-form";
 import { FormField, FormItem, FormControl, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -8,11 +10,11 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { SolicitationFormData } from "@/app/(partners)/brasilcard/schemas/solicitation-schema";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { EmploymentStatus } from "@/app/(partners)/brasilcard/consts/employment-status-const";
 import { Occupations } from "@/app/(partners)/brasilcard/consts/occupations-const";
 import { MaritalStatus } from "@/app/(partners)/brasilcard/consts/marital-status-const";
+import { SolicitationFormData } from "../types/solicitation-form";
 
 
 interface StepProps {
@@ -33,7 +35,7 @@ export function ComplementaryDataStep({ control, setValue }: StepProps) {
                     disabled = {control._defaultValues.marital_status ? true : false}
                     render={({ field }) => (
                         <FormItem>
-                            <Select onValueChange={field.onChange} defaultValue={control._defaultValues.employment_status}>
+                            <Select onValueChange={field.onChange} defaultValue={control._defaultValues.marital_status}>
                                 <FormControl>
                                     <SelectTrigger>
                                         <SelectValue placeholder="Estado cívil" />
@@ -59,7 +61,7 @@ export function ComplementaryDataStep({ control, setValue }: StepProps) {
                     disabled = {control._defaultValues.job ? true : false}
                     render={({ field }) => (
                         <FormItem>
-                            <Select onValueChange={field.onChange} defaultValue={control._defaultValues.employment_status}>
+                            <Select onValueChange={field.onChange} defaultValue={control._defaultValues.job}>
                                 <FormControl>
                                     <SelectTrigger>
                                         <SelectValue placeholder="Profissão" />

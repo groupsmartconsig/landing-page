@@ -1,11 +1,13 @@
-import { Control, Form } from "react-hook-form";
+"use client";
+
+import { Control } from "react-hook-form";
 import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SolicitationFormData } from "@/app/(partners)/brasilcard/schemas/solicitation-schema";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { States } from "@/app/(partners)/brasilcard/consts/states-const";
 import { maskCEP } from "@/utils/mask/mask-cep";
 import { AddressTypes } from "@/app/(partners)/brasilcard/consts/adresses-types-const";
+import { SolicitationFormData } from "../types/solicitation-form";
 
 interface StepProps {
     control: Control<SolicitationFormData>;
@@ -19,7 +21,6 @@ export function AddressStep({ control }: StepProps) {
                 <FormField
                     control={control}
                     name="zipcode"
-                    disabled = {control._defaultValues.zipcode ? true : false}
                     render={({ field }) => (
                         field.value && (field.value = maskCEP(field.value)),
                         <FormItem className="w-full">
@@ -75,7 +76,7 @@ export function AddressStep({ control }: StepProps) {
                     disabled = {control._defaultValues.type_street ? true : false}
                     render={({ field }) => (
                         <FormItem>
-                            <Select onValueChange={field.onChange} defaultValue={control._defaultValues.type_street}>
+                            <Select onValueChange={field.onChange} defaultValue={control._defaultValues.type_street} >
                                 <FormControl>
                                     <SelectTrigger>
                                         <SelectValue placeholder="Tipo de logradouro" />

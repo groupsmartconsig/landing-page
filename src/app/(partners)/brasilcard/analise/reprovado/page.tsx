@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import partnerLogoImage from "@/app/assets/images/partners/brasilcard/logo.jpg"
 import logoImage from "@/app/assets/images/logo-red.png"
 
 import { Button } from '@/components/ui/button'
 import { ArrowRightIcon, Plus } from 'lucide-react'
+import { UtmLink } from '@/components/shared/utm-link'
 
 export default function AnalysisRegected() {
 
@@ -46,7 +46,7 @@ export default function AnalysisRegected() {
           </p>
 
           <div className="flex items-center justify-center mt-8">
-            <Link href={"/brasilcard"}>
+            <UtmLink href={"/brasilcard"}>
               <Button
                 type='button'
                 className='flex items-center gap-2 text-lg px-12 py-6'
@@ -54,7 +54,7 @@ export default function AnalysisRegected() {
                 Página Inicial
                 <ArrowRightIcon className='size-4 md:size-6' />
               </Button>
-            </Link>
+            </UtmLink>
           </div>
         </div>
       </div>

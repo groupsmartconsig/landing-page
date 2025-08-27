@@ -5,9 +5,9 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { isValidCpf, maskCPF } from "@/utils/mask/mask-cpf";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader2Icon } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { ptBR } from "date-fns/locale";
@@ -34,6 +34,9 @@ import { useRouter } from "next/navigation";
 import { States } from "../../../consts/states-const";
 import { ClientDataResponse } from "@/app/api/brasilcard/types/client-data";
 import { EmploymentStatus } from "../../../consts/employment-status-const";
+import { getUtmData } from "@/context/utm-context";
+import { CustomerAnalyseRequest } from "@/app/api/brasilcard/types/customer-analyse";
+import { toast } from "sonner";
 
 export interface AnalysisForm  {
     cpf: string
@@ -46,6 +49,8 @@ export function AnalysisForm() {
   const { setClientData } = useClientSolicitationContext()
   const router = useRouter()
   const form = useForm<AnalysisForm>();
+  const marketingDetails = getUtmData()
+  const [isLoading, setIsLoading] = useState(false)
 
   const { watch, setValue, setError, clearErrors } = form;
 
@@ -119,14 +124,18 @@ export function AnalysisForm() {
   function onSubmit(data: AnalysisForm) {
     if(!validateInputs()) return;
 
-    axios.post('/api/brasilcard/client-analyse', data)
+    setIsLoading(true);
+
+    const analyseRequest: CustomerAnalyseRequest = {
+      customer: data,
+      marketingDetails: marketingDetails
+    }
+
+    axios.post('/api/client-analyse', analyseRequest)
       .then(async (resp)=>{
         if(resp.data.status === "approved"){
-          const clientData = await axios.get<ClientDataResponse>('/api/brasilcard/client-data?cpf=' + data.cpf.replace(/\D/g, ''))
-            .then((response)=>{
-              return response.data
-            })
-
+          const clientData: ClientDataResponse = resp.data.clientDetails
+          
           if(clientData){
             setClientData({
               name: clientData.name || undefined,
@@ -155,9 +164,14 @@ export function AnalysisForm() {
         if(resp.data.status === "rejected"){
           router.push('/brasilcard/analise/reprovado')
         }
+
+        setIsLoading(false)
       })
       .catch((err)=>{
+        toast.error("Ocorreu um erro ao realizar a requisição, por favor tente novamente mais tarde.")
         console.log(err);
+
+        setIsLoading(false)
       })
   }
 
@@ -276,7 +290,23 @@ export function AnalysisForm() {
             </FormItem>
           )}
         />
-        <Button className="w-full bg-[#024C89] font-bold" type="submit">Quero o Meu BrasilCard</Button>
+        <Button 
+          className="w-full bg-[#024C89] hover:bg-cyan-950 font-bold" 
+          type="submit"
+        >
+          {
+            isLoading ? (
+                <>
+                    <Loader2Icon className="animate-spin" />
+                    Enviando Solicitação
+                </>
+            ) :(
+                <>
+                    Quero o Meu BrasilCard
+                </>
+            )
+          }
+        </Button>
       </form>
     </Form>
   );

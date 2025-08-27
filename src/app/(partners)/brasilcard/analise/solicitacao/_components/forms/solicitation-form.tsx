@@ -1,5 +1,7 @@
 'use client';
 
+import axios from "axios";
+
 import { useState } from "react";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
@@ -10,6 +12,9 @@ import { AddressStep } from "./steps/address-step";
 import { ComplementaryDataStep } from "./steps/complementary-step";
 import { solicitationResolver } from "./resolvers/solicitation-resolver";
 import { SolicitationFormData } from "./types/solicitation-form";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Loader2Icon } from "lucide-react";
+import { toast } from "sonner";
 
 const stepFields: FieldName<SolicitationFormData>[][] = [
     ['name', 'cpf', 'birth_date', 'mother_name', 'identity_document_number', 'identity_document_state', 'cellphone', 'email', 'sex'],
@@ -18,42 +23,68 @@ const stepFields: FieldName<SolicitationFormData>[][] = [
 ];
 
 export function SolicitationForm() {
-    const [currentStep, setCurrentStep] = useState(0);
-    const { clientData } = useClientSolicitationContext();
-    
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const formStepParam = searchParams.get('form-step');
+
+    const [currentStep, setCurrentStep] = useState(Number(formStepParam) || 0);
+    const { clientData, resetClient, setClientData } = useClientSolicitationContext();
+    const [isLoading, setIsLoading] = useState(false)
+
+    const updateFormStepParam = (newStep: number) => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('form-step', newStep.toString());
+        
+        router.push(`${pathname}?${params.toString()}`);
+    };
+
     const form = useForm<SolicitationFormData>({
         resolver: solicitationResolver,
         defaultValues: clientData,
+        mode: "onChange"
     });
     
     const { trigger } = form;
 
     function onSubmit(data: SolicitationFormData) {
-        console.log("Dados do formulário enviados:", data);
-        alert("Solicitação enviada com sucesso!");
+        setIsLoading(true)
+
+        axios.post('/api/proposal-register', data).then(()=>{
+            setIsLoading(false)
+            router.push('/brasilcard/analise/aprovado')    
+        }).catch(()=>{
+            toast.error("ocorreu um erro ao enviar os seus dados, por favor tente novamente.")
+            setIsLoading(false)
+        })
+
     }
 
     const handleNextStep = async () => {
         const fields = stepFields[currentStep];
         const output = await trigger(fields, { shouldFocus: true });
-        console.log(`Validação do passo ${currentStep + 1}:`, output);
         
         if (!output) return;
 
+        setClientData(form.getValues())
+        
         if (currentStep < 2) {
-            setCurrentStep(step => step + 1);
+
+            updateFormStepParam(currentStep + 1);
+            setCurrentStep(currentStep + 1);
         }
     };
     
     const handlePreviousStep = () => {
         if (currentStep > 0) {
-            setCurrentStep(step => step - 1);
+            updateFormStepParam(currentStep - 1);
+            setCurrentStep(currentStep - 1);
         }
     };
 
     return (
          <Form {...form} >
-            <form onSubmit={(e) => e.preventDefault()} className="py-12 w-full max-w-4xl flex flex-col gap-9">
+            <form className="py-12 w-full max-w-4xl flex flex-col gap-9">
                                 
                 {currentStep === 0 && <PersonalDataStep control={form.control} setValue={form.setValue} form={form} />}
                 {currentStep === 1 && <AddressStep control={form.control} />}
@@ -67,16 +98,27 @@ export function SolicitationForm() {
                     )}
                     
                     {currentStep < 2 ? (
-                         <Button type="button" className="bg-cyan-900 sm:col-start-4 hover:bg-cyan-700" onClick={handleNextStep}>
+                         <Button  type="button" className=" sm:col-start-4 bg-[#024C89] hover:bg-cyan-950" onClick={handleNextStep}>
                             Próximo
                         </Button>
                     ) : (
                         <Button 
                             type="button"
-                            className="bg-cyan-900 sm:col-start-4 hover:bg-cyan-700" 
-                            onClick={form.handleSubmit(onSubmit)}
-                        >
-                            Enviar Solicitação
+                            className=" sm:col-start-4 bg-[#024C89] hover:bg-cyan-950"
+                            onClick={()=> onSubmit(form.getValues())}
+                        >   
+                            {
+                                isLoading ? (
+                                    <>
+                                        <Loader2Icon className="animate-spin" />
+                                        Enviando Solicitacao
+                                    </>
+                                ) :(
+                                    <>
+                                        Enviar Solicitação
+                                    </>
+                                )
+                            }
                         </Button>
                     )}
                 </div>
