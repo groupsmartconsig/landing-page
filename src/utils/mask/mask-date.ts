@@ -18,8 +18,9 @@ export function maskDate(value: string = ''): string {
     return digits
 }
 
-export function isValidDate(value: string) {
+export function isValidDate(value: unknown): boolean {
     if(typeof value !== "string") return false;
     if(value.length < 10) return false
 
+    return true;
 }

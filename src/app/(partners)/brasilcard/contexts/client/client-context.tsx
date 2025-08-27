@@ -22,7 +22,7 @@ export interface ClientSolicitationData{
     income?: string,
     zipcode?: string,
     city?: string,
-    uf?: string,
+    state?: string,
     type_street?: string,
     address?: string,
     number?: string,

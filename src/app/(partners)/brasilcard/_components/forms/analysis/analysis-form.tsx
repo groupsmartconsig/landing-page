@@ -11,8 +11,6 @@ import { CalendarIcon } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { ptBR } from "date-fns/locale";
-import { occupations } from "@/utils/enums/occupations-enum";
-import { UFs } from "@/utils/enums/ufs-enum";
 import { format } from "date-fns";
 import { maskDate } from "@/utils/mask/mask-date";
 
@@ -35,6 +33,7 @@ import { useClientSolicitationContext } from "../../../contexts/client/client-co
 import { useRouter } from "next/navigation";
 import { States } from "../../../consts/states-const";
 import { ClientDataResponse } from "@/app/api/brasilcard/types/client-data";
+import { EmploymentStatus } from "../../../consts/employment-status-const";
 
 export interface AnalysisForm  {
     cpf: string
@@ -134,17 +133,18 @@ export function AnalysisForm() {
               cpf: clientData.cpf || undefined,
               email: clientData.email || undefined,
               cellphone: clientData.cellphone || undefined,
-              birth_date: clientData.birth_date || undefined,
+              birth_date: clientData.birth_date || data.birth_date || undefined,
               mother_name: clientData.mother_name || undefined,
               zipcode: clientData.zipcode || undefined,
               city: clientData.city || undefined,
-              uf: clientData.state || undefined,
+              state: clientData.state || data.uf || undefined,
               address: clientData.address || undefined,
               type_street: clientData.address_type || undefined,
               number: clientData.number || undefined,
               complement: clientData.complement || undefined,
               neighborhood: clientData.neighborhood || undefined,
               sex: clientData.sex || undefined,
+              employment_status: data.employment_status || undefined,
               identity_document_number: clientData.identity_document_number || undefined,
               identity_document_state: clientData.identity_document_state || undefined,
             })
@@ -217,9 +217,9 @@ export function AnalysisForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {occupations.map((occupation, index)=>{
+                  {EmploymentStatus.map((status, index)=>{
                     return(
-                      <SelectItem key={`${occupation}-${index}`} value={`000${index + 1}`} >{occupation}</SelectItem>
+                      <SelectItem key={`${status}-${index}`} value={`000${index + 1}`} >{status}</SelectItem>
                     )
                   })}
                 </SelectContent>
